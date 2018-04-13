@@ -14,5 +14,46 @@ class DateUtils {
             val dateFormat = SimpleDateFormat.getDateInstance(dateFormat, locale)
             return dateFormat.format(date)
         }
+        
+        
+        /// ------------------------------------------------------------------
+        /// Awesome Application Factory legacy functions 
+        /// ------------------------------------------------------------------
+        val TIME_PATTERN = "HH:mm"
+        val TIME_PATTERN_WITH_SECONDS = "HH:mm ss"
+        val DATE_PATTERN_DASH = "yyyy-MM-dd"
+        val DATE_TIME_PATTERN_WITHOUT_DELIMITER = "yyyyMMddHHmmss"
+        
+        fun getFullPatternDate(timeMillis: Long): String {
+            val date = Date(timeMillis)
+            val dateFormat = SimpleDateFormat.getDateInstance(SimpleDateFormat.FULL, Locale.getDefault())
+            return dateFormat.format(date)
+        }
+
+        fun getFullPatternDateWithTime(timeMillis: Long): String {
+            val date = Date(timeMillis)
+            val dateFormat = SimpleDateFormat.getDateInstance(SimpleDateFormat.FULL, Locale.getDefault())
+            val hourFormat = SimpleDateFormat(TIME_PATTERN)
+            return String.format("%s %s", dateFormat.format(date), hourFormat.format(date))
+        }
+
+        fun getFullPatternDateWithTimeAndSeconds(timeMillis: Long, locale: Locale = Locale.getDefault()): String {
+            val date = Date(timeMillis)
+            val dateFormat = SimpleDateFormat.getDateInstance(SimpleDateFormat.FULL, locale)
+            val hourFormat = SimpleDateFormat(TIME_PATTERN_WITH_SECONDS)
+            return String.format("%s %s", dateFormat.format(date), hourFormat.format(date))
+        }
+
+        fun getCurrentDateTime(pattern: String): String {
+            val date = Date()
+            val dateFormat = SimpleDateFormat(pattern)
+            return dateFormat.format(date)
+        }
+
+        fun timeMillisToDateTime(timeMillis: Long, pattern: String): String {
+            val date = Date(timeMillis)
+            val dateFormat = SimpleDateFormat(pattern)
+            return dateFormat.format(date)
+        }
     }
 }
