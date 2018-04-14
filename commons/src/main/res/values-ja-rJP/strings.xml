@@ -1,0 +1,15 @@
+<resources>
+    <!--SettingsActivity-->
+    <string name="customize_colors_summary">アプリケーションの主要な色を設定します。</string>
+    <string name="invite_friends">友達を招待</string>
+    <string name="invite_friends_summary">%sアプリケーションを友達に共有します。</string>
+    <string name="background_color">背景色(Card View)</string>
+    
+    <!--AboutActivity-->
+    <string name="aaf_my_website">\nhttps://hanjoongcho.github.io/aaf/</string>
+    <string name="aaf_my_email">hanjoongcho@gmail.com</string>
+    <string name="aaf_about_summary">アプリケーションのバージョン、ライセンスポリシーなどを確認したり、機能の改善要求をすることができます。</string>
+
+    <!--GoogleDriveUtils-->
+    <string name="google_drive_connect_message">Googleドライブの同期...</string>
+</resources>
