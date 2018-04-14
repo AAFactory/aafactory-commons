@@ -56,4 +56,19 @@ class DateUtilsTest {
     fun timeMillisToDateTimeCaseD() {
         assertEquals("20180413140535", DateUtils.timeMillisToDateTime(millis, DateUtils.DATE_TIME_PATTERN_WITHOUT_DELIMITER))
     }
+    
+    @Test
+    fun timeMillisToDateTimeCaseE() {
+        assertEquals("2018", DateUtils.timeMillisToDateTime(millis, DateUtils.YEAR_PATTERN))
+    }
+    
+    @Test
+    fun timeMillisToDateTimeCaseF() {
+        assertEquals("04", DateUtils.timeMillisToDateTime(millis, DateUtils.MONTH_PATTERN))
+    }
+    
+    @Test
+    fun timeMillisToDateTimeCaseG() {
+        assertEquals("13", DateUtils.timeMillisToDateTime(millis, DateUtils.DAY_PATTERN))
+    }
 }

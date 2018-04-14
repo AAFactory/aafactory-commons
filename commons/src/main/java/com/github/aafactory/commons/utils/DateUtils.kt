@@ -23,6 +23,9 @@ class DateUtils {
         val TIME_PATTERN_WITH_SECONDS = "HH:mm ss"
         val DATE_PATTERN_DASH = "yyyy-MM-dd"
         val DATE_TIME_PATTERN_WITHOUT_DELIMITER = "yyyyMMddHHmmss"
+        val YEAR_PATTERN = "yyyy"
+        val MONTH_PATTERN = "MM"
+        val DAY_PATTERN = "dd"
         
         fun getFullPatternDate(timeMillis: Long): String {
             val date = Date(timeMillis)
