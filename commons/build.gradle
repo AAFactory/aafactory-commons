@@ -53,3 +53,15 @@ dependencies {
 }
 
 apply from: '../bintray-upload.gradle'
+//buildscript {
+//    ext {
+//        kotlinVersion = '1.2.31'
+//        supportLibs = '27.0.2'
+//        propVersionName = '0.0.1'
+//        propCompileSdkVersion = 27
+//        propTargetSdkVersion = propCompileSdkVersion
+//        propMinSdkVersion = 16
+//        propVersionCode = 1
+//        propVersionName = '0.0.1'
+//    }    
+//}

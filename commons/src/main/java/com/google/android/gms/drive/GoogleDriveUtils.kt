@@ -7,6 +7,8 @@ import android.os.Bundle
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.api.GoogleApiClient
+import com.github.aafactory.commons.R
+import com.github.aafactory.commons.extensions.baseConfig
 
 /**
  * Created by Administrator on 2017-11-21.
