@@ -1,20 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="io.github.aafactory.sample.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:padding="@dimen/card_layout_padding">
 
-    <TextView
-        android:id="@+id/welcomeMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.v7.widget.CardView
+        style="@style/AppCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:maxLines="1"
+                android:minHeight="0dp"
+                android:minLines="1"
+                android:padding="0dp"
+                android:text="comments"
+                android:textStyle="bold"
+                fancy:fb_borderColor="#FF4D3121"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="#5560bf"
+                fancy:fb_disabledColor="@android:color/transparent"
+                fancy:fb_disabledTextColor="#011ffe"
+                fancy:fb_focusColor="#FFFE9C01"
+                fancy:fb_radius="2dp"
+                fancy:fb_textColor="#ffffff"
+                fancy:fb_textSize="14sp"/>
 
+            <TextView
+                android:id="@+id/welcomeMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>
