@@ -1,13 +1,20 @@
 # aafactory-commons
 'aafactory-commons' is a common library that combines or slightly modified existing open source libraries.  
 It is intended to create test cases for open source libraries and to make them useful for future application development.  
-Here is a list of common libs used in 'aafactory-commons'.  
+
+### For a list of common libs used by aafactory-commons, see the below line.  
+* /aafactory-commons/commons
 >Simple-Commons  
  https://github.com/SimpleMobileTools/Simple-Commons  
   
 >android-common  
  https://github.com/litesuits/android-common
-
+ 
+### For a list of useful module used by aafactory-commons, see the below line.   
+* /aafactory-commons/app
+>KedditBySteps  
+ https://github.com/juanchosaravia/KedditBySteps
+ 
 # License
 ```
 Copyright 2018 Awesome Application Factory
