@@ -19,25 +19,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/btComments"
+                android:id="@+id/btn_twitter_followers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1"
-                android:maxLines="1"
-                android:minHeight="0dp"
-                android:minLines="1"
-                android:padding="0dp"
-                android:text="comments"
-                android:textStyle="bold"
-                fancy:fb_borderColor="#FF4D3121"
-                fancy:fb_borderWidth="1dp"
-                fancy:fb_defaultColor="#5560bf"
-                fancy:fb_disabledColor="@android:color/transparent"
-                fancy:fb_disabledTextColor="#011ffe"
-                fancy:fb_focusColor="#FFFE9C01"
-                fancy:fb_radius="2dp"
-                fancy:fb_textColor="#ffffff"
-                fancy:fb_textSize="14sp"/>
+                android:layout_marginBottom="10dp"
+                android:padding="10dp"
+                fancy:fb_textGravity="left"
+                fancy:fb_borderColor="#FFFFFF"
+                fancy:fb_borderWidth="2dp"
+                fancy:fb_defaultColor="#55acee"
+                fancy:fb_focusColor="#8cc9f8"
+                fancy:fb_fontIconResource="&#xf007;"
+                fancy:fb_fontIconSize="25sp"
+                fancy:fb_iconPosition="top"
+                fancy:fb_text="KedditBySteps\nA small Reddit Android client developed using Kotlin"
+                fancy:fb_textColor="#FFFFFF"/>
 
             <TextView
                 android:id="@+id/welcomeMessage"
