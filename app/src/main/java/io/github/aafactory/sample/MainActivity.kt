@@ -16,6 +16,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        supportActionBar?.run { 
+            title = "Awesome Application Factory"
+        }
         welcomeMessage.text = DateUtils.getDateStringFromTimeMillis(System.currentTimeMillis())
         
         fab.setOnClickListener { view ->
