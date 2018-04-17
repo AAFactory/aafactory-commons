@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">AAFactory</string>
     <string name="action_settings">Settings</string>
-    <string name="keddit_by_steps">KedditBySteps\nA small Reddit Android client developed using Kotlin</string>
-    <string name="coordinator_examples">CoordinatorExamples\nThis repository host the source code shown in examples in the article [Mastering Coordinator Layout], there you can find different usages of the CoordinatorLayout, like anchoring views, flexible spaces, swipe to dismiss among other useful tips.</string>
+    <string name="keddit_by_steps_description">KedditBySteps\nA small Reddit Android client developed using Kotlin</string>
+    <string name="coordinator_examples_description">CoordinatorExamples\nThis repository host the source code shown in examples in the article [Mastering Coordinator Layout], there you can find different usages of the CoordinatorLayout, like anchoring views, flexible spaces, swipe to dismiss among other useful tips.</string>
+    <string name="alerter_description">Alerter\nThis library aims to overcome the limitations of Toasts and Snackbars, while reducing the complexity of your layouts.</string>
 </resources>

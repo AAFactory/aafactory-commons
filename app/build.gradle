@@ -39,7 +39,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
 
     implementation 'com.github.medyo:fancybuttons:1.8.4'
-    
+    implementation 'com.tapadoo.android:alerter:2.0.5'
+
+
     implementation 'com.simplemobiletools:commons:3.7.8'
 //    implementation project(':simple-commons')
 

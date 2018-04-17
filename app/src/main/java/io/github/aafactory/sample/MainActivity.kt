@@ -3,11 +3,11 @@ package io.github.aafactory.sample
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import com.tapadoo.alerter.Alerter
 import io.github.aafactory.commons.utils.DateUtils
-
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -48,7 +48,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_keddit_by_steps.setOnClickListener { _ ->
-            // TODO start Keddit Sample Activity
+            Alerter.create(this@MainActivity)
+                    .setTitle("Keddit")
+                    .setText(getString(R.string.keddit_by_steps_description))
+                    .setBackgroundColorRes(R.color.colorAccent)
+                    .show()
+        }
+
+        btn_alerter.setOnClickListener { _ ->
+            Alerter.create(this@MainActivity)
+                    .setTitle("Alerter")
+                    .setText(getString(R.string.alerter_description))
+                    .setBackgroundColorRes(R.color.colorAccent)
+                    .show()
         }
     }
 }
