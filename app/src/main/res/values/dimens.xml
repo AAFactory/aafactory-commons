@@ -5,4 +5,12 @@
     <!--https://github.com/medyo/Fancybuttons-->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--https://github.com/Werb/G-Trending-->
+    <dimen name="paddingSmall">3dp</dimen>
+    <dimen name="paddingNormal">5dp</dimen>
+    <dimen name="paddingXNormal">8dp</dimen>
+    <dimen name="paddingLarge">12dp</dimen>
+    <dimen name="paddingXLarge">15dp</dimen>
+    <dimen name="paddingXXLarge">15dp</dimen>
 </resources>

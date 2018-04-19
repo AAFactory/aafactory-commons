@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Looper
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.CardView
+import android.util.TypedValue
 import android.view.ViewGroup
 import io.github.aafactory.commons.views.ModalView
 import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_COARSE_LOCATION
@@ -90,6 +91,17 @@ fun Context.updateAppViews(viewGroup: ViewGroup, tmpBackgroundColor: Int = 0) {
                 }
             }
 }
+
+fun Context.dpToPixel(dp: Float, policy: Int = 0): Int {
+    val px: Float = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics)
+    return when (policy) {
+        0 -> Math.floor(px.toDouble()).toInt()
+        1 -> Math.ceil(px.toDouble()).toInt()
+        else -> 0
+    }
+}
+
+fun Context.dpToPixel(dp: Float): Int = dpToPixel(dp, 0)
 
 val Context.baseConfig: BaseConfig get() = BaseConfig.newInstance(this)
 
