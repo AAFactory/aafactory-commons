@@ -7,13 +7,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import io.github.aafactory.sample.R;
+
 
 public class XmlButtons extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_xml_buttons);
+        setContentView(R.layout.fancybuttons_activity_xml_buttons);
 
         findViewById(R.id.btComments).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,7 +31,7 @@ public class XmlButtons extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.xml_buttons, menu);
+        getMenuInflater().inflate(R.menu.fancybuttons_xml_buttons, menu);
         return true;
     }
 

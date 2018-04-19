@@ -19,6 +19,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--https://github.com/medyo/Fancybuttons-->
+        <activity
+            android:name="mehdi.sakout.fancybuttons.samples.MainActivity">
+        </activity>
+        <activity
+            android:name="mehdi.sakout.fancybuttons.samples.XmlButtons"
+            android:label="@string/title_activity_xml_buttons" >
+        </activity>
+        <activity
+            android:name="mehdi.sakout.fancybuttons.samples.ProgramButtons"
+            android:label="@string/title_activity_program_buttons" >
+        </activity>
     </application>
 
 </manifest>

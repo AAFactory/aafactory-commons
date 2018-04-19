@@ -1,5 +1,6 @@
 package io.github.aafactory.sample
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -10,6 +11,7 @@ import com.tapadoo.alerter.Alerter
 import io.github.aafactory.commons.utils.DateUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import mehdi.sakout.fancybuttons.samples.MainActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,6 +47,10 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
+        }
+
+        btn_fancy_button.setOnClickListener { _ ->
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         btn_keddit_by_steps.setOnClickListener { _ ->

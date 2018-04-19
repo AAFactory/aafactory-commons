@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import io.github.aafactory.sample.R;
+
 public class MainActivity extends ListActivity implements AdapterView.OnItemClickListener {
 
     String[] listItems = {"XML buttons", "Programmatically Buttons",};
@@ -16,7 +18,7 @@ public class MainActivity extends ListActivity implements AdapterView.OnItemClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fancybuttons_activity_main);
 
         setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems));
         getListView().setOnItemClickListener(this);
@@ -27,9 +29,9 @@ public class MainActivity extends ListActivity implements AdapterView.OnItemClic
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
+
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.fancybuttons_main, menu);
         return true;
     }
 

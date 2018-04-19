@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import io.github.aafactory.sample.R;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
@@ -16,7 +17,7 @@ public class ProgramButtons extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_program_buttons);
+        setContentView(R.layout.fancybuttons_activity_program_buttons);
 
 
         FancyButton facebookLoginBtn = new FancyButton(this);
@@ -74,7 +75,7 @@ public class ProgramButtons extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.program_buttons, menu);
+        getMenuInflater().inflate(R.menu.fancybuttons_program_buttons, menu);
         return true;
     }
 
