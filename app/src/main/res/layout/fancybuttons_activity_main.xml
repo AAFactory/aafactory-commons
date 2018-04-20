@@ -10,4 +10,6 @@
         android:layout_height="match_parent"
         android:id="@android:id/list"
         android:layout_gravity="left|top" />
+
+    <include layout="@layout/content_floating_home" />
 </FrameLayout>

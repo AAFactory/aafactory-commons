@@ -23,9 +23,8 @@ public class MainActivity extends ListActivity implements AdapterView.OnItemClic
         setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems));
         getListView().setOnItemClickListener(this);
 
-
+        bindEvent();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,5 +60,17 @@ public class MainActivity extends ListActivity implements AdapterView.OnItemClic
                 break;
             default: throw new IllegalArgumentException("Hold up, hold my phone :)");
         }
+    }
+
+    private void bindEvent() {
+        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, io.github.aafactory.sample.MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

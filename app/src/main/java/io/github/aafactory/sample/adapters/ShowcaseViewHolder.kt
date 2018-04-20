@@ -11,5 +11,6 @@ import kotlinx.android.synthetic.main.item_showcase.*
 class ShowcaseViewHolder(containerView: View) : BaseViewHolder<Showcase>(containerView) {
     override fun bindData(data: Showcase) {
         title.text = data.name
+        description.text = data.description
     }
 }
