@@ -5,6 +5,9 @@ package io.github.aafactory.sample.models
  */
 
 data class Showcase(
-        val name: String,
-        val description: String
+    val owner: String,
+    val name: String,
+    val description: String,
+    val stargazersCount: Int,
+    val forksCount: Int
 ) 

@@ -10,10 +10,15 @@ import android.view.View
 import android.widget.AdapterView
 import io.github.aafactory.commons.extensions.dpToPixel
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
+import io.github.aafactory.sample.api.GitHubService
+import io.github.aafactory.sample.helpers.GIT_HUB_API_BASE_URL
+import io.github.aafactory.sample.models.Repository
 import io.github.aafactory.sample.models.Showcase
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.content_toolbar.*
 import mehdi.sakout.fancybuttons.samples.MainActivity
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -44,11 +49,27 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.addItemDecoration(ItemDecoration(this))
         adapter.attachTo(recyclerView)
-        val moduleNames = resources.getStringArray(R.array.module_names)
-        val moduleDescriptions = resources.getStringArray(R.array.module_descriptions)
-        for ((index, name) in moduleNames.withIndex()) {
-            mListItem.add(Showcase(name, moduleDescriptions[index]))
-        }
+        val owners = resources.getStringArray(R.array.owners)
+        val repositories = resources.getStringArray(R.array.repositories)
+
+        Thread(Runnable {
+            val retrofit = Retrofit.Builder()
+                    .baseUrl(GIT_HUB_API_BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+            val gitHubService = retrofit.create(GitHubService::class.java)
+            for ((index, owner) in owners.withIndex()) {
+                val call = gitHubService.repository(owner, repositories[index])
+                val repository: Repository? = call.execute().body()
+                repository?.let {
+                    mListItem.add(Showcase(owner, repositories[index], it.description, it.stargazers_count, it.forks_count))
+                }
+            }
+            runOnUiThread { 
+                adapter.notifyDataSetChanged()
+                progressBar.visibility = View.GONE
+            }
+        }).start()
     }
 
     private inner class ItemDecoration(private val context: Context) : RecyclerView.ItemDecoration() {

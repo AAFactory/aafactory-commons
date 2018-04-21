@@ -61,20 +61,10 @@
             android:lineSpacingMultiplier="1.1"
             android:textColor="@color/colorBlackLight" />
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/starsToday"
-            style="@style/TextStyle.Gray.Small"
-            android:layout_below="@id/description"
-            android:layout_marginTop="8dp"
-            android:drawablePadding="1dp"
-            android:drawableLeft="@drawable/svg_star"
-            android:textSize="12sp"
-            tools:text="274 stars today" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/starsToday"
+            android:layout_below="@id/description"
             android:layout_marginTop="2dp"
             android:gravity="bottom"
             android:orientation="horizontal">
@@ -103,9 +93,10 @@
                 tools:text="1932" />
 
             <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/owner"
                 style="@style/TextStyle.Gray.Small"
                 android:layout_gravity="center_vertical"
-                android:text="Built by " />
+                android:text="" />
         </LinearLayout>
 
     </RelativeLayout>

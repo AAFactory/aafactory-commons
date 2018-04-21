@@ -1,16 +1,16 @@
 <resources>
     <!--https://github.com/AAFactory-->
-    <string-array name="module_names">
-        <item>Fancybuttons</item>
+    <string-array name="owners">
+        <item>juanchosaravia</item>
+        <item>Tapadoo</item>
+        <item>saulmm</item>
+        <item>medyo</item>
+    </string-array>
+    <string-array name="repositories">
+        <item>KedditBySteps</item>
         <item>Alerter</item>
         <item>CoordinatorExamples</item>
-        <item>KedditBySteps</item>
-    </string-array>
-    <string-array name="module_descriptions">
-        <item>Icons, Borders, Radius ... for Android buttons.</item>
-        <item>This library aims to overcome the limitations of Toasts and Snackbars, while reducing the complexity of your layouts.</item>
-        <item>This repository host the source code shown in examples in the article [Mastering Coordinator Layout], there you can find different usages of the CoordinatorLayout, like anchoring views, flexible spaces, swipe to dismiss among other useful tips.</item>
-        <item>A small Reddit Android client developed using Kotlin</item>
+        <item>Fancybuttons</item>
     </string-array>
     <string name="app_name">AAFactory</string>
     <string name="action_settings">Settings</string>
