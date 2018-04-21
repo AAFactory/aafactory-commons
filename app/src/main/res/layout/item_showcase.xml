@@ -56,7 +56,7 @@
             android:layout_below="@id/titleLayout"
             android:layout_marginTop="10dp"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="5"
             tools:text="This is a very interesting project, we are trying to do it well and hope you like it."
             android:lineSpacingMultiplier="1.1"
             android:textColor="@color/colorBlackLight" />

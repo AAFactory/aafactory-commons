@@ -33,5 +33,11 @@
             android:label="@string/title_activity_program_buttons"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <!--https://github.com/Tapadoo/Alerter-->
+        <activity
+            android:name="com.tapadoo.alerter.sample.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 </manifest>
