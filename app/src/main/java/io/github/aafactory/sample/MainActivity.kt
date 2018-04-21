@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
                         "Fancybuttons" -> startActivity(Intent(this, MainActivity::class.java))
                         "Alerter" -> startActivity(Intent(this, com.tapadoo.alerter.sample.MainActivity::class.java))
                         "CoordinatorExamples" -> startActivity(Intent(this, saulmm.coordinatorexamples.MainActivity::class.java))
+                        "KedditBySteps" -> startActivity(Intent(this, com.droidcba.kedditbysteps.MainActivity::class.java))
                     }
                 }
         ) 
