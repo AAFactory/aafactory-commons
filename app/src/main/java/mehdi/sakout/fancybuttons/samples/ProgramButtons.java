@@ -3,7 +3,7 @@ package mehdi.sakout.fancybuttons.samples;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -18,7 +18,9 @@ public class ProgramButtons extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fancybuttons_activity_program_buttons);
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FancyButton facebookLoginBtn = new FancyButton(this);
         facebookLoginBtn.setText("Login with Facebook");
@@ -70,15 +72,6 @@ public class ProgramButtons extends AppCompatActivity {
 
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.fancybuttons_program_buttons, menu);
-        return true;
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -87,8 +80,9 @@ public class ProgramButtons extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == android.R.id.home) {
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

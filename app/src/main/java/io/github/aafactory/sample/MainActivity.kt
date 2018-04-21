@@ -11,8 +11,8 @@ import android.widget.AdapterView
 import io.github.aafactory.commons.extensions.dpToPixel
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
 import io.github.aafactory.sample.models.Showcase
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.content_toolbar.*
 import mehdi.sakout.fancybuttons.samples.MainActivity
 import java.util.*
 

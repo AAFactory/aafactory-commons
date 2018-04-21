@@ -2,13 +2,11 @@ package mehdi.sakout.fancybuttons.samples;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import io.github.aafactory.sample.R;
-
 
 public class XmlButtons extends AppCompatActivity {
 
@@ -16,7 +14,10 @@ public class XmlButtons extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fancybuttons_activity_xml_buttons);
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
         findViewById(R.id.btComments).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,15 +25,6 @@ public class XmlButtons extends AppCompatActivity {
                         .show();
             }
         });
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.fancybuttons_xml_buttons, menu);
-        return true;
     }
 
     @Override
@@ -43,8 +35,9 @@ public class XmlButtons extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == android.R.id.home) {
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

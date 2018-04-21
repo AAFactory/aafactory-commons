@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.github.aafactory.sample">
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,12 +25,13 @@
         </activity>
         <activity
             android:name="mehdi.sakout.fancybuttons.samples.XmlButtons"
-            android:label="@string/title_activity_xml_buttons" >
+            android:label="@string/title_activity_xml_buttons"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name="mehdi.sakout.fancybuttons.samples.ProgramButtons"
-            android:label="@string/title_activity_program_buttons" >
+            android:label="@string/title_activity_program_buttons"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
-
 </manifest>
