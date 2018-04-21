@@ -61,9 +61,13 @@ class MainActivity : AppCompatActivity() {
             for ((index, owner) in owners.withIndex()) {
                 val call = gitHubService.repository(owner, repositories[index])
                 val repository: Repository? = call.execute().body()
-                repository?.let {
-                    mListItem.add(Showcase(owner, repositories[index], it.description, it.stargazers_count, it.forks_count))
-                }
+                mListItem.add(Showcase(
+                        owner,
+                        repositories[index],
+                        repository?.description ?: "",
+                        repository?.stargazers_count ?: 0,
+                        repository?.forks_count ?: 0)
+                )
             }
             runOnUiThread { 
                 adapter.notifyDataSetChanged()
