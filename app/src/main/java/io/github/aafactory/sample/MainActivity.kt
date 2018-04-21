@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
                     when (showCase.name) {
                         "Fancybuttons" -> startActivity(Intent(this, MainActivity::class.java))
                         "Alerter" -> startActivity(Intent(this, com.tapadoo.alerter.sample.MainActivity::class.java))
+                        "CoordinatorExamples" -> startActivity(Intent(this, saulmm.coordinatorexamples.MainActivity::class.java))
                     }
                 }
         ) 

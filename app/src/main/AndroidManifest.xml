@@ -39,5 +39,19 @@
             android:name="com.tapadoo.alerter.sample.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <!--https://github.com/saulmm/CoordinatorExamples-->
+        <activity
+            android:name="saulmm.coordinatorexamples.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name="saulmm.coordinatorexamples.FlexibleSpaceExampleActivity"/>
+        <activity
+            android:name="saulmm.coordinatorexamples.SimpleCoordinatorActivity"
+            android:theme="@style/AppTheme.SimpleCoordinatorTheme"
+            />
+        <activity android:name="saulmm.coordinatorexamples.MaterialUpConceptActivity"/>
+        <activity android:name="saulmm.coordinatorexamples.IOActivityExample"/>
+        <activity android:name="saulmm.coordinatorexamples.SwipeBehaviorExampleActivity"/>
     </application>
 </manifest>
