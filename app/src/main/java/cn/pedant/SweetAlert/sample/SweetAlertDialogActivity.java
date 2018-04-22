@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
+
 import io.github.aafactory.sample.R;
 
 public class SweetAlertDialogActivity extends Activity implements View.OnClickListener {
