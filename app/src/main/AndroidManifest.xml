@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="io.github.aafactory.sample">
     <application
         android:allowBackup="true"
+        tools:replace="android:icon,android:theme"
         android:name="com.droidcba.kedditbysteps.KedditApp"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -58,6 +61,12 @@
         <!--https://github.com/juanchosaravia/KedditBySteps-->
         <activity
             android:name="com.droidcba.kedditbysteps.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <!--https://github.com/pedant/sweet-alert-dialog-->
+        <activity
+            android:name="cn.pedant.SweetAlert.sample.SweetAlertDialogActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

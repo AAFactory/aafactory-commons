@@ -24,6 +24,9 @@ It is intended to create test cases for open source libraries and to make them u
 >Fancybuttons  
  https://github.com/medyo/Fancybuttons
  
+>sweet-alert-dialog  
+ https://github.com/pedant/sweet-alert-dialog
+ 
 # License
 ```
 Copyright 2018 Awesome Application Factory

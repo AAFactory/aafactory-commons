@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.AdapterView
+import cn.pedant.SweetAlert.sample.SweetAlertDialogActivity
 import io.github.aafactory.commons.extensions.dpToPixel
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
 import io.github.aafactory.sample.api.GitHubService
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
                         "Alerter" -> startActivity(Intent(this, com.tapadoo.alerter.sample.MainActivity::class.java))
                         "CoordinatorExamples" -> startActivity(Intent(this, saulmm.coordinatorexamples.MainActivity::class.java))
                         "KedditBySteps" -> startActivity(Intent(this, com.droidcba.kedditbysteps.MainActivity::class.java))
+                        "sweet-alert-dialog" -> startActivity(Intent(this, SweetAlertDialogActivity::class.java))
                     }
                 }
         ) 
