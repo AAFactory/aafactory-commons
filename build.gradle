@@ -7,9 +7,9 @@ buildscript {
         propVersionName = '0.0.1'
         propCompileSdkVersion = 27
         propTargetSdkVersion = propCompileSdkVersion
-        propMinSdkVersion = 21
+        propMinSdkVersion = 16
         propVersionCode = 2
-        propVersionName = '0.1.0'
+        propVersionName = '0.1.1'
     }
     
     repositories {

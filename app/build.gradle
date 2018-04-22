@@ -8,7 +8,7 @@ android {
     
     defaultConfig {
         applicationId "com.github.aafactory.sample"
-        minSdkVersion propMinSdkVersion
+        minSdkVersion 21
         targetSdkVersion propTargetSdkVersion
         versionCode propVersionCode
         versionName propVersionName
