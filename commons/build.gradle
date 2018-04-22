@@ -44,6 +44,9 @@ dependencies {
     
     // jetbrains
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    // apache commons
+    implementation group: 'commons-io', name: 'commons-io', version: '2.4'
     
     // https://github.com/litesuits/android-common
     implementation 'com.luffykou:android-common-utils:1.1.3'
