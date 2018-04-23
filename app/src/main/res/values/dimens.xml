@@ -13,4 +13,8 @@
     <dimen name="paddingLarge">12dp</dimen>
     <dimen name="paddingXLarge">15dp</dimen>
     <dimen name="paddingXXLarge">15dp</dimen>
+
+    <!--https://github.com/timusus/RecyclerView-FastScroll-->
+    <dimen name="list_item_height">56dp</dimen>
+    <dimen name="list_item_tall_height">72dp</dimen>
 </resources>

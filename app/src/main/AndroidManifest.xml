@@ -69,6 +69,12 @@
             android:name="cn.pedant.SweetAlert.sample.SweetAlertDialogActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <!--https://github.com/timusus/RecyclerView-FastScroll-->
+        <activity
+            android:name="com.simplecityapps.recyclerview_fastscroll.sample.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
