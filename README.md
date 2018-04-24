@@ -27,6 +27,12 @@ It is intended to create test cases for open source libraries and to make them u
 >sweet-alert-dialog  
  https://github.com/pedant/sweet-alert-dialog
  
+>RecyclerView-FastScroll  
+ https://github.com/timusus/RecyclerView-FastScroll
+ 
+>BubbleSeekBar  
+ https://github.com/woxingxiao/BubbleSeekBar
+ 
 # License
 ```
 Copyright 2018 Awesome Application Factory
