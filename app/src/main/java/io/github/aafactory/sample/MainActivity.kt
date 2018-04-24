@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
                         "KedditBySteps" -> startActivity(Intent(this, com.droidcba.kedditbysteps.MainActivity::class.java))
                         "sweet-alert-dialog" -> startActivity(Intent(this, SweetAlertDialogActivity::class.java))
                         "RecyclerView-FastScroll" -> startActivity(Intent(this, com.simplecityapps.recyclerview_fastscroll.sample.MainActivity::class.java))
+                        "BubbleSeekBar" -> startActivity(Intent(this, com.xw.samlpe.bubbleseekbar.sample.MainActivity::class.java))
                     }
                 }
         ) 

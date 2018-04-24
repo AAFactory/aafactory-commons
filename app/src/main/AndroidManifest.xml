@@ -75,6 +75,12 @@
             android:name="com.simplecityapps.recyclerview_fastscroll.sample.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <!--https://github.com/woxingxiao/BubbleSeekBar-->
+        <activity
+            android:name="com.xw.samlpe.bubbleseekbar.sample.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

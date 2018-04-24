@@ -7,6 +7,7 @@
         <item>medyo</item>
         <item>pedant</item>
         <item>timusus</item>
+        <item>woxingxiao</item>
     </string-array>
     <string-array name="repositories">
         <item>KedditBySteps</item>
@@ -15,6 +16,7 @@
         <item>Fancybuttons</item>
         <item>sweet-alert-dialog</item>
         <item>RecyclerView-FastScroll</item>
+        <item>BubbleSeekBar</item>
     </string-array>
     <string name="app_name">AAFactory</string>
     <string name="action_settings">Settings</string>
@@ -120,4 +122,7 @@
     <string name="swype.help">The \'Swipe to dismiss\' behavior allows you to easily add the \'Swipe to dismiss\' functionality in a View inside a CoordinatorLayout</string>
     <string name="title_mup_name">Saúl Molinero</string>
     <string name="subtitle_mup">Here I am with a subtitle</string>
+
+    <!--https://github.com/woxingxiao/BubbleSeekBar-->
+    <string name="set_random_progress">set random progress</string>
 </resources>
