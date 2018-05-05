@@ -49,11 +49,14 @@ dependencies {
 
     // apache commons
     implementation group: 'commons-io', name: 'commons-io', version: '2.4'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
 
     // square
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.squareup.okhttp3:mockwebserver:3.10.0'
+
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.7.3'
 
 
     // https://github.com/litesuits/android-common
