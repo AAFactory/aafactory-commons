@@ -1,6 +1,6 @@
 package retrofit2;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
