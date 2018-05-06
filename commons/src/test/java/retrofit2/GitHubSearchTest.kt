@@ -2,17 +2,12 @@ package retrofit2
 
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
-import org.jsoup.select.Elements
 import org.junit.Assert
 import org.junit.Test
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.helpers.ToStringConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 import java.io.IOException
 import java.lang.reflect.Type
-import java.util.*
 
 /**
  * Created by CHO HANJOONG on 2018-05-06.
@@ -36,7 +31,7 @@ class GitHubSearchTest() {
         val github = retrofit.create(GitHub::class.java)
 
         // Create a call instance for looking up Retrofit contributors.
-        val call = github.contributors("kotlin", "%E2%9C%93")
+        val call = github.contributors("kotlin", 1, "%E2%9C%93")
         // Fetch and print a list of the contributors to the library.
         val responseBody = call.execute().body()
         println(responseBody)
@@ -47,6 +42,7 @@ class GitHubSearchTest() {
         @GET("/search")
         fun contributors(
                 @Query("q") question: String,
+                @Query("p") page: Int,
                 @Query("utf8") utf8: String
         ): Call<Repository>
     }
@@ -58,11 +54,12 @@ class GitHubSearchTest() {
         @Throws(IOException::class)
         override fun convert(responseBody: ResponseBody): Repository {
             val document = Jsoup.parse(responseBody.string())
-            val repoList = document.select(".repo-list")
-            if (repoList.isNotEmpty()) {
-                val list: Elements? = repoList.select("div")
-                list?.let { 
-                    println(it)
+            val repoList = document.select(".repo-list > .repo-list-item")
+            repoList?.let {
+                it.onEach { itemDiv ->
+                    val col8 = itemDiv.select(".col-8")
+                    println("link $API_URL${col8.select("h3 > a").attr("href")}")
+                    println("description ${col8.select("p.col-9").text()}")
                 }
             }
             
