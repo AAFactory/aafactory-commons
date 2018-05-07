@@ -32,9 +32,14 @@ class GitHubSearchTest() {
 
         // Create a call instance for looking up Retrofit contributors.
         val call = github.contributors("kotlin", 1, "%E2%9C%93")
+        
         // Fetch and print a list of the contributors to the library.
-        val responseBody = call.execute().body()
-        println(responseBody)
+        val result = call.execute().body()
+        result?.let {
+            it.listRepository.onEach { repository ->
+                println("${repository.name}\n${repository.link}\n${repository.description}\n")
+            }
+        }
         Assert.assertTrue(true)
     }
     
@@ -44,26 +49,31 @@ class GitHubSearchTest() {
                 @Query("q") question: String,
                 @Query("p") page: Int,
                 @Query("utf8") utf8: String
-        ): Call<Repository>
+        ): Call<Result>
     }
 
     data class Repository(val name: String, val description: String, val link: String)
-
-    internal class RepositoryAdapter : Converter<ResponseBody, Repository> {
+    data class Result(val result: String, val listRepository: List<Repository>)
+    
+    internal class RepositoryAdapter : Converter<ResponseBody, Result> {
 
         @Throws(IOException::class)
-        override fun convert(responseBody: ResponseBody): Repository {
+        override fun convert(responseBody: ResponseBody): Result {
             val document = Jsoup.parse(responseBody.string())
             val repoList = document.select(".repo-list > .repo-list-item")
+            val listRepository = mutableListOf<Repository>()
             repoList?.let {
                 it.onEach { itemDiv ->
                     val col8 = itemDiv.select(".col-8")
-                    println("link $API_URL${col8.select("h3 > a").attr("href")}")
-                    println("description ${col8.select("p.col-9").text()}")
+                    listRepository.add(Repository(
+                            col8.select("h3 > a").text(),
+                            col8.select("p.col-9").text(),
+                            "$API_URL${col8.select("h3 > a").attr("href")}")
+                    )
                 }
             }
             
-            return Repository("", "", "")
+            return Result("", listRepository)
         }
 
         companion object {
@@ -73,7 +83,7 @@ class GitHubSearchTest() {
                         annotations: Array<Annotation>,
                         retrofit: Retrofit
                 ): Converter<ResponseBody, *>? {
-                    return if (type === Repository::class.java) RepositoryAdapter() else null
+                    return if (type === Result::class.java) RepositoryAdapter() else null
                 }
             }
         }
