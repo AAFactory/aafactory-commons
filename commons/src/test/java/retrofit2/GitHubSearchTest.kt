@@ -60,6 +60,54 @@ class GitHubSearchTest {
         Assert.assertTrue(true)
     }
 
+    @Test
+    fun crawlMostForks() {
+
+        val retrofit = Retrofit.Builder()
+                .baseUrl(GitHubSearch.API_URL)
+                .addConverterFactory(RepositoryAdapter.createRepositoryAdapter)
+                .build()
+
+        // Create an instance of our GitHub API interface.
+        val github = retrofit.create(GitHubSearch.GitHub::class.java)
+
+        // Create a call instance for looking up Retrofit contributors.
+        val call = github.contributors("kotlin", 1, "%E2%9C%93", "desc", "forks")
+
+        // Fetch and print a list of the contributors to the library.
+        val result = call.execute().body()
+        result?.let {
+            it.listRepository.onEach { repository ->
+                printResult(repository)
+            }
+        }
+        Assert.assertTrue(true)
+    }
+
+    @Test
+    fun crawlMostStars() {
+
+        val retrofit = Retrofit.Builder()
+                .baseUrl(GitHubSearch.API_URL)
+                .addConverterFactory(RepositoryAdapter.createRepositoryAdapter)
+                .build()
+
+        // Create an instance of our GitHub API interface.
+        val github = retrofit.create(GitHubSearch.GitHub::class.java)
+
+        // Create a call instance for looking up Retrofit contributors.
+        val call = github.contributors("kotlin", 1, "%E2%9C%93", "desc", "stars")
+
+        // Fetch and print a list of the contributors to the library.
+        val result = call.execute().body()
+        result?.let {
+            it.listRepository.onEach { repository ->
+                printResult(repository)
+            }
+        }
+        Assert.assertTrue(true)
+    }
+    
     private fun printResult(repository: Repository) {
         println("${repository.name} ${repository.stargazer}\n${repository.link}\n${repository.description}\n")
     }
