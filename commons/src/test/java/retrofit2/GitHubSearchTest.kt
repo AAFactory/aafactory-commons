@@ -3,6 +3,7 @@ package retrofit2
 import org.junit.Assert
 import org.junit.Test
 import retrofit2.adapter.RepositoryAdapter
+import retrofit2.model.Repository
 import retrofit2.service.GitHubSearch
 
 /**
@@ -29,7 +30,7 @@ class GitHubSearchTest {
         val result = call.execute().body()
         result?.let {
             it.listRepository.onEach { repository ->
-                println("${repository.name}\n${repository.link}\n${repository.description}\n")
+                printResult(repository)
             }
         }
         Assert.assertTrue(true)
@@ -53,9 +54,13 @@ class GitHubSearchTest {
         val result = call.execute().body()
         result?.let {
             it.listRepository.onEach { repository ->
-                println("${repository.name}\n${repository.link}\n${repository.description}\n")
+                printResult(repository)
             }
         }
         Assert.assertTrue(true)
+    }
+
+    private fun printResult(repository: Repository) {
+        println("${repository.name} ${repository.stargazer}\n${repository.link}\n${repository.description}\n")
     }
 }

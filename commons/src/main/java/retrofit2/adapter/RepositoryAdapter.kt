@@ -20,10 +20,13 @@ class RepositoryAdapter : Converter<ResponseBody, Result> {
         repoList?.let {
             it.onEach { itemDiv ->
                 val col8 = itemDiv.select(".col-8")
-                listRepository.add(Repository(
-                        col8.select("h3 > a").text(),
-                        col8.select("p.col-9").text(),
-                        "${GitHubSearch.API_URL}${col8.select("h3 > a").attr("href")}")
+                listRepository.add(
+                        Repository(
+                                col8.select("h3 > a").text(),
+                                col8.select("p.col-9").text(),
+                                "${GitHubSearch.API_URL}${col8.select("h3 > a").attr("href")}",
+                                itemDiv.select(".col-2 > a").text()
+                        )
                 )
             }
         }
