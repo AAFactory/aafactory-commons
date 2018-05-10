@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
                         "sweet-alert-dialog" -> startActivity(Intent(this, SweetAlertDialogActivity::class.java))
                         "RecyclerView-FastScroll" -> startActivity(Intent(this, com.simplecityapps.recyclerview_fastscroll.sample.MainActivity::class.java))
                         "BubbleSeekBar" -> startActivity(Intent(this, com.xw.samlpe.bubbleseekbar.sample.MainActivity::class.java))
+                        "MPAndroidChart" -> startActivity(Intent(this, com.xxmassdeveloper.mpchartexample.notimportant.MainActivity::class.java))
                     }
                 }
         ) 

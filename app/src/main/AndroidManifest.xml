@@ -81,6 +81,12 @@
             android:name="com.xw.samlpe.bubbleseekbar.sample.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <!--https://github.com/PhilJay/MPAndroidChart-->
+        <activity
+            android:name="com.xxmassdeveloper.mpchartexample.notimportant.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

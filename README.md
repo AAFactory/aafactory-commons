@@ -32,6 +32,9 @@ It is intended to create test cases for open source libraries and to make them u
  
 >BubbleSeekBar  
  https://github.com/woxingxiao/BubbleSeekBar
+
+>MPAndroidChart  
+ https://github.com/PhilJay/MPAndroidChart  
  
 # License
 ```
