@@ -85,6 +85,11 @@
         <!--https://github.com/PhilJay/MPAndroidChart-->
         <activity
             android:name="com.xxmassdeveloper.mpchartexample.notimportant.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/app_name_mp_android_chart">
+        </activity>
+        <activity
+            android:name="com.xxmassdeveloper.mpchartexample.LineChartActivity1"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

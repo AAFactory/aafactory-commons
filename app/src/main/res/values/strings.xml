@@ -127,4 +127,7 @@
 
     <!--https://github.com/woxingxiao/BubbleSeekBar-->
     <string name="set_random_progress">set random progress</string>
+
+    <!--https://github.com/PhilJay/MPAndroidChart-->
+    <string name="app_name_mp_android_chart">MPAndroidChart</string>
 </resources>

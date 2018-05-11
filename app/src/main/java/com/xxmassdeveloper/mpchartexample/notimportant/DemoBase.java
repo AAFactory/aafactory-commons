@@ -4,7 +4,9 @@ package com.xxmassdeveloper.mpchartexample.notimportant;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import io.github.aafactory.sample.R;
 
@@ -14,7 +16,7 @@ import io.github.aafactory.sample.R;
  * 
  * @author Philipp Jahoda
  */
-public abstract class DemoBase extends FragmentActivity {
+public abstract class DemoBase extends AppCompatActivity {
 
     protected String[] mMonths = new String[] {
             "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
@@ -38,6 +40,15 @@ public abstract class DemoBase extends FragmentActivity {
         mTfLight = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    
     protected float getRandom(float range, float startsfrom) {
         return (float) (Math.random() * range) + startsfrom;
     }
