@@ -104,6 +104,22 @@
             android:name="com.xxmassdeveloper.mpchartexample.HorizontalBarChartActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name="com.xxmassdeveloper.mpchartexample.PieChartActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.xxmassdeveloper.mpchartexample.PiePolylineChartActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.xxmassdeveloper.mpchartexample.ScatterChartActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.xxmassdeveloper.mpchartexample.BubbleChartActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

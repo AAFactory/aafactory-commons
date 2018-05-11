@@ -14,9 +14,13 @@ import android.widget.ListView;
 
 import com.github.mikephil.charting.utils.Utils;
 import com.xxmassdeveloper.mpchartexample.BarChartActivity;
+import com.xxmassdeveloper.mpchartexample.BubbleChartActivity;
 import com.xxmassdeveloper.mpchartexample.HorizontalBarChartActivity;
 import com.xxmassdeveloper.mpchartexample.LineChartActivity1;
 import com.xxmassdeveloper.mpchartexample.LineChartActivity2;
+import com.xxmassdeveloper.mpchartexample.PieChartActivity;
+import com.xxmassdeveloper.mpchartexample.PiePolylineChartActivity;
+import com.xxmassdeveloper.mpchartexample.ScatterChartActivity;
 
 import java.util.ArrayList;
 
@@ -47,10 +51,10 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         objects.add(new ContentItem("Horizontal Bar Chart","A simple demonstration of the horizontal bar chart."));
 //        objects.add(new ContentItem("Combined Chart",
 //                "Demonstrates how to create a combined chart (bar and line in this case)."));
-//        objects.add(new ContentItem("Pie Chart", "A simple demonstration of the pie chart."));
-//        objects.add(new ContentItem("Pie Chart with value lines", "A simple demonstration of the pie chart with polyline notes."));
-//        objects.add(new ContentItem("Scatter Chart", "A simple demonstration of the scatter chart."));
-//        objects.add(new ContentItem("Bubble Chart", "A simple demonstration of the bubble chart."));
+        objects.add(new ContentItem("Pie Chart", "A simple demonstration of the pie chart."));
+        objects.add(new ContentItem("Pie Chart with value lines", "A simple demonstration of the pie chart with polyline notes."));
+        objects.add(new ContentItem("Scatter Chart", "A simple demonstration of the scatter chart."));
+        objects.add(new ContentItem("Bubble Chart", "A simple demonstration of the bubble chart."));
 //        objects.add(new ContentItem("Stacked Bar Chart",
 //                "A simple demonstration of a bar chart with stacked bars."));
 //        objects.add(new ContentItem("Stacked Bar Chart Negative",
@@ -132,24 +136,42 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     public void onItemClick(AdapterView<?> av, View v, int pos, long arg3) {
 
         Intent i;
-
-        switch (pos) {
-            case 0:
+        ContentItem item = (ContentItem) av.getAdapter().getItem(pos);
+        
+        switch (item.name) {
+            case "Line Chart":
                 i = new Intent(this, LineChartActivity1.class);
                 startActivity(i);
                 break;
-            case 1:
+            case "Line Chart (Dual YAxis)":
                 i = new Intent(this, LineChartActivity2.class);
                 startActivity(i);
                 break;
-            case 2:
+            case "Bar Chart":
                 i = new Intent(this, BarChartActivity.class);
                 startActivity(i);
                 break;
-            case 3:
+            case "Horizontal Bar Chart":
                 i = new Intent(this, HorizontalBarChartActivity.class);
                 startActivity(i);
                 break;
+            case "Pie Chart":
+                i = new Intent(this, PieChartActivity.class);
+                startActivity(i);
+                break;
+            case "Pie Chart with value lines":
+                i = new Intent(this, PiePolylineChartActivity.class);
+                startActivity(i);
+                break;
+            case "Scatter Chart":
+                i = new Intent(this, ScatterChartActivity.class);
+                startActivity(i);
+                break;
+            case "Bubble Chart":
+                i = new Intent(this, BubbleChartActivity.class);
+                startActivity(i);
+                break;
+            
 //            case 4:
 //                i = new Intent(this, CombinedChartActivity.class);
 //                startActivity(i);
