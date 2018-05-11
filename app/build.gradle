@@ -67,7 +67,7 @@ dependencies {
     implementation 'com.simplecityapps:recyclerview-fastscroll:1.0.17'
     implementation 'com.xw.repo:bubbleseekbar:3.17'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-//    implementation 'com.github.PhilJay:MPAndroidChart-Realm:v2.0.2@aar'
+    implementation 'com.github.PhilJay:MPAndroidChart-Realm:v2.0.2@aar'
 
     implementation 'com.simplemobiletools:commons:3.7.8'
 //    implementation project(':simple-commons')

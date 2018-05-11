@@ -13,7 +13,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.github.mikephil.charting.utils.Utils;
+import com.xxmassdeveloper.mpchartexample.BarChartActivity;
+import com.xxmassdeveloper.mpchartexample.HorizontalBarChartActivity;
 import com.xxmassdeveloper.mpchartexample.LineChartActivity1;
+import com.xxmassdeveloper.mpchartexample.LineChartActivity2;
 
 import java.util.ArrayList;
 
@@ -39,11 +42,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         ArrayList<ContentItem> objects = new ArrayList<ContentItem>();
 
         objects.add(new ContentItem("Line Chart", "A simple demonstration of the linechart."));
-//        objects.add(new ContentItem("Line Chart (Dual YAxis)",
-//                "Demonstration of the linechart with dual y-axis."));
-//        objects.add(new ContentItem("Bar Chart", "A simple demonstration of the bar chart."));
-//        objects.add(new ContentItem("Horizontal Bar Chart",
-//                "A simple demonstration of the horizontal bar chart."));
+        objects.add(new ContentItem("Line Chart (Dual YAxis)","Demonstration of the linechart with dual y-axis."));
+        objects.add(new ContentItem("Bar Chart", "A simple demonstration of the bar chart."));
+        objects.add(new ContentItem("Horizontal Bar Chart","A simple demonstration of the horizontal bar chart."));
 //        objects.add(new ContentItem("Combined Chart",
 //                "Demonstrates how to create a combined chart (bar and line in this case)."));
 //        objects.add(new ContentItem("Pie Chart", "A simple demonstration of the pie chart."));
@@ -137,18 +138,18 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 i = new Intent(this, LineChartActivity1.class);
                 startActivity(i);
                 break;
-//            case 1:
-//                i = new Intent(this, LineChartActivity2.class);
-//                startActivity(i);
-//                break;
-//            case 2:
-//                i = new Intent(this, BarChartActivity.class);
-//                startActivity(i);
-//                break;
-//            case 3:
-//                i = new Intent(this, HorizontalBarChartActivity.class);
-//                startActivity(i);
-//                break;
+            case 1:
+                i = new Intent(this, LineChartActivity2.class);
+                startActivity(i);
+                break;
+            case 2:
+                i = new Intent(this, BarChartActivity.class);
+                startActivity(i);
+                break;
+            case 3:
+                i = new Intent(this, HorizontalBarChartActivity.class);
+                startActivity(i);
+                break;
 //            case 4:
 //                i = new Intent(this, CombinedChartActivity.class);
 //                startActivity(i);

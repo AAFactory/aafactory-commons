@@ -6,15 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/content_toolbar" />
-    
+
     <RelativeLayout
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.github.mikephil.charting.charts.LineChart
+        android:layout_height="match_parent" >
+        <com.github.mikephil.charting.charts.HorizontalBarChart
             android:id="@+id/chart1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/white"
             android:layout_above="@+id/seekBar1" />
 
         <SeekBar
@@ -26,7 +27,7 @@
             android:layout_margin="8dp"
             android:layout_toLeftOf="@+id/tvYMax"
             android:layout_marginRight="5dp"
-            android:max="150"
+            android:max="200"
             android:paddingBottom="12dp" />
 
         <SeekBar
@@ -38,7 +39,7 @@
             android:layout_marginBottom="35dp"
             android:layout_toLeftOf="@+id/tvXMax"
             android:layout_marginRight="5dp"
-            android:max="1500"
+            android:max="500"
             android:paddingBottom="12dp" />
 
         <TextView
@@ -66,4 +67,5 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
+
 

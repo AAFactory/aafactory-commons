@@ -92,6 +92,18 @@
             android:name="com.xxmassdeveloper.mpchartexample.LineChartActivity1"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name="com.xxmassdeveloper.mpchartexample.LineChartActivity2"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.xxmassdeveloper.mpchartexample.BarChartActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.xxmassdeveloper.mpchartexample.HorizontalBarChartActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
