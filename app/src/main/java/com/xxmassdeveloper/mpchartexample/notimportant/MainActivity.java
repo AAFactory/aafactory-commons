@@ -16,7 +16,9 @@ import com.github.mikephil.charting.utils.Utils;
 import com.xxmassdeveloper.mpchartexample.BarChartActivity;
 import com.xxmassdeveloper.mpchartexample.BubbleChartActivity;
 import com.xxmassdeveloper.mpchartexample.CandleStickChartActivity;
+import com.xxmassdeveloper.mpchartexample.FilledLineActivity;
 import com.xxmassdeveloper.mpchartexample.HorizontalBarChartActivity;
+import com.xxmassdeveloper.mpchartexample.InvertedLineChartActivity;
 import com.xxmassdeveloper.mpchartexample.LineChartActivity1;
 import com.xxmassdeveloper.mpchartexample.LineChartActivity2;
 import com.xxmassdeveloper.mpchartexample.PieChartActivity;
@@ -77,9 +79,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 //        objects.add(new ContentItem(
 //                "Multiple charts inside ListView",
 //                "Demonstrates the usage of different chart types inside a ListView."));
-//        objects.add(new ContentItem(
-//                "Inverted Line Chart",
-//                "Demonstrates the feature of inverting the y-axis."));
+        objects.add(new ContentItem("Inverted Line Chart", "Demonstrates the feature of inverting the y-axis."));
         objects.add(new ContentItem("Candle Stick Chart","Demonstrates usage of the CandleStickChart."));
 //        objects.add(new ContentItem(
 //                "Cubic Line Chart",
@@ -115,9 +115,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 //                "Time Chart",
 //                "Simple demonstration of a time-chart. This chart draws one line entry per hour originating from the current time in " +
 //                        "milliseconds."));
-//        objects.add(new ContentItem(
-//                "Filled LineChart",
-//                "This demonstrates how to fill an area between two LineDataSets."));
+        objects.add(new ContentItem("Filled LineChart", "This demonstrates how to fill an area between two LineDataSets."));
 //        objects.add(new ContentItem(
 //                "Half PieChart",
 //                "This demonstrates how to create a 180 degree PieChart."));
@@ -179,6 +177,14 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 break;
             case "Radar Chart":
                 i = new Intent(this, RadarChartActivity.class);
+                startActivity(i);
+                break;
+            case "Filled LineChart":
+                i = new Intent(this, FilledLineActivity.class);
+                startActivity(i);
+                break;
+            case "Inverted Line Chart":
+                i = new Intent(this, InvertedLineChartActivity.class);
                 startActivity(i);
                 break;
 //            case 4:
