@@ -120,6 +120,18 @@
             android:name="com.xxmassdeveloper.mpchartexample.BubbleChartActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name="com.xxmassdeveloper.mpchartexample.StackedBarActivityNegative"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.xxmassdeveloper.mpchartexample.CandleStickChartActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.xxmassdeveloper.mpchartexample.RadarChartActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

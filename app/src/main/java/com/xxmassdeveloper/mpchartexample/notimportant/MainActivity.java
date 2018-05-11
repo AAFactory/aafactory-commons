@@ -15,12 +15,15 @@ import android.widget.ListView;
 import com.github.mikephil.charting.utils.Utils;
 import com.xxmassdeveloper.mpchartexample.BarChartActivity;
 import com.xxmassdeveloper.mpchartexample.BubbleChartActivity;
+import com.xxmassdeveloper.mpchartexample.CandleStickChartActivity;
 import com.xxmassdeveloper.mpchartexample.HorizontalBarChartActivity;
 import com.xxmassdeveloper.mpchartexample.LineChartActivity1;
 import com.xxmassdeveloper.mpchartexample.LineChartActivity2;
 import com.xxmassdeveloper.mpchartexample.PieChartActivity;
 import com.xxmassdeveloper.mpchartexample.PiePolylineChartActivity;
+import com.xxmassdeveloper.mpchartexample.RadarChartActivity;
 import com.xxmassdeveloper.mpchartexample.ScatterChartActivity;
+import com.xxmassdeveloper.mpchartexample.StackedBarActivityNegative;
 
 import java.util.ArrayList;
 
@@ -57,8 +60,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         objects.add(new ContentItem("Bubble Chart", "A simple demonstration of the bubble chart."));
 //        objects.add(new ContentItem("Stacked Bar Chart",
 //                "A simple demonstration of a bar chart with stacked bars."));
-//        objects.add(new ContentItem("Stacked Bar Chart Negative",
-//                "A simple demonstration of stacked bars with negative and positive values."));
+        objects.add(new ContentItem("Stacked Bar Chart Negative","A simple demonstration of stacked bars with negative and positive values."));
 //        objects.add(new ContentItem("Another Bar Chart",
 //                "Implementation of a BarChart that only shows values at the bottom."));
 //        objects.add(new ContentItem("Multiple Lines Chart",
@@ -78,15 +80,11 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 //        objects.add(new ContentItem(
 //                "Inverted Line Chart",
 //                "Demonstrates the feature of inverting the y-axis."));
-//        objects.add(new ContentItem(
-//                "Candle Stick Chart",
-//                "Demonstrates usage of the CandleStickChart."));
+        objects.add(new ContentItem("Candle Stick Chart","Demonstrates usage of the CandleStickChart."));
 //        objects.add(new ContentItem(
 //                "Cubic Line Chart",
 //                "Demonstrates cubic lines in a LineChart."));
-//        objects.add(new ContentItem(
-//                "Radar Chart",
-//                "Demonstrates the use of a spider-web like (net) chart."));
+        objects.add(new ContentItem("Radar Chart","Demonstrates the use of a spider-web like (net) chart."));
 //        objects.add(new ContentItem(
 //                "Colored Line Chart",
 //                "Shows a LineChart with different background and line color."));
@@ -171,7 +169,18 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 i = new Intent(this, BubbleChartActivity.class);
                 startActivity(i);
                 break;
-            
+            case "Stacked Bar Chart Negative":
+                i = new Intent(this, StackedBarActivityNegative.class);
+                startActivity(i);
+                break;
+            case "Candle Stick Chart":
+                i = new Intent(this, CandleStickChartActivity.class);
+                startActivity(i);
+                break;
+            case "Radar Chart":
+                i = new Intent(this, RadarChartActivity.class);
+                startActivity(i);
+                break;
 //            case 4:
 //                i = new Intent(this, CombinedChartActivity.class);
 //                startActivity(i);
