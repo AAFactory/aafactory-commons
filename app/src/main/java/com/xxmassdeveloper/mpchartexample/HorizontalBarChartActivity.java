@@ -81,20 +81,20 @@ public class HorizontalBarChartActivity extends DemoBase implements OnSeekBarCha
 
         XAxis xl = mChart.getXAxis();
         xl.setPosition(XAxisPosition.BOTTOM);
-        xl.setTypeface(mTfLight);
+        xl.setTypeface(getMTfLight());
         xl.setDrawAxisLine(true);
         xl.setDrawGridLines(false);
         xl.setGranularity(10f);
 
         YAxis yl = mChart.getAxisLeft();
-        yl.setTypeface(mTfLight);
+        yl.setTypeface(getMTfLight());
         yl.setDrawAxisLine(true);
         yl.setDrawGridLines(true);
         yl.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 //        yl.setInverted(true);
 
         YAxis yr = mChart.getAxisRight();
-        yr.setTypeface(mTfLight);
+        yr.setTypeface(getMTfLight());
         yr.setDrawAxisLine(true);
         yr.setDrawGridLines(false);
         yr.setAxisMinimum(0f); // this replaces setStartAtZero(true)
@@ -263,7 +263,7 @@ public class HorizontalBarChartActivity extends DemoBase implements OnSeekBarCha
 
             BarData data = new BarData(dataSets);
             data.setValueTextSize(10f);
-            data.setValueTypeface(mTfLight);
+            data.setValueTypeface(getMTfLight());
             data.setBarWidth(barWidth);
             mChart.setData(data);
         }

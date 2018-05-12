@@ -68,7 +68,7 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
 
         mChart.setDragDecelerationFrictionCoef(0.95f);
 
-        mChart.setCenterTextTypeface(mTfLight);
+        mChart.setCenterTextTypeface(getMTfLight());
         mChart.setCenterText(generateCenterSpannableText());
 
         mChart.setDrawHoleEnabled(true);
@@ -112,7 +112,7 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
 
         // entry label styling
         mChart.setEntryLabelColor(Color.WHITE);
-        mChart.setEntryLabelTypeface(mTfRegular);
+        mChart.setEntryLabelTypeface(getMTfRegular());
         mChart.setEntryLabelTextSize(12f);
     }
 
@@ -210,7 +210,7 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
         // the chart.
         for (int i = 0; i < count ; i++) {
             entries.add(new PieEntry((float) ((Math.random() * mult) + mult / 5),
-                    mParties[i % mParties.length],
+                    getMParties()[i % getMParties().length],
                     getResources().getDrawable(R.drawable.star)));
         }
 
@@ -250,7 +250,7 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
         data.setValueFormatter(new PercentFormatter());
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.WHITE);
-        data.setValueTypeface(mTfLight);
+        data.setValueTypeface(getMTfLight());
         mChart.setData(data);
 
         // undo all highlights

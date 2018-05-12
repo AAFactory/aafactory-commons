@@ -95,7 +95,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
         // modify the legend ...
         l.setForm(LegendForm.LINE);
-        l.setTypeface(mTfLight);
+        l.setTypeface(getMTfLight());
         l.setTextSize(11f);
         l.setTextColor(Color.WHITE);
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
@@ -105,14 +105,14 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 //        l.setYOffset(11f);
 
         XAxis xAxis = mChart.getXAxis();
-        xAxis.setTypeface(mTfLight);
+        xAxis.setTypeface(getMTfLight());
         xAxis.setTextSize(11f);
         xAxis.setTextColor(Color.WHITE);
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(false);
 
         YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.setTypeface(mTfLight);
+        leftAxis.setTypeface(getMTfLight());
         leftAxis.setTextColor(ColorTemplate.getHoloBlue());
         leftAxis.setAxisMaximum(200f);
         leftAxis.setAxisMinimum(0f);
@@ -120,7 +120,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
         leftAxis.setGranularityEnabled(true);
 
         YAxis rightAxis = mChart.getAxisRight();
-        rightAxis.setTypeface(mTfLight);
+        rightAxis.setTypeface(getMTfLight());
         rightAxis.setTextColor(Color.RED);
         rightAxis.setAxisMaximum(900);
         rightAxis.setAxisMinimum(-200);

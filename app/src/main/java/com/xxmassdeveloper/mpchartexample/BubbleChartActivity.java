@@ -82,10 +82,10 @@ public class BubbleChartActivity extends DemoBase implements OnSeekBarChangeList
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
         l.setDrawInside(false);
-        l.setTypeface(mTfLight);
+        l.setTypeface(getMTfLight());
 
         YAxis yl = mChart.getAxisLeft();
-        yl.setTypeface(mTfLight);
+        yl.setTypeface(getMTfLight());
         yl.setSpaceTop(30f);
         yl.setSpaceBottom(30f);
         yl.setDrawZeroLine(false);
@@ -94,7 +94,7 @@ public class BubbleChartActivity extends DemoBase implements OnSeekBarChangeList
 
         XAxis xl = mChart.getXAxis();
         xl.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xl.setTypeface(mTfLight);
+        xl.setTypeface(getMTfLight());
     }
 
 //    @Override
@@ -221,7 +221,7 @@ public class BubbleChartActivity extends DemoBase implements OnSeekBarChangeList
         // create a data object with the datasets
         BubbleData data = new BubbleData(dataSets);
         data.setDrawValues(false);
-        data.setValueTypeface(mTfLight);
+        data.setValueTypeface(getMTfLight());
         data.setValueTextSize(8f);
         data.setValueTextColor(Color.WHITE);
         data.setHighlightCircleWidth(1.5f);

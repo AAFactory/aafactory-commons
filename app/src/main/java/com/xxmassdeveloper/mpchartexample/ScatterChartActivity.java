@@ -79,17 +79,17 @@ public class ScatterChartActivity extends DemoBase implements OnSeekBarChangeLis
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
         l.setDrawInside(false);
-        l.setTypeface(mTfLight);
+        l.setTypeface(getMTfLight());
         l.setXOffset(5f);
 
         YAxis yl = mChart.getAxisLeft();
-        yl.setTypeface(mTfLight);
+        yl.setTypeface(getMTfLight());
         yl.setAxisMinimum(0f); // this replaces setStartAtZero(true)
         
         mChart.getAxisRight().setEnabled(false);
 
         XAxis xl = mChart.getXAxis();
-        xl.setTypeface(mTfLight);
+        xl.setTypeface(getMTfLight());
         xl.setDrawGridLines(false);
     }
 
@@ -208,7 +208,7 @@ public class ScatterChartActivity extends DemoBase implements OnSeekBarChangeLis
 
         // create a data object with the datasets
         ScatterData data = new ScatterData(dataSets);
-        data.setValueTypeface(mTfLight);
+        data.setValueTypeface(getMTfLight());
 
         mChart.setData(data);
         mChart.invalidate();

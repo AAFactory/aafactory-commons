@@ -89,7 +89,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxisPosition.BOTTOM);
-        xAxis.setTypeface(mTfLight);
+        xAxis.setTypeface(getMTfLight());
         xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f); // only intervals of 1 day
         xAxis.setLabelCount(7);
@@ -98,7 +98,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         IAxisValueFormatter custom = new MyAxisValueFormatter();
 
         YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.setTypeface(mTfLight);
+        leftAxis.setTypeface(getMTfLight());
         leftAxis.setLabelCount(8, false);
         leftAxis.setValueFormatter(custom);
         leftAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);
@@ -107,7 +107,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setDrawGridLines(false);
-        rightAxis.setTypeface(mTfLight);
+        rightAxis.setTypeface(getMTfLight());
         rightAxis.setLabelCount(8, false);
         rightAxis.setValueFormatter(custom);
         rightAxis.setSpaceTop(15f);
@@ -302,7 +302,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
 
             BarData data = new BarData(dataSets);
             data.setValueTextSize(10f);
-            data.setValueTypeface(mTfLight);
+            data.setValueTypeface(getMTfLight());
             data.setBarWidth(0.9f);
 
             mChart.setData(data);

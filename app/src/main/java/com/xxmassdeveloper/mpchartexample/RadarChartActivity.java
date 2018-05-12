@@ -45,7 +45,7 @@ public class RadarChartActivity extends DemoBase {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
         TextView tv = (TextView) findViewById(R.id.textView);
-        tv.setTypeface(mTfLight);
+        tv.setTypeface(getMTfLight());
         tv.setTextColor(Color.WHITE);
         tv.setBackgroundColor(Color.rgb(60, 65, 82));
 
@@ -71,7 +71,7 @@ public class RadarChartActivity extends DemoBase {
         mChart.animateXY(1400, 1400, Easing.EasingOption.EaseInCirc, Easing.EasingOption.EaseInCirc);
 
         XAxis xAxis = mChart.getXAxis();
-        xAxis.setTypeface(mTfLight);
+        xAxis.setTypeface(getMTfLight());
         xAxis.setTextSize(9f);
         xAxis.setYOffset(0f);
         xAxis.setXOffset(0f);
@@ -87,7 +87,7 @@ public class RadarChartActivity extends DemoBase {
         xAxis.setTextColor(Color.WHITE);
 
         YAxis yAxis = mChart.getYAxis();
-        yAxis.setTypeface(mTfLight);
+        yAxis.setTypeface(getMTfLight());
         yAxis.setLabelCount(5, false);
         yAxis.setTextSize(9f);
         yAxis.setAxisMinimum(0f);
@@ -99,7 +99,7 @@ public class RadarChartActivity extends DemoBase {
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
-        l.setTypeface(mTfLight);
+        l.setTypeface(getMTfLight());
         l.setXEntrySpace(7f);
         l.setYEntrySpace(5f);
         l.setTextColor(Color.WHITE);
@@ -245,7 +245,7 @@ public class RadarChartActivity extends DemoBase {
         sets.add(set2);
 
         RadarData data = new RadarData(sets);
-        data.setValueTypeface(mTfLight);
+        data.setValueTypeface(getMTfLight());
         data.setValueTextSize(8f);
         data.setDrawValues(false);
         data.setValueTextColor(Color.WHITE);
