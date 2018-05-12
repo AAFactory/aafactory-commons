@@ -9,6 +9,7 @@
         <item>timusus</item>
         <item>woxingxiao</item>
         <item>PhilJay</item>
+        <item>bumptech</item>
     </string-array>
     <string-array name="repositories">
         <item>KedditBySteps</item>
@@ -19,6 +20,7 @@
         <item>RecyclerView-FastScroll</item>
         <item>BubbleSeekBar</item>
         <item>MPAndroidChart</item>
+        <item>glide</item>
     </string-array>
     <string name="app_name">AAFactory</string>
     <string name="action_settings">Settings</string>
