@@ -1,12 +1,12 @@
 package com.bumptech.glide.samples.imgur;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +23,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DaggerApplication;
-import dagger.android.HasActivityInjector;
 import io.github.aafactory.sample.R;
+import io.github.aafactory.sample.helpers.SampleActivity;
 import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -35,7 +33,7 @@ import rx.schedulers.Schedulers;
 /**
  * Displays images and GIFs from Imgur in a scrollable list of cards.
  */
-public final class MainActivity extends AppCompatActivity {
+public final class MainActivity extends SampleActivity {
 
     @Inject @Named("hotViralImages") Observable<List<Image>> fetchImagesObservable;
     private ImgurImageAdapter adapter;
@@ -46,6 +44,9 @@ public final class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.glideimgur_activity_main);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

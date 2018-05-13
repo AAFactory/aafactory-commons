@@ -4,7 +4,7 @@ import com.bumptech.glide.samples.imgur.api.ApiModule;
 import dagger.Component;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
-import io.github.aafactory.sample.helpers.BaseApplication;
+import io.github.aafactory.sample.helpers.SampleApplication;
 
 import javax.inject.Singleton;
 
@@ -18,5 +18,5 @@ import javax.inject.Singleton;
         ApplicationModule.class,
         ApiModule.class
 })
-public interface ImgurApplicationComponent extends AndroidInjector<BaseApplication> {
+public interface ImgurApplicationComponent extends AndroidInjector<SampleApplication> {
 }

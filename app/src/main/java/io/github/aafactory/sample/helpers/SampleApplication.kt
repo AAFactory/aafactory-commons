@@ -11,7 +11,7 @@ import dagger.android.support.DaggerApplication
  * Created by CHO HANJOONG on 2018-05-12.
  */
 
-class BaseApplication : DaggerApplication() {
+class SampleApplication : DaggerApplication() {
 
     companion object {
         lateinit var newsComponent: NewsComponent

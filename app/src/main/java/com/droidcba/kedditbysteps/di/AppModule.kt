@@ -5,14 +5,14 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
-import io.github.aafactory.sample.helpers.BaseApplication
+import io.github.aafactory.sample.helpers.SampleApplication
 
 /**
  *
  * @author juancho.
  */
 @Module
-class AppModule(val app: BaseApplication) {
+class AppModule(val app: SampleApplication) {
 
     @Provides
     @Singleton

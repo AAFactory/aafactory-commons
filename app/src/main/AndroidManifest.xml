@@ -6,7 +6,7 @@
     <application
         android:allowBackup="true"
         tools:replace="android:icon,android:theme"
-        android:name="io.github.aafactory.sample.helpers.BaseApplication"
+        android:name="io.github.aafactory.sample.helpers.SampleApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"

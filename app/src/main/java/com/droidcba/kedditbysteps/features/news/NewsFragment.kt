@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.droidcba.kedditbysteps.KedditApp
 import com.droidcba.kedditbysteps.commons.InfiniteScrollListener
 import com.droidcba.kedditbysteps.commons.RedditNews
 import com.droidcba.kedditbysteps.commons.RxBaseFragment
@@ -17,7 +16,7 @@ import com.droidcba.kedditbysteps.commons.extensions.inflate
 import com.droidcba.kedditbysteps.features.news.adapter.NewsAdapter
 import com.droidcba.kedditbysteps.features.news.adapter.NewsDelegateAdapter
 import io.github.aafactory.sample.R
-import io.github.aafactory.sample.helpers.BaseApplication
+import io.github.aafactory.sample.helpers.SampleApplication
 import kotlinx.android.synthetic.main.kedditbysteps_news_fragment.*
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
@@ -45,7 +44,7 @@ class NewsFragment : RxBaseFragment(), NewsDelegateAdapter.onViewSelectedListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        BaseApplication.newsComponent.inject(this)
+        SampleApplication.newsComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
