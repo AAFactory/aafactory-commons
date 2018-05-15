@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,6 +99,7 @@ public final class MainActivity extends SampleActivity {
             vh.title.setText(
                     TextUtils.isEmpty(image.getTitle()) ? image.getDescription() : image.getTitle());
 
+            Log.i("image link", image.getLink());
             ImgurGlide.with(vh.imageView)
                     .load(image.getLink())
                     .into(vh.imageView);
