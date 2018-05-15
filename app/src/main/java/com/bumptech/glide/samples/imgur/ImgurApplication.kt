@@ -1,8 +1,5 @@
 package com.bumptech.glide.samples.imgur
 
-import com.droidcba.kedditbysteps.di.AppModule
-import com.droidcba.kedditbysteps.di.news.DaggerNewsComponent
-import com.droidcba.kedditbysteps.di.news.NewsComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 

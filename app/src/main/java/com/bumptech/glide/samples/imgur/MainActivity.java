@@ -2,7 +2,6 @@ package com.bumptech.glide.samples.imgur;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
@@ -97,10 +96,10 @@ public final class MainActivity extends SampleActivity {
             ViewHolder vh = (ViewHolder) holder;
             Image image = images.get(position);
             vh.title.setText(
-                    TextUtils.isEmpty(image.title) ? image.description : image.title);
+                    TextUtils.isEmpty(image.getTitle()) ? image.getDescription() : image.getTitle());
 
             ImgurGlide.with(vh.imageView)
-                    .load(image.link)
+                    .load(image.getLink())
                     .into(vh.imageView);
         }
 
