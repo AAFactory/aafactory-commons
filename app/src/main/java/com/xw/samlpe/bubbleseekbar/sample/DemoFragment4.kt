@@ -30,7 +30,7 @@ class DemoFragment4 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        demo_4_obs_scroll_view.setOnScrollChangedListener { scrollView, x, y, oldx, oldy -> demo_4_seek_bar_1.correctOffsetWhenContainerOnScrolling() }
+//        demo_4_obs_scroll_view.setOnScrollChangedListener { scrollView, x, y, oldx, oldy -> demo_4_seek_bar_1.correctOffsetWhenContainerOnScrolling() }
         demo_4_seek_bar_2.onProgressChangedListener = object : BubbleSeekBar.OnProgressChangedListenerAdapter() {
             override fun onProgressChanged(bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean) {
                 val s = String.format(Locale.CHINA, "onChanged int:%d, float:%.1f", progress, progressFloat)

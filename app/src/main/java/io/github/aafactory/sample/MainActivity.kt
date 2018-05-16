@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.AdapterView
 import cn.pedant.SweetAlert.sample.SweetAlertDialogActivity
+import com.nhn.android.maps.NMapActivity
+import com.nhn.android.mapviewer.NMapViewer
 import io.github.aafactory.commons.extensions.dpToPixel
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
 import io.github.aafactory.sample.api.GitHubService
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity() {
                         "BubbleSeekBar" -> startActivity(Intent(this, com.xw.samlpe.bubbleseekbar.sample.MainActivity::class.java))
                         "MPAndroidChart" -> startActivity(Intent(this, com.xxmassdeveloper.mpchartexample.notimportant.MainActivity::class.java))
                         "glide" -> startActivity(Intent(this, com.bumptech.glide.samples.imgur.MainActivity::class.java))
+                        "maps.android" -> startActivity(Intent(this, NMapViewer::class.java))
                     }
                 }
         ) 

@@ -10,6 +10,7 @@
         <item>woxingxiao</item>
         <item>PhilJay</item>
         <item>bumptech</item>
+        <item>navermaps</item>
     </string-array>
     <string-array name="repositories">
         <item>KedditBySteps</item>
@@ -21,6 +22,7 @@
         <item>BubbleSeekBar</item>
         <item>MPAndroidChart</item>
         <item>glide</item>
+        <item>maps.android</item>
     </string-array>
     <string name="app_name">AAFactory</string>
     <string name="action_settings">Settings</string>
