@@ -91,7 +91,7 @@ class NMapViewer : NMapActivity() {
         // create my location overlay
 //        mMyLocationOverlay = mOverlayManager.createMyLocationOverlay(mMapLocationManager, mMapCompassManager)
 
-        mMapView.setScalingFactor(2.0f)
+        mMapView.setScalingFactor(2.0F, true)
     }
 
     private inner class MapContainerView(context: Context) : ViewGroup(context) {

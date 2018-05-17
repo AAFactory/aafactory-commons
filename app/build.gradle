@@ -8,7 +8,7 @@ android {
     compileSdkVersion propCompileSdkVersion
     
     defaultConfig {
-        applicationId "com.github.aafactory.sample"
+        applicationId "io.github.aafactory.sample"
         minSdkVersion 21
         targetSdkVersion propTargetSdkVersion
         versionCode propVersionCode
