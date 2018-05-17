@@ -1,8 +1,11 @@
 package com.nhn.android.mapviewer
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.provider.Settings
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,19 +14,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import com.litesuits.common.utils.DialogUtil
-import com.nhn.android.maps.NMapActivity
-import com.nhn.android.maps.NMapController
-import com.nhn.android.maps.NMapLocationManager
-import com.nhn.android.maps.NMapView
+import com.nhn.android.maps.*
+import com.nhn.android.maps.NMapActivity.OnDataProviderListener
 import com.nhn.android.maps.maplib.NGeoPoint
 import com.nhn.android.maps.nmapmodel.NMapError
-import com.nhn.android.maps.nmapmodel.NMapPlacemark
-import com.nhn.android.maps.overlay.NMapCircleData
-import com.nhn.android.maps.overlay.NMapCircleStyle
-import com.nhn.android.maps.overlay.NMapPathData
-import com.nhn.android.maps.overlay.NMapPathLineStyle
+import com.nhn.android.maps.overlay.*
+import com.nhn.android.mapviewer.overlay.NMapMyLocationOverlay
 import com.nhn.android.mapviewer.overlay.NMapOverlayManager
+import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay
 import io.github.aafactory.sample.R
 import kotlinx.android.synthetic.main.nmap_activity_main.*
 
@@ -58,8 +56,9 @@ class NMapViewer : NMapActivity() {
     private lateinit var mMapLocationManager: NMapLocationManager
     private lateinit var mMapController: NMapController
     private lateinit var mOverlayManager: NMapOverlayManager
-
     private lateinit var mMapViewerResourceProvider: NMapViewerResourceProvider
+    private lateinit var mMyLocationOverlay: NMapMyLocationOverlay
+    private lateinit var mMapCompassManager: NMapCompassManager
 
     private var mPreferences: SharedPreferences? = null
 
@@ -122,32 +121,61 @@ class NMapViewer : NMapActivity() {
 //        mMapLocationManager.setOnLocationChangeListener(onMyLocationChangeListener)
 
         // compass manager
-//        mMapCompassManager = NMapCompassManager(this)
+        mMapCompassManager = NMapCompassManager(this)
 
         // create my location overlay
-//        mMyLocationOverlay = mOverlayManager.createMyLocationOverlay(mMapLocationManager, mMapCompassManager)
+        mMyLocationOverlay = mOverlayManager.createMyLocationOverlay(mMapLocationManager, mMapCompassManager)
 
         zoomIn.setOnClickListener { _ -> mMapController.zoomIn() }
         zoomOut.setOnClickListener { _ -> mMapController.zoomOut() }
         openDialog.setOnClickListener { _ ->
             val inflater = getSystemService(AppCompatActivity.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val view = inflater.inflate(R.layout.dialog_simple, null)
-            val dialog = DialogUtil.dialogBuilder(NMapViewer@this, -1, view)
+            val view = inflater.inflate(R.layout.nmap_dialog_simple, null)
+            val dialog = AlertDialog.Builder(this)
             dialog.setTitle("Naver Map for Android")
             dialog.setPositiveButton("OK", null)
-            val alertDialog = dialog.create()
-            view.findViewById<TextView>(R.id.menu1).setOnClickListener { _ ->
-//                DialogUtil.showTips(this@NMapViewer, "Hello", "Description")
-                alertDialog.cancel()
-                mOverlayManager.clearOverlays()
-                // add path data overlay
-                testPathDataOverlay()
-            }
-            alertDialog.show()
+            dialog.setView(view)
+            alertDialog = dialog.create().apply { show() }
+            view.findViewById<TextView>(R.id.action_path_data).setOnClickListener(itemClickListener)
+            view.findViewById<TextView>(R.id.action_poi_data).setOnClickListener(itemClickListener)
+            view.findViewById<TextView>(R.id.action_scale_factor).setOnClickListener(itemClickListener)
+            view.findViewById<TextView>(R.id.action_my_location).setOnClickListener(itemClickListener)
         }
     }
 
-    private var mIsMapEnlared = true
+    private var alertDialog: AlertDialog? = null
+    private val itemClickListener = View.OnClickListener { view ->
+        alertDialog?.cancel()
+        mOverlayManager.clearOverlays()
+
+        when (view.id) {
+            R.id.action_path_data -> {
+//                DialogUtil.showTips(this@NMapViewer, "Hello", "Description")
+                // add path data overlay
+                testPathDataOverlay()
+            }
+            R.id.action_poi_data -> {
+                testPOIdataOverlay()
+            }
+            R.id.action_scale_factor -> {
+                if (mMapView.mapProjection.isProjectionScaled) {
+                    if (mMapView.mapProjection.isMapHD) {
+                        mMapView.setScalingFactor(2.0f, false)
+                    } else {
+                        mMapView.setScalingFactor(1.0f, false)
+                    }
+                } else {
+                    mMapView.setScalingFactor(2.0f, true)
+                }
+                mIsMapEnlared = mMapView.mapProjection.isProjectionScaled
+            }
+            R.id.action_my_location -> {
+                startMyLocation()
+            }
+        }
+    }
+
+    private var mIsMapEnlared = false
     private fun restoreInstanceState() {
         mPreferences = getPreferences(Context.MODE_PRIVATE)
         mPreferences?.let {
@@ -171,8 +199,59 @@ class NMapViewer : NMapActivity() {
         }
     }
 
-    private fun testPathDataOverlay() {
+    private fun startMyLocation() {
+        if (mMyLocationOverlay != null) {
+            if (!mOverlayManager.hasOverlay(mMyLocationOverlay)) {
+                mOverlayManager.addOverlay(mMyLocationOverlay)
+            }
 
+            if (mMapLocationManager.isMyLocationEnabled) {
+
+                if (!mMapView.isAutoRotateEnabled) {
+                    mMyLocationOverlay.setCompassHeadingVisible(true)
+
+                    mMapCompassManager.enableCompass()
+
+                    mMapView.setAutoRotateEnabled(true, false)
+
+                    mMapContainerView.requestLayout()
+                } else {
+                    stopMyLocation()
+                }
+
+                mMapView.postInvalidate()
+            } else {
+                val isMyLocationEnabled = mMapLocationManager.enableMyLocation(true)
+                if (!isMyLocationEnabled) {
+                    Toast.makeText(this@NMapViewer, "Please enable a My Location source in system settings",
+                            Toast.LENGTH_LONG).show()
+
+                    val goToSettings = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                    startActivity(goToSettings)
+
+                    return
+                }
+            }
+        }
+    }
+
+    private fun stopMyLocation() {
+        if (mMyLocationOverlay != null) {
+            mMapLocationManager.disableMyLocation()
+
+            if (mMapView.isAutoRotateEnabled) {
+                mMyLocationOverlay.isCompassHeadingVisible = false
+
+                mMapCompassManager.disableCompass()
+
+                mMapView.setAutoRotateEnabled(false, false)
+
+                mMapContainerView.requestLayout()
+            }
+        }
+    }
+
+    private fun testPathDataOverlay() {
         // set path data points
         val pathData = NMapPathData(9)
 
@@ -221,6 +300,54 @@ class NMapViewer : NMapActivity() {
 
             // show all path data
             pathDataOverlay.showAllPathData(0)
+        }
+    }
+
+    private fun testPOIdataOverlay() {
+        // Markers for POI item
+        val markerId = NMapPOIflagType.PIN
+
+        // set POI data
+        val poiData = NMapPOIdata(2, mMapViewerResourceProvider)
+        poiData.beginPOIdata(2)
+        val item = poiData.addPOIitem(127.0630205, 37.5091300, "Pizza 777-111", markerId, 0)
+        item.setRightAccessory(true, NMapPOIflagType.CLICKABLE_ARROW)
+        poiData.addPOIitem(127.061, 37.51, "Pizza 123-456", markerId, 0)
+        poiData.endPOIdata()
+
+        // create POI data overlay
+        val poiDataOverlay = mOverlayManager.createPOIdataOverlay(poiData, null)
+
+        // set event listener to the overlay
+        poiDataOverlay.onStateChangeListener = onPOIdataStateChangeListener
+
+        // select an item
+        poiDataOverlay.selectPOIitem(0, true)
+
+        // show all POI data
+        //poiDataOverlay.showAllPOIdata(0);
+    }
+
+    /* POI data State Change Listener*/
+    private val onPOIdataStateChangeListener = object : NMapPOIdataOverlay.OnStateChangeListener {
+
+        override fun onCalloutClick(poiDataOverlay: NMapPOIdataOverlay, item: NMapPOIitem) {
+            if (DEBUG) {
+                Log.i(LOG_TAG, "onCalloutClick: title=" + item.title)
+            }
+
+            // [[TEMP]] handle a click event of the callout
+            Toast.makeText(this@NMapViewer, "onCalloutClick: " + item.title, Toast.LENGTH_LONG).show()
+        }
+
+        override fun onFocusChanged(poiDataOverlay: NMapPOIdataOverlay, item: NMapPOIitem?) {
+            if (DEBUG) {
+                if (item != null) {
+                    Log.i(LOG_TAG, "onFocusChanged: " + item.toString())
+                } else {
+                    Log.i(LOG_TAG, "onFocusChanged: ")
+                }
+            }
         }
     }
 

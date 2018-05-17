@@ -138,6 +138,10 @@
     <!--https://github.com/navermaps/maps.android-->
     <string name="app_name_nmap">NMapViewer</string>
     <string name="action_path_data">경로선 표시</string>
+    <string name="action_poi_data">마커 표시</string>
+    <string name="action_scale_factor">지도 크게보기</string>
+    <string name="action_my_location">내 위치</string>
+
     <string name="hello">Hello World, NMapViewer!</string>
     <string name="str_done">완료</string>
 </resources>
