@@ -20,4 +20,9 @@
     <color name="color_red_light">#FFB4B6</color>
     <color name="color_blue">#03A9F4</color>
     <color name="color_gray_light">#F5F5F5</color>
+
+    <!--https://github.com/navermaps/maps.android-->
+    <drawable name="black_color">#ff000000</drawable>
+    <drawable name="selected_list_color">#ff32A800</drawable>
+    <drawable name="default_list_color">#ffffffff</drawable>
 </resources>

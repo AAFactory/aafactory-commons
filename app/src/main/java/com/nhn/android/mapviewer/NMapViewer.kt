@@ -1,13 +1,28 @@
 package com.nhn.android.mapviewer
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import com.litesuits.common.utils.DialogUtil
 import com.nhn.android.maps.NMapActivity
-import com.nhn.android.maps.NMapCompassManager
+import com.nhn.android.maps.NMapController
 import com.nhn.android.maps.NMapLocationManager
 import com.nhn.android.maps.NMapView
+import com.nhn.android.maps.maplib.NGeoPoint
+import com.nhn.android.maps.nmapmodel.NMapError
+import com.nhn.android.maps.nmapmodel.NMapPlacemark
+import com.nhn.android.maps.overlay.NMapCircleData
+import com.nhn.android.maps.overlay.NMapCircleStyle
+import com.nhn.android.maps.overlay.NMapPathData
+import com.nhn.android.maps.overlay.NMapPathLineStyle
 import com.nhn.android.mapviewer.overlay.NMapOverlayManager
 import io.github.aafactory.sample.R
 import kotlinx.android.synthetic.main.nmap_activity_main.*
@@ -18,20 +33,41 @@ import kotlinx.android.synthetic.main.nmap_activity_main.*
 
 class NMapViewer : NMapActivity() {
     companion object {
-        private val LOG_TAG = "NMapViewer"
-        private val CLIENT_ID = "h3mlstTRuPudKfbo4Rge"
-        private val USE_XML_LAYOUT = false
+        private const val LOG_TAG = "NMapViewer"
+        private const val DEBUG = true
+        private const val CLIENT_ID = "h3mlstTRuPudKfbo4Rge"
+        private const val USE_XML_LAYOUT = true
+
+
+        private val NMAP_LOCATION_DEFAULT = NGeoPoint(126.978371, 37.5666091)
+        private val NMAP_ZOOMLEVEL_DEFAULT = 11
+        private val NMAP_VIEW_MODE_DEFAULT = NMapView.VIEW_MODE_VECTOR
+        private val NMAP_TRAFFIC_MODE_DEFAULT = false
+        private val NMAP_BICYCLE_MODE_DEFAULT = false
+
+        private val KEY_ZOOM_LEVEL = "NMapViewer.zoomLevel"
+        private val KEY_CENTER_LONGITUDE = "NMapViewer.centerLongitudeE6"
+        private val KEY_CENTER_LATITUDE = "NMapViewer.centerLatitudeE6"
+        private val KEY_VIEW_MODE = "NMapViewer.viewMode"
+        private val KEY_TRAFFIC_MODE = "NMapViewer.trafficMode"
+        private val KEY_BICYCLE_MODE = "NMapViewer.bicycleMode"
     }
 
     private lateinit var mMapContainerView: MapContainerView
     private lateinit var mMapView: NMapView
-    
+    private lateinit var mMapLocationManager: NMapLocationManager
+    private lateinit var mMapController: NMapController
+    private lateinit var mOverlayManager: NMapOverlayManager
+
+    private lateinit var mMapViewerResourceProvider: NMapViewerResourceProvider
+
+    private var mPreferences: SharedPreferences? = null
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         if (USE_XML_LAYOUT) {
             setContentView(R.layout.nmap_activity_main)
-
             mMapView = mapView
         } else {
             // create map view
@@ -49,40 +85,40 @@ class NMapViewer : NMapActivity() {
         mMapView.setClientId(CLIENT_ID)
 
         // initialize map view
-        mMapView.setClickable(true)
-        mMapView.setEnabled(true)
-        mMapView.setFocusable(true)
-        mMapView.setFocusableInTouchMode(true)
+        mMapView.isClickable = true
+        mMapView.isEnabled = true
+        mMapView.isFocusable = true
+        mMapView.isFocusableInTouchMode = true
         mMapView.requestFocus()
 
         // register listener for map state changes
-//        mMapView.setOnMapStateChangeListener(onMapViewStateChangeListener)
-//        mMapView.setOnMapViewTouchEventListener(onMapViewTouchEventListener)
-//        mMapView.setOnMapViewDelegate(onMapViewTouchDelegate)
+        mMapView.setOnMapStateChangeListener(onMapViewStateChangeListener)
+        mMapView.setOnMapViewTouchEventListener(onMapViewTouchEventListener)
+        mMapView.setOnMapViewDelegate(onMapViewTouchDelegate)
 
         // use map controller to zoom in/out, pan and set map center, zoom level etc.
-//        mMapController = mMapView.getMapController()
+        mMapController = mMapView.mapController
 
         // use built in zoom controls
         val lp = NMapView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT, NMapView.LayoutParams.BOTTOM_RIGHT)
-        mMapView.setBuiltInZoomControls(true, lp)
+//        mMapView.setBuiltInZoomControls(true, lp)
 
         // create resource provider
-//        mMapViewerResourceProvider = NMapViewerResourceProvider(this)
+        mMapViewerResourceProvider = NMapViewerResourceProvider(this)
 
         // set data provider listener
-//        super.setMapDataProviderListener(onDataProviderListener)
+        super.setMapDataProviderListener(onDataProviderListener)
 
         // create overlay manager
-//        mOverlayManager = NMapOverlayManager(this, mMapView, mMapViewerResourceProvider)
+        mOverlayManager = NMapOverlayManager(this, mMapView, mMapViewerResourceProvider)
         // register callout overlay listener to customize it.
 //        mOverlayManager.setOnCalloutOverlayListener(onCalloutOverlayListener)
         // register callout overlay view listener to customize it.
 //        mOverlayManager.setOnCalloutOverlayViewListener(onCalloutOverlayViewListener)
 
         // location manager
-//        mMapLocationManager = NMapLocationManager(this)
+        mMapLocationManager = NMapLocationManager(this)
 //        mMapLocationManager.setOnLocationChangeListener(onMyLocationChangeListener)
 
         // compass manager
@@ -91,7 +127,177 @@ class NMapViewer : NMapActivity() {
         // create my location overlay
 //        mMyLocationOverlay = mOverlayManager.createMyLocationOverlay(mMapLocationManager, mMapCompassManager)
 
-        mMapView.setScalingFactor(2.0F, true)
+        zoomIn.setOnClickListener { _ -> mMapController.zoomIn() }
+        zoomOut.setOnClickListener { _ -> mMapController.zoomOut() }
+        openDialog.setOnClickListener { _ ->
+            val inflater = getSystemService(AppCompatActivity.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view = inflater.inflate(R.layout.dialog_simple, null)
+            val dialog = DialogUtil.dialogBuilder(NMapViewer@this, -1, view)
+            dialog.setTitle("Naver Map for Android")
+            dialog.setPositiveButton("OK", null)
+            val alertDialog = dialog.create()
+            view.findViewById<TextView>(R.id.menu1).setOnClickListener { _ ->
+//                DialogUtil.showTips(this@NMapViewer, "Hello", "Description")
+                alertDialog.cancel()
+                mOverlayManager.clearOverlays()
+                // add path data overlay
+                testPathDataOverlay()
+            }
+            alertDialog.show()
+        }
+    }
+
+    private var mIsMapEnlared = true
+    private fun restoreInstanceState() {
+        mPreferences = getPreferences(Context.MODE_PRIVATE)
+        mPreferences?.let {
+            val longitudeE6 = it.getInt(KEY_CENTER_LONGITUDE, NMAP_LOCATION_DEFAULT.getLongitudeE6())
+            val latitudeE6 = it.getInt(KEY_CENTER_LATITUDE, NMAP_LOCATION_DEFAULT.getLatitudeE6())
+            val level = it.getInt(KEY_ZOOM_LEVEL, NMAP_ZOOMLEVEL_DEFAULT)
+            val viewMode = it.getInt(KEY_VIEW_MODE, NMAP_VIEW_MODE_DEFAULT)
+            val trafficMode = it.getBoolean(KEY_TRAFFIC_MODE, NMAP_TRAFFIC_MODE_DEFAULT)
+            val bicycleMode = it.getBoolean(KEY_BICYCLE_MODE, NMAP_BICYCLE_MODE_DEFAULT)
+
+            mMapController.setMapViewMode(viewMode)
+            mMapController.setMapViewTrafficMode(trafficMode)
+            mMapController.setMapViewBicycleMode(bicycleMode)
+            mMapController.setMapCenter(NGeoPoint(longitudeE6, latitudeE6), level)
+
+            if (mIsMapEnlared) {
+                mMapView.setScalingFactor(2.0f)
+            } else {
+                mMapView.setScalingFactor(1.0f)
+            }
+        }
+    }
+
+    private fun testPathDataOverlay() {
+
+        // set path data points
+        val pathData = NMapPathData(9)
+
+        pathData.initPathData()
+        pathData.addPathPoint(127.108099, 37.366034, NMapPathLineStyle.TYPE_SOLID)
+        pathData.addPathPoint(127.108088, 37.366043, 0)
+        pathData.addPathPoint(127.108079, 37.365619, 0)
+        pathData.addPathPoint(127.107458, 37.365608, 0)
+        pathData.addPathPoint(127.107232, 37.365608, 0)
+        pathData.addPathPoint(127.106904, 37.365624, 0)
+        pathData.addPathPoint(127.105933, 37.365621, NMapPathLineStyle.TYPE_DASH)
+        pathData.addPathPoint(127.105929, 37.366378, 0)
+        pathData.addPathPoint(127.106279, 37.366380, 0)
+        pathData.endPathData()
+
+        val pathDataOverlay = mOverlayManager.createPathDataOverlay(pathData)
+        if (pathDataOverlay != null) {
+
+            // add path data with polygon type
+            val pathData2 = NMapPathData(4)
+            pathData2.initPathData()
+            pathData2.addPathPoint(127.106, 37.367, NMapPathLineStyle.TYPE_SOLID)
+            pathData2.addPathPoint(127.107, 37.367, 0)
+            pathData2.addPathPoint(127.107, 37.368, 0)
+            pathData2.addPathPoint(127.106, 37.368, 0)
+            pathData2.endPathData()
+            pathDataOverlay.addPathData(pathData2)
+            // set path line style
+            val pathLineStyle = NMapPathLineStyle(mMapView.context)
+            pathLineStyle.pataDataType = NMapPathLineStyle.DATA_TYPE_POLYGON
+            pathLineStyle.setLineColor(0xA04DD2, 0xff)
+            pathLineStyle.setFillColor(0xFFFFFF, 0x00)
+            pathData2.pathLineStyle = pathLineStyle
+
+            // add circle data
+            val circleData = NMapCircleData(1)
+            circleData.initCircleData()
+            circleData.addCirclePoint(127.1075, 37.3675, 50.0f)
+            circleData.endCircleData()
+            pathDataOverlay.addCircleData(circleData)
+            // set circle style
+            val circleStyle = NMapCircleStyle(mMapView.context)
+            circleStyle.setLineType(NMapPathLineStyle.TYPE_DASH)
+            circleStyle.setFillColor(0x000000, 0x00)
+            circleData.circleStyle = circleStyle
+
+            // show all path data
+            pathDataOverlay.showAllPathData(0)
+        }
+    }
+
+    /* MapView State Change Listener*/
+    private val onMapViewStateChangeListener = object : NMapView.OnMapStateChangeListener {
+        override fun onMapInitHandler(mapView: NMapView, errorInfo: NMapError?) {
+            if (errorInfo == null) { // success
+                // restore map view state such as map center position and zoom level.
+                restoreInstanceState()
+            } else { // fail
+                Log.e(LOG_TAG, "onFailedToInitializeWithError: " + errorInfo.toString())
+                Toast.makeText(this@NMapViewer, errorInfo.toString(), Toast.LENGTH_LONG).show()
+            }
+        }
+
+        override fun onAnimationStateChange(mapView: NMapView, animType: Int, animState: Int) {
+            if (DEBUG) {
+                Log.i(LOG_TAG, "onAnimationStateChange: animType=$animType, animState=$animState")
+            }
+        }
+
+        override fun onMapCenterChange(mapView: NMapView, center: NGeoPoint) {
+            if (DEBUG) {
+                Log.i(LOG_TAG, "onMapCenterChange: center=" + center.toString())
+            }
+        }
+
+        override fun onZoomLevelChange(mapView: NMapView, level: Int) {
+            if (DEBUG) {
+                Log.i(LOG_TAG, "onZoomLevelChange: level=$level")
+            }
+        }
+
+        override fun onMapCenterChangeFine(mapView: NMapView) {
+
+        }
+    }
+
+    private val onMapViewTouchDelegate = NMapView.OnMapViewDelegate {
+        if (mMapLocationManager != null) {
+            if (mMapLocationManager.isMyLocationEnabled()) {
+                return@OnMapViewDelegate mMapLocationManager.isMyLocationFixed()
+            }
+        }
+        false
+    }
+
+    private val onMapViewTouchEventListener = object : NMapView.OnMapViewTouchEventListener {
+        override fun onLongPress(mapView: NMapView, ev: MotionEvent) {}
+        override fun onLongPressCanceled(mapView: NMapView) {}
+        override fun onSingleTapUp(mapView: NMapView, ev: MotionEvent) {}
+        override fun onTouchDown(mapView: NMapView, ev: MotionEvent) {}
+        override fun onScroll(mapView: NMapView, e1: MotionEvent, e2: MotionEvent) {}
+        override fun onTouchUp(mapView: NMapView, ev: MotionEvent) {}
+    }
+
+    /* NMapDataProvider Listener */
+    private val onDataProviderListener = OnDataProviderListener { placeMark, errInfo ->
+        if (DEBUG) {
+            Log.i(LOG_TAG, "onReverseGeocoderResponse: placeMark=" + placeMark?.toString())
+        }
+
+        if (errInfo != null) {
+            Log.e(LOG_TAG, "Failed to findPlacemarkAtLocation: error=" + errInfo.toString())
+
+            Toast.makeText(this@NMapViewer, errInfo.toString(), Toast.LENGTH_LONG).show()
+            return@OnDataProviderListener
+        }
+
+//        if (mFloatingPOIitem != null && mFloatingPOIdataOverlay != null) {
+//            mFloatingPOIdataOverlay.deselectFocusedPOIitem()
+//
+//            if (placeMark != null) {
+//                mFloatingPOIitem.setTitle(placeMark.toString())
+//            }
+//            mFloatingPOIdataOverlay.selectPOIitemBy(mFloatingPOIitem.getId(), false)
+//        }
     }
 
     private inner class MapContainerView(context: Context) : ViewGroup(context) {

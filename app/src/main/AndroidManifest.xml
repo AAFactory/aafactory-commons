@@ -3,6 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="io.github.aafactory.sample">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         tools:replace="android:icon,android:theme"
@@ -168,6 +172,4 @@
             android:label="">
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
