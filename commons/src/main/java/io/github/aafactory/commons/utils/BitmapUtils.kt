@@ -7,15 +7,14 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Matrix
 import android.media.ExifInterface
+import android.net.Uri
 import android.support.v4.content.ContextCompat
+import android.view.ViewGroup
 import io.github.aafactory.commons.extensions.dpToPixel
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.IOUtils
-import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
-import java.io.OutputStream
 import io.github.aafactory.commons.R
+import java.io.*
 
 /**
  * Created by CHO HANJOONG on 2018-04-22.
@@ -26,19 +25,6 @@ object BitmapUtils {
     /// ------------------------------------------------------------------
     /// Awesome Application Factory legacy functions 
     /// ------------------------------------------------------------------
-    private fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
-        val h = options.outHeight
-        val w = options.outWidth
-        var inSampleSize = 0
-        if (h > reqHeight || w > reqWidth) {
-            val ratioW = w.toFloat() / reqWidth
-            val ratioH = h.toFloat() / reqHeight
-            inSampleSize = Math.min(ratioH, ratioW).toInt()
-        }
-        inSampleSize = Math.max(1, inSampleSize)
-        return inSampleSize
-    }
-
     fun saveBitmap(srcPath: String, destPath: String, fixedWidthHeight: Int, orientation: Int = 1): Boolean {
         var result = true
         var outputStream: OutputStream? = null
@@ -79,7 +65,53 @@ object BitmapUtils {
         return result
     }
 
+    fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
+        val h = options.outHeight
+        val w = options.outWidth
+        var inSampleSize = 0
+        if (h > reqHeight || w > reqWidth) {
+            val ratioW = w.toFloat() / reqWidth
+            val ratioH = h.toFloat() / reqHeight
+            inSampleSize = Math.min(ratioH, ratioW).toInt()
+        }
+        inSampleSize = Math.max(1, inSampleSize)
+        return inSampleSize
+    }
+    
+    fun decodeFile(path: String, fixedWidth: Int, fixedHeight: Int): Bitmap {
+        var inputStream: InputStream = FileUtils.openInputStream(File(path))
+        val options = BitmapFactory.Options().apply {
+            inJustDecodeBounds = true
+        }
 
+        BitmapFactory.decodeStream(inputStream, null, options)
+        IOUtils.closeQuietly(inputStream)
+        val inSampleSize = calculateInSampleSize(options, fixedWidth, fixedHeight)
+
+        inputStream = FileUtils.openInputStream(File(path))
+        options.inJustDecodeBounds = false
+        options.inSampleSize = inSampleSize
+        val tempBitmap = BitmapFactory.decodeStream(inputStream, null, options)
+        return Bitmap.createScaledBitmap(tempBitmap, fixedWidth, fixedHeight, false)
+    }
+    
+    fun decodeFile(context: Context, uri: Uri, fixedWidth: Int, fixedHeight: Int): Bitmap {
+        var inputStream: InputStream = context.contentResolver.openInputStream(uri)
+        val options = BitmapFactory.Options().apply {
+            inJustDecodeBounds = true
+        }
+
+        BitmapFactory.decodeStream(inputStream, null, options)
+        IOUtils.closeQuietly(inputStream)
+        val inSampleSize = calculateInSampleSize(options, fixedWidth, fixedHeight)
+
+        inputStream = context.contentResolver.openInputStream(uri)
+        options.inJustDecodeBounds = false
+        options.inSampleSize = inSampleSize
+        val tempBitmap = BitmapFactory.decodeStream(inputStream, null, options)
+        return Bitmap.createScaledBitmap(tempBitmap, fixedWidth, fixedHeight, false)
+    }
+    
     fun decodeFile(activity: Activity, imagePath: String?, options: BitmapFactory.Options? = null): Bitmap = when (imagePath != null && File(imagePath).exists()) {
         true -> {
             options?.let { BitmapFactory.decodeFile(imagePath, options) } ?: BitmapFactory.decodeFile(imagePath)
@@ -87,6 +119,32 @@ object BitmapUtils {
         false -> {
             BitmapFactory.decodeResource(activity.resources, android.R.drawable.ic_menu_gallery)
         }
+    }
+
+    fun decodeFileCropCenter(path: String, fixedWidthHeight: Int): Bitmap {
+        var inputStream: InputStream = FileUtils.openInputStream(File(path))
+        val options = BitmapFactory.Options().apply {
+            inJustDecodeBounds = true
+        }
+
+        BitmapFactory.decodeStream(inputStream, null, options)
+        IOUtils.closeQuietly(inputStream)
+        val inSampleSize = calculateInSampleSize(options, fixedWidthHeight, fixedWidthHeight)
+        inputStream = FileUtils.openInputStream(File(path))
+        options.inJustDecodeBounds = false
+        options.inSampleSize = inSampleSize
+        val tempBitmap = BitmapFactory.decodeStream(inputStream, null, options)
+        val sampling = when (tempBitmap.width > tempBitmap.height) {
+            true -> {
+                val ratio: Float = fixedWidthHeight * 1.0F / tempBitmap.height
+                Bitmap.createScaledBitmap(tempBitmap, (tempBitmap.width * ratio).toInt(), (tempBitmap.height * ratio).toInt(), false)
+            }
+            false -> {
+                val ratio: Float = fixedWidthHeight * 1.0F / tempBitmap.width
+                Bitmap.createScaledBitmap(tempBitmap, (tempBitmap.width * ratio).toInt(), (tempBitmap.height * ratio).toInt(), false)
+            }
+        }
+        return cropCenter(sampling)
     }
 
     fun addBorder(context: Context, bmp: Bitmap, scaleFactor: Double): Bitmap {
@@ -157,32 +215,6 @@ object BitmapUtils {
         return sampling
     }
 
-    fun decodeFileCropCenter(path: String, fixedWidthHeight: Int): Bitmap {
-        var inputStream: InputStream = FileUtils.openInputStream(File(path))
-        val options = BitmapFactory.Options().apply {
-            inJustDecodeBounds = true
-        }
-
-        BitmapFactory.decodeStream(inputStream, null, options)
-        IOUtils.closeQuietly(inputStream)
-        val inSampleSize = calculateInSampleSize(options, fixedWidthHeight, fixedWidthHeight)
-        inputStream = FileUtils.openInputStream(File(path))
-        options.inJustDecodeBounds = false
-        options.inSampleSize = inSampleSize
-        val tempBitmap = BitmapFactory.decodeStream(inputStream, null, options)
-        val sampling = when (tempBitmap.width > tempBitmap.height) {
-            true -> {
-                val ratio: Float = fixedWidthHeight * 1.0F / tempBitmap.height
-                Bitmap.createScaledBitmap(tempBitmap, (tempBitmap.width * ratio).toInt(), (tempBitmap.height * ratio).toInt(), false)
-            }
-            false -> {
-                val ratio: Float = fixedWidthHeight * 1.0F / tempBitmap.width
-                Bitmap.createScaledBitmap(tempBitmap, (tempBitmap.width * ratio).toInt(), (tempBitmap.height * ratio).toInt(), false)
-            }
-        }
-        return cropCenter(sampling)
-    }
-
     fun cropCenter(srcBmp: Bitmap): Bitmap {
         return when (srcBmp.width >= srcBmp.height) {
             true -> {
@@ -204,5 +236,35 @@ object BitmapUtils {
                 )
             }
         }
+    }
+
+    fun saveBitmapToFileCache(bitmap: Bitmap, strFilePath: String) {
+        val fileCacheItem = File(strFilePath)
+        var out: OutputStream? = null
+
+        try {
+            fileCacheItem.createNewFile()
+            out = FileOutputStream(fileCacheItem)
+
+            //quality int: Hint to the compressor, 0-100. 0 meaning compress for small size, 100 meaning compress for max quality. Some formats, like PNG which is lossless, will ignore the quality setting
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, out)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            try {
+                out?.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+        }
+    }
+
+    fun diaryViewGroupToBitmap(view: ViewGroup): Bitmap {
+        val scrollView = view.getChildAt(0) as ViewGroup
+        val bitmap = Bitmap.createBitmap(scrollView.width, scrollView.getChildAt(0).height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        scrollView.draw(canvas)
+        return bitmap
     }
 }

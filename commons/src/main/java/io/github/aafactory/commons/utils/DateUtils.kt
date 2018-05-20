@@ -32,14 +32,14 @@ class DateUtils {
             val dateFormat = SimpleDateFormat.getDateInstance(SimpleDateFormat.FULL, Locale.getDefault())
             return dateFormat.format(date)
         }
-
+        
         fun getFullPatternDateWithTime(timeMillis: Long): String {
             val date = Date(timeMillis)
             val dateFormat = SimpleDateFormat.getDateInstance(SimpleDateFormat.FULL, Locale.getDefault())
             val hourFormat = SimpleDateFormat(TIME_PATTERN)
             return String.format("%s %s", dateFormat.format(date), hourFormat.format(date))
         }
-
+        
         fun getFullPatternDateWithTimeAndSeconds(timeMillis: Long, locale: Locale = Locale.getDefault()): String {
             val date = Date(timeMillis)
             val dateFormat = SimpleDateFormat.getDateInstance(SimpleDateFormat.FULL, locale)
@@ -52,7 +52,7 @@ class DateUtils {
             val dateFormat = SimpleDateFormat(pattern)
             return dateFormat.format(date)
         }
-
+       
         fun timeMillisToDateTime(timeMillis: Long, pattern: String): String {
             val date = Date(timeMillis)
             val dateFormat = SimpleDateFormat(pattern)

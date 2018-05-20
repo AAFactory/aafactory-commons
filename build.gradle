@@ -8,8 +8,8 @@ buildscript {
         propCompileSdkVersion = 27
         propTargetSdkVersion = propCompileSdkVersion
         propMinSdkVersion = 16
-        propVersionCode = 2
-        propVersionName = '0.1.1'
+        propVersionCode = 3
+        propVersionName = '0.2.0'
     }
     
     repositories {
