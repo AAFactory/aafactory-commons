@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 mListItem,
                 AdapterView.OnItemClickListener { _, _, position, _ ->
                     val showCase = adapter.getItem(position)
-                    when (showCase.name) {
+                    when (showCase.getRepositoryName()) {
                         "Fancybuttons" -> startActivity(Intent(this, MainActivity::class.java))
                         "Alerter" -> startActivity(Intent(this, com.tapadoo.alerter.sample.MainActivity::class.java))
                         "CoordinatorExamples" -> startActivity(Intent(this, saulmm.coordinatorexamples.MainActivity::class.java))

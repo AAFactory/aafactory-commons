@@ -21,7 +21,7 @@
         <item>RecyclerView-FastScroll</item>
         <item>BubbleSeekBar</item>
         <item>MPAndroidChart</item>
-        <item>glide</item>
+        <item>glide|imgur</item>
         <item>maps.android</item>
     </string-array>
     <string name="app_name">AAFactory</string>

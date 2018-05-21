@@ -23,7 +23,7 @@ class ShowcaseAdapter(
         return ShowcaseViewHolder(view as ViewGroup)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ShowcaseViewHolder = createViewHolder(R.layout.item_showcase, parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowcaseViewHolder = createViewHolder(R.layout.item_showcase, parent)
 
     override fun getItemCount(): Int = listItem.size
 
