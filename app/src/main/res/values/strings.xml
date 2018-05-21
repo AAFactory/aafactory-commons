@@ -1,29 +1,5 @@
 <resources>
     <!--https://github.com/AAFactory-->
-    <string-array name="owners">
-        <item>juanchosaravia</item>
-        <item>Tapadoo</item>
-        <item>saulmm</item>
-        <item>medyo</item>
-        <item>pedant</item>
-        <item>timusus</item>
-        <item>woxingxiao</item>
-        <item>PhilJay</item>
-        <item>bumptech</item>
-        <item>navermaps</item>
-    </string-array>
-    <string-array name="repositories">
-        <item>KedditBySteps</item>
-        <item>Alerter</item>
-        <item>CoordinatorExamples</item>
-        <item>Fancybuttons</item>
-        <item>sweet-alert-dialog</item>
-        <item>RecyclerView-FastScroll</item>
-        <item>BubbleSeekBar</item>
-        <item>MPAndroidChart</item>
-        <item>glide|imgur</item>
-        <item>maps.android</item>
-    </string-array>
     <string name="app_name">AAFactory</string>
     <string name="action_settings">Settings</string>
 

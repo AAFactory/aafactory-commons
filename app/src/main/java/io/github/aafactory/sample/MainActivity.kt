@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.AdapterView
 import cn.pedant.SweetAlert.sample.SweetAlertDialogActivity
-import com.nhn.android.maps.NMapActivity
 import com.nhn.android.mapviewer.NMapViewer
 import io.github.aafactory.commons.extensions.dpToPixel
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
@@ -25,6 +24,39 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    val listItems = mutableListOf<Map<String, String>>(
+            mapOf("owner" to "juanchosaravia",
+                    "name" to "KedditBySteps"
+            )
+            , mapOf("owner" to "Tapadoo",
+                    "name" to "Alerter"
+            )
+            , mapOf("owner" to "saulmm",
+                    "name" to "CoordinatorExamples"
+            )
+            , mapOf("owner" to "medyo",
+                    "name" to "Fancybuttons"
+            )
+            , mapOf("owner" to "pedant",
+                    "name" to "sweet-alert-dialog"
+            )
+            , mapOf("owner" to "timusus",
+                    "name" to "RecyclerView-FastScroll"
+            )
+            , mapOf("owner" to "woxingxiao",
+                    "name" to "BubbleSeekBar"
+            )
+            , mapOf("owner" to "PhilJay",
+                    "name" to "MPAndroidChart"
+            )
+            , mapOf("owner" to "navermaps",
+                    "name" to "maps.android"
+            )
+            , mapOf("owner" to "bumptech",
+                    "name" to "glide",
+                    "displayName" to "glide-imgur"
+            )
+    )
     private var mListItem: ArrayList<Showcase> = arrayListOf<Showcase>()
     private val adapter: ShowcaseAdapter by lazy { 
         ShowcaseAdapter(
@@ -32,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                 mListItem,
                 AdapterView.OnItemClickListener { _, _, position, _ ->
                     val showCase = adapter.getItem(position)
-                    when (showCase.getRepositoryName()) {
+                    when (showCase.name) {
                         "Fancybuttons" -> startActivity(Intent(this, MainActivity::class.java))
                         "Alerter" -> startActivity(Intent(this, com.tapadoo.alerter.sample.MainActivity::class.java))
                         "CoordinatorExamples" -> startActivity(Intent(this, saulmm.coordinatorexamples.MainActivity::class.java))
@@ -58,8 +90,8 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.addItemDecoration(ItemDecoration(this))
         adapter.attachTo(recyclerView)
-        val owners = resources.getStringArray(R.array.owners)
-        val repositories = resources.getStringArray(R.array.repositories)
+//        val owners = resources.getStringArray(R.array.owners)
+//        val repositories = resources.getStringArray(R.array.repositories)
 
         Thread(Runnable {
             val retrofit = Retrofit.Builder()
@@ -67,12 +99,27 @@ class MainActivity : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
             val gitHubService = retrofit.create(GitHubService::class.java)
-            for ((index, owner) in owners.withIndex()) {
-                val call = gitHubService.repository(owner, repositories[index])
+//            for ((index, owner) in owners.withIndex()) {
+//                val call = gitHubService.repository(owner, repositories[index])
+//                val repository: Repository? = call.execute().body()
+//                mListItem.add(Showcase(
+//                        owner,
+//                        repositories[index],
+//                        repository?.description ?: "",
+//                        repository?.stargazers_count ?: 0,
+//                        repository?.forks_count ?: 0)
+//                )
+//            }
+            listItems.forEach {
+                val owner = it["owner"] ?: ""
+                val name = it["name"] ?: ""
+                val displayName = it["displayName"] ?: name
+                val call = gitHubService.repository(owner, name)
                 val repository: Repository? = call.execute().body()
                 mListItem.add(Showcase(
                         owner,
-                        repositories[index],
+                        name,
+                        displayName,
                         repository?.description ?: "",
                         repository?.stargazers_count ?: 0,
                         repository?.forks_count ?: 0)
