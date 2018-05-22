@@ -25,4 +25,7 @@
     <drawable name="black_color">#ff000000</drawable>
     <drawable name="selected_list_color">#ff32A800</drawable>
     <drawable name="default_list_color">#ffffffff</drawable>
+
+    <!--https://github.com/bumptech/glide-->
+    <color name="translucent_black">#B0000000</color>
 </resources>

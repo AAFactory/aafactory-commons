@@ -161,8 +161,15 @@
         <!--https://github.com/bumptech/glide-->
         <activity
             android:name="com.bumptech.glide.samples.imgur.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/app_name_mp_android_chart">
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.bumptech.glide.samples.flickr.FlickrSearchActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.bumptech.glide.samples.flickr.FullscreenActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <!--https://github.com/navermaps/maps.android-->

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.samples.imgur.api.Image
 import dagger.android.AndroidInjection
 import io.github.aafactory.sample.R
@@ -85,7 +86,7 @@ class MainActivity : SampleActivity() {
             val vh = holder as ViewHolder
             val image = images[position]
             vh.title.text = if (TextUtils.isEmpty(image.title)) image.description else image.title
-            ImgurGlide.with(vh.imageView)
+            Glide.with(vh.imageView)
                     .load(image.link)
                     .into(vh.imageView)
         }

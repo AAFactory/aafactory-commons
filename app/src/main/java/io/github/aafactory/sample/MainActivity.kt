@@ -56,6 +56,10 @@ class MainActivity : AppCompatActivity() {
                     "name" to "glide",
                     "displayName" to "glide-imgur"
             )
+            , mapOf("owner" to "bumptech",
+                    "name" to "glide",
+                    "displayName" to "glide-flickr"
+            )
     )
     private var mListItem: ArrayList<Showcase> = arrayListOf<Showcase>()
     private val adapter: ShowcaseAdapter by lazy { 
@@ -64,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 mListItem,
                 AdapterView.OnItemClickListener { _, _, position, _ ->
                     val showCase = adapter.getItem(position)
-                    when (showCase.name) {
+                    when (showCase.repositoryName()) {
                         "Fancybuttons" -> startActivity(Intent(this, MainActivity::class.java))
                         "Alerter" -> startActivity(Intent(this, com.tapadoo.alerter.sample.MainActivity::class.java))
                         "CoordinatorExamples" -> startActivity(Intent(this, saulmm.coordinatorexamples.MainActivity::class.java))
@@ -73,7 +77,8 @@ class MainActivity : AppCompatActivity() {
                         "RecyclerView-FastScroll" -> startActivity(Intent(this, com.simplecityapps.recyclerview_fastscroll.sample.MainActivity::class.java))
                         "BubbleSeekBar" -> startActivity(Intent(this, com.xw.samlpe.bubbleseekbar.sample.MainActivity::class.java))
                         "MPAndroidChart" -> startActivity(Intent(this, com.xxmassdeveloper.mpchartexample.notimportant.MainActivity::class.java))
-                        "glide" -> startActivity(Intent(this, com.bumptech.glide.samples.imgur.MainActivity::class.java))
+                        "glide-imgur" -> startActivity(Intent(this, com.bumptech.glide.samples.imgur.MainActivity::class.java))
+                        "glide-flickr" -> startActivity(Intent(this, com.bumptech.glide.samples.flickr.FlickrSearchActivity::class.java))
                         "maps.android" -> startActivity(Intent(this, NMapViewer::class.java))
                     }
                 }

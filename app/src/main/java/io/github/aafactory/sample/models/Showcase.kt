@@ -13,4 +13,9 @@ data class Showcase(
     val description: String,
     val stargazersCount: Int,
     val forksCount: Int
-)
+) {
+    fun repositoryName() = when (displayName.isEmpty()) {
+        true -> name
+        false -> displayName
+    }
+}
