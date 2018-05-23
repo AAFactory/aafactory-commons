@@ -37,13 +37,12 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import io.github.aafactory.sample.R;
-import io.github.aafactory.sample.helpers.SampleActivity;
 
 /**
  * An activity that allows users to search for images on Flickr and that contains a series of
  * fragments that display retrieved image thumbnails.
  */
-public class FlickrSearchActivity extends SampleActivity
+public class FlickrSearchActivity extends AppCompatActivity
         implements SearchView.OnQueryTextListener {
     private static final String TAG = "FlickrSearchActivity";
     private static final String STATE_QUERY = "state_search_string";
@@ -130,7 +129,6 @@ public class FlickrSearchActivity extends SampleActivity
         backgroundHandler = new Handler(backgroundThread.getLooper());
 
         setContentView(R.layout.glideflickr_flickr_search_activity);
-
         searching = findViewById(R.id.searching);
         searchLoading = findViewById(R.id.search_loading);
         searchTerm = (TextView) findViewById(R.id.search_term);
