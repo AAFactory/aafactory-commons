@@ -20,12 +20,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
+
 import com.bumptech.glide.load.engine.prefill.PreFillType;
 import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.samples.flickr.api.Api;
 import com.bumptech.glide.samples.flickr.api.Photo;
 import com.bumptech.glide.samples.flickr.api.Query;
 import com.bumptech.glide.samples.flickr.api.SearchQuery;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,6 +70,7 @@ public class FlickrSearchActivity extends AppCompatActivity
     }
 
     private static final Map<Page, Integer> PAGE_TO_TITLE;
+
     static {
         Map<Page, Integer> temp = new HashMap<>();
         temp.put(Page.SMALL, R.string.small);
