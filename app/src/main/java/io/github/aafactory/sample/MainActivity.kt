@@ -60,6 +60,9 @@ class MainActivity : AppCompatActivity() {
                     "name" to "glide",
                     "displayName" to "glide-flickr"
             )
+            , mapOf("owner" to "googlesamples",
+            "name" to "android-ConstraintLayoutExamples"
+    )
     )
     private var mListItem: ArrayList<Showcase> = arrayListOf<Showcase>()
     private val adapter: ShowcaseAdapter by lazy { 
@@ -80,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                         "glide-imgur" -> startActivity(Intent(this, com.bumptech.glide.samples.imgur.MainActivity::class.java))
                         "glide-flickr" -> startActivity(Intent(this, com.bumptech.glide.samples.flickr.FlickrSearchActivity::class.java))
                         "maps.android" -> startActivity(Intent(this, NMapViewer::class.java))
+                        "android-ConstraintLayoutExamples" -> startActivity(Intent(this, com.example.android.constraintlayoutexamples.MainActivity::class.java))
                     }
                 }
         ) 
