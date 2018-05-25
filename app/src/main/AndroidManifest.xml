@@ -181,7 +181,10 @@
         </activity>
 
         <!--https://github.com/googlesamples/android-ConstraintLayoutExamples-->
-        <activity android:name="com.example.android.constraintlayoutexamples.MainActivity"></activity>
+        <activity
+            android:name="com.example.android.constraintlayoutexamples.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name="com.example.android.constraintlayoutexamples.ConstraintSetExampleActivity"></activity>
     </application>
 </manifest>
