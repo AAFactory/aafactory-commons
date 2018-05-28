@@ -4,13 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.AdapterView
 import cn.pedant.SweetAlert.sample.SweetAlertDialogActivity
+import com.litesuits.common.utils.DialogUtil
 import com.nhn.android.mapviewer.NMapViewer
+import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.extensions.dpToPixel
+import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_COARSE_LOCATION
+import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_FINE_LOCATION
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
 import io.github.aafactory.sample.api.GitHubService
 import io.github.aafactory.sample.helpers.GIT_HUB_API_BASE_URL
@@ -23,7 +26,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
             mapOf("owner" to "juanchosaravia",
                     "name" to "KedditBySteps"
@@ -82,7 +85,21 @@ class MainActivity : AppCompatActivity() {
                         "MPAndroidChart" -> startActivity(Intent(this, com.xxmassdeveloper.mpchartexample.notimportant.MainActivity::class.java))
                         "glide-imgur" -> startActivity(Intent(this, com.bumptech.glide.samples.imgur.MainActivity::class.java))
                         "glide-flickr" -> startActivity(Intent(this, com.bumptech.glide.samples.flickr.FlickrSearchActivity::class.java))
-                        "maps.android" -> startActivity(Intent(this, NMapViewer::class.java))
+                        "maps.android" -> {
+                            handlePermission(PERMISSION_ACCESS_COARSE_LOCATION) {
+                                when (it) {
+                                    true -> {
+                                        handlePermission(PERMISSION_ACCESS_FINE_LOCATION) {
+                                            when (it) {
+                                                true -> startActivity(Intent(this, NMapViewer::class.java))
+                                                false -> { DialogUtil.showTips(this@MainActivity, "WARN", "Permission Denied")}
+                                            }
+                                        }
+                                    }
+                                    false -> { DialogUtil.showTips(this@MainActivity, "WARN", "Permission Denied")}
+                                }
+                            }
+                        }
                         "android-ConstraintLayoutExamples" -> startActivity(Intent(this, com.example.android.constraintlayoutexamples.MainActivity::class.java))
                     }
                 }
