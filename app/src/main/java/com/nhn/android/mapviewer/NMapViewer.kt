@@ -3,7 +3,7 @@ package com.nhn.android.mapviewer
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Point
+import android.graphics.Rect
 import android.os.Bundle
 import android.provider.Settings
 import android.support.v4.content.ContextCompat
@@ -21,9 +21,7 @@ import com.nhn.android.maps.NMapActivity.OnDataProviderListener
 import com.nhn.android.maps.maplib.NGeoPoint
 import com.nhn.android.maps.nmapmodel.NMapError
 import com.nhn.android.maps.overlay.*
-import com.nhn.android.mapviewer.overlay.NMapMyLocationOverlay
-import com.nhn.android.mapviewer.overlay.NMapOverlayManager
-import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay
+import com.nhn.android.mapviewer.overlay.*
 import io.github.aafactory.commons.utils.LocationUtils.Companion.getLocationWithGPSProvider
 import io.github.aafactory.sample.R
 import kotlinx.android.synthetic.main.nmap_activity_main.*
@@ -115,7 +113,7 @@ class NMapViewer : NMapActivity() {
         // create overlay manager
         mOverlayManager = NMapOverlayManager(this, mMapView, mMapViewerResourceProvider)
         // register callout overlay listener to customize it.
-//        mOverlayManager.setOnCalloutOverlayListener(onCalloutOverlayListener)
+        mOverlayManager.setOnCalloutOverlayViewListener(onCalloutOverlayListener)
         // register callout overlay view listener to customize it.
 //        mOverlayManager.setOnCalloutOverlayViewListener(onCalloutOverlayViewListener)
 
@@ -146,6 +144,57 @@ class NMapViewer : NMapActivity() {
         }
     }
 
+    private val onCalloutOverlayListener = NMapOverlayManager.OnCalloutOverlayViewListener { itemOverlay, overlayItem, itemBounds ->
+//        itemBounds.set(-45, -130, -46, 1)
+        
+        // handle overlapped items
+        if (itemOverlay is NMapPOIdataOverlay) {
+
+            // check if it is selected by touch event
+            if (!itemOverlay.isFocusedBySelectItem) {
+                var countOfOverlappedItems = 1
+
+                val poiData = itemOverlay.poIdata
+                for (i in 0 until poiData.count()) {
+                    val poiItem = poiData.getPOIitem(i)
+
+                    // skip selected item
+                    if (poiItem === overlayItem) {
+                        continue
+                    }
+
+                    // check if overlapped or not
+                    if (Rect.intersects(poiItem.boundsInScreen, overlayItem.boundsInScreen)) {
+                        countOfOverlappedItems++
+                    }
+                }
+
+                if (countOfOverlappedItems > 1) {
+                    val text = countOfOverlappedItems.toString() + " overlapped items for " + overlayItem.title
+                    Toast.makeText(this@NMapViewer, text, Toast.LENGTH_LONG).show()
+                    return@OnCalloutOverlayViewListener null
+                }
+            }
+        }
+
+        // use custom old callout overlay
+        if (overlayItem is NMapPOIitem) {
+
+//            if (overlayItem.showRightButton()) {
+//                return@OnCalloutOverlayViewListener NMapCalloutCustomOldOverlay(itemOverlay, overlayItem, itemBounds,
+//                        mMapViewerResourceProvider)
+//            }
+        }
+
+        // use custom callout overlay
+//        NMapCalloutCustomOverlay(itemOverlay, overlayItem, itemBounds, mMapViewerResourceProvider)
+//        NMapCalloutCustomOldOverlay(itemOverlay, overlayItem, itemBounds, mMapViewerResourceProvider)
+        // Context context, NMapOverlay itemOverlay, NMapOverlayItem item, Rect itemBounds
+        NMapCalloutCustomOverlayView(this@NMapViewer, itemOverlay, overlayItem, itemBounds)
+        // set basic callout overlay
+//        return new NMapCalloutBasicOverlay(itemOverlay, overlayItem, itemBounds);			
+    }
+    
     private var alertDialog: AlertDialog? = null
     private val itemClickListener = View.OnClickListener { view ->
         alertDialog?.cancel()
@@ -188,7 +237,7 @@ class NMapViewer : NMapActivity() {
             val poiData = NMapPOIdata(1, mMapViewerResourceProvider)
             poiData.beginPOIdata(1)
             
-            val item = poiData.addPOIitem(nGeoPoint, null, ContextCompat.getDrawable(this@NMapViewer, R.drawable.user_avatar), 0)
+            val item = poiData.addPOIitem(nGeoPoint, nGeoPoint.toString(), /*NMapPOIflagType.PIN*/ContextCompat.getDrawable(this@NMapViewer, R.drawable.user_avatar), 0)
 //            item.setRightAccessory(true, NMapPOIflagType.CLICKABLE_ARROW)
             poiData.endPOIdata()
 
