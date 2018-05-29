@@ -3,8 +3,10 @@ package com.nhn.android.mapviewer
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Point
 import android.os.Bundle
 import android.provider.Settings
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -22,6 +24,7 @@ import com.nhn.android.maps.overlay.*
 import com.nhn.android.mapviewer.overlay.NMapMyLocationOverlay
 import com.nhn.android.mapviewer.overlay.NMapOverlayManager
 import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay
+import io.github.aafactory.commons.utils.LocationUtils.Companion.getLocationWithGPSProvider
 import io.github.aafactory.sample.R
 import kotlinx.android.synthetic.main.nmap_activity_main.*
 
@@ -170,8 +173,36 @@ class NMapViewer : NMapActivity() {
                 mIsMapEnlared = mMapView.mapProjection.isProjectionScaled
             }
             R.id.action_my_location -> {
-                startMyLocation()
+//                startMyLocation()
+                moveCurrentLocation()
             }
+        }
+    }
+
+    private fun moveCurrentLocation() {
+        getLocationWithGPSProvider()?.let {
+            val nGeoPoint = NGeoPoint(it.longitude, it.latitude)
+//            mMapController.setMapCenter(nGeoPoint, mMapController.zoomLevel)
+
+            // set POI data
+            val poiData = NMapPOIdata(1, mMapViewerResourceProvider)
+            poiData.beginPOIdata(1)
+            
+            val item = poiData.addPOIitem(nGeoPoint, null, ContextCompat.getDrawable(this@NMapViewer, R.drawable.user_avatar), 0)
+//            item.setRightAccessory(true, NMapPOIflagType.CLICKABLE_ARROW)
+            poiData.endPOIdata()
+
+            // create POI data overlay
+            val poiDataOverlay = mOverlayManager.createPOIdataOverlay(poiData, null)
+
+            // set event listener to the overlay
+//            poiDataOverlay.onStateChangeListener = onPOIdataStateChangeListener
+
+            // select an item
+//            poiDataOverlay.selectPOIitem(0, true)
+            mOverlayManager
+            // show all POI data
+            poiDataOverlay.showAllPOIdata(0);
         }
     }
 
@@ -214,7 +245,7 @@ class NMapViewer : NMapActivity() {
 
                     mMapView.setAutoRotateEnabled(true, false)
 
-                    mMapContainerView.requestLayout()
+//                    mMapContainerView.requestLayout()
                 } else {
                     stopMyLocation()
                 }
@@ -246,7 +277,7 @@ class NMapViewer : NMapActivity() {
 
                 mMapView.setAutoRotateEnabled(false, false)
 
-                mMapContainerView.requestLayout()
+//                mMapContainerView.requestLayout()
             }
         }
     }
