@@ -16,13 +16,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.nhn.android.maps.*
 import com.nhn.android.maps.NMapActivity.OnDataProviderListener
 import com.nhn.android.maps.maplib.NGeoPoint
 import com.nhn.android.maps.nmapmodel.NMapError
 import com.nhn.android.maps.overlay.*
-import com.nhn.android.mapviewer.overlay.*
-import io.github.aafactory.commons.utils.LocationUtils.Companion.getLocationWithGPSProvider
+import com.nhn.android.mapviewer.overlay.NMapMyLocationOverlay
+import com.nhn.android.mapviewer.overlay.NMapOverlayManager
+import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay
+import io.github.aafactory.commons.utils.LocationUtils
 import io.github.aafactory.sample.R
 import kotlinx.android.synthetic.main.nmap_activity_main.*
 
@@ -60,9 +64,14 @@ class NMapViewer : NMapActivity() {
     private lateinit var mMapViewerResourceProvider: NMapViewerResourceProvider
     private lateinit var mMyLocationOverlay: NMapMyLocationOverlay
     private lateinit var mMapCompassManager: NMapCompassManager
-
+    
+    /**
+     * Provides the entry point to the Fused Location Provider API.
+     */
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var mPreferences: SharedPreferences? = null
 
+    var scaleFactor = 1.0F
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -129,6 +138,14 @@ class NMapViewer : NMapActivity() {
 
         zoomIn.setOnClickListener { _ -> mMapController.zoomIn() }
         zoomOut.setOnClickListener { _ -> mMapController.zoomOut() }
+        scaleFactorUp.setOnClickListener { 
+            scaleFactor += 0.5F
+            mMapView.setScalingFactor(scaleFactor, false)
+        }
+        scaleFactorDown.setOnClickListener {
+            scaleFactor -= 0.5F
+            mMapView.setScalingFactor(scaleFactor, false)
+        }
         openDialog.setOnClickListener { _ ->
             val inflater = getSystemService(AppCompatActivity.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.nmap_dialog_simple, null)
@@ -142,6 +159,8 @@ class NMapViewer : NMapActivity() {
             view.findViewById<TextView>(R.id.action_scale_factor).setOnClickListener(itemClickListener)
             view.findViewById<TextView>(R.id.action_my_location).setOnClickListener(itemClickListener)
         }
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
     private val onCalloutOverlayListener = NMapOverlayManager.OnCalloutOverlayViewListener { itemOverlay, overlayItem, itemBounds ->
@@ -223,35 +242,31 @@ class NMapViewer : NMapActivity() {
             }
             R.id.action_my_location -> {
 //                startMyLocation()
-                moveCurrentLocation()
-            }
-        }
-    }
-
-    private fun moveCurrentLocation() {
-        getLocationWithGPSProvider()?.let {
-            val nGeoPoint = NGeoPoint(it.longitude, it.latitude)
+                LocationUtils.getLastLocation(this, fusedLocationClient) { task ->
+                    val nGeoPoint = NGeoPoint(task.result.longitude, task.result.latitude)
 //            mMapController.setMapCenter(nGeoPoint, mMapController.zoomLevel)
 
-            // set POI data
-            val poiData = NMapPOIdata(1, mMapViewerResourceProvider)
-            poiData.beginPOIdata(1)
-            
-            val item = poiData.addPOIitem(nGeoPoint, nGeoPoint.toString(), /*NMapPOIflagType.PIN*/ContextCompat.getDrawable(this@NMapViewer, R.drawable.user_avatar), 0)
+                    // set POI data
+                    val poiData = NMapPOIdata(1, mMapViewerResourceProvider)
+                    poiData.beginPOIdata(1)
+
+                    val item = poiData.addPOIitem(nGeoPoint, nGeoPoint.toString(), /*NMapPOIflagType.PIN*/ContextCompat.getDrawable(this@NMapViewer, R.drawable.user_avatar), 0)
 //            item.setRightAccessory(true, NMapPOIflagType.CLICKABLE_ARROW)
-            poiData.endPOIdata()
+                    poiData.endPOIdata()
 
-            // create POI data overlay
-            val poiDataOverlay = mOverlayManager.createPOIdataOverlay(poiData, null)
+                    // create POI data overlay
+                    val poiDataOverlay = mOverlayManager.createPOIdataOverlay(poiData, null)
 
-            // set event listener to the overlay
+                    // set event listener to the overlay
 //            poiDataOverlay.onStateChangeListener = onPOIdataStateChangeListener
 
-            // select an item
+                    // select an item
 //            poiDataOverlay.selectPOIitem(0, true)
-            mOverlayManager
-            // show all POI data
-            poiDataOverlay.showAllPOIdata(0);
+                    mOverlayManager
+                    // show all POI data
+                    poiDataOverlay.showAllPOIdata(0);
+                }
+            }
         }
     }
 
