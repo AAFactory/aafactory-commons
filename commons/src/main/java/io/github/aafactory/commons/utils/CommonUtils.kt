@@ -20,6 +20,7 @@ class CommonUtils {
     companion object {
         const val  CALCULATION_CEIL = 0
         const val  CALCULATION_ROUND = 1
+        const val  CALCULATION_FLOOR = 2
                 
         fun getDefaultDisplay(activity: Activity): Point {
             val display = activity.windowManager.defaultDisplay
@@ -35,8 +36,9 @@ class CommonUtils {
         fun dpToPixel(context: Context, dp: Int, policy: Int = CALCULATION_CEIL): Int {
             val px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), context.resources.displayMetrics)
             var pixel = when (policy) {
-                CALCULATION_CEIL -> px.toInt()
+                CALCULATION_CEIL -> Math.ceil(px * 1.0).toInt()
                 CALCULATION_ROUND -> Math.round(px)
+                CALCULATION_FLOOR -> Math.floor(px * 1.0).toInt()
                 else -> px.toInt()
             }
             return pixel
