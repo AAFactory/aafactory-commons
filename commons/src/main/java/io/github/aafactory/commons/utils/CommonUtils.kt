@@ -18,10 +18,6 @@ import java.io.FileOutputStream
 
 class CommonUtils {
     companion object {
-        const val  CALCULATION_CEIL = 0
-        const val  CALCULATION_ROUND = 1
-        const val  CALCULATION_FLOOR = 2
-                
         fun getDefaultDisplay(activity: Activity): Point {
             val display = activity.windowManager.defaultDisplay
             val size = Point()
@@ -29,19 +25,17 @@ class CommonUtils {
             return size
         }
         
-        fun dpToPixelFloatValue(context: Context, dp: Int): Float {
-            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), context.resources.displayMetrics)
+        fun dpToPixelFloatValue(context: Context, dp: Float): Float {
+            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
         }
 
-        fun dpToPixel(context: Context, dp: Int, policy: Int = CALCULATION_CEIL): Int {
-            val px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), context.resources.displayMetrics)
-            var pixel = when (policy) {
-                CALCULATION_CEIL -> Math.ceil(px * 1.0).toInt()
-                CALCULATION_ROUND -> Math.round(px)
-                CALCULATION_FLOOR -> Math.floor(px * 1.0).toInt()
-                else -> px.toInt()
+        fun dpToPixel(context: Context, dp: Float, policy: CALCULATION = CALCULATION.CEIL): Int {
+            val px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
+            return when (policy) {
+                CALCULATION.CEIL -> Math.ceil(px.toDouble()).toInt()
+                CALCULATION.ROUND -> Math.round(px)
+                CALCULATION.FLOOR -> Math.floor(px.toDouble()).toInt()
             }
-            return pixel
         }
 
         fun uriToPath(contentResolver: ContentResolver, uri: Uri): String? {
@@ -49,10 +43,9 @@ class CommonUtils {
             val cursor = contentResolver.query(uri, null, null, null, null)
             cursor!!.moveToNext()
             val columnIndex = cursor.getColumnIndex("_data")
-            if (columnIndex > 0) {
-                path = cursor.getString(columnIndex)
-            } else {
-                path = uri.toString()
+            path = when (columnIndex > 0) {
+                true -> cursor.getString(columnIndex)
+                false -> uri.toString()
             }
             cursor.close()
             return path
@@ -77,4 +70,8 @@ class CommonUtils {
             return result
         }
     }
+}
+
+enum class CALCULATION {
+    CEIL, ROUND, FLOOR
 }
