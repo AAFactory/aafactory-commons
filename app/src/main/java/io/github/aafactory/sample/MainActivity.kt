@@ -20,7 +20,7 @@ import io.github.aafactory.sample.helpers.GIT_HUB_API_BASE_URL
 import io.github.aafactory.sample.models.Repository
 import io.github.aafactory.sample.models.Showcase
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.content_toolbar.*
+import kotlinx.android.synthetic.main.activity_main.*
 import mehdi.sakout.fancybuttons.samples.MainActivity
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -150,9 +150,11 @@ class MainActivity : BaseSimpleActivity() {
                         repository?.stargazers_count ?: 0,
                         repository?.forks_count ?: 0)
                 )
+                runOnUiThread {
+                    adapter.notifyDataSetChanged()
+                }
             }
-            runOnUiThread { 
-                adapter.notifyDataSetChanged()
+            runOnUiThread {
                 progressBar.visibility = View.GONE
             }
         }).start()

@@ -9,12 +9,6 @@
     tools:context="io.github.aafactory.sample.MainActivity"
     tools:showIn="@layout/activity_main"
     android:padding="@dimen/card_layout_padding">
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_gravity="center"
-        android:layout_width="30dp"
-        android:layout_height="30dp" />
-    
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
