@@ -188,7 +188,7 @@
         <activity android:name="com.example.android.constraintlayoutexamples.ConstraintSetExampleActivity"></activity>
 
         <activity
-            android:name=".TestActivity"
+            android:name="org.openlayers.OpenlayersActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 

@@ -22,13 +22,17 @@ import io.github.aafactory.sample.models.Showcase
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.activity_main.*
 import mehdi.sakout.fancybuttons.samples.MainActivity
+import org.openlayers.OpenlayersActivity
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
-            mapOf("owner" to "juanchosaravia",
+            mapOf("owner" to "openlayers",
+                    "name" to "openlayers"
+            )
+            , mapOf("owner" to "juanchosaravia",
                     "name" to "KedditBySteps"
             )
             , mapOf("owner" to "Tapadoo",
@@ -100,7 +104,8 @@ class MainActivity : BaseSimpleActivity() {
                                 }
                             }
                         }
-                        "android-ConstraintLayoutExamples" -> startActivity(Intent(this, TestActivity::class.java))
+                        "android-ConstraintLayoutExamples" -> startActivity(Intent(this, com.example.android.constraintlayoutexamples.MainActivity::class.java))
+                        "openlayers" -> startActivity(Intent(this, OpenlayersActivity::class.java))
                     }
                 }
         ) 

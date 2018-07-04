@@ -41,7 +41,7 @@ const style = new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Style */ "g"]
 
 const vectorLayer = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
   source: new _src_ol_source_Vector_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "b"]({
-    url: 'data/geojson/countries.geojson',
+    url: 'data/geojson/roads-seoul.geojson',
     format: new _src_ol_format_GeoJSON_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"]()
   }),
   style: function(feature) {
@@ -54,8 +54,9 @@ const map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
   layers: [vectorLayer],
   target: 'map',
   view: new _src_ol_View_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"]({
-    center: [0, 0],
-    zoom: 1
+    projection: 'EPSG:4326',
+    center: [126.9773036, 37.5297258],
+    zoom: 16
   })
 });
 
