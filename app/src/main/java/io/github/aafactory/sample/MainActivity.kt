@@ -100,7 +100,7 @@ class MainActivity : BaseSimpleActivity() {
                                 }
                             }
                         }
-                        "android-ConstraintLayoutExamples" -> startActivity(Intent(this, com.example.android.constraintlayoutexamples.MainActivity::class.java))
+                        "android-ConstraintLayoutExamples" -> startActivity(Intent(this, TestActivity::class.java))
                     }
                 }
         ) 

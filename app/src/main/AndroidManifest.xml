@@ -186,5 +186,12 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name="com.example.android.constraintlayoutexamples.ConstraintSetExampleActivity"></activity>
+
+        <activity
+            android:name=".TestActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        
     </application>
 </manifest>
