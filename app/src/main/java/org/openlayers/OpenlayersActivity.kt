@@ -2,6 +2,7 @@ package org.openlayers
 
 import android.os.Bundle
 import android.webkit.WebView
+import com.simplemobiletools.commons.views.MyFloatingActionButton
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.sample.R
 
@@ -20,6 +21,6 @@ class OpenlayersActivity : BaseSimpleActivity() {
         webSettings.allowUniversalAccessFromFileURLs = true
         webView.loadUrl("file:///android_asset/examples/vector-layer.html")
 
-        findViewById<WebView>(R.id.finish).setOnClickListener { finish() }
+        findViewById<MyFloatingActionButton>(R.id.finish).setOnClickListener { finish() }
     }
 }
