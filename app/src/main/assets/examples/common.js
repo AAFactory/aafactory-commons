@@ -1720,7 +1720,7 @@ function none(center) {
 }
 
 // EXTERNAL MODULE: ../src/ol/Object.js
-var ol_Object = __webpack_require__(30);
+var ol_Object = __webpack_require__(31);
 
 // EXTERNAL MODULE: ../src/ol/array.js
 var array = __webpack_require__(15);
@@ -3223,7 +3223,7 @@ var PluggableMap = __webpack_require__(166);
 var control_util = __webpack_require__(220);
 
 // EXTERNAL MODULE: ../src/ol/interaction.js + 17 modules
-var interaction = __webpack_require__(32);
+var interaction = __webpack_require__(33);
 
 // EXTERNAL MODULE: ../src/ol/obj.js
 var obj = __webpack_require__(14);
@@ -3244,7 +3244,7 @@ var LayerType = __webpack_require__(60);
 var ViewHint = __webpack_require__(43);
 
 // EXTERNAL MODULE: ../src/ol/dom.js
-var dom = __webpack_require__(31);
+var dom = __webpack_require__(32);
 
 // EXTERNAL MODULE: ../src/ol/events.js
 var events = __webpack_require__(8);
@@ -8623,13 +8623,13 @@ var events = __webpack_require__(8);
 var util = __webpack_require__(1);
 
 // EXTERNAL MODULE: ../src/ol/Object.js
-var ol_Object = __webpack_require__(30);
+var ol_Object = __webpack_require__(31);
 
 // EXTERNAL MODULE: ../src/ol/dom.js
-var dom = __webpack_require__(31);
+var dom = __webpack_require__(32);
 
 // EXTERNAL MODULE: ../src/ol/layer/Vector.js
-var Vector = __webpack_require__(29);
+var Vector = __webpack_require__(28);
 
 // EXTERNAL MODULE: ../src/ol/math.js
 var math = __webpack_require__(21);
@@ -11155,7 +11155,7 @@ var EventType = __webpack_require__(13);
 var ol_extent = __webpack_require__(3);
 
 // EXTERNAL MODULE: ../src/ol/geom/Point.js
-var Point = __webpack_require__(28);
+var Point = __webpack_require__(29);
 
 // EXTERNAL MODULE: ../src/ol/source/Vector.js
 var Vector = __webpack_require__(16);
@@ -12092,7 +12092,7 @@ var ol_Tile = __webpack_require__(69);
 var TileState = __webpack_require__(19);
 
 // EXTERNAL MODULE: ../src/ol/dom.js
-var dom = __webpack_require__(31);
+var dom = __webpack_require__(32);
 
 // CONCATENATED MODULE: ../src/ol/source/TileDebug.js
 /**
@@ -12939,7 +12939,7 @@ function lerp(a, b, x) {
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
 /* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(13);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(31);
 /* harmony import */ var _geom_Geometry_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(83);
 /* harmony import */ var _style_Style_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(75);
 /**
@@ -13276,7 +13276,7 @@ var util = __webpack_require__(1);
 var css = __webpack_require__(47);
 
 // EXTERNAL MODULE: ../src/ol/dom.js
-var dom = __webpack_require__(31);
+var dom = __webpack_require__(32);
 
 // EXTERNAL MODULE: ../src/ol/events.js
 var events = __webpack_require__(8);
@@ -13580,7 +13580,7 @@ var MapEventType = __webpack_require__(142);
 var MapProperty = __webpack_require__(96);
 
 // EXTERNAL MODULE: ../src/ol/Object.js
-var ol_Object = __webpack_require__(30);
+var ol_Object = __webpack_require__(31);
 
 // EXTERNAL MODULE: ../src/ol/ObjectEventType.js
 var ObjectEventType = __webpack_require__(125);
@@ -15070,7 +15070,7 @@ var control_util = __webpack_require__(220);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return resetTransform; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return drawImage; });
 /* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(47);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(32);
 /* harmony import */ var _obj_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(14);
 /* harmony import */ var _structs_LRUCache_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(175);
 /* harmony import */ var _transform_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(18);
@@ -15499,146 +15499,6 @@ function UNDEFINED() {}
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var _geom_GeometryLayout_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(22);
-/* harmony import */ var _geom_GeometryType_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
-/* harmony import */ var _geom_SimpleGeometry_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(55);
-/* harmony import */ var _geom_flat_deflate_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(90);
-/* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(21);
-/**
- * @module ol/geom/Point
- */
-
-
-
-
-
-
-
-
-/**
- * @classdesc
- * Point geometry.
- *
- * @constructor
- * @extends {module:ol/geom/SimpleGeometry}
- * @param {module:ol/coordinate~Coordinate} coordinates Coordinates.
- * @param {module:ol/geom/GeometryLayout=} opt_layout Layout.
- * @api
- */
-const Point = function(coordinates, opt_layout) {
-  _geom_SimpleGeometry_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"].call(this);
-  this.setCoordinates(coordinates, opt_layout);
-};
-
-Object(_util_js__WEBPACK_IMPORTED_MODULE_0__[/* inherits */ "c"])(Point, _geom_SimpleGeometry_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]);
-
-
-/**
- * Make a complete copy of the geometry.
- * @return {!module:ol/geom/Point} Clone.
- * @override
- * @api
- */
-Point.prototype.clone = function() {
-  const point = new Point(null);
-  point.setFlatCoordinates(this.layout, this.flatCoordinates.slice());
-  return point;
-};
-
-
-/**
- * @inheritDoc
- */
-Point.prototype.closestPointXY = function(x, y, closestPoint, minSquaredDistance) {
-  const flatCoordinates = this.flatCoordinates;
-  const squaredDistance = Object(_math_js__WEBPACK_IMPORTED_MODULE_6__[/* squaredDistance */ "g"])(x, y, flatCoordinates[0], flatCoordinates[1]);
-  if (squaredDistance < minSquaredDistance) {
-    const stride = this.stride;
-    for (let i = 0; i < stride; ++i) {
-      closestPoint[i] = flatCoordinates[i];
-    }
-    closestPoint.length = stride;
-    return squaredDistance;
-  } else {
-    return minSquaredDistance;
-  }
-};
-
-
-/**
- * Return the coordinate of the point.
- * @return {module:ol/coordinate~Coordinate} Coordinates.
- * @override
- * @api
- */
-Point.prototype.getCoordinates = function() {
-  return !this.flatCoordinates ? [] : this.flatCoordinates.slice();
-};
-
-
-/**
- * @inheritDoc
- */
-Point.prototype.computeExtent = function(extent) {
-  return Object(_extent_js__WEBPACK_IMPORTED_MODULE_1__[/* createOrUpdateFromCoordinate */ "m"])(this.flatCoordinates, extent);
-};
-
-
-/**
- * @inheritDoc
- * @api
- */
-Point.prototype.getType = function() {
-  return _geom_GeometryType_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"].POINT;
-};
-
-
-/**
- * @inheritDoc
- * @api
- */
-Point.prototype.intersectsExtent = function(extent) {
-  return Object(_extent_js__WEBPACK_IMPORTED_MODULE_1__[/* containsXY */ "h"])(extent, this.flatCoordinates[0], this.flatCoordinates[1]);
-};
-
-
-/**
- * @inheritDoc
- * @api
- */
-Point.prototype.setCoordinates = function(coordinates, opt_layout) {
-  if (!coordinates) {
-    this.setFlatCoordinates(_geom_GeometryLayout_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"].XY, null);
-  } else {
-    this.setLayout(opt_layout, coordinates, 0);
-    if (!this.flatCoordinates) {
-      this.flatCoordinates = [];
-    }
-    this.flatCoordinates.length = Object(_geom_flat_deflate_js__WEBPACK_IMPORTED_MODULE_5__[/* deflateCoordinate */ "a"])(
-      this.flatCoordinates, 0, coordinates, this.stride);
-    this.changed();
-  }
-};
-
-
-/**
- * @param {module:ol/geom/GeometryLayout} layout Layout.
- * @param {Array.<number>} flatCoordinates Flat coordinates.
- */
-Point.prototype.setFlatCoordinates = function(layout, flatCoordinates) {
-  this.setFlatCoordinatesInternal(layout, flatCoordinates);
-  this.changed();
-};
-/* harmony default export */ __webpack_exports__["a"] = (Point);
-
-
-/***/ }),
-/* 29 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* unused harmony export RenderType */
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _LayerType_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(60);
@@ -15936,7 +15796,741 @@ VectorLayer.prototype.getRenderMode = function() {
 
 
 /***/ }),
+/* 29 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+/* harmony import */ var _geom_GeometryLayout_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(22);
+/* harmony import */ var _geom_GeometryType_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
+/* harmony import */ var _geom_SimpleGeometry_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(55);
+/* harmony import */ var _geom_flat_deflate_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(90);
+/* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(21);
+/**
+ * @module ol/geom/Point
+ */
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * Point geometry.
+ *
+ * @constructor
+ * @extends {module:ol/geom/SimpleGeometry}
+ * @param {module:ol/coordinate~Coordinate} coordinates Coordinates.
+ * @param {module:ol/geom/GeometryLayout=} opt_layout Layout.
+ * @api
+ */
+const Point = function(coordinates, opt_layout) {
+  _geom_SimpleGeometry_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"].call(this);
+  this.setCoordinates(coordinates, opt_layout);
+};
+
+Object(_util_js__WEBPACK_IMPORTED_MODULE_0__[/* inherits */ "c"])(Point, _geom_SimpleGeometry_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]);
+
+
+/**
+ * Make a complete copy of the geometry.
+ * @return {!module:ol/geom/Point} Clone.
+ * @override
+ * @api
+ */
+Point.prototype.clone = function() {
+  const point = new Point(null);
+  point.setFlatCoordinates(this.layout, this.flatCoordinates.slice());
+  return point;
+};
+
+
+/**
+ * @inheritDoc
+ */
+Point.prototype.closestPointXY = function(x, y, closestPoint, minSquaredDistance) {
+  const flatCoordinates = this.flatCoordinates;
+  const squaredDistance = Object(_math_js__WEBPACK_IMPORTED_MODULE_6__[/* squaredDistance */ "g"])(x, y, flatCoordinates[0], flatCoordinates[1]);
+  if (squaredDistance < minSquaredDistance) {
+    const stride = this.stride;
+    for (let i = 0; i < stride; ++i) {
+      closestPoint[i] = flatCoordinates[i];
+    }
+    closestPoint.length = stride;
+    return squaredDistance;
+  } else {
+    return minSquaredDistance;
+  }
+};
+
+
+/**
+ * Return the coordinate of the point.
+ * @return {module:ol/coordinate~Coordinate} Coordinates.
+ * @override
+ * @api
+ */
+Point.prototype.getCoordinates = function() {
+  return !this.flatCoordinates ? [] : this.flatCoordinates.slice();
+};
+
+
+/**
+ * @inheritDoc
+ */
+Point.prototype.computeExtent = function(extent) {
+  return Object(_extent_js__WEBPACK_IMPORTED_MODULE_1__[/* createOrUpdateFromCoordinate */ "m"])(this.flatCoordinates, extent);
+};
+
+
+/**
+ * @inheritDoc
+ * @api
+ */
+Point.prototype.getType = function() {
+  return _geom_GeometryType_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"].POINT;
+};
+
+
+/**
+ * @inheritDoc
+ * @api
+ */
+Point.prototype.intersectsExtent = function(extent) {
+  return Object(_extent_js__WEBPACK_IMPORTED_MODULE_1__[/* containsXY */ "h"])(extent, this.flatCoordinates[0], this.flatCoordinates[1]);
+};
+
+
+/**
+ * @inheritDoc
+ * @api
+ */
+Point.prototype.setCoordinates = function(coordinates, opt_layout) {
+  if (!coordinates) {
+    this.setFlatCoordinates(_geom_GeometryLayout_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"].XY, null);
+  } else {
+    this.setLayout(opt_layout, coordinates, 0);
+    if (!this.flatCoordinates) {
+      this.flatCoordinates = [];
+    }
+    this.flatCoordinates.length = Object(_geom_flat_deflate_js__WEBPACK_IMPORTED_MODULE_5__[/* deflateCoordinate */ "a"])(
+      this.flatCoordinates, 0, coordinates, this.stride);
+    this.changed();
+  }
+};
+
+
+/**
+ * @param {module:ol/geom/GeometryLayout} layout Layout.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ */
+Point.prototype.setFlatCoordinates = function(layout, flatCoordinates) {
+  this.setFlatCoordinatesInternal(layout, flatCoordinates);
+  this.changed();
+};
+/* harmony default export */ __webpack_exports__["a"] = (Point);
+
+
+/***/ }),
 /* 30 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _asserts_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(26);
+/* harmony import */ var _Feature_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(23);
+/* harmony import */ var _format_Feature_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(42);
+/* harmony import */ var _format_JSONFeature_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(152);
+/* harmony import */ var _geom_GeometryCollection_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(151);
+/* harmony import */ var _geom_LineString_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(41);
+/* harmony import */ var _geom_MultiLineString_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(71);
+/* harmony import */ var _geom_MultiPoint_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(73);
+/* harmony import */ var _geom_MultiPolygon_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(82);
+/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(29);
+/* harmony import */ var _geom_Polygon_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(39);
+/* harmony import */ var _obj_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(14);
+/* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(7);
+/**
+ * @module ol/format/GeoJSON
+ */
+// TODO: serialize dataProjection as crs member when writing
+// see https://github.com/openlayers/openlayers/issues/2078
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @typedef {Object} Options
+ * @property {module:ol/proj~ProjectionLike} [dataProjection='EPSG:4326'] Default data projection.
+ * @property {module:ol/proj~ProjectionLike} [featureProjection] Projection for features read or
+ * written by the format.  Options passed to read or write methods will take precedence.
+ * @property {string} [geometryName] Geometry name to use when creating features.
+ * @property {boolean} [extractGeometryName=false] Certain GeoJSON providers include
+ * the geometry_name field in the feature GeoJSON. If set to `true` the GeoJSON reader
+ * will look for that field to set the geometry name. If both this field is set to `true`
+ * and a `geometryName` is provided, the `geometryName` will take precedence.
+ */
+
+
+/**
+ * @classdesc
+ * Feature format for reading and writing data in the GeoJSON format.
+ *
+ * @constructor
+ * @extends {module:ol/format/JSONFeature}
+ * @param {module:ol/format/GeoJSON~Options=} opt_options Options.
+ * @api
+ */
+const GeoJSON = function(opt_options) {
+
+  const options = opt_options ? opt_options : {};
+
+  _format_JSONFeature_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"].call(this);
+
+  /**
+   * @inheritDoc
+   */
+  this.dataProjection = Object(_proj_js__WEBPACK_IMPORTED_MODULE_13__[/* get */ "h"])(
+    options.dataProjection ?
+      options.dataProjection : 'EPSG:4326');
+
+  if (options.featureProjection) {
+    this.defaultFeatureProjection = Object(_proj_js__WEBPACK_IMPORTED_MODULE_13__[/* get */ "h"])(options.featureProjection);
+  }
+
+  /**
+   * Name of the geometry attribute for features.
+   * @type {string|undefined}
+   * @private
+   */
+  this.geometryName_ = options.geometryName;
+
+  /**
+   * Look for the geometry name in the feature GeoJSON
+   * @type {boolean|undefined}
+   * @private
+   */
+  this.extractGeometryName_ = options.extractGeometryName;
+
+};
+
+Object(_util_js__WEBPACK_IMPORTED_MODULE_0__[/* inherits */ "c"])(GeoJSON, _format_JSONFeature_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]);
+
+
+/**
+ * @const
+ * @type {Object.<string, function(GeoJSONObject): module:ol/geom/Geometry>}
+ */
+const GEOMETRY_READERS = {
+  'Point': readPointGeometry,
+  'LineString': readLineStringGeometry,
+  'Polygon': readPolygonGeometry,
+  'MultiPoint': readMultiPointGeometry,
+  'MultiLineString': readMultiLineStringGeometry,
+  'MultiPolygon': readMultiPolygonGeometry,
+  'GeometryCollection': readGeometryCollectionGeometry
+};
+
+
+/**
+ * @const
+ * @type {Object.<string, function(module:ol/geom/Geometry, module:ol/format/Feature~WriteOptions=): (GeoJSONGeometry|GeoJSONGeometryCollection)>}
+ */
+const GEOMETRY_WRITERS = {
+  'Point': writePointGeometry,
+  'LineString': writeLineStringGeometry,
+  'Polygon': writePolygonGeometry,
+  'MultiPoint': writeMultiPointGeometry,
+  'MultiLineString': writeMultiLineStringGeometry,
+  'MultiPolygon': writeMultiPolygonGeometry,
+  'GeometryCollection': writeGeometryCollectionGeometry,
+  'Circle': writeEmptyGeometryCollectionGeometry
+};
+
+
+/**
+ * @param {GeoJSONGeometry|GeoJSONGeometryCollection} object Object.
+ * @param {module:ol/format/Feature~ReadOptions=} opt_options Read options.
+ * @return {module:ol/geom/Geometry} Geometry.
+ */
+function readGeometry(object, opt_options) {
+  if (!object) {
+    return null;
+  }
+  const geometryReader = GEOMETRY_READERS[object.type];
+  return (
+    /** @type {module:ol/geom/Geometry} */ (Object(_format_Feature_js__WEBPACK_IMPORTED_MODULE_3__[/* transformWithOptions */ "b"])(geometryReader(object), false, opt_options))
+  );
+}
+
+
+/**
+ * @param {GeoJSONGeometryCollection} object Object.
+ * @param {module:ol/format/Feature~ReadOptions=} opt_options Read options.
+ * @return {module:ol/geom/GeometryCollection} Geometry collection.
+ */
+function readGeometryCollectionGeometry(object, opt_options) {
+  const geometries = object.geometries.map(
+    /**
+     * @param {GeoJSONGeometry} geometry Geometry.
+     * @return {module:ol/geom/Geometry} geometry Geometry.
+     */
+    function(geometry) {
+      return readGeometry(geometry, opt_options);
+    });
+  return new _geom_GeometryCollection_js__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"](geometries);
+}
+
+
+/**
+ * @param {GeoJSONGeometry} object Object.
+ * @return {module:ol/geom/Point} Point.
+ */
+function readPointGeometry(object) {
+  return new _geom_Point_js__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"](object.coordinates);
+}
+
+
+/**
+ * @param {GeoJSONGeometry} object Object.
+ * @return {module:ol/geom/LineString} LineString.
+ */
+function readLineStringGeometry(object) {
+  return new _geom_LineString_js__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"](object.coordinates);
+}
+
+
+/**
+ * @param {GeoJSONGeometry} object Object.
+ * @return {module:ol/geom/MultiLineString} MultiLineString.
+ */
+function readMultiLineStringGeometry(object) {
+  return new _geom_MultiLineString_js__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"](object.coordinates);
+}
+
+
+/**
+ * @param {GeoJSONGeometry} object Object.
+ * @return {module:ol/geom/MultiPoint} MultiPoint.
+ */
+function readMultiPointGeometry(object) {
+  return new _geom_MultiPoint_js__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"](object.coordinates);
+}
+
+
+/**
+ * @param {GeoJSONGeometry} object Object.
+ * @return {module:ol/geom/MultiPolygon} MultiPolygon.
+ */
+function readMultiPolygonGeometry(object) {
+  return new _geom_MultiPolygon_js__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"](object.coordinates);
+}
+
+
+/**
+ * @param {GeoJSONGeometry} object Object.
+ * @return {module:ol/geom/Polygon} Polygon.
+ */
+function readPolygonGeometry(object) {
+  return new _geom_Polygon_js__WEBPACK_IMPORTED_MODULE_11__[/* default */ "b"](object.coordinates);
+}
+
+
+/**
+ * @param {module:ol/geom/Geometry} geometry Geometry.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {GeoJSONGeometry|GeoJSONGeometryCollection} GeoJSON geometry.
+ */
+function writeGeometry(geometry, opt_options) {
+  const geometryWriter = GEOMETRY_WRITERS[geometry.getType()];
+  return geometryWriter(/** @type {module:ol/geom/Geometry} */ (
+    Object(_format_Feature_js__WEBPACK_IMPORTED_MODULE_3__[/* transformWithOptions */ "b"])(geometry, true, opt_options)), opt_options);
+}
+
+
+/**
+ * @param {module:ol/geom/Geometry} geometry Geometry.
+ * @return {GeoJSONGeometryCollection} Empty GeoJSON geometry collection.
+ */
+function writeEmptyGeometryCollectionGeometry(geometry) {
+  return /** @type {GeoJSONGeometryCollection} */ ({
+    type: 'GeometryCollection',
+    geometries: []
+  });
+}
+
+
+/**
+ * @param {module:ol/geom/GeometryCollection} geometry Geometry.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {GeoJSONGeometryCollection} GeoJSON geometry collection.
+ */
+function writeGeometryCollectionGeometry(geometry, opt_options) {
+  const geometries = geometry.getGeometriesArray().map(function(geometry) {
+    const options = Object(_obj_js__WEBPACK_IMPORTED_MODULE_12__[/* assign */ "a"])({}, opt_options);
+    delete options.featureProjection;
+    return writeGeometry(geometry, options);
+  });
+  return /** @type {GeoJSONGeometryCollection} */ ({
+    type: 'GeometryCollection',
+    geometries: geometries
+  });
+}
+
+
+/**
+ * @param {module:ol/geom/LineString} geometry Geometry.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {GeoJSONGeometry} GeoJSON geometry.
+ */
+function writeLineStringGeometry(geometry, opt_options) {
+  return /** @type {GeoJSONGeometry} */ ({
+    type: 'LineString',
+    coordinates: geometry.getCoordinates()
+  });
+}
+
+
+/**
+ * @param {module:ol/geom/MultiLineString} geometry Geometry.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {GeoJSONGeometry} GeoJSON geometry.
+ */
+function writeMultiLineStringGeometry(geometry, opt_options) {
+  return /** @type {GeoJSONGeometry} */ ({
+    type: 'MultiLineString',
+    coordinates: geometry.getCoordinates()
+  });
+}
+
+
+/**
+ * @param {module:ol/geom/MultiPoint} geometry Geometry.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {GeoJSONGeometry} GeoJSON geometry.
+ */
+function writeMultiPointGeometry(geometry, opt_options) {
+  return /** @type {GeoJSONGeometry} */ ({
+    type: 'MultiPoint',
+    coordinates: geometry.getCoordinates()
+  });
+}
+
+
+/**
+ * @param {module:ol/geom/MultiPolygon} geometry Geometry.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {GeoJSONGeometry} GeoJSON geometry.
+ */
+function writeMultiPolygonGeometry(geometry, opt_options) {
+  let right;
+  if (opt_options) {
+    right = opt_options.rightHanded;
+  }
+  return /** @type {GeoJSONGeometry} */ ({
+    type: 'MultiPolygon',
+    coordinates: geometry.getCoordinates(right)
+  });
+}
+
+
+/**
+ * @param {module:ol/geom/Point} geometry Geometry.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {GeoJSONGeometry} GeoJSON geometry.
+ */
+function writePointGeometry(geometry, opt_options) {
+  return /** @type {GeoJSONGeometry} */ ({
+    type: 'Point',
+    coordinates: geometry.getCoordinates()
+  });
+}
+
+
+/**
+ * @param {module:ol/geom/Polygon} geometry Geometry.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {GeoJSONGeometry} GeoJSON geometry.
+ */
+function writePolygonGeometry(geometry, opt_options) {
+  let right;
+  if (opt_options) {
+    right = opt_options.rightHanded;
+  }
+  return /** @type {GeoJSONGeometry} */ ({
+    type: 'Polygon',
+    coordinates: geometry.getCoordinates(right)
+  });
+}
+
+
+/**
+ * Read a feature from a GeoJSON Feature source.  Only works for Feature or
+ * geometry types.  Use {@link module:ol/format/GeoJSON#readFeatures} to read
+ * FeatureCollection source. If feature at source has an id, it will be used
+ * as Feature id by calling {@link module:ol/Feature#setId} internally.
+ *
+ * @function
+ * @param {Document|Node|Object|string} source Source.
+ * @param {module:ol/format/Feature~ReadOptions=} opt_options Read options.
+ * @return {module:ol/Feature} Feature.
+ * @api
+ */
+GeoJSON.prototype.readFeature;
+
+
+/**
+ * Read all features from a GeoJSON source.  Works for all GeoJSON types.
+ * If the source includes only geometries, features will be created with those
+ * geometries.
+ *
+ * @function
+ * @param {Document|Node|Object|string} source Source.
+ * @param {module:ol/format/Feature~ReadOptions=} opt_options Read options.
+ * @return {Array.<module:ol/Feature>} Features.
+ * @api
+ */
+GeoJSON.prototype.readFeatures;
+
+
+/**
+ * @inheritDoc
+ */
+GeoJSON.prototype.readFeatureFromObject = function(object, opt_options) {
+  /**
+   * @type {GeoJSONFeature}
+   */
+  let geoJSONFeature = null;
+  if (object.type === 'Feature') {
+    geoJSONFeature = /** @type {GeoJSONFeature} */ (object);
+  } else {
+    geoJSONFeature = /** @type {GeoJSONFeature} */ ({
+      type: 'Feature',
+      geometry: /** @type {GeoJSONGeometry|GeoJSONGeometryCollection} */ (object)
+    });
+  }
+
+  const geometry = readGeometry(geoJSONFeature.geometry, opt_options);
+  const feature = new _Feature_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"]();
+  if (this.geometryName_) {
+    feature.setGeometryName(this.geometryName_);
+  } else if (this.extractGeometryName_ && geoJSONFeature.geometry_name !== undefined) {
+    feature.setGeometryName(geoJSONFeature.geometry_name);
+  }
+  feature.setGeometry(geometry);
+  if (geoJSONFeature.id !== undefined) {
+    feature.setId(geoJSONFeature.id);
+  }
+  if (geoJSONFeature.properties) {
+    feature.setProperties(geoJSONFeature.properties);
+  }
+  return feature;
+};
+
+
+/**
+ * @inheritDoc
+ */
+GeoJSON.prototype.readFeaturesFromObject = function(object, opt_options) {
+  const geoJSONObject = /** @type {GeoJSONObject} */ (object);
+  /** @type {Array.<module:ol/Feature>} */
+  let features = null;
+  if (geoJSONObject.type === 'FeatureCollection') {
+    const geoJSONFeatureCollection = /** @type {GeoJSONFeatureCollection} */ (object);
+    features = [];
+    const geoJSONFeatures = geoJSONFeatureCollection.features;
+    for (let i = 0, ii = geoJSONFeatures.length; i < ii; ++i) {
+      features.push(this.readFeatureFromObject(geoJSONFeatures[i], opt_options));
+    }
+  } else {
+    features = [this.readFeatureFromObject(object, opt_options)];
+  }
+  return features;
+};
+
+
+/**
+ * Read a geometry from a GeoJSON source.
+ *
+ * @function
+ * @param {Document|Node|Object|string} source Source.
+ * @param {module:ol/format/Feature~ReadOptions=} opt_options Read options.
+ * @return {module:ol/geom/Geometry} Geometry.
+ * @api
+ */
+GeoJSON.prototype.readGeometry;
+
+
+/**
+ * @inheritDoc
+ */
+GeoJSON.prototype.readGeometryFromObject = function(object, opt_options) {
+  return readGeometry(/** @type {GeoJSONGeometry} */ (object), opt_options);
+};
+
+
+/**
+ * Read the projection from a GeoJSON source.
+ *
+ * @function
+ * @param {Document|Node|Object|string} source Source.
+ * @return {module:ol/proj/Projection} Projection.
+ * @api
+ */
+GeoJSON.prototype.readProjection;
+
+
+/**
+ * @inheritDoc
+ */
+GeoJSON.prototype.readProjectionFromObject = function(object) {
+  const geoJSONObject = /** @type {GeoJSONObject} */ (object);
+  const crs = geoJSONObject.crs;
+  let projection;
+  if (crs) {
+    if (crs.type == 'name') {
+      projection = Object(_proj_js__WEBPACK_IMPORTED_MODULE_13__[/* get */ "h"])(crs.properties.name);
+    } else {
+      Object(_asserts_js__WEBPACK_IMPORTED_MODULE_1__[/* assert */ "a"])(false, 36); // Unknown SRS type
+    }
+  } else {
+    projection = this.dataProjection;
+  }
+  return (
+    /** @type {module:ol/proj/Projection} */ (projection)
+  );
+};
+
+
+/**
+ * Encode a feature as a GeoJSON Feature string.
+ *
+ * @function
+ * @param {module:ol/Feature} feature Feature.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {string} GeoJSON.
+ * @override
+ * @api
+ */
+GeoJSON.prototype.writeFeature;
+
+
+/**
+ * Encode a feature as a GeoJSON Feature object.
+ *
+ * @param {module:ol/Feature} feature Feature.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {GeoJSONFeature} Object.
+ * @override
+ * @api
+ */
+GeoJSON.prototype.writeFeatureObject = function(feature, opt_options) {
+  opt_options = this.adaptOptions(opt_options);
+
+  const object = /** @type {GeoJSONFeature} */ ({
+    'type': 'Feature'
+  });
+  const id = feature.getId();
+  if (id !== undefined) {
+    object.id = id;
+  }
+  const geometry = feature.getGeometry();
+  if (geometry) {
+    object.geometry = writeGeometry(geometry, opt_options);
+  } else {
+    object.geometry = null;
+  }
+  const properties = feature.getProperties();
+  delete properties[feature.getGeometryName()];
+  if (!Object(_obj_js__WEBPACK_IMPORTED_MODULE_12__[/* isEmpty */ "d"])(properties)) {
+    object.properties = properties;
+  } else {
+    object.properties = null;
+  }
+  return object;
+};
+
+
+/**
+ * Encode an array of features as GeoJSON.
+ *
+ * @function
+ * @param {Array.<module:ol/Feature>} features Features.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {string} GeoJSON.
+ * @api
+ */
+GeoJSON.prototype.writeFeatures;
+
+
+/**
+ * Encode an array of features as a GeoJSON object.
+ *
+ * @param {Array.<module:ol/Feature>} features Features.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {GeoJSONFeatureCollection} GeoJSON Object.
+ * @override
+ * @api
+ */
+GeoJSON.prototype.writeFeaturesObject = function(features, opt_options) {
+  opt_options = this.adaptOptions(opt_options);
+  const objects = [];
+  for (let i = 0, ii = features.length; i < ii; ++i) {
+    objects.push(this.writeFeatureObject(features[i], opt_options));
+  }
+  return /** @type {GeoJSONFeatureCollection} */ ({
+    type: 'FeatureCollection',
+    features: objects
+  });
+};
+
+
+/**
+ * Encode a geometry as a GeoJSON string.
+ *
+ * @function
+ * @param {module:ol/geom/Geometry} geometry Geometry.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {string} GeoJSON.
+ * @api
+ */
+GeoJSON.prototype.writeGeometry;
+
+
+/**
+ * Encode a geometry as a GeoJSON object.
+ *
+ * @param {module:ol/geom/Geometry} geometry Geometry.
+ * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
+ * @return {GeoJSONGeometry|GeoJSONGeometryCollection} Object.
+ * @override
+ * @api
+ */
+GeoJSON.prototype.writeGeometryObject = function(geometry, opt_options) {
+  return writeGeometry(geometry, this.adaptOptions(opt_options));
+};
+/* harmony default export */ __webpack_exports__["a"] = (GeoJSON);
+
+
+/***/ }),
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16178,7 +16772,7 @@ BaseObject.prototype.unset = function(key, opt_silent) {
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16272,7 +16866,7 @@ function removeChildren(node) {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18618,10 +19212,10 @@ var array = __webpack_require__(15);
 var GeometryType = __webpack_require__(9);
 
 // EXTERNAL MODULE: ../src/ol/geom/Point.js
-var Point = __webpack_require__(28);
+var Point = __webpack_require__(29);
 
 // EXTERNAL MODULE: ../src/ol/layer/Vector.js
-var Vector = __webpack_require__(29);
+var Vector = __webpack_require__(28);
 
 // EXTERNAL MODULE: ../src/ol/source/Vector.js
 var source_Vector = __webpack_require__(16);
@@ -20583,7 +21177,7 @@ function Snap_sortByDistance(a, b) {
 /* harmony default export */ var interaction_Snap = (Snap);
 
 // EXTERNAL MODULE: ../src/ol/Object.js
-var ol_Object = __webpack_require__(30);
+var ol_Object = __webpack_require__(31);
 
 // EXTERNAL MODULE: ../src/ol/interaction/Property.js
 var Property = __webpack_require__(176);
@@ -21112,600 +21706,6 @@ function defaults(opt_options) {
   return interactions;
 
 }
-
-
-/***/ }),
-/* 33 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _asserts_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(26);
-/* harmony import */ var _Feature_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(23);
-/* harmony import */ var _format_Feature_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(42);
-/* harmony import */ var _format_JSONFeature_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(152);
-/* harmony import */ var _geom_GeometryCollection_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(151);
-/* harmony import */ var _geom_LineString_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(41);
-/* harmony import */ var _geom_MultiLineString_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(71);
-/* harmony import */ var _geom_MultiPoint_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(73);
-/* harmony import */ var _geom_MultiPolygon_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(82);
-/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(28);
-/* harmony import */ var _geom_Polygon_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(39);
-/* harmony import */ var _obj_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(14);
-/* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(7);
-/**
- * @module ol/format/GeoJSON
- */
-// TODO: serialize dataProjection as crs member when writing
-// see https://github.com/openlayers/openlayers/issues/2078
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * @typedef {Object} Options
- * @property {module:ol/proj~ProjectionLike} [dataProjection='EPSG:4326'] Default data projection.
- * @property {module:ol/proj~ProjectionLike} [featureProjection] Projection for features read or
- * written by the format.  Options passed to read or write methods will take precedence.
- * @property {string} [geometryName] Geometry name to use when creating features.
- * @property {boolean} [extractGeometryName=false] Certain GeoJSON providers include
- * the geometry_name field in the feature GeoJSON. If set to `true` the GeoJSON reader
- * will look for that field to set the geometry name. If both this field is set to `true`
- * and a `geometryName` is provided, the `geometryName` will take precedence.
- */
-
-
-/**
- * @classdesc
- * Feature format for reading and writing data in the GeoJSON format.
- *
- * @constructor
- * @extends {module:ol/format/JSONFeature}
- * @param {module:ol/format/GeoJSON~Options=} opt_options Options.
- * @api
- */
-const GeoJSON = function(opt_options) {
-
-  const options = opt_options ? opt_options : {};
-
-  _format_JSONFeature_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"].call(this);
-
-  /**
-   * @inheritDoc
-   */
-  this.dataProjection = Object(_proj_js__WEBPACK_IMPORTED_MODULE_13__[/* get */ "h"])(
-    options.dataProjection ?
-      options.dataProjection : 'EPSG:4326');
-
-  if (options.featureProjection) {
-    this.defaultFeatureProjection = Object(_proj_js__WEBPACK_IMPORTED_MODULE_13__[/* get */ "h"])(options.featureProjection);
-  }
-
-  /**
-   * Name of the geometry attribute for features.
-   * @type {string|undefined}
-   * @private
-   */
-  this.geometryName_ = options.geometryName;
-
-  /**
-   * Look for the geometry name in the feature GeoJSON
-   * @type {boolean|undefined}
-   * @private
-   */
-  this.extractGeometryName_ = options.extractGeometryName;
-
-};
-
-Object(_util_js__WEBPACK_IMPORTED_MODULE_0__[/* inherits */ "c"])(GeoJSON, _format_JSONFeature_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]);
-
-
-/**
- * @const
- * @type {Object.<string, function(GeoJSONObject): module:ol/geom/Geometry>}
- */
-const GEOMETRY_READERS = {
-  'Point': readPointGeometry,
-  'LineString': readLineStringGeometry,
-  'Polygon': readPolygonGeometry,
-  'MultiPoint': readMultiPointGeometry,
-  'MultiLineString': readMultiLineStringGeometry,
-  'MultiPolygon': readMultiPolygonGeometry,
-  'GeometryCollection': readGeometryCollectionGeometry
-};
-
-
-/**
- * @const
- * @type {Object.<string, function(module:ol/geom/Geometry, module:ol/format/Feature~WriteOptions=): (GeoJSONGeometry|GeoJSONGeometryCollection)>}
- */
-const GEOMETRY_WRITERS = {
-  'Point': writePointGeometry,
-  'LineString': writeLineStringGeometry,
-  'Polygon': writePolygonGeometry,
-  'MultiPoint': writeMultiPointGeometry,
-  'MultiLineString': writeMultiLineStringGeometry,
-  'MultiPolygon': writeMultiPolygonGeometry,
-  'GeometryCollection': writeGeometryCollectionGeometry,
-  'Circle': writeEmptyGeometryCollectionGeometry
-};
-
-
-/**
- * @param {GeoJSONGeometry|GeoJSONGeometryCollection} object Object.
- * @param {module:ol/format/Feature~ReadOptions=} opt_options Read options.
- * @return {module:ol/geom/Geometry} Geometry.
- */
-function readGeometry(object, opt_options) {
-  if (!object) {
-    return null;
-  }
-  const geometryReader = GEOMETRY_READERS[object.type];
-  return (
-    /** @type {module:ol/geom/Geometry} */ (Object(_format_Feature_js__WEBPACK_IMPORTED_MODULE_3__[/* transformWithOptions */ "b"])(geometryReader(object), false, opt_options))
-  );
-}
-
-
-/**
- * @param {GeoJSONGeometryCollection} object Object.
- * @param {module:ol/format/Feature~ReadOptions=} opt_options Read options.
- * @return {module:ol/geom/GeometryCollection} Geometry collection.
- */
-function readGeometryCollectionGeometry(object, opt_options) {
-  const geometries = object.geometries.map(
-    /**
-     * @param {GeoJSONGeometry} geometry Geometry.
-     * @return {module:ol/geom/Geometry} geometry Geometry.
-     */
-    function(geometry) {
-      return readGeometry(geometry, opt_options);
-    });
-  return new _geom_GeometryCollection_js__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"](geometries);
-}
-
-
-/**
- * @param {GeoJSONGeometry} object Object.
- * @return {module:ol/geom/Point} Point.
- */
-function readPointGeometry(object) {
-  return new _geom_Point_js__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"](object.coordinates);
-}
-
-
-/**
- * @param {GeoJSONGeometry} object Object.
- * @return {module:ol/geom/LineString} LineString.
- */
-function readLineStringGeometry(object) {
-  return new _geom_LineString_js__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"](object.coordinates);
-}
-
-
-/**
- * @param {GeoJSONGeometry} object Object.
- * @return {module:ol/geom/MultiLineString} MultiLineString.
- */
-function readMultiLineStringGeometry(object) {
-  return new _geom_MultiLineString_js__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"](object.coordinates);
-}
-
-
-/**
- * @param {GeoJSONGeometry} object Object.
- * @return {module:ol/geom/MultiPoint} MultiPoint.
- */
-function readMultiPointGeometry(object) {
-  return new _geom_MultiPoint_js__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"](object.coordinates);
-}
-
-
-/**
- * @param {GeoJSONGeometry} object Object.
- * @return {module:ol/geom/MultiPolygon} MultiPolygon.
- */
-function readMultiPolygonGeometry(object) {
-  return new _geom_MultiPolygon_js__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"](object.coordinates);
-}
-
-
-/**
- * @param {GeoJSONGeometry} object Object.
- * @return {module:ol/geom/Polygon} Polygon.
- */
-function readPolygonGeometry(object) {
-  return new _geom_Polygon_js__WEBPACK_IMPORTED_MODULE_11__[/* default */ "b"](object.coordinates);
-}
-
-
-/**
- * @param {module:ol/geom/Geometry} geometry Geometry.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {GeoJSONGeometry|GeoJSONGeometryCollection} GeoJSON geometry.
- */
-function writeGeometry(geometry, opt_options) {
-  const geometryWriter = GEOMETRY_WRITERS[geometry.getType()];
-  return geometryWriter(/** @type {module:ol/geom/Geometry} */ (
-    Object(_format_Feature_js__WEBPACK_IMPORTED_MODULE_3__[/* transformWithOptions */ "b"])(geometry, true, opt_options)), opt_options);
-}
-
-
-/**
- * @param {module:ol/geom/Geometry} geometry Geometry.
- * @return {GeoJSONGeometryCollection} Empty GeoJSON geometry collection.
- */
-function writeEmptyGeometryCollectionGeometry(geometry) {
-  return /** @type {GeoJSONGeometryCollection} */ ({
-    type: 'GeometryCollection',
-    geometries: []
-  });
-}
-
-
-/**
- * @param {module:ol/geom/GeometryCollection} geometry Geometry.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {GeoJSONGeometryCollection} GeoJSON geometry collection.
- */
-function writeGeometryCollectionGeometry(geometry, opt_options) {
-  const geometries = geometry.getGeometriesArray().map(function(geometry) {
-    const options = Object(_obj_js__WEBPACK_IMPORTED_MODULE_12__[/* assign */ "a"])({}, opt_options);
-    delete options.featureProjection;
-    return writeGeometry(geometry, options);
-  });
-  return /** @type {GeoJSONGeometryCollection} */ ({
-    type: 'GeometryCollection',
-    geometries: geometries
-  });
-}
-
-
-/**
- * @param {module:ol/geom/LineString} geometry Geometry.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {GeoJSONGeometry} GeoJSON geometry.
- */
-function writeLineStringGeometry(geometry, opt_options) {
-  return /** @type {GeoJSONGeometry} */ ({
-    type: 'LineString',
-    coordinates: geometry.getCoordinates()
-  });
-}
-
-
-/**
- * @param {module:ol/geom/MultiLineString} geometry Geometry.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {GeoJSONGeometry} GeoJSON geometry.
- */
-function writeMultiLineStringGeometry(geometry, opt_options) {
-  return /** @type {GeoJSONGeometry} */ ({
-    type: 'MultiLineString',
-    coordinates: geometry.getCoordinates()
-  });
-}
-
-
-/**
- * @param {module:ol/geom/MultiPoint} geometry Geometry.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {GeoJSONGeometry} GeoJSON geometry.
- */
-function writeMultiPointGeometry(geometry, opt_options) {
-  return /** @type {GeoJSONGeometry} */ ({
-    type: 'MultiPoint',
-    coordinates: geometry.getCoordinates()
-  });
-}
-
-
-/**
- * @param {module:ol/geom/MultiPolygon} geometry Geometry.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {GeoJSONGeometry} GeoJSON geometry.
- */
-function writeMultiPolygonGeometry(geometry, opt_options) {
-  let right;
-  if (opt_options) {
-    right = opt_options.rightHanded;
-  }
-  return /** @type {GeoJSONGeometry} */ ({
-    type: 'MultiPolygon',
-    coordinates: geometry.getCoordinates(right)
-  });
-}
-
-
-/**
- * @param {module:ol/geom/Point} geometry Geometry.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {GeoJSONGeometry} GeoJSON geometry.
- */
-function writePointGeometry(geometry, opt_options) {
-  return /** @type {GeoJSONGeometry} */ ({
-    type: 'Point',
-    coordinates: geometry.getCoordinates()
-  });
-}
-
-
-/**
- * @param {module:ol/geom/Polygon} geometry Geometry.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {GeoJSONGeometry} GeoJSON geometry.
- */
-function writePolygonGeometry(geometry, opt_options) {
-  let right;
-  if (opt_options) {
-    right = opt_options.rightHanded;
-  }
-  return /** @type {GeoJSONGeometry} */ ({
-    type: 'Polygon',
-    coordinates: geometry.getCoordinates(right)
-  });
-}
-
-
-/**
- * Read a feature from a GeoJSON Feature source.  Only works for Feature or
- * geometry types.  Use {@link module:ol/format/GeoJSON#readFeatures} to read
- * FeatureCollection source. If feature at source has an id, it will be used
- * as Feature id by calling {@link module:ol/Feature#setId} internally.
- *
- * @function
- * @param {Document|Node|Object|string} source Source.
- * @param {module:ol/format/Feature~ReadOptions=} opt_options Read options.
- * @return {module:ol/Feature} Feature.
- * @api
- */
-GeoJSON.prototype.readFeature;
-
-
-/**
- * Read all features from a GeoJSON source.  Works for all GeoJSON types.
- * If the source includes only geometries, features will be created with those
- * geometries.
- *
- * @function
- * @param {Document|Node|Object|string} source Source.
- * @param {module:ol/format/Feature~ReadOptions=} opt_options Read options.
- * @return {Array.<module:ol/Feature>} Features.
- * @api
- */
-GeoJSON.prototype.readFeatures;
-
-
-/**
- * @inheritDoc
- */
-GeoJSON.prototype.readFeatureFromObject = function(object, opt_options) {
-  /**
-   * @type {GeoJSONFeature}
-   */
-  let geoJSONFeature = null;
-  if (object.type === 'Feature') {
-    geoJSONFeature = /** @type {GeoJSONFeature} */ (object);
-  } else {
-    geoJSONFeature = /** @type {GeoJSONFeature} */ ({
-      type: 'Feature',
-      geometry: /** @type {GeoJSONGeometry|GeoJSONGeometryCollection} */ (object)
-    });
-  }
-
-  const geometry = readGeometry(geoJSONFeature.geometry, opt_options);
-  const feature = new _Feature_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"]();
-  if (this.geometryName_) {
-    feature.setGeometryName(this.geometryName_);
-  } else if (this.extractGeometryName_ && geoJSONFeature.geometry_name !== undefined) {
-    feature.setGeometryName(geoJSONFeature.geometry_name);
-  }
-  feature.setGeometry(geometry);
-  if (geoJSONFeature.id !== undefined) {
-    feature.setId(geoJSONFeature.id);
-  }
-  if (geoJSONFeature.properties) {
-    feature.setProperties(geoJSONFeature.properties);
-  }
-  return feature;
-};
-
-
-/**
- * @inheritDoc
- */
-GeoJSON.prototype.readFeaturesFromObject = function(object, opt_options) {
-  const geoJSONObject = /** @type {GeoJSONObject} */ (object);
-  /** @type {Array.<module:ol/Feature>} */
-  let features = null;
-  if (geoJSONObject.type === 'FeatureCollection') {
-    const geoJSONFeatureCollection = /** @type {GeoJSONFeatureCollection} */ (object);
-    features = [];
-    const geoJSONFeatures = geoJSONFeatureCollection.features;
-    for (let i = 0, ii = geoJSONFeatures.length; i < ii; ++i) {
-      features.push(this.readFeatureFromObject(geoJSONFeatures[i], opt_options));
-    }
-  } else {
-    features = [this.readFeatureFromObject(object, opt_options)];
-  }
-  return features;
-};
-
-
-/**
- * Read a geometry from a GeoJSON source.
- *
- * @function
- * @param {Document|Node|Object|string} source Source.
- * @param {module:ol/format/Feature~ReadOptions=} opt_options Read options.
- * @return {module:ol/geom/Geometry} Geometry.
- * @api
- */
-GeoJSON.prototype.readGeometry;
-
-
-/**
- * @inheritDoc
- */
-GeoJSON.prototype.readGeometryFromObject = function(object, opt_options) {
-  return readGeometry(/** @type {GeoJSONGeometry} */ (object), opt_options);
-};
-
-
-/**
- * Read the projection from a GeoJSON source.
- *
- * @function
- * @param {Document|Node|Object|string} source Source.
- * @return {module:ol/proj/Projection} Projection.
- * @api
- */
-GeoJSON.prototype.readProjection;
-
-
-/**
- * @inheritDoc
- */
-GeoJSON.prototype.readProjectionFromObject = function(object) {
-  const geoJSONObject = /** @type {GeoJSONObject} */ (object);
-  const crs = geoJSONObject.crs;
-  let projection;
-  if (crs) {
-    if (crs.type == 'name') {
-      projection = Object(_proj_js__WEBPACK_IMPORTED_MODULE_13__[/* get */ "h"])(crs.properties.name);
-    } else {
-      Object(_asserts_js__WEBPACK_IMPORTED_MODULE_1__[/* assert */ "a"])(false, 36); // Unknown SRS type
-    }
-  } else {
-    projection = this.dataProjection;
-  }
-  return (
-    /** @type {module:ol/proj/Projection} */ (projection)
-  );
-};
-
-
-/**
- * Encode a feature as a GeoJSON Feature string.
- *
- * @function
- * @param {module:ol/Feature} feature Feature.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {string} GeoJSON.
- * @override
- * @api
- */
-GeoJSON.prototype.writeFeature;
-
-
-/**
- * Encode a feature as a GeoJSON Feature object.
- *
- * @param {module:ol/Feature} feature Feature.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {GeoJSONFeature} Object.
- * @override
- * @api
- */
-GeoJSON.prototype.writeFeatureObject = function(feature, opt_options) {
-  opt_options = this.adaptOptions(opt_options);
-
-  const object = /** @type {GeoJSONFeature} */ ({
-    'type': 'Feature'
-  });
-  const id = feature.getId();
-  if (id !== undefined) {
-    object.id = id;
-  }
-  const geometry = feature.getGeometry();
-  if (geometry) {
-    object.geometry = writeGeometry(geometry, opt_options);
-  } else {
-    object.geometry = null;
-  }
-  const properties = feature.getProperties();
-  delete properties[feature.getGeometryName()];
-  if (!Object(_obj_js__WEBPACK_IMPORTED_MODULE_12__[/* isEmpty */ "d"])(properties)) {
-    object.properties = properties;
-  } else {
-    object.properties = null;
-  }
-  return object;
-};
-
-
-/**
- * Encode an array of features as GeoJSON.
- *
- * @function
- * @param {Array.<module:ol/Feature>} features Features.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {string} GeoJSON.
- * @api
- */
-GeoJSON.prototype.writeFeatures;
-
-
-/**
- * Encode an array of features as a GeoJSON object.
- *
- * @param {Array.<module:ol/Feature>} features Features.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {GeoJSONFeatureCollection} GeoJSON Object.
- * @override
- * @api
- */
-GeoJSON.prototype.writeFeaturesObject = function(features, opt_options) {
-  opt_options = this.adaptOptions(opt_options);
-  const objects = [];
-  for (let i = 0, ii = features.length; i < ii; ++i) {
-    objects.push(this.writeFeatureObject(features[i], opt_options));
-  }
-  return /** @type {GeoJSONFeatureCollection} */ ({
-    type: 'FeatureCollection',
-    features: objects
-  });
-};
-
-
-/**
- * Encode a geometry as a GeoJSON string.
- *
- * @function
- * @param {module:ol/geom/Geometry} geometry Geometry.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {string} GeoJSON.
- * @api
- */
-GeoJSON.prototype.writeGeometry;
-
-
-/**
- * Encode a geometry as a GeoJSON object.
- *
- * @param {module:ol/geom/Geometry} geometry Geometry.
- * @param {module:ol/format/Feature~WriteOptions=} opt_options Write options.
- * @return {GeoJSONGeometry|GeoJSONGeometryCollection} Object.
- * @override
- * @api
- */
-GeoJSON.prototype.writeGeometryObject = function(geometry, opt_options) {
-  return writeGeometry(geometry, this.adaptOptions(opt_options));
-};
-/* harmony default export */ __webpack_exports__["a"] = (GeoJSON);
 
 
 /***/ }),
@@ -22550,7 +22550,7 @@ const primaryAction = function(mapBrowserEvent) {
 /* harmony import */ var _geom_GeometryLayout_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(22);
 /* harmony import */ var _geom_GeometryType_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9);
 /* harmony import */ var _geom_LinearRing_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(141);
-/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(28);
+/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(29);
 /* harmony import */ var _geom_SimpleGeometry_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(55);
 /* harmony import */ var _sphere_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(167);
 /* harmony import */ var _geom_flat_area_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(165);
@@ -23944,7 +23944,7 @@ PointerInteraction.prototype.shouldStopEvent = function(handled) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return zoomByDelta; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return zoomWithoutConstraints; });
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(31);
 /* harmony import */ var _easing_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(56);
 /* harmony import */ var _interaction_Property_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(176);
 /* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(21);
@@ -24672,7 +24672,7 @@ const MSPOINTER = !!(navigator.msPointerEnabled);
 /* harmony import */ var _geom_MultiPolygon_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(82);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "d", function() { return _geom_MultiPolygon_js__WEBPACK_IMPORTED_MODULE_5__["a"]; });
 
-/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(28);
+/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(29);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "e", function() { return _geom_Point_js__WEBPACK_IMPORTED_MODULE_6__["a"]; });
 
 /* harmony import */ var _geom_Polygon_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(39);
@@ -24722,7 +24722,7 @@ const MSPOINTER = !!(navigator.msPointerEnabled);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _AssertionError_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(187);
 /* harmony import */ var _CollectionEventType_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(62);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(31);
 /* harmony import */ var _events_Event_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(36);
 /**
  * @module ol/Collection
@@ -25043,7 +25043,7 @@ Collection.prototype.assertUnique_ = function(elem, opt_except) {
 /* harmony import */ var _geom_MultiLineString_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(71);
 /* harmony import */ var _geom_MultiPoint_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(73);
 /* harmony import */ var _geom_MultiPolygon_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(82);
-/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(28);
+/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(29);
 /* harmony import */ var _geom_Polygon_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(39);
 /* harmony import */ var _obj_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(14);
 /* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(7);
@@ -25663,8 +25663,8 @@ GMLBase.prototype.readProjectionFromNode = function(node) {
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _functions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(27);
 /* harmony import */ var _MapEventType_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(142);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(30);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(31);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(32);
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8);
 /**
  * @module ol/control/Control
@@ -28306,7 +28306,7 @@ function defaultTileLoadFunction(imageTile, src) {
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8);
 /* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(13);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(31);
 /* harmony import */ var _layer_Base_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(195);
 /* harmony import */ var _layer_Property_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(76);
 /* harmony import */ var _obj_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(14);
@@ -36511,7 +36511,7 @@ EventTarget.prototype.removeEventListener = function(type, listener) {
 /* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
 /* harmony import */ var _geom_GeometryLayout_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(22);
 /* harmony import */ var _geom_GeometryType_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9);
-/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(28);
+/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(29);
 /* harmony import */ var _geom_SimpleGeometry_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(55);
 /* harmony import */ var _geom_flat_deflate_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(90);
 /* harmony import */ var _geom_flat_inflate_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(91);
@@ -38534,7 +38534,7 @@ MultiPolygon.prototype.setPolygons = function(polygons) {
 
 "use strict";
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(31);
 /* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
 /* harmony import */ var _functions_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(27);
 /* harmony import */ var _geom_flat_transform_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(61);
@@ -39175,10 +39175,10 @@ Object(_util_js__WEBPACK_IMPORTED_MODULE_0__[/* inherits */ "c"])(Stamen, _sourc
 "use strict";
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _MapEventType_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(142);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(31);
 /* harmony import */ var _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(103);
 /* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(47);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(32);
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8);
 /* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3);
 /**
@@ -41847,7 +41847,7 @@ function isColorLike(color) {
 /* harmony import */ var _Feature_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(23);
 /* harmony import */ var _MapBrowserEventType_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(40);
 /* harmony import */ var _MapBrowserPointerEvent_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(92);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(31);
 /* harmony import */ var _coordinate_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(34);
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(8);
 /* harmony import */ var _events_Event_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(36);
@@ -41861,11 +41861,11 @@ function isColorLike(color) {
 /* harmony import */ var _geom_MultiPoint_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(73);
 /* harmony import */ var _geom_MultiPolygon_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(82);
 /* harmony import */ var _pointer_MouseSource_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(168);
-/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(28);
+/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(29);
 /* harmony import */ var _geom_Polygon_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(39);
 /* harmony import */ var _interaction_Pointer_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(44);
 /* harmony import */ var _interaction_Property_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(176);
-/* harmony import */ var _layer_Vector_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(29);
+/* harmony import */ var _layer_Vector_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(28);
 /* harmony import */ var _source_Vector_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(16);
 /* harmony import */ var _style_Style_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(75);
 /**
@@ -43331,7 +43331,7 @@ function assignClosestMultiArrayPoint(flatCoordinates, offset,
 var EsriJSON = __webpack_require__(183);
 
 // EXTERNAL MODULE: ../src/ol/format/GeoJSON.js
-var GeoJSON = __webpack_require__(33);
+var GeoJSON = __webpack_require__(30);
 
 // EXTERNAL MODULE: ../src/ol/util.js
 var util = __webpack_require__(1);
@@ -45922,7 +45922,7 @@ var WMTSCapabilities = __webpack_require__(137);
 /* harmony import */ var _geom_MultiLineString_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(71);
 /* harmony import */ var _geom_MultiPoint_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(73);
 /* harmony import */ var _geom_MultiPolygon_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(82);
-/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(28);
+/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(29);
 /* harmony import */ var _geom_Polygon_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(39);
 /* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(21);
 /* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(7);
@@ -51064,7 +51064,7 @@ function compareVersions(v1, v2) {
 /* harmony import */ var _LayerType_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(60);
 /* harmony import */ var _asserts_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(26);
 /* harmony import */ var _layer_TileProperty_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(144);
-/* harmony import */ var _layer_Vector_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(29);
+/* harmony import */ var _layer_Vector_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(28);
 /* harmony import */ var _layer_VectorTileRenderType_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(118);
 /* harmony import */ var _obj_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(14);
 /**
@@ -52437,7 +52437,7 @@ EventSource.prototype.getHandlerForEvent = function(eventType) {
 /* harmony import */ var _TileRange_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(130);
 /* harmony import */ var _TileState_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(19);
 /* harmony import */ var _ViewHint_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(43);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(32);
 /* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3);
 /* harmony import */ var _canvas_IntermediateCanvas_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(171);
 /* harmony import */ var _transform_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(18);
@@ -52997,7 +52997,7 @@ TileRange.prototype.intersects = function(tileRange) {
 "use strict";
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _functions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(27);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(31);
 /* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
 /* harmony import */ var _source_State_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(50);
 /**
@@ -53625,7 +53625,7 @@ var MultiPoint = __webpack_require__(73);
 var MultiPolygon = __webpack_require__(82);
 
 // EXTERNAL MODULE: ../src/ol/geom/Point.js
-var Point = __webpack_require__(28);
+var Point = __webpack_require__(29);
 
 // EXTERNAL MODULE: ../src/ol/geom/Polygon.js
 var Polygon = __webpack_require__(39);
@@ -54427,7 +54427,7 @@ var PluggableMap = __webpack_require__(166);
 var control = __webpack_require__(24);
 
 // EXTERNAL MODULE: ../src/ol/interaction.js + 17 modules
-var interaction = __webpack_require__(32);
+var interaction = __webpack_require__(33);
 
 // EXTERNAL MODULE: ../src/ol/obj.js
 var obj = __webpack_require__(14);
@@ -54445,7 +54445,7 @@ var LayerType = __webpack_require__(60);
 var ViewHint = __webpack_require__(43);
 
 // EXTERNAL MODULE: ../src/ol/dom.js
-var dom = __webpack_require__(31);
+var dom = __webpack_require__(32);
 
 // EXTERNAL MODULE: ../src/ol/extent.js
 var ol_extent = __webpack_require__(3);
@@ -63151,7 +63151,7 @@ function tile(tileGrid) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calculateSourceResolution; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return render; });
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(32);
 /* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
 /* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(21);
 /* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
@@ -64045,7 +64045,7 @@ function sortByZIndex(state1, state2) {
 /* harmony import */ var _functions_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(27);
 /* harmony import */ var _geom_GeometryType_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(9);
 /* harmony import */ var _interaction_Interaction_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(45);
-/* harmony import */ var _layer_Vector_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(29);
+/* harmony import */ var _layer_Vector_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(28);
 /* harmony import */ var _obj_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(14);
 /* harmony import */ var _source_Vector_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(16);
 /* harmony import */ var _style_Style_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(75);
@@ -65849,7 +65849,7 @@ var util = __webpack_require__(1);
 });
 
 // EXTERNAL MODULE: ../src/ol/Object.js
-var ol_Object = __webpack_require__(30);
+var ol_Object = __webpack_require__(31);
 
 // EXTERNAL MODULE: ../src/ol/events.js
 var events = __webpack_require__(8);
@@ -66230,7 +66230,7 @@ Geolocation.prototype.setTrackingOptions = function(options) {
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _ImageCanvas_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(157);
 /* harmony import */ var _TileQueue_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(186);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(32);
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8);
 /* harmony import */ var _events_Event_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(36);
 /* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(13);
@@ -68093,7 +68093,7 @@ Icon.prototype.unlistenImageChange = function(listener, thisArg) {
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _Tile_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(69);
 /* harmony import */ var _TileState_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(19);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(32);
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8);
 /* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(13);
 /**
@@ -68845,13 +68845,13 @@ function linearRingss(flatCoordinates, offset, endss, stride) {
 /* harmony import */ var _MapEvent_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(133);
 /* harmony import */ var _MapEventType_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(142);
 /* harmony import */ var _MapProperty_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(96);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(31);
 /* harmony import */ var _ObjectEventType_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(125);
 /* harmony import */ var _TileQueue_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(186);
 /* harmony import */ var _View_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(4);
 /* harmony import */ var _ViewHint_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(43);
 /* harmony import */ var _asserts_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(26);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(32);
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(8);
 /* harmony import */ var _events_Event_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(36);
 /* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(13);
@@ -71087,7 +71087,7 @@ CanvasLayerRenderer.prototype.prepareFrame = function(frameState, layerState) {}
 "use strict";
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _coordinate_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(34);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(32);
 /* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3);
 /* harmony import */ var _functions_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(27);
 /* harmony import */ var _canvas_Layer_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(170);
@@ -73118,7 +73118,7 @@ var GeometryLayout = __webpack_require__(22);
 var LineString = __webpack_require__(41);
 
 // EXTERNAL MODULE: ../src/ol/geom/Point.js
-var Point = __webpack_require__(28);
+var Point = __webpack_require__(29);
 
 // EXTERNAL MODULE: ../src/ol/math.js
 var math = __webpack_require__(21);
@@ -74041,7 +74041,7 @@ Graticule.prototype.setMap = function(map) {
 /* harmony import */ var _geom_MultiLineString_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(71);
 /* harmony import */ var _geom_MultiPoint_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(73);
 /* harmony import */ var _geom_MultiPolygon_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(82);
-/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(28);
+/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(29);
 /* harmony import */ var _geom_Polygon_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(39);
 /* harmony import */ var _geom_SimpleGeometry_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(55);
 /**
@@ -75001,7 +75001,7 @@ WKT.prototype.writeGeometryText = function(geometry, opt_options) {
 /* harmony import */ var _geom_MultiLineString_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(71);
 /* harmony import */ var _geom_MultiPoint_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(73);
 /* harmony import */ var _geom_MultiPolygon_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(82);
-/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(28);
+/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(29);
 /* harmony import */ var _geom_Polygon_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(39);
 /* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(7);
 /**
@@ -75480,7 +75480,7 @@ TopoJSON.prototype.readFeatureFromObject = function() {};
 /* harmony import */ var _geom_MultiLineString_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(71);
 /* harmony import */ var _geom_MultiPoint_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(73);
 /* harmony import */ var _geom_MultiPolygon_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(82);
-/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(28);
+/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(29);
 /* harmony import */ var _geom_Polygon_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(39);
 /* harmony import */ var _geom_flat_deflate_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(90);
 /* harmony import */ var _geom_flat_orient_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(93);
@@ -76141,7 +76141,7 @@ EsriJSON.prototype.writeFeaturesObject = function(features, opt_options) {
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _Image_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(138);
 /* harmony import */ var _ImageState_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(35);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(32);
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8);
 /* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(13);
 /* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3);
@@ -76733,7 +76733,7 @@ WMSGetFeatureInfo.prototype.writeGeometryNode = function(geometry, opt_options) 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(32);
 /**
  * @module ol/style/Atlas
  */
@@ -76946,7 +76946,7 @@ Atlas.prototype.updateBlocks_ = function(index, newBlock1, newBlock2) {
 /* harmony import */ var _TileState_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(19);
 /* harmony import */ var _tileurlfunction_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(84);
 /* harmony import */ var _asserts_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(26);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(32);
 /* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3);
 /* harmony import */ var _size_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(58);
 /* harmony import */ var _source_TileImage_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(65);
@@ -79061,7 +79061,7 @@ LayerRenderer.prototype.manageTilePyramid = function(
 
 "use strict";
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(31);
 /* harmony import */ var _layer_Property_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(76);
 /* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
 /* harmony import */ var _obj_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(14);
@@ -79344,7 +79344,7 @@ BaseLayer.prototype.setZIndex = function(zindex) {
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _Tile_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(69);
 /* harmony import */ var _TileState_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(19);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(32);
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8);
 /* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3);
 /* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(13);
@@ -79695,7 +79695,7 @@ function defaultLoadFunction(tile, url) {
 "use strict";
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _colorlike_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(99);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(32);
 /* harmony import */ var _has_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(48);
 /* harmony import */ var _ImageState_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(35);
 /* harmony import */ var _render_canvas_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(25);
@@ -80415,7 +80415,7 @@ CircleStyle.prototype.setRadius = function(radius) {
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _Collection_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(51);
 /* harmony import */ var _CollectionEventType_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(62);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(31);
 /* harmony import */ var _ObjectEventType_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(125);
 /* harmony import */ var _asserts_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(26);
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8);
@@ -83132,7 +83132,7 @@ const shared = new IconImageCache();
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
 /* harmony import */ var _array_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(15);
 /* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(47);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(32);
 /* harmony import */ var _layer_Layer_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(66);
 /* harmony import */ var _render_Event_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(162);
 /* harmony import */ var _render_EventType_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(78);
@@ -85423,7 +85423,7 @@ IGC.prototype.readGeometryFromText = function(text, opt_options) {};
 /* harmony import */ var _geom_GeometryLayout_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(22);
 /* harmony import */ var _geom_LineString_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(41);
 /* harmony import */ var _geom_MultiLineString_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(71);
-/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(28);
+/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(29);
 /* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(7);
 /* harmony import */ var _xml_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(0);
 /**
@@ -87671,7 +87671,7 @@ ImageMapGuide.prototype.setImageLoadFunction = function(imageLoadFunction) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return get; });
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(32);
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8);
 /* harmony import */ var _events_EventTarget_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(72);
 /* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(13);
@@ -87966,10 +87966,10 @@ IconImage.prototype.unlistenImage_ = function() {
 /* harmony import */ var _events_Event_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(36);
 /* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3);
 /* harmony import */ var _geom_GeometryType_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(9);
-/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(28);
+/* harmony import */ var _geom_Point_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(29);
 /* harmony import */ var _geom_Polygon_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(39);
 /* harmony import */ var _interaction_Pointer_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(44);
-/* harmony import */ var _layer_Vector_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(29);
+/* harmony import */ var _layer_Vector_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(28);
 /* harmony import */ var _source_Vector_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(16);
 /* harmony import */ var _style_Style_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(75);
 /**
@@ -88958,7 +88958,7 @@ function render(mapEvent) {
 /* harmony import */ var _array_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
 /* harmony import */ var _control_Control_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(53);
 /* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(47);
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(31);
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(32);
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8);
 /* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(13);
 /* harmony import */ var _layer_Layer_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(66);
@@ -89734,7 +89734,7 @@ MapBrowserEventHandler.prototype.disposeInternal = function() {
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
 /* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(13);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(31);
 /* harmony import */ var _control_Control_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(53);
 /* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7);
 /**
@@ -90128,7 +90128,7 @@ function toContext(context, opt_options) {
 /* harmony import */ var _MapBrowserEventHandler_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(221);
 /* harmony import */ var _MapBrowserPointerEvent_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(92);
 /* harmony import */ var _MapEvent_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(133);
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(30);
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(31);
 /* harmony import */ var _Observable_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(108);
 /* harmony import */ var _Overlay_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(88);
 /* harmony import */ var _PluggableMap_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(166);
