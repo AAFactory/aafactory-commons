@@ -1,3 +1,4 @@
+let map;
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[29],{
 
 /***/ 264:
@@ -308,7 +309,7 @@ const loadLayer2 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }
 });
 
-const map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
+map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
   layers: [
 	  sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4,
 	  sidoLayer5, sidoLayer6, sidoLayer7, sidoLayer8,

@@ -1,10 +1,9 @@
 package org.openlayers
 
 import android.os.Bundle
-import android.webkit.WebView
-import com.simplemobiletools.commons.views.MyFloatingActionButton
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.sample.R
+import kotlinx.android.synthetic.main.activity_openlayers.*
 
 /**
  * Created by CHO HANJOONG on 2018-07-04.
@@ -12,8 +11,7 @@ import io.github.aafactory.sample.R
 class OpenlayersActivity : BaseSimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_view)
-        var webView: WebView = findViewById<WebView>(R.id.webView)
+        setContentView(R.layout.activity_openlayers)
         val webSettings = webView.getSettings()
         webSettings.javaScriptEnabled = true
         webSettings.allowFileAccess = true
@@ -21,6 +19,9 @@ class OpenlayersActivity : BaseSimpleActivity() {
         webSettings.allowUniversalAccessFromFileURLs = true
         webView.loadUrl("file:///android_asset/examples/vector-layer.html")
 
-        findViewById<MyFloatingActionButton>(R.id.finish).setOnClickListener { finish() }
+        finish.setOnClickListener { finish() }
+        btn1.setOnClickListener {
+            webView.loadUrl("javascript:map.getLayers().array_[20].setVisible(!map.getLayers().array_[20].getVisible());");
+        }
     }
 }
