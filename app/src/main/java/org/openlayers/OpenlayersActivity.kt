@@ -21,7 +21,7 @@ class OpenlayersActivity : BaseSimpleActivity() {
 
         finish.setOnClickListener { finish() }
         btn1.setOnClickListener {
-            webView.loadUrl("javascript:map.getLayers().array_[20].setVisible(!map.getLayers().array_[20].getVisible());");
+            webView.loadUrl("javascript:toggleRoadLayer();");
         }
     }
 }

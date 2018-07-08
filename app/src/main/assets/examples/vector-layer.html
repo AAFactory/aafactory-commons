@@ -18,8 +18,27 @@
      <style>
        #map { height:100%; margin: 0 }
        html, body { height:100%; border:0; margin:0; } 
-       .ol-zoom.ol-unselectable.ol-control { display: none; }
+       #roadLayers {
+         position: absolute;
+         top: 10px;
+         right: 10px; 
+         font-size: 15px;
+       }
+       select { background: white; border: 0px; padding: 5px; }
     </style>
+    
+    <script type="text/javascript">
+      function fitboundsLayer(element) {
+        map.getView().fit(map.getLayers().item(element.value).getSource().getExtent(), map.getSize());
+        //console.log(map.getLayers().item(element.value).get('name'));
+      }
+      
+      function toggleRoadLayer() {
+      	for (var i = 19; i < map.getLayers().getArray().length; i++) { 
+      		var layer = map.getLayers().getArray()[i]; layer.setVisible(!layer.getVisible()); 
+  	    }
+      }
+    </script>
   </head>
   <body>
 
@@ -29,5 +48,18 @@
     <script src="./resources/prism/prism.min.js"></script>
     <script src="common.js"></script><script src="vector-layer.js"></script>
   </body>
+  
+  <div id="roadLayers">
+    <select onchange="fitboundsLayer(this);">
+        <option value="" disabled selected>고속도로</option>
+        <option value="19">경부고속도로</option>
+        <option value="20">호남고속도로</option>
+        <option value="21">중부고속도로</option>
+        <option value="22">통영대전고속도로</option>
+        <option value="23">중부내륙고속도로</option>
+        <option value="24">제2중부고속도로</option>
+        <option value="25">중부내륙고속도로지선</option>
+    </select>
+  </div>
 
 </html>

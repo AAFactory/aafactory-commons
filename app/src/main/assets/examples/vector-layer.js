@@ -1,4 +1,5 @@
 let map;
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[29],{
 
 /***/ 264:
@@ -50,6 +51,7 @@ const sidoLayer1 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
     return style;
   }
 });
+sidoLayer1.set('name', 'sidoLayer1');
 
 const sidoLayer2 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
   source: new _src_ol_source_Vector_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "b"]({
@@ -266,6 +268,7 @@ const sidoLayer19 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 		return style;
 	}
 });
+sidoLayer19.set('name', 'sidoLayer19');
 
 const loadStyle1 = new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Style */ "g"]({
   stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
@@ -327,7 +330,7 @@ const loadLayer1 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
     return loadStyle;
   }
 });
-loadLayer1.setZIndex(20);
+loadLayer1.set('name', 'loadLayer1');
 
 const loadLayer2 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
   source: new _src_ol_source_Vector_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "b"]({
@@ -477,13 +480,13 @@ const displayFeatureInfo = function(pixel) {
 
 };
 
-map.on('pointermove', function(evt) {
-  if (evt.dragging) {
-    return;
-  }
-  const pixel = map.getEventPixel(evt.originalEvent);
-  displayFeatureInfo(pixel);
-});
+//map.on('pointermove', function(evt) {
+//  if (evt.dragging) {
+//    return;
+//  }
+//  const pixel = map.getEventPixel(evt.originalEvent);
+//  displayFeatureInfo(pixel);
+//});
 
 map.on('click', function(evt) {
   displayFeatureInfo(evt.pixel);
