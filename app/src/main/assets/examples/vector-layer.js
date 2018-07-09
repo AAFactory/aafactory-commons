@@ -1,3 +1,4 @@
+let featureOverlay;
 let map;
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[29],{
 
@@ -329,10 +330,10 @@ const roadLayer1 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
     roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+    feature.set('name', '경부고속도로');
     return roadStyle;
   }
 });
-roadLayer1.set('name', '경부고속도로');
 
 const roadLayer2 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
   source: new _src_ol_source_Vector_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "b"]({
@@ -597,11 +598,11 @@ const highlightStyle = new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Styl
   })
 });
 
-const featureOverlay = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
+featureOverlay = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
   source: new _src_ol_source_Vector_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "b"](),
   map: map,
   style: function(feature) {
-    highlightStyle.getText().setText(feature.get('name'));
+    highlightStyle.getText().setText(feature.get('ROAD_NAME'));
     return highlightStyle;
   }
 });
@@ -613,17 +614,17 @@ const displayFeatureInfo = function(pixel) {
     return feature;
   });
   
-  
+  console.log(feature.get('name'));
 
-  if (feature !== highlight) {
-    if (highlight) {
-      featureOverlay.getSource().removeFeature(highlight);
-    }
-    if (feature) {
-      featureOverlay.getSource().addFeature(feature);
-    }
-    highlight = feature;
-  }
+//  if (feature !== highlight) {
+//    if (highlight) {
+//      featureOverlay.getSource().removeFeature(highlight);
+//    }
+//    if (feature) {
+//      featureOverlay.getSource().addFeature(feature);
+//    }
+//    highlight = feature;
+//  }
 
 };
 

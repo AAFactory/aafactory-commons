@@ -46,14 +46,21 @@
     </style>
     
     <script type="text/javascript">
+      var focusLayer;
       function fitboundsLayer(element) {
         map.getView().fit(map.getLayers().item(element.value).getSource().getExtent(), map.getSize());
         //console.log(map.getLayers().item(element.value).get('name'));
+        
+        var targetLayer = map.getLayers().item(element.value).getSource().getFeatures()[0];
+        if (focusLayer) featureOverlay.getSource().removeFeature(focusLayer);
+        featureOverlay.getSource().addFeature(targetLayer);
+        focusLayer = targetLayer;
       }
       
       function toggleRoadLayer() {
       	for (var i = 19; i < map.getLayers().getArray().length; i++) { 
-      		var layer = map.getLayers().getArray()[i]; layer.setVisible(!layer.getVisible()); 
+      		var layer = map.getLayers().getArray()[i];
+      		layer.setVisible(!layer.getVisible()); 
   	    }
       }
     </script>
