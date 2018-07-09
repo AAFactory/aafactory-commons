@@ -284,6 +284,8 @@ const roadStyle1 = new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Style */
   })
 });
 
+const ROAD_STYLE_1 = '#00FF00';
+const ROAD_STYLE_2 = '#ffbc66';
 const roadStyle = [
 	/* We are using two different styles for the polygons:
 	 *  - The first style is for the polygons themselves.
@@ -300,18 +302,18 @@ const roadStyle = [
 	}),
 	new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Style */ "g"]({
 		stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
-	    color: '#00FF00',
+	    color: ROAD_STYLE_1,
 	    width: 2
 	  }),
 	  text: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Text */ "h"]({
 	    font: '12px Calibri,sans-serif',
+	    fill: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Fill */ "c"]({
+	      color: '#000'
+	    }),
 	    maxangle: 30,
 	    placement : 'line',
 	    align: 'center',
 	    textBaseline: 'bottom',
-	    fill: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Fill */ "c"]({
-	      color: '#000'
-	    }),
 	    stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
 	      color: '#fff',
 	      width: 3
@@ -327,7 +329,6 @@ const roadLayer1 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
     roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-    roadStyle[1].getStroke().setColor('rgba(21, 255, 32, 1)');
     return roadStyle;
   }
 });
@@ -340,7 +341,6 @@ const roadLayer2 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
   	roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-  	roadStyle[1].getStroke().setColor('rgba(154, 47, 200, 1)');
     return roadStyle;
   }
 });
@@ -352,7 +352,6 @@ const roadLayer3 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('rgba(98, 25, 255, 1)');
 		return roadStyle;
 	},
 });
@@ -364,7 +363,6 @@ const roadLayer4 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('rgba(255, 23, 73, 1)');
 		return roadStyle;
 	},
 });
@@ -376,7 +374,6 @@ const roadLayer5 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('rgba(229, 255, 29, 1)');
 		return roadStyle;
 	},
 });
@@ -388,7 +385,6 @@ const roadLayer6 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('rgba(255, 53, 195, 1)');
 		return roadStyle;
 	},
 });
@@ -400,7 +396,6 @@ const roadLayer7 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('rgba(163, 41, 16, 1)');
 		return roadStyle;
 	},
 });
@@ -412,7 +407,6 @@ const roadLayer8 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#9b701f');
 		return roadStyle;
 	},
 });
@@ -424,7 +418,6 @@ const roadLayer9 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
 		return roadStyle;
 	},
 });
@@ -436,7 +429,6 @@ const roadLayer10 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
 		return roadStyle;
 	},
 });
@@ -448,7 +440,6 @@ const roadLayer11 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
 		return roadStyle;
 	},
 });
@@ -460,7 +451,7 @@ const roadLayer12 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_2);
 		return roadStyle;
 	},
 });
@@ -472,7 +463,7 @@ const roadLayer13 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -484,7 +475,6 @@ const roadLayer14 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
 		return roadStyle;
 	},
 });
@@ -496,19 +486,17 @@ const roadLayer15 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
 		return roadStyle;
 	},
 });
 
 const roadLayer16 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
 	source: new _src_ol_source_Vector_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "b"]({
-		url: 'data/geojson/동해고속도로(울산-포항)_EPSG4326.geojson',
+		url: 'data/geojson/중앙고속도로(춘천-금호)_EPSG4326.geojson',
 		format: new _src_ol_format_GeoJSON_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"]()
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
 		return roadStyle;
 	},
 });
@@ -520,7 +508,6 @@ const roadLayer17 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
 		return roadStyle;
 	},
 });
@@ -532,7 +519,6 @@ const roadLayer18 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
 		return roadStyle;
 	},
 });
@@ -544,7 +530,6 @@ const roadLayer19 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
 		return roadStyle;
 	},
 });
@@ -556,7 +541,6 @@ const roadLayer20 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
 		return roadStyle;
 	},
 });
@@ -568,7 +552,6 @@ const roadLayer21 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor('#cdb5ff');
 		return roadStyle;
 	},
 });
@@ -584,8 +567,7 @@ map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
 	  roadLayer5, roadLayer6, roadLayer7, roadLayer8,
 	  roadLayer9, roadLayer10, roadLayer11, roadLayer12,
 	  roadLayer13, roadLayer14, roadLayer15, roadLayer16,
-	  roadLayer17, roadLayer18, roadLayer19, roadLayer20,
-	  roadLayer21],
+	  roadLayer17, roadLayer18, roadLayer19, roadLayer20],
   target: 'map',
   view: new _src_ol_View_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"]({
     projection: 'EPSG:3857',
