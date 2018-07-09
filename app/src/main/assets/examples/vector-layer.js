@@ -305,6 +305,10 @@ const roadStyle = [
 	  }),
 	  text: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Text */ "h"]({
 	    font: '12px Calibri,sans-serif',
+	    maxangle: 30,
+	    placement : 'line',
+	    align: 'center',
+	    textBaseline: 'bottom',
 	    fill: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Fill */ "c"]({
 	      color: '#000'
 	    }),

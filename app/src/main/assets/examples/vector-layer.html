@@ -10,12 +10,11 @@
     <link rel="stylesheet" href="./css/ol.css" type="text/css">
     <link rel="stylesheet" href="./resources/layout.css" type="text/css">
     
-    
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch,requestAnimationFrame,Element.prototype.classList,URL"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
     <title>Vector Layer</title>
     
-     <style>
+    <style>
        #map { height:100%; margin: 0 }
        html, body { height:100%; border:0; margin:0; } 
        #roadLayers {
@@ -25,6 +24,25 @@
          font-size: 15px;
        }
        select { background: white; border: 0px; padding: 5px; }
+       .legend {
+         width: 100px;
+         display: inline-block;
+         position: absolute;
+         right: 0px;
+         border: solid white 1px;
+         vertical-align: middle;
+         text-align: right;
+         padding: 0 5px;
+       }
+       #highway {
+         background: #00FF00;
+         top: 35px;
+       }
+       #localRoad {
+         background: #ffbc66;
+         top: 57px;
+       }
+       span { font-size: 10px; color: white; }
     </style>
     
     <script type="text/javascript">
@@ -41,39 +59,40 @@
     </script>
   </head>
   <body>
-
-    
-  <div id="map" class="map"></div>
-    <script src="./resources/common.js"></script>
-    <script src="./resources/prism/prism.min.js"></script>
-    <script src="common.js"></script><script src="vector-layer.js"></script>
+    <div id="map" class="map"></div>
+    <div id="roadLayers">
+        <select onchange="fitboundsLayer(this);">
+            <option value="" disabled selected>고속도로</option>
+            <option value="19">경부고속도로</option>
+            <option value="20">호남고속도로</option>
+            <option value="21">중부고속도로</option>
+            <option value="22">통영대전고속도로</option>
+            <option value="23">중부내륙고속도로</option>
+            <option value="24">제2중부고속도로</option>
+            <option value="25">중부내륙고속도로지선</option>
+            <option value="26">서울양양고속도로</option>
+            <option value="27">영동고속도로</option>
+        
+            <option value="28">경인고속도로</option>
+            <option value="29">광주원주고속도로</option>
+            <option value="30">내부순환로</option>
+            <option value="31">동해고속도로(부산-울산)</option>
+            <option value="32">동해고속도로(삼척-속초)</option>
+            <option value="33">동해고속도로(울산-포항)</option>
+            <option value="34">중앙고속도로(춘천-금호)</option>
+            <option value="35">서해안고속도로</option>
+            <option value="36">제2경인고속도로(안양-성남)</option>
+            <option value="37">제2경인고속도로(인천대교)</option>
+            <option value="38">중앙고속도로(부산-대구)</option>
+        </select>
+        <div>
+          <div class="legend" id="highway"><span>고속도로</span></div>
+          <div class="legend" id="localRoad"><span>지방도, 국도</span></div>
+        </div>
+    </div>
   </body>
-  
-  <div id="roadLayers">
-    <select onchange="fitboundsLayer(this);">
-        <option value="" disabled selected>고속도로</option>
-        <option value="19">경부고속도로</option>
-        <option value="20">호남고속도로</option>
-        <option value="21">중부고속도로</option>
-        <option value="22">통영대전고속도로</option>
-        <option value="23">중부내륙고속도로</option>
-        <option value="24">제2중부고속도로</option>
-        <option value="25">중부내륙고속도로지선</option>
-        <option value="26">서울양양고속도로</option>
-        <option value="27">영동고속도로</option>
-
-        <option value="28">경인고속도로</option>
-        <option value="29">광주원주고속도로</option>
-        <option value="30">내부순환로</option>
-        <option value="31">동해고속도로(부산-울산)</option>
-        <option value="32">동해고속도로(삼척-속초)</option>
-        <option value="33">동해고속도로(울산-포항)</option>
-        <option value="34">중앙고속도로(춘천-금호)</option>
-        <option value="35">서해안고속도로</option>
-        <option value="36">제2경인고속도로(안양-성남)</option>
-        <option value="37">제2경인고속도로(인천대교)</option>
-        <option value="38">중앙고속도로(부산-대구)</option>
-    </select>
-  </div>
-
+  <script src="./resources/common.js"></script>
+  <script src="./resources/prism/prism.min.js"></script>
+  <script src="common.js"></script>
+  <script src="vector-layer.js"></script>
 </html>
