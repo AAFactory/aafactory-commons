@@ -1,5 +1,3 @@
-let featureOverlay;
-let map;
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[29],{
 
 /***/ 264:
@@ -330,6 +328,7 @@ const roadLayer1 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
     roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+    roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
     feature.set('name', '경부고속도로');
     return roadStyle;
   }
@@ -342,6 +341,7 @@ const roadLayer2 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
   	roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+  	roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
     return roadStyle;
   }
 });
@@ -353,6 +353,7 @@ const roadLayer3 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -364,6 +365,7 @@ const roadLayer4 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -375,6 +377,7 @@ const roadLayer5 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -386,6 +389,7 @@ const roadLayer6 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -397,6 +401,7 @@ const roadLayer7 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -408,6 +413,7 @@ const roadLayer8 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -419,6 +425,7 @@ const roadLayer9 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -430,6 +437,7 @@ const roadLayer10 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -441,6 +449,7 @@ const roadLayer11 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -476,6 +485,7 @@ const roadLayer14 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -487,6 +497,7 @@ const roadLayer15 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -498,6 +509,7 @@ const roadLayer16 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -509,6 +521,7 @@ const roadLayer17 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -520,6 +533,7 @@ const roadLayer18 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -531,6 +545,7 @@ const roadLayer19 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -542,6 +557,7 @@ const roadLayer20 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
@@ -553,11 +569,12 @@ const roadLayer21 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
 		return roadStyle;
 	},
 });
 
-map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
+const map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
   layers: [
 	  sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4,
 	  sidoLayer5, sidoLayer6, sidoLayer7, sidoLayer8,
@@ -593,12 +610,12 @@ const highlightStyle = new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Styl
     }),
     stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
       color: '#f00',
-      width: 3
+      width: 1
     })
   })
 });
 
-featureOverlay = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
+const featureOverlay = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
   source: new _src_ol_source_Vector_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "b"](),
   map: map,
   style: function(feature) {
@@ -641,6 +658,9 @@ map.on('click', function(evt) {
 });
 
 map.updateSize();
+
+window.map = map;
+window.featureOverlay= featureOverlay;
 
 
 /***/ })
