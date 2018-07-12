@@ -13,6 +13,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
 /* harmony import */ var _src_ol_extent_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3);
 /* harmony import */ var _src_ol_coordinate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(34);
+/* harmony import */ var _src_ol_layer_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(10);
+
 
 
 
@@ -24,7 +26,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const style = new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Style */ "g"]({
   fill: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Fill */ "c"]({
-    color: 'rgba(255, 255, 255, 0.1)'
+    color: 'rgba(255, 255, 255, 0.8)'
   }),
   stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
     color: '#000000',
@@ -49,7 +51,6 @@ const sidoLayer1 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(247, 218, 103, 0.1)');
     feature.set('name', '41')
     return style;
   }
@@ -62,7 +63,6 @@ const sidoLayer2 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(188, 244, 83, 0.1)');
     return style;
   }
 });
@@ -74,7 +74,6 @@ const sidoLayer3 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(224, 168, 96, 0.1)');
     return style;
   }
 });
@@ -86,7 +85,6 @@ const sidoLayer4 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(18, 144, 83, 0.1)');
     return style;
   }
 });
@@ -98,7 +96,6 @@ const sidoLayer5 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(100, 0, 83, 0.1)');
     return style;
   }
 });
@@ -110,7 +107,6 @@ const sidoLayer6 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(100, 0, 100, 0.1)');
     return style;
   }
 });
@@ -122,7 +118,6 @@ const sidoLayer7 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(100, 0, 255, 0.1)');
     return style;
   }
 });
@@ -134,7 +129,6 @@ const sidoLayer8 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(0, 0, 255, 0.1)');
     return style;
   }
 });
@@ -146,7 +140,6 @@ const sidoLayer9 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(100, 51, 206, 0.1)');
     return style;
   }
 });
@@ -158,7 +151,6 @@ const sidoLayer10 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(60, 151, 206, 0.1)');
 		return style;
 	}
 });
@@ -170,7 +162,6 @@ const sidoLayer11 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(160, 51, 206, 0.1)');
 		return style;
 	}
 });
@@ -182,7 +173,6 @@ const sidoLayer12 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(60, 51, 0, 0.1)');
 		return style;
 	}
 });
@@ -194,7 +184,6 @@ const sidoLayer13 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(60, 0, 206, 0.1)');
 		return style;
 	}
 });
@@ -206,7 +195,6 @@ const sidoLayer14 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(60, 111, 111, 0.1)');
 		return style;
 	}
 });
@@ -218,7 +206,6 @@ const sidoLayer15 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(55, 55, 206, 0.6)');
 		return style;
 	}
 });
@@ -230,7 +217,6 @@ const sidoLayer16 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(155, 155, 206, 0.1)');
 		return style;
 	}
 });
@@ -242,7 +228,6 @@ const sidoLayer17 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(60, 235, 206, 0.1)');
 		return style;
 	}
 });
@@ -254,7 +239,6 @@ const sidoLayer18 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(60, 51, 161, 0.1)');
 		return style;
 	}
 });
@@ -266,7 +250,6 @@ const sidoLayer19 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(11, 51, 22, 0.1)');
 		return style;
 	}
 });
@@ -278,29 +261,11 @@ const sgg41xxx = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* def
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('SIG_KOR_NM'));
-		style.getFill().setColor('rgba(11, 51, 22, 0.1)');
 		feature.set('name', 'sgg41xxx');
 		return style;
 	}
 });
 sgg41xxx.setVisible(false);
-
-const roadStyle1 = new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Style */ "g"]({
-  stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
-	    color: '#000000',
-	    width: 3
-	  }),
-  text: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Text */ "h"]({
-    font: '12px Calibri,sans-serif',
-    fill: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Fill */ "c"]({
-      color: '#000'
-    }),
-    stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
-      color: '#fff',
-      width: 3
-    })
-  })
-});
 
 const ROAD_STYLE_1 = '#00FF00';
 const ROAD_STYLE_2 = '#ffbc66';
@@ -315,13 +280,13 @@ const roadStyle = [
 	new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Style */ "g"]({
 	  stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
 	  	color: '#FFFFFF',
-	    width: 6
+	    width: 3
 	  })
 	}),
 	new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Style */ "g"]({
 		stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
 	    color: ROAD_STYLE_1,
-	    width: 2
+	    width: 1
 	  }),
 	  text: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Text */ "h"]({
 	    font: '12px Calibri,sans-serif',
@@ -595,17 +560,26 @@ const roadLayer21 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 
 const map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
   layers: [
-  	sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4,
-	  sidoLayer5, sidoLayer6, sidoLayer7, sidoLayer8,
-	  sidoLayer9, sidoLayer10, sidoLayer11, sidoLayer12,
-	  sidoLayer13, sidoLayer14, sidoLayer15, sidoLayer16,
-	  sidoLayer17, sidoLayer18, sidoLayer19,
-	  roadLayer1, roadLayer2, roadLayer3, roadLayer4,
-	  roadLayer5, roadLayer6, roadLayer7, roadLayer8,
-	  roadLayer9, roadLayer10, roadLayer11, roadLayer12,
-	  roadLayer13, roadLayer14, roadLayer15, roadLayer16,
-	  roadLayer17, roadLayer18, roadLayer19, roadLayer20,
-	  sgg41xxx],
+  	new _src_ol_layer_js__WEBPACK_IMPORTED_MODULE_8__[/* Group */ "a"]({
+  		layers: [
+  			sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4,
+  		  sidoLayer5, sidoLayer6, sidoLayer7, sidoLayer8,
+  		  sidoLayer9, sidoLayer10, sidoLayer11, sidoLayer12,
+  		  sidoLayer13, sidoLayer14, sidoLayer15, sidoLayer16,
+  		  sidoLayer17, sidoLayer18, sidoLayer19
+  		]
+  	}),
+  	sgg41xxx,
+  	new _src_ol_layer_js__WEBPACK_IMPORTED_MODULE_8__[/* Group */ "a"]({
+  		layers: [
+  			roadLayer1, roadLayer2, roadLayer3, roadLayer4,
+  		  roadLayer5, roadLayer6, roadLayer7, roadLayer8,
+  		  roadLayer9, roadLayer10, roadLayer11, roadLayer12,
+  		  roadLayer13, roadLayer14, roadLayer15, roadLayer16,
+  		  roadLayer17, roadLayer18, roadLayer19, roadLayer20
+  		]
+  	})
+  ],
   target: 'map',
   view: new _src_ol_View_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"]({
     projection: 'EPSG:3857',
@@ -653,11 +627,12 @@ const displayFeatureInfo = function(pixel) {
   
   console.log(feature.get('name'));
   if (feature.get('name') == '41') {
+  	toggleLayer(false);
   	sgg41xxx.setVisible(true);
   	sgg41xxx.getSource().on('change', function(e) {
-  		map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize())
+  		map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize());
   	});
-  	map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize())
+  	map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize());
   }
 //  if (feature !== highlight) {
 //    if (highlight) {
@@ -686,8 +661,25 @@ map.on('click', function(evt) {
 map.updateSize();
 
 map.getView().on('propertychange', function(e) { 
-	if (e.target.getZoom() < 8) sgg41xxx.setVisible(false);
+	if (e.target.getZoom() < 8 && (map.getView().getCenter()[0] != 14218435)) {
+		sgg41xxx.setVisible(false);
+		toggleLayer(true);
+		map.getView().setCenter([14218435, 4385412]);
+	}
 });
+
+const toggleLayer = function(isShow) {
+//	map.getLayers().forEach(function(layer, i) { 
+//	  if (layer instanceof LayerGroup) {
+//      layer.getLayers().forEach(function(sublayer, j) {
+//        sublayer.setVisible(isShow);
+//      });
+//    }
+//	});
+	map.getLayers().item(0).getLayers().forEach(function(sublayer, j) {
+		sublayer.setVisible(isShow);
+	});
+}
 
 const init = function() {
 	var extent = Object(_src_ol_extent_js__WEBPACK_IMPORTED_MODULE_6__[/* createEmpty */ "j"])();

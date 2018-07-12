@@ -62,10 +62,9 @@
       
       function toggleRoadLayer() {
       	var map = window.map;
-      	for (var i = 19; i < map.getLayers().getArray().length; i++) { 
-      		var layer = map.getLayers().getArray()[i];
-      		layer.setVisible(!layer.getVisible()); 
-  	    }
+      	map.getLayers().item(2).getLayers().forEach(function(layer, j) {
+      		layer.setVisible(!layer.getVisible());
+        });
       }
     </script>
   </head>

@@ -10,7 +10,7 @@ import {Group as LayerGroup, Tile as TileLayer} from '../src/ol/layer.js';
 
 const style = new Style({
   fill: new Fill({
-    color: 'rgba(255, 255, 255, 0.1)'
+    color: 'rgba(255, 255, 255, 0.8)'
   }),
   stroke: new Stroke({
     color: '#000000',
@@ -35,7 +35,6 @@ const sidoLayer1 = new VectorLayer({
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(247, 218, 103, 0.1)');
     feature.set('name', '41')
     return style;
   }
@@ -48,7 +47,6 @@ const sidoLayer2 = new VectorLayer({
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(188, 244, 83, 0.1)');
     return style;
   }
 });
@@ -60,7 +58,6 @@ const sidoLayer3 = new VectorLayer({
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(224, 168, 96, 0.1)');
     return style;
   }
 });
@@ -72,7 +69,6 @@ const sidoLayer4 = new VectorLayer({
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(18, 144, 83, 0.1)');
     return style;
   }
 });
@@ -84,7 +80,6 @@ const sidoLayer5 = new VectorLayer({
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(100, 0, 83, 0.1)');
     return style;
   }
 });
@@ -96,7 +91,6 @@ const sidoLayer6 = new VectorLayer({
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(100, 0, 100, 0.1)');
     return style;
   }
 });
@@ -108,7 +102,6 @@ const sidoLayer7 = new VectorLayer({
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(100, 0, 255, 0.1)');
     return style;
   }
 });
@@ -120,7 +113,6 @@ const sidoLayer8 = new VectorLayer({
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(0, 0, 255, 0.1)');
     return style;
   }
 });
@@ -132,7 +124,6 @@ const sidoLayer9 = new VectorLayer({
   }),
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
-    style.getFill().setColor('rgba(100, 51, 206, 0.1)');
     return style;
   }
 });
@@ -144,7 +135,6 @@ const sidoLayer10 = new VectorLayer({
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(60, 151, 206, 0.1)');
 		return style;
 	}
 });
@@ -156,7 +146,6 @@ const sidoLayer11 = new VectorLayer({
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(160, 51, 206, 0.1)');
 		return style;
 	}
 });
@@ -168,7 +157,6 @@ const sidoLayer12 = new VectorLayer({
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(60, 51, 0, 0.1)');
 		return style;
 	}
 });
@@ -180,7 +168,6 @@ const sidoLayer13 = new VectorLayer({
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(60, 0, 206, 0.1)');
 		return style;
 	}
 });
@@ -192,7 +179,6 @@ const sidoLayer14 = new VectorLayer({
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(60, 111, 111, 0.1)');
 		return style;
 	}
 });
@@ -204,7 +190,6 @@ const sidoLayer15 = new VectorLayer({
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(55, 55, 206, 0.6)');
 		return style;
 	}
 });
@@ -216,7 +201,6 @@ const sidoLayer16 = new VectorLayer({
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(155, 155, 206, 0.1)');
 		return style;
 	}
 });
@@ -228,7 +212,6 @@ const sidoLayer17 = new VectorLayer({
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(60, 235, 206, 0.1)');
 		return style;
 	}
 });
@@ -240,7 +223,6 @@ const sidoLayer18 = new VectorLayer({
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(60, 51, 161, 0.1)');
 		return style;
 	}
 });
@@ -252,7 +234,6 @@ const sidoLayer19 = new VectorLayer({
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('area1'));
-		style.getFill().setColor('rgba(11, 51, 22, 0.1)');
 		return style;
 	}
 });
@@ -264,29 +245,11 @@ const sgg41xxx = new VectorLayer({
 	}),
 	style: function(feature) {
 		style.getText().setText(feature.get('SIG_KOR_NM'));
-		style.getFill().setColor('rgba(11, 51, 22, 0.1)');
 		feature.set('name', 'sgg41xxx');
 		return style;
 	}
 });
 sgg41xxx.setVisible(false);
-
-const roadStyle1 = new Style({
-  stroke: new Stroke({
-	    color: '#000000',
-	    width: 3
-	  }),
-  text: new Text({
-    font: '12px Calibri,sans-serif',
-    fill: new Fill({
-      color: '#000'
-    }),
-    stroke: new Stroke({
-      color: '#fff',
-      width: 3
-    })
-  })
-});
 
 const ROAD_STYLE_1 = '#00FF00';
 const ROAD_STYLE_2 = '#ffbc66';
@@ -301,13 +264,13 @@ const roadStyle = [
 	new Style({
 	  stroke: new Stroke({
 	  	color: '#FFFFFF',
-	    width: 6
+	    width: 3
 	  })
 	}),
 	new Style({
 		stroke: new Stroke({
 	    color: ROAD_STYLE_1,
-	    width: 2
+	    width: 1
 	  }),
 	  text: new Text({
 	    font: '12px Calibri,sans-serif',
@@ -590,12 +553,17 @@ const map = new Map({
   		  sidoLayer17, sidoLayer18, sidoLayer19
   		]
   	}),
-	  roadLayer1, roadLayer2, roadLayer3, roadLayer4,
-	  roadLayer5, roadLayer6, roadLayer7, roadLayer8,
-	  roadLayer9, roadLayer10, roadLayer11, roadLayer12,
-	  roadLayer13, roadLayer14, roadLayer15, roadLayer16,
-	  roadLayer17, roadLayer18, roadLayer19, roadLayer20,
-	  sgg41xxx],
+  	sgg41xxx,
+  	new LayerGroup({
+  		layers: [
+  			roadLayer1, roadLayer2, roadLayer3, roadLayer4,
+  		  roadLayer5, roadLayer6, roadLayer7, roadLayer8,
+  		  roadLayer9, roadLayer10, roadLayer11, roadLayer12,
+  		  roadLayer13, roadLayer14, roadLayer15, roadLayer16,
+  		  roadLayer17, roadLayer18, roadLayer19, roadLayer20
+  		]
+  	})
+  ],
   target: 'map',
   view: new View({
     projection: 'EPSG:3857',
@@ -685,13 +653,16 @@ map.getView().on('propertychange', function(e) {
 });
 
 const toggleLayer = function(isShow) {
-	map.getLayers().forEach(function(layer, i) { 
-	  if (layer instanceof LayerGroup) {
-      layer.getLayers().forEach(function(sublayer, j) {
-        sublayer.setVisible(isShow);
-      });
-    }
-	})
+//	map.getLayers().forEach(function(layer, i) { 
+//	  if (layer instanceof LayerGroup) {
+//      layer.getLayers().forEach(function(sublayer, j) {
+//        sublayer.setVisible(isShow);
+//      });
+//    }
+//	});
+	map.getLayers().item(0).getLayers().forEach(function(sublayer, j) {
+		sublayer.setVisible(isShow);
+	});
 }
 
 const init = function() {
