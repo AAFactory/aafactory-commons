@@ -6,6 +6,7 @@ import VectorSource from '../src/ol/source/Vector.js';
 import {Fill, Stroke, Style, Text} from '../src/ol/style.js';
 import {boundingExtent, createEmpty, extend} from '../src/ol/extent.js';
 import {toStringXY} from '../src/ol/coordinate';
+import {Group as LayerGroup, Tile as TileLayer} from '../src/ol/layer.js';
 
 const style = new Style({
   fill: new Fill({
@@ -580,11 +581,15 @@ const roadLayer21 = new VectorLayer({
 
 const map = new Map({
   layers: [
-  	sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4,
-	  sidoLayer5, sidoLayer6, sidoLayer7, sidoLayer8,
-	  sidoLayer9, sidoLayer10, sidoLayer11, sidoLayer12,
-	  sidoLayer13, sidoLayer14, sidoLayer15, sidoLayer16,
-	  sidoLayer17, sidoLayer18, sidoLayer19,
+  	new LayerGroup({
+  		layers: [
+  			sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4,
+  		  sidoLayer5, sidoLayer6, sidoLayer7, sidoLayer8,
+  		  sidoLayer9, sidoLayer10, sidoLayer11, sidoLayer12,
+  		  sidoLayer13, sidoLayer14, sidoLayer15, sidoLayer16,
+  		  sidoLayer17, sidoLayer18, sidoLayer19
+  		]
+  	}),
 	  roadLayer1, roadLayer2, roadLayer3, roadLayer4,
 	  roadLayer5, roadLayer6, roadLayer7, roadLayer8,
 	  roadLayer9, roadLayer10, roadLayer11, roadLayer12,
@@ -638,11 +643,12 @@ const displayFeatureInfo = function(pixel) {
   
   console.log(feature.get('name'));
   if (feature.get('name') == '41') {
+  	toggleLayer(false);
   	sgg41xxx.setVisible(true);
   	sgg41xxx.getSource().on('change', function(e) {
-  		map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize())
+  		map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize());
   	});
-  	map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize())
+  	map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize());
   }
 //  if (feature !== highlight) {
 //    if (highlight) {
@@ -671,8 +677,22 @@ map.on('click', function(evt) {
 map.updateSize();
 
 map.getView().on('propertychange', function(e) { 
-	if (e.target.getZoom() < 8) sgg41xxx.setVisible(false);
+	if (e.target.getZoom() < 8 && (map.getView().getCenter()[0] != 14218435)) {
+		sgg41xxx.setVisible(false);
+		toggleLayer(true);
+		map.getView().setCenter([14218435, 4385412]);
+	}
 });
+
+const toggleLayer = function(isShow) {
+	map.getLayers().forEach(function(layer, i) { 
+	  if (layer instanceof LayerGroup) {
+      layer.getLayers().forEach(function(sublayer, j) {
+        sublayer.setVisible(isShow);
+      });
+    }
+	})
+}
 
 const init = function() {
 	var extent = createEmpty();
