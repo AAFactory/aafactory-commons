@@ -8,9 +8,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
 /* harmony import */ var _src_ol_View_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
 /* harmony import */ var _src_ol_format_GeoJSON_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(28);
-/* harmony import */ var _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(25);
+/* harmony import */ var _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(24);
 /* harmony import */ var _src_ol_source_Vector_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(13);
 /* harmony import */ var _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
+/* harmony import */ var _src_ol_extent_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3);
+/* harmony import */ var _src_ol_coordinate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(34);
+
+
 
 
 
@@ -46,6 +50,7 @@ const sidoLayer1 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* d
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
     style.getFill().setColor('rgba(247, 218, 103, 0.1)');
+    feature.set('name', '41')
     return style;
   }
 });
@@ -265,6 +270,20 @@ const sidoLayer19 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 		return style;
 	}
 });
+
+const sgg41xxx = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
+	source: new _src_ol_source_Vector_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "b"]({
+		url: 'data/geojson/41xxx.geojson',
+		format: new _src_ol_format_GeoJSON_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"]()
+	}),
+	style: function(feature) {
+		style.getText().setText(feature.get('SIG_KOR_NM'));
+		style.getFill().setColor('rgba(11, 51, 22, 0.1)');
+		feature.set('name', 'sgg41xxx');
+		return style;
+	}
+});
+sgg41xxx.setVisible(false);
 
 const roadStyle1 = new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Style */ "g"]({
   stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
@@ -576,7 +595,7 @@ const roadLayer21 = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* 
 
 const map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
   layers: [
-	  sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4,
+  	sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4,
 	  sidoLayer5, sidoLayer6, sidoLayer7, sidoLayer8,
 	  sidoLayer9, sidoLayer10, sidoLayer11, sidoLayer12,
 	  sidoLayer13, sidoLayer14, sidoLayer15, sidoLayer16,
@@ -585,7 +604,8 @@ const map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
 	  roadLayer5, roadLayer6, roadLayer7, roadLayer8,
 	  roadLayer9, roadLayer10, roadLayer11, roadLayer12,
 	  roadLayer13, roadLayer14, roadLayer15, roadLayer16,
-	  roadLayer17, roadLayer18, roadLayer19, roadLayer20],
+	  roadLayer17, roadLayer18, roadLayer19, roadLayer20,
+	  sgg41xxx],
   target: 'map',
   view: new _src_ol_View_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"]({
     projection: 'EPSG:3857',
@@ -632,7 +652,13 @@ const displayFeatureInfo = function(pixel) {
   });
   
   console.log(feature.get('name'));
-
+  if (feature.get('name') == '41') {
+  	sgg41xxx.setVisible(true);
+  	sgg41xxx.getSource().on('change', function(e) {
+  		map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize())
+  	});
+  	map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize())
+  }
 //  if (feature !== highlight) {
 //    if (highlight) {
 //      featureOverlay.getSource().removeFeature(highlight);
@@ -659,6 +685,20 @@ map.on('click', function(evt) {
 
 map.updateSize();
 
+map.getView().on('propertychange', function(e) { 
+	if (e.target.getZoom() < 8) sgg41xxx.setVisible(false);
+});
+
+const init = function() {
+	var extent = Object(_src_ol_extent_js__WEBPACK_IMPORTED_MODULE_6__[/* createEmpty */ "j"])();
+	map.getLayers().forEach(function(layer) {
+	  Object(_src_ol_extent_js__WEBPACK_IMPORTED_MODULE_6__[/* extend */ "q"])(extent, layer.getSource().getExtent());
+	  console.log(layer.getSource().getExtent())
+	});
+	map.getView().fit(extent, map.getSize());	
+}
+
+window.init = init;
 window.map = map;
 window.featureOverlay= featureOverlay;
 

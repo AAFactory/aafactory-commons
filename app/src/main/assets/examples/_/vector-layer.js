@@ -35,6 +35,7 @@ const sidoLayer1 = new VectorLayer({
   style: function(feature) {
     style.getText().setText(feature.get('area1'));
     style.getFill().setColor('rgba(247, 218, 103, 0.1)');
+    feature.set('name', '41')
     return style;
   }
 });
@@ -254,6 +255,20 @@ const sidoLayer19 = new VectorLayer({
 		return style;
 	}
 });
+
+const sgg41xxx = new VectorLayer({
+	source: new VectorSource({
+		url: 'data/geojson/41xxx.geojson',
+		format: new GeoJSON()
+	}),
+	style: function(feature) {
+		style.getText().setText(feature.get('SIG_KOR_NM'));
+		style.getFill().setColor('rgba(11, 51, 22, 0.1)');
+		feature.set('name', 'sgg41xxx');
+		return style;
+	}
+});
+sgg41xxx.setVisible(false);
 
 const roadStyle1 = new Style({
   stroke: new Stroke({
@@ -565,7 +580,7 @@ const roadLayer21 = new VectorLayer({
 
 const map = new Map({
   layers: [
-	  sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4,
+  	sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4,
 	  sidoLayer5, sidoLayer6, sidoLayer7, sidoLayer8,
 	  sidoLayer9, sidoLayer10, sidoLayer11, sidoLayer12,
 	  sidoLayer13, sidoLayer14, sidoLayer15, sidoLayer16,
@@ -574,7 +589,8 @@ const map = new Map({
 	  roadLayer5, roadLayer6, roadLayer7, roadLayer8,
 	  roadLayer9, roadLayer10, roadLayer11, roadLayer12,
 	  roadLayer13, roadLayer14, roadLayer15, roadLayer16,
-	  roadLayer17, roadLayer18, roadLayer19, roadLayer20],
+	  roadLayer17, roadLayer18, roadLayer19, roadLayer20,
+	  sgg41xxx],
   target: 'map',
   view: new View({
     projection: 'EPSG:3857',
@@ -621,7 +637,13 @@ const displayFeatureInfo = function(pixel) {
   });
   
   console.log(feature.get('name'));
-
+  if (feature.get('name') == '41') {
+  	sgg41xxx.setVisible(true);
+  	sgg41xxx.getSource().on('change', function(e) {
+  		map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize())
+  	});
+  	map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize())
+  }
 //  if (feature !== highlight) {
 //    if (highlight) {
 //      featureOverlay.getSource().removeFeature(highlight);
@@ -647,6 +669,10 @@ map.on('click', function(evt) {
 });
 
 map.updateSize();
+
+map.getView().on('propertychange', function(e) { 
+	if (e.target.getZoom() < 8) sgg41xxx.setVisible(false);
+});
 
 const init = function() {
 	var extent = createEmpty();
