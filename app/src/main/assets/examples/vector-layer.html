@@ -51,10 +51,10 @@
       	element.blur();
         var map = window.map;
         var featureOverlay = window.featureOverlay;
-      	map.getView().fit(map.getLayers().item(element.value).getSource().getExtent(), map.getSize());
+      	map.getView().fit(map.getLayers().item(2).getLayers().item(element.value).getSource().getExtent(), map.getSize());
         //console.log(map.getLayers().item(element.value).get('name'));
         
-        var targetLayer = map.getLayers().item(element.value).getSource().getFeatures()[0];
+        var targetLayer = map.getLayers().item(2).getLayers().item(element.value).getSource().getFeatures()[0];
         if (focusLayer) featureOverlay.getSource().removeFeature(focusLayer);
         featureOverlay.getSource().addFeature(targetLayer);
         focusLayer = targetLayer;
@@ -73,27 +73,27 @@
     <div id="roadLayers">
         <select onchange="fitboundsLayer(this);">
             <option value="" disabled selected>고속도로</option>
-            <option value="19">경부고속도로</option>
-            <option value="20">호남고속도로</option>
-            <option value="21">중부고속도로</option>
-            <option value="22">통영대전고속도로</option>
-            <option value="23">중부내륙고속도로</option>
-            <option value="24">제2중부고속도로</option>
-            <option value="25">중부내륙고속도로지선</option>
-            <option value="26">서울양양고속도로</option>
-            <option value="27">영동고속도로</option>
+            <option value="0">경부고속도로</option>
+            <option value="1">호남고속도로</option>
+            <option value="2">중부고속도로</option>
+            <option value="3">통영대전고속도로</option>
+            <option value="4">중부내륙고속도로</option>
+            <option value="5">제2중부고속도로</option>
+            <option value="6">중부내륙고속도로지선</option>
+            <option value="7">서울양양고속도로</option>
+            <option value="8">영동고속도로</option>
         
-            <option value="28">경인고속도로</option>
-            <option value="29">광주원주고속도로</option>
-            <option value="30">내부순환로</option>
-            <option value="31">동해고속도로(부산-울산)</option>
-            <option value="32">동해고속도로(삼척-속초)</option>
-            <option value="33">동해고속도로(울산-포항)</option>
-            <option value="34">중앙고속도로(춘천-금호)</option>
-            <option value="35">서해안고속도로</option>
-            <option value="36">제2경인고속도로(안양-성남)</option>
-            <option value="37">제2경인고속도로(인천대교)</option>
-            <option value="38">중앙고속도로(부산-대구)</option>
+            <option value="9">경인고속도로</option>
+            <option value="10">광주원주고속도로</option>
+            <option value="11">내부순환로</option>
+            <option value="12">동해고속도로(부산-울산)</option>
+            <option value="13">동해고속도로(삼척-속초)</option>
+            <option value="14">동해고속도로(울산-포항)</option>
+            <option value="15">중앙고속도로(춘천-금호)</option>
+            <option value="16">서해안고속도로</option>
+            <option value="17">제2경인고속도로(안양-성남)</option>
+            <option value="18">제2경인고속도로(인천대교)</option>
+            <option value="19">중앙고속도로(부산-대구)</option>
         </select>
         <div>
           <div class="legend" id="highway"><span>고속도로</span></div>
