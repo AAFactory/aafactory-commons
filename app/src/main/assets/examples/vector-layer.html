@@ -4,14 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="./resources/prism/prism.css" type="text/css">
     <link rel="stylesheet" href="./css/ol.css" type="text/css">
     <link rel="stylesheet" href="./resources/layout.css" type="text/css">
-    
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch,requestAnimationFrame,Element.prototype.classList,URL"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
     <title>Vector Layer</title>
     
     <style>
@@ -60,9 +55,9 @@
         focusLayer = targetLayer;
       }
       
-      function toggleRoadLayer() {
+      function toggleRoadLayer(index) {
       	var map = window.map;
-      	map.getLayers().item(2).getLayers().forEach(function(layer, j) {
+      	map.getLayers().item(index).getLayers().forEach(function(layer, j) {
       		layer.setVisible(!layer.getVisible());
         });
       }
@@ -82,10 +77,9 @@
             <option value="6">중부내륙고속도로지선</option>
             <option value="7">서울양양고속도로</option>
             <option value="8">영동고속도로</option>
-        
             <option value="9">경인고속도로</option>
             <option value="10">광주원주고속도로</option>
-            <option value="11">내부순환로</option>
+            <option value="11">세종포천고속도로(구리-포천)</option>
             <option value="12">동해고속도로(부산-울산)</option>
             <option value="13">동해고속도로(삼척-속초)</option>
             <option value="14">동해고속도로(울산-포항)</option>
@@ -96,8 +90,8 @@
             <option value="19">중앙고속도로(부산-대구)</option>
         </select>
         <div>
-          <div class="legend" id="highway"><span>고속도로</span></div>
-          <div class="legend" id="localRoad"><span>지방도, 국도</span></div>
+          <div class="legend" onclick="toggleRoadLayer(2);" id="highway"><span>고속도로</span></div>
+          <div class="legend" onclick="toggleRoadLayer(3);" id="localRoad"><span>지방도, 국도</span></div>
         </div>
     </div>
   </body>
