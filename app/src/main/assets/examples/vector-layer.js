@@ -61,14 +61,14 @@ const roadStyle = [
 	 */
 	new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Style */ "g"]({
 	  stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
-	  	color: '#FFFFFF',
-	    width: 3
+	  	color: ROAD_STYLE_1,
+	    width: 5
 	  })
 	}),
 	new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Style */ "g"]({
 		stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
-	    color: ROAD_STYLE_1,
-	    width: 1
+	    color: '#FFFFFF',
+	    width: 3
 	  }),
 	  text: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Text */ "h"]({
 	    font: '12px Calibri,sans-serif',
@@ -92,9 +92,9 @@ const highlightStyle = new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Styl
     color: '#f00',
     width: 1
   }),
-  fill: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Fill */ "c"]({
-    color: 'rgba(255,0,0,0.1)'
-  }),
+//  fill: new Fill({
+//    color: 'rgba(255,0,0,0.1)'
+//  }),
   text: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Text */ "h"]({
     font: '12px Calibri,sans-serif',
     fill: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Fill */ "c"]({
@@ -119,7 +119,7 @@ const createRoadLayer = function(geoJsonName, color) {
 		}),
 		style: function(feature) {
 			roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-			roadStyle[1].getStroke().setColor(color);
+			roadStyle[0].getStroke().setColor(color);
 			return roadStyle;
 		},
 	});
@@ -193,6 +193,7 @@ const sidoLayer17 = createSDLayer('인천광역시.geojson');
 const sidoLayer18 = createSDLayer('대전광역시.geojson');
 const sidoLayer19 = createSDLayer('세종특별자치시.geojson');
 
+const sgg11xxx = createSGGLayer('11xxx.geojson');
 const sgg41xxx = createSGGLayer('41xxx.geojson');
 const sgg41131xxx = createEMDLayer('41131xxx.geojson');
 const sgg41133xxx = createEMDLayer('41133xxx.geojson');
@@ -222,6 +223,7 @@ const highwayLayer21 = createRoadLayer('중앙고속도로(춘천-금호)_EPSG43
 
 const nRoadLayer1 = createRoadLayer('내부순환로_EPSG4326.geojson', ROAD_STYLE_2);
 const nRoadLayer2 = createRoadLayer('분당수서간도시고속화도로_EPSG4326.geojson', ROAD_STYLE_2);
+const nRoadLayer3 = createRoadLayer('서울외곽순환고속도로_EPSG4326.geojson', ROAD_STYLE_2);
 
 const map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
   layers: [
@@ -236,7 +238,7 @@ const map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
   	}),
   	new _src_ol_layer_js__WEBPACK_IMPORTED_MODULE_8__[/* Group */ "a"]({
   		layers: [
-  			sgg41xxx, sgg41131xxx, sgg41133xxx, sgg41135xxx
+  			sgg11xxx, sgg41xxx, sgg41131xxx, sgg41133xxx, sgg41135xxx
   			]
   	}),
   	new _src_ol_layer_js__WEBPACK_IMPORTED_MODULE_8__[/* Group */ "a"]({
@@ -250,7 +252,7 @@ const map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
   	}),
   	new _src_ol_layer_js__WEBPACK_IMPORTED_MODULE_8__[/* Group */ "a"]({
   		layers: [
-  			nRoadLayer1, nRoadLayer2
+  			nRoadLayer1, nRoadLayer2, nRoadLayer3
   		]
   	})
   ],
@@ -339,9 +341,11 @@ map.getView().on('propertychange', function(e) {
 		sgg41135xxx.setVisible(false);
 	}
 	
-	if (e.target.getZoom() >= 8) {
+	if (e.target.getZoom() >= 9) {
+		sgg11xxx.setVisible(true);
 		sgg41xxx.setVisible(true);
 	} else {
+		sgg11xxx.setVisible(false);
 		sgg41xxx.setVisible(false);
 	}
 	

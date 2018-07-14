@@ -18,7 +18,7 @@
          right: 10px; 
          font-size: 13px;
        }
-       select { background: white; border: 0px; padding: 5px; }
+       select { background: white; border: 0px; padding: 5px; display: block; width: 200px; }
        .legend {
          width: 100px;
          display: inline-block;
@@ -27,17 +27,18 @@
          border: solid white 1px;
          vertical-align: middle;
          text-align: right;
-         padding: 0 5px;
+         padding: 5px 5px;
        }
        #highway {
          background: #00FF00;
-         top: 35px;
+         top: 65px;
        }
        #localRoad {
          background: #ffbc66;
-         top: 57px;
+         top: 92px;
        }
        span { font-size: 10px; color: white; }
+       #nRoadSelect {  }
     </style>
     
     <script type="text/javascript">
@@ -50,6 +51,19 @@
         //console.log(map.getLayers().item(element.value).get('name'));
         
         var targetLayer = map.getLayers().item(2).getLayers().item(element.value).getSource().getFeatures()[0];
+        if (focusLayer) featureOverlay.getSource().removeFeature(focusLayer);
+        featureOverlay.getSource().addFeature(targetLayer);
+        focusLayer = targetLayer;
+      }
+      
+      function fitboundsNRoadLayer(element) {
+      	element.blur();
+        var map = window.map;
+        var featureOverlay = window.featureOverlay;
+        map.getView().fit(map.getLayers().item(3).getLayers().item(element.value).getSource().getExtent(), map.getSize());
+        //console.log(map.getLayers().item(element.value).get('name'));
+        
+        var targetLayer = map.getLayers().item(3).getLayers().item(element.value).getSource().getFeatures()[0];
         if (focusLayer) featureOverlay.getSource().removeFeature(focusLayer);
         featureOverlay.getSource().addFeature(targetLayer);
         focusLayer = targetLayer;
@@ -88,6 +102,12 @@
             <option value="17">제2경인고속도로(안양-성남)</option>
             <option value="18">제2경인고속도로(인천대교)</option>
             <option value="19">중앙고속도로(부산-대구)</option>
+        </select>
+        <select id="nRoadSelect" onchange="fitboundsNRoadLayer(this);">
+            <option value="" disabled selected>국도</option>
+            <option value="0">내부순환로</option>
+            <option value="1">분당수서간도시고속화도로</option>
+            <option value="2">서울외곽순환고속도로</option>
         </select>
         <div>
           <div class="legend" onclick="toggleRoadLayer(2);" id="highway"><span>고속도로</span></div>

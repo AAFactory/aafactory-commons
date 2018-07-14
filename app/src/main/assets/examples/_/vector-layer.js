@@ -9,6 +9,9 @@ import {toStringXY} from '../src/ol/coordinate';
 import {Group as LayerGroup, Tile as TileLayer} from '../src/ol/layer.js';
 import Select from '../src/ol/interaction/Select.js';
 
+//======================================================================================
+// Define Layer Style
+//======================================================================================
 const style = new Style({
   fill: new Fill({
     color: 'rgba(255, 255, 255, 0.8)'
@@ -29,253 +32,6 @@ const style = new Style({
   })
 });
 
-const sidoLayer1 = new VectorLayer({
-  source: new VectorSource({
-    url: 'data/geojson/경기도.geojson',
-    format: new GeoJSON()
-  }),
-  style: function(feature) {
-    style.getText().setText(feature.get('area1'));
-    feature.set('name', '41')
-    return style;
-  }
-});
-
-const sidoLayer2 = new VectorLayer({
-  source: new VectorSource({
-    url: 'data/geojson/강원도.geojson',
-    format: new GeoJSON()
-  }),
-  style: function(feature) {
-    style.getText().setText(feature.get('area1'));
-    return style;
-  }
-});
-
-const sidoLayer3 = new VectorLayer({
-  source: new VectorSource({
-    url: 'data/geojson/경상북도.geojson',
-    format: new GeoJSON()
-  }),
-  style: function(feature) {
-    style.getText().setText(feature.get('area1'));
-    return style;
-  }
-});
-
-const sidoLayer4 = new VectorLayer({
-  source: new VectorSource({
-    url: 'data/geojson/대전광역시.geojson',
-    format: new GeoJSON()
-  }),
-  style: function(feature) {
-    style.getText().setText(feature.get('area1'));
-    return style;
-  }
-});
-
-const sidoLayer5 = new VectorLayer({
-  source: new VectorSource({
-    url: 'data/geojson/전라남도.geojson',
-    format: new GeoJSON()
-  }),
-  style: function(feature) {
-    style.getText().setText(feature.get('area1'));
-    return style;
-  }
-});
-
-const sidoLayer6 = new VectorLayer({
-  source: new VectorSource({
-    url: 'data/geojson/전라북도.geojson',
-    format: new GeoJSON()
-  }),
-  style: function(feature) {
-    style.getText().setText(feature.get('area1'));
-    return style;
-  }
-});
-
-const sidoLayer7 = new VectorLayer({
-  source: new VectorSource({
-    url: 'data/geojson/충청남도.geojson',
-    format: new GeoJSON()
-  }),
-  style: function(feature) {
-    style.getText().setText(feature.get('area1'));
-    return style;
-  }
-});
-
-const sidoLayer8 = new VectorLayer({
-  source: new VectorSource({
-    url: 'data/geojson/제주특별자치도.geojson',
-    format: new GeoJSON()
-  }),
-  style: function(feature) {
-    style.getText().setText(feature.get('area1'));
-    return style;
-  }
-});
-
-const sidoLayer9 = new VectorLayer({
-  source: new VectorSource({
-    url: 'data/geojson/울산광역시.geojson',
-    format: new GeoJSON()
-  }),
-  style: function(feature) {
-    style.getText().setText(feature.get('area1'));
-    return style;
-  }
-});
-
-const sidoLayer10 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/부산광역시.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('area1'));
-		return style;
-	}
-});
-
-const sidoLayer11 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/경상남도.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('area1'));
-		return style;
-	}
-});
-
-const sidoLayer12 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/광주광역시.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('area1'));
-		return style;
-	}
-});
-
-const sidoLayer13 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/대구광역시.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('area1'));
-		return style;
-	}
-});
-
-const sidoLayer14 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/전라남도.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('area1'));
-		return style;
-	}
-});
-
-const sidoLayer15 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/서울특별시.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('area1'));
-		return style;
-	}
-});
-
-const sidoLayer16 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/충청북도.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('area1'));
-		return style;
-	}
-});
-
-const sidoLayer17 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/인천광역시.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('area1'));
-		return style;
-	}
-});
-
-const sidoLayer18 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/대전광역시.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('area1'));
-		return style;
-	}
-});
-
-const sidoLayer19 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/세종특별자치시.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('area1'));
-		return style;
-	}
-});
-
-const sgg41xxx = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/41xxx.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('SIG_KOR_NM'));
-		feature.set('name', 'sgg41xxx');
-		return style;
-	}
-});
-sgg41xxx.setVisible(false);
-
-const sgg41131xxx = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/41131xxx.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('EMD_KOR_NM'));
-		return style;
-	}
-});
-sgg41131xxx.setVisible(false);
-
-const sgg41133xxx = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/41133xxx.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		style.getText().setText(feature.get('EMD_KOR_NM'));
-		return style;
-	}
-});
-sgg41133xxx.setVisible(false);
-
 const ROAD_STYLE_1 = '#00FF00';
 const ROAD_STYLE_2 = '#ffbc66';
 const roadStyle = [
@@ -288,14 +44,14 @@ const roadStyle = [
 	 */
 	new Style({
 	  stroke: new Stroke({
-	  	color: '#FFFFFF',
-	    width: 3
+	  	color: ROAD_STYLE_1,
+	    width: 5
 	  })
 	}),
 	new Style({
 		stroke: new Stroke({
-	    color: ROAD_STYLE_1,
-	    width: 1
+	    color: '#FFFFFF',
+	    width: 3
 	  }),
 	  text: new Text({
 	    font: '12px Calibri,sans-serif',
@@ -314,258 +70,143 @@ const roadStyle = [
   })
 ];
 
-const roadLayer1 = new VectorLayer({
-	source: new VectorSource({
-    url: 'data/geojson/경부고속도로_EPSG4326.geojson',
-    format: new GeoJSON()
+const highlightStyle = new Style({
+  stroke: new Stroke({
+    color: '#f00',
+    width: 1
   }),
-  style: function(feature) {
-    roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-    roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-    feature.set('name', '경부고속도로');
-    return roadStyle;
-  }
+//  fill: new Fill({
+//    color: 'rgba(255,0,0,0.1)'
+//  }),
+  text: new Text({
+    font: '12px Calibri,sans-serif',
+    fill: new Fill({
+      color: '#000'
+    }),
+    stroke: new Stroke({
+      color: '#f00',
+      width: 1
+    })
+  })
 });
 
-const roadLayer2 = new VectorLayer({
-  source: new VectorSource({
-    url: 'data/geojson/호남고속도로_EPSG4326.geojson',
-    format: new GeoJSON()
-  }),
-  style: function(feature) {
-  	roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-  	roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-    return roadStyle;
-  }
-});
 
-const roadLayer3 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/중부고속도로_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
+//======================================================================================
+//Factory Function
+//======================================================================================
+const createRoadLayer = function(geoJsonName, color) {
+	return new VectorLayer({
+		source: new VectorSource({
+			url: 'data/geojson/' + geoJsonName,
+			format: new GeoJSON()
+		}),
+		style: function(feature) {
+			roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+			roadStyle[0].getStroke().setColor(color);
+			return roadStyle;
+		},
+	});
+}
 
-const roadLayer4 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/통영대전고속도로_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
+const createSDLayer = function(geoJsonName) {
+	const layer = new VectorLayer({
+		source: new VectorSource({
+			url: 'data/geojson/' + geoJsonName,
+			format: new GeoJSON()
+		}),
+		style: function(feature) {
+			style.getText().setText(feature.get('area1'));
+			return style;
+		}
+	});
+	return layer;
+}
 
-const roadLayer5 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/중부내륙고속도로_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
+const createSGGLayer = function(geoJsonName) {
+	const layer = new VectorLayer({
+		source: new VectorSource({
+			url: 'data/geojson/' + geoJsonName,
+			format: new GeoJSON()
+		}),
+		style: function(feature) {
+			style.getText().setText(feature.get('SIG_KOR_NM'));
+			return style;
+		}
+	});
+	layer.setVisible(false);
+	return layer;
+}
 
-const roadLayer6 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/제2중부고속도로_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
+const createEMDLayer = function(geoJsonName) {
+	const layer = new VectorLayer({
+		source: new VectorSource({
+			url: 'data/geojson/' + geoJsonName,
+			format: new GeoJSON()
+		}),
+		style: function(feature) {
+			style.getText().setText(feature.get('EMD_KOR_NM'));
+			return style;
+		}
+	});
+	layer.setVisible(false);
+	return layer;
+}
 
-const roadLayer7 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/중부내륙고속도로지선_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
 
-const roadLayer8 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/서울양양고속도로_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
+//======================================================================================
+// Define Layer 
+//======================================================================================
+const sidoLayer1 = createSDLayer('경기도.geojson');
+const sidoLayer2 = createSDLayer('강원도.geojson');
+const sidoLayer3 = createSDLayer('경상북도.geojson');
+const sidoLayer4 = createSDLayer('대전광역시.geojson');
+const sidoLayer5 = createSDLayer('전라남도.geojson');
+const sidoLayer6 = createSDLayer('전라북도.geojson');
+const sidoLayer7 = createSDLayer('충청남도.geojson');
+const sidoLayer8 = createSDLayer('제주특별자치도.geojson');
+const sidoLayer9 = createSDLayer('울산광역시.geojson');
+const sidoLayer10 = createSDLayer('부산광역시.geojson');
+const sidoLayer11 = createSDLayer('경상남도.geojson');
+const sidoLayer12 = createSDLayer('광주광역시.geojson');
+const sidoLayer13 = createSDLayer('대구광역시.geojson');
+const sidoLayer14 = createSDLayer('전라남도.geojson');
+const sidoLayer15 = createSDLayer('서울특별시.geojson');
+const sidoLayer16 = createSDLayer('충청북도.geojson');
+const sidoLayer17 = createSDLayer('인천광역시.geojson');
+const sidoLayer18 = createSDLayer('대전광역시.geojson');
+const sidoLayer19 = createSDLayer('세종특별자치시.geojson');
 
-const roadLayer9 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/영동고속도로_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
+const sgg11xxx = createSGGLayer('11xxx.geojson');
+const sgg41xxx = createSGGLayer('41xxx.geojson');
+const sgg41131xxx = createEMDLayer('41131xxx.geojson');
+const sgg41133xxx = createEMDLayer('41133xxx.geojson');
+const sgg41135xxx = createEMDLayer('41135xxx.geojson');
 
-const roadLayer10 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/경인고속도로_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
+const highwayLayer1 = createRoadLayer('경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer2 = createRoadLayer('호남고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer3 = createRoadLayer('중부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer4 = createRoadLayer('통영대전고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer5 = createRoadLayer('중부내륙고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer6 = createRoadLayer('제2중부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer7 = createRoadLayer('중부내륙고속도로지선_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer8 = createRoadLayer('서울양양고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer9 = createRoadLayer('영동고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer10 = createRoadLayer('경인고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer11 = createRoadLayer('광주원주고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer12 = createRoadLayer('세종포천고속도로(구리-포천)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer13 = createRoadLayer('동해고속도로(부산-울산)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer14 = createRoadLayer('동해고속도로(삼척-속초)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer15 = createRoadLayer('동해고속도로(울산-포항)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer16 = createRoadLayer('중앙고속도로(춘천-금호)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer17 = createRoadLayer('서해안고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer18 = createRoadLayer('제2경인고속도로(안양-성남)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer19 = createRoadLayer('제2경인고속도로(인천대교)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer20 = createRoadLayer('중앙고속도로(부산-대구)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer21 = createRoadLayer('중앙고속도로(춘천-금호)_EPSG4326.geojson', ROAD_STYLE_1);
 
-const roadLayer11 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/광주원주고속도로_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
-
-const roadLayer12 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/내부순환로_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_2);
-		return roadStyle;
-	},
-});
-
-const roadLayer13 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/동해고속도로(부산-울산)_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
-
-const roadLayer14 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/동해고속도로(삼척-속초)_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
-
-const roadLayer15 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/동해고속도로(울산-포항)_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
-
-const roadLayer16 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/중앙고속도로(춘천-금호)_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
-
-const roadLayer17 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/서해안고속도로_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
-
-const roadLayer18 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/제2경인고속도로(안양-성남)_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
-
-const roadLayer19 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/제2경인고속도로(인천대교)_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
-
-const roadLayer20 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/중앙고속도로(부산-대구)_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
-
-const roadLayer21 = new VectorLayer({
-	source: new VectorSource({
-		url: 'data/geojson/중앙고속도로(춘천-금호)_EPSG4326.geojson',
-		format: new GeoJSON()
-	}),
-	style: function(feature) {
-		roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
-		roadStyle[1].getStroke().setColor(ROAD_STYLE_1);
-		return roadStyle;
-	},
-});
+const nRoadLayer1 = createRoadLayer('내부순환로_EPSG4326.geojson', ROAD_STYLE_2);
+const nRoadLayer2 = createRoadLayer('분당수서간도시고속화도로_EPSG4326.geojson', ROAD_STYLE_2);
+const nRoadLayer3 = createRoadLayer('서울외곽순환고속도로_EPSG4326.geojson', ROAD_STYLE_2);
 
 const map = new Map({
   layers: [
@@ -580,16 +221,21 @@ const map = new Map({
   	}),
   	new LayerGroup({
   		layers: [
-  			sgg41xxx, sgg41131xxx, sgg41133xxx
+  			sgg11xxx, sgg41xxx, sgg41131xxx, sgg41133xxx, sgg41135xxx
   			]
   	}),
   	new LayerGroup({
   		layers: [
-  			roadLayer1, roadLayer2, roadLayer3, roadLayer4,
-  		  roadLayer5, roadLayer6, roadLayer7, roadLayer8,
-  		  roadLayer9, roadLayer10, roadLayer11, roadLayer12,
-  		  roadLayer13, roadLayer14, roadLayer15, roadLayer16,
-  		  roadLayer17, roadLayer18, roadLayer19, roadLayer20
+  			highwayLayer1, highwayLayer2, highwayLayer3, highwayLayer4,
+  		  highwayLayer5, highwayLayer6, highwayLayer7, highwayLayer8,
+  		  highwayLayer9, highwayLayer10, highwayLayer11, highwayLayer12,
+  		  highwayLayer13, highwayLayer14, highwayLayer15, highwayLayer16,
+  		  highwayLayer17, highwayLayer18, highwayLayer19, highwayLayer20
+  		]
+  	}),
+  	new LayerGroup({
+  		layers: [
+  			nRoadLayer1, nRoadLayer2, nRoadLayer3
   		]
   	})
   ],
@@ -602,31 +248,17 @@ const map = new Map({
   controls: []
 });
 
+
+
+//======================================================================================
+// Event Controls
+//======================================================================================
+
 //var selectSingleClick = new Select();
 //map.addInteraction(selectSingleClick);
 //selectSingleClick.on('select', function(e) {
 //  console.log(e.target.getFeatures().item(0).get('SIG_CD'));
 //});
-
-const highlightStyle = new Style({
-  stroke: new Stroke({
-    color: '#f00',
-    width: 1
-  }),
-  fill: new Fill({
-    color: 'rgba(255,0,0,0.1)'
-  }),
-  text: new Text({
-    font: '12px Calibri,sans-serif',
-    fill: new Fill({
-      color: '#000'
-    }),
-    stroke: new Stroke({
-      color: '#f00',
-      width: 1
-    })
-  })
-});
 
 const featureOverlay = new VectorLayer({
   source: new VectorSource(),
@@ -685,14 +317,18 @@ map.getView().on('propertychange', function(e) {
 	if (e.target.getZoom() >= 12) {
 		sgg41131xxx.setVisible(true);
 		sgg41133xxx.setVisible(true);
+		sgg41135xxx.setVisible(true);
 	} else {
 		sgg41131xxx.setVisible(false);
 		sgg41133xxx.setVisible(false);
+		sgg41135xxx.setVisible(false);
 	}
 	
-	if (e.target.getZoom() >= 8) {
+	if (e.target.getZoom() >= 9) {
+		sgg11xxx.setVisible(true);
 		sgg41xxx.setVisible(true);
 	} else {
+		sgg11xxx.setVisible(false);
 		sgg41xxx.setVisible(false);
 	}
 	
@@ -726,6 +362,15 @@ const init = function() {
 	});
 	map.getView().fit(extent, map.getSize());	
 }
+
+
+
+
+
+
+//======================================================================================
+// Export Global Variable
+//======================================================================================
 
 // map.getView().fit(map.getLayers().item(1).getSource().getFeatures()[0].getGeometry().getExtent(), map.getSize());
 window.init = init;
