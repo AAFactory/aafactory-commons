@@ -7,6 +7,7 @@ import {Fill, Stroke, Style, Text} from '../src/ol/style.js';
 import {boundingExtent, createEmpty, extend} from '../src/ol/extent.js';
 import {toStringXY} from '../src/ol/coordinate';
 import {Group as LayerGroup, Tile as TileLayer} from '../src/ol/layer.js';
+import Select from '../src/ol/interaction/Select.js';
 
 const style = new Style({
   fill: new Fill({
@@ -250,6 +251,30 @@ const sgg41xxx = new VectorLayer({
 	}
 });
 sgg41xxx.setVisible(false);
+
+const sgg41131xxx = new VectorLayer({
+	source: new VectorSource({
+		url: 'data/geojson/41131xxx.geojson',
+		format: new GeoJSON()
+	}),
+	style: function(feature) {
+		style.getText().setText(feature.get('EMD_KOR_NM'));
+		return style;
+	}
+});
+sgg41131xxx.setVisible(false);
+
+const sgg41133xxx = new VectorLayer({
+	source: new VectorSource({
+		url: 'data/geojson/41133xxx.geojson',
+		format: new GeoJSON()
+	}),
+	style: function(feature) {
+		style.getText().setText(feature.get('EMD_KOR_NM'));
+		return style;
+	}
+});
+sgg41133xxx.setVisible(false);
 
 const ROAD_STYLE_1 = '#00FF00';
 const ROAD_STYLE_2 = '#ffbc66';
@@ -553,7 +578,11 @@ const map = new Map({
   		  sidoLayer17, sidoLayer18, sidoLayer19
   		]
   	}),
-  	sgg41xxx,
+  	new LayerGroup({
+  		layers: [
+  			sgg41xxx, sgg41131xxx, sgg41133xxx
+  			]
+  	}),
   	new LayerGroup({
   		layers: [
   			roadLayer1, roadLayer2, roadLayer3, roadLayer4,
@@ -572,6 +601,12 @@ const map = new Map({
   }),
   controls: []
 });
+
+//var selectSingleClick = new Select();
+//map.addInteraction(selectSingleClick);
+//selectSingleClick.on('select', function(e) {
+//  console.log(e.target.getFeatures().item(0).get('SIG_CD'));
+//});
 
 const highlightStyle = new Style({
   stroke: new Stroke({
@@ -609,25 +644,27 @@ const displayFeatureInfo = function(pixel) {
     return feature;
   });
   
-  console.log(feature.get('name'));
-  if (feature.get('name') == '41') {
-  	toggleLayer(false);
-  	sgg41xxx.setVisible(true);
-  	sgg41xxx.getSource().on('change', function(e) {
-  		map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize());
-  	});
-  	map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize());
-  }
-//  if (feature !== highlight) {
-//    if (highlight) {
-//      featureOverlay.getSource().removeFeature(highlight);
-//    }
-//    if (feature) {
-//      featureOverlay.getSource().addFeature(feature);
-//    }
-//    highlight = feature;
+  console.log(feature.values_);
+//  if (feature.get('name') == '41') {
+//  	toggleLayer(false);
+//  	sgg41xxx.setVisible(true);
+//  	sgg41xxx.getSource().on('change', function(e) {
+//  		map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize());
+//  	});
+//  	map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize());
 //  }
-
+  if (feature !== highlight) {
+    if (highlight) {
+      featureOverlay.getSource().removeFeature(highlight);
+    }
+    if (feature) {
+      featureOverlay.getSource().addFeature(feature);
+    }
+    highlight = feature;
+  }
+  
+  
+  map.getView().fit(feature.getGeometry().getExtent(), map.getSize());
 };
 
 //map.on('pointermove', function(evt) {
@@ -645,11 +682,27 @@ map.on('click', function(evt) {
 map.updateSize();
 
 map.getView().on('propertychange', function(e) { 
-	if (e.target.getZoom() < 8 && (map.getView().getCenter()[0] != 14218435)) {
-		sgg41xxx.setVisible(false);
-		toggleLayer(true);
-		map.getView().setCenter([14218435, 4385412]);
+	if (e.target.getZoom() >= 12) {
+		sgg41131xxx.setVisible(true);
+		sgg41133xxx.setVisible(true);
+	} else {
+		sgg41131xxx.setVisible(false);
+		sgg41133xxx.setVisible(false);
 	}
+	
+	if (e.target.getZoom() >= 8) {
+		sgg41xxx.setVisible(true);
+	} else {
+		sgg41xxx.setVisible(false);
+	}
+	
+//	if (e.target.getZoom() < 8) {
+//		sgg41xxx.setVisible(false);
+//		toggleLayer(true);
+//		map.getView().setCenter([14218435, 4385412]);
+//	} 
+	
+	
 });
 
 const toggleLayer = function(isShow) {
@@ -674,6 +727,7 @@ const init = function() {
 	map.getView().fit(extent, map.getSize());	
 }
 
+// map.getView().fit(map.getLayers().item(1).getSource().getFeatures()[0].getGeometry().getExtent(), map.getSize());
 window.init = init;
 window.map = map;
 window.featureOverlay= featureOverlay;

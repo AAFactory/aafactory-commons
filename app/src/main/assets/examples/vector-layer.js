@@ -7,13 +7,15 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
 /* harmony import */ var _src_ol_View_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
-/* harmony import */ var _src_ol_format_GeoJSON_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(28);
+/* harmony import */ var _src_ol_format_GeoJSON_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(27);
 /* harmony import */ var _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(24);
 /* harmony import */ var _src_ol_source_Vector_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(13);
 /* harmony import */ var _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
 /* harmony import */ var _src_ol_extent_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3);
 /* harmony import */ var _src_ol_coordinate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(34);
-/* harmony import */ var _src_ol_layer_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(10);
+/* harmony import */ var _src_ol_layer_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9);
+/* harmony import */ var _src_ol_interaction_Select_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(139);
+
 
 
 
@@ -266,6 +268,30 @@ const sgg41xxx = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* def
 	}
 });
 sgg41xxx.setVisible(false);
+
+const sgg41131xxx = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
+	source: new _src_ol_source_Vector_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "b"]({
+		url: 'data/geojson/41131xxx.geojson',
+		format: new _src_ol_format_GeoJSON_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"]()
+	}),
+	style: function(feature) {
+		style.getText().setText(feature.get('EMD_KOR_NM'));
+		return style;
+	}
+});
+sgg41131xxx.setVisible(false);
+
+const sgg41133xxx = new _src_ol_layer_Vector_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
+	source: new _src_ol_source_Vector_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "b"]({
+		url: 'data/geojson/41133xxx.geojson',
+		format: new _src_ol_format_GeoJSON_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"]()
+	}),
+	style: function(feature) {
+		style.getText().setText(feature.get('EMD_KOR_NM'));
+		return style;
+	}
+});
+sgg41133xxx.setVisible(false);
 
 const ROAD_STYLE_1 = '#00FF00';
 const ROAD_STYLE_2 = '#ffbc66';
@@ -569,7 +595,11 @@ const map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
   		  sidoLayer17, sidoLayer18, sidoLayer19
   		]
   	}),
-  	sgg41xxx,
+  	new _src_ol_layer_js__WEBPACK_IMPORTED_MODULE_8__[/* Group */ "a"]({
+  		layers: [
+  			sgg41xxx, sgg41131xxx, sgg41133xxx
+  			]
+  	}),
   	new _src_ol_layer_js__WEBPACK_IMPORTED_MODULE_8__[/* Group */ "a"]({
   		layers: [
   			roadLayer1, roadLayer2, roadLayer3, roadLayer4,
@@ -588,6 +618,12 @@ const map = new _src_ol_Map_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]({
   }),
   controls: []
 });
+
+//var selectSingleClick = new Select();
+//map.addInteraction(selectSingleClick);
+//selectSingleClick.on('select', function(e) {
+//  console.log(e.target.getFeatures().item(0).get('SIG_CD'));
+//});
 
 const highlightStyle = new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Style */ "g"]({
   stroke: new _src_ol_style_js__WEBPACK_IMPORTED_MODULE_5__[/* Stroke */ "f"]({
@@ -625,25 +661,27 @@ const displayFeatureInfo = function(pixel) {
     return feature;
   });
   
-  console.log(feature.get('name'));
-  if (feature.get('name') == '41') {
-  	toggleLayer(false);
-  	sgg41xxx.setVisible(true);
-  	sgg41xxx.getSource().on('change', function(e) {
-  		map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize());
-  	});
-  	map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize());
-  }
-//  if (feature !== highlight) {
-//    if (highlight) {
-//      featureOverlay.getSource().removeFeature(highlight);
-//    }
-//    if (feature) {
-//      featureOverlay.getSource().addFeature(feature);
-//    }
-//    highlight = feature;
+  console.log(feature.values_);
+//  if (feature.get('name') == '41') {
+//  	toggleLayer(false);
+//  	sgg41xxx.setVisible(true);
+//  	sgg41xxx.getSource().on('change', function(e) {
+//  		map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize());
+//  	});
+//  	map.getView().fit(sgg41xxx.getSource().getExtent(), map.getSize());
 //  }
-
+  if (feature !== highlight) {
+    if (highlight) {
+      featureOverlay.getSource().removeFeature(highlight);
+    }
+    if (feature) {
+      featureOverlay.getSource().addFeature(feature);
+    }
+    highlight = feature;
+  }
+  
+  
+  map.getView().fit(feature.getGeometry().getExtent(), map.getSize());
 };
 
 //map.on('pointermove', function(evt) {
@@ -661,11 +699,27 @@ map.on('click', function(evt) {
 map.updateSize();
 
 map.getView().on('propertychange', function(e) { 
-	if (e.target.getZoom() < 8 && (map.getView().getCenter()[0] != 14218435)) {
-		sgg41xxx.setVisible(false);
-		toggleLayer(true);
-		map.getView().setCenter([14218435, 4385412]);
+	if (e.target.getZoom() >= 12) {
+		sgg41131xxx.setVisible(true);
+		sgg41133xxx.setVisible(true);
+	} else {
+		sgg41131xxx.setVisible(false);
+		sgg41133xxx.setVisible(false);
 	}
+	
+	if (e.target.getZoom() >= 8) {
+		sgg41xxx.setVisible(true);
+	} else {
+		sgg41xxx.setVisible(false);
+	}
+	
+//	if (e.target.getZoom() < 8) {
+//		sgg41xxx.setVisible(false);
+//		toggleLayer(true);
+//		map.getView().setCenter([14218435, 4385412]);
+//	} 
+	
+	
 });
 
 const toggleLayer = function(isShow) {
@@ -690,6 +744,7 @@ const init = function() {
 	map.getView().fit(extent, map.getSize());	
 }
 
+// map.getView().fit(map.getLayers().item(1).getSource().getFeatures()[0].getGeometry().getExtent(), map.getSize());
 window.init = init;
 window.map = map;
 window.featureOverlay= featureOverlay;
