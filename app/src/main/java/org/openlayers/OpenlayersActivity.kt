@@ -17,7 +17,7 @@ class OpenlayersActivity : BaseSimpleActivity() {
         webSettings.allowFileAccess = true
         webSettings.allowFileAccessFromFileURLs = true
         webSettings.allowUniversalAccessFromFileURLs = true
-        webView.loadUrl("file:///android_asset/examples/vector-layer.html")
+        webView.loadUrl("file:///android_asset/examples/main.html")
 
         finish.setOnClickListener { finish() }
         btn1.setOnClickListener {
