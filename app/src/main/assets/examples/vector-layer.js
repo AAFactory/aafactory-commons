@@ -49830,7 +49830,7 @@ const createRoadLayer = function(geoJsonName, color) {
 			format: new format_GeoJSON()
 		}),
 		style: function(feature) {
-			roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+			//roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
 			roadStyle[0].getStroke().setColor(color);
 			return roadStyle;
 		},
@@ -49911,6 +49911,10 @@ const sgg41131xxx = createEMDLayer('41131xxx.geojson');
 const sgg41133xxx = createEMDLayer('41133xxx.geojson');
 const sgg41135xxx = createEMDLayer('41135xxx.geojson');
 const sgg41610xxx = createEMDLayer('41610xxx.geojson');
+const sgg41461xxx = createEMDLayer('41461xxx.geojson');
+const sgg41463xxx = createEMDLayer('41463xxx.geojson');
+const sgg41465xxx = createEMDLayer('41465xxx.geojson');
+const sgg41117xxx = createEMDLayer('41117xxx.geojson');
 
 const highwayLayer1 = createRoadLayer('경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
 const highwayLayer2 = createRoadLayer('호남고속도로_EPSG4326.geojson', ROAD_STYLE_1);
@@ -49961,7 +49965,8 @@ const vector_layer_map = new ol_Map({
   	new Group({
   		layers: [
   			sgg11xxx, sgg41xxx, sgg41131xxx, sgg41133xxx,
-  			sgg41135xxx, sgg41610xxx
+  			sgg41135xxx, sgg41610xxx, sgg41461xxx, sgg41463xxx,
+  			sgg41465xxx, sgg41117xxx
   		]
   	}),
   	new Group({
@@ -50061,11 +50066,19 @@ vector_layer_map.getView().on('propertychange', function(e) {
 		sgg41133xxx.setVisible(true);
 		sgg41135xxx.setVisible(true);
 		sgg41610xxx.setVisible(true);
+		sgg41461xxx.setVisible(true);
+		sgg41463xxx.setVisible(true);
+		sgg41465xxx.setVisible(true);
+		sgg41117xxx.setVisible(true);
 	} else {
 		sgg41131xxx.setVisible(false);
 		sgg41133xxx.setVisible(false);
 		sgg41135xxx.setVisible(false);
 		sgg41610xxx.setVisible(false);
+		sgg41461xxx.setVisible(false);
+		sgg41463xxx.setVisible(false);
+		sgg41465xxx.setVisible(false);
+		sgg41117xxx.setVisible(false);
 	}
 	
 	if (e.target.getZoom() >= 9) {
@@ -50107,9 +50120,33 @@ const vector_layer_init = function() {
 	vector_layer_map.getView().fit(extent, vector_layer_map.getSize());	
 }
 
-
-
-
+let isLabelOn = false;
+const toggleRoadLabel = function() {
+	isLabelOn = !isLabelOn;
+	vector_layer_map.getLayers().item(3).getLayers().forEach(function(layer) {
+		layer.setStyle(function(feature) {
+			if (isLabelOn) {
+				roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+			} else {
+				roadStyle[1].getText().setText(feature.get(''));
+			}
+			roadStyle[0].getStroke().setColor(ROAD_STYLE_2);
+			return roadStyle;
+		});
+	});
+	
+	vector_layer_map.getLayers().item(2).getLayers().forEach(function(layer) {
+		layer.setStyle(function(feature) {
+			if (isLabelOn) {
+				roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+			} else {
+				roadStyle[1].getText().setText(feature.get(''));
+			}
+			roadStyle[0].getStroke().setColor(ROAD_STYLE_1);
+			return roadStyle;
+		});
+	});
+}
 
 
 //======================================================================================
@@ -50120,6 +50157,7 @@ const vector_layer_init = function() {
 window.init = vector_layer_init;
 window.map = vector_layer_map;
 window.featureOverlay= vector_layer_featureOverlay;
+window.toggleRoadLabel = toggleRoadLabel;
 
 
 /***/ }),

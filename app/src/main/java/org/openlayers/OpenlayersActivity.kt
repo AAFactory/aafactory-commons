@@ -21,7 +21,7 @@ class OpenlayersActivity : BaseSimpleActivity() {
 
         finish.setOnClickListener { finish() }
         btn1.setOnClickListener {
-            webView.loadUrl("javascript:toggleRoadLayer();");
+            webView.loadUrl("javascript:toggleRoadLabel();");
         }
     }
 }
