@@ -8,6 +8,16 @@ import {boundingExtent, createEmpty, extend} from '../src/ol/extent.js';
 import {toStringXY} from '../src/ol/coordinate';
 import {Group as LayerGroup, Tile as TileLayer} from '../src/ol/layer.js';
 import Select from '../src/ol/interaction/Select.js';
+import {register} from '../src/ol/proj/proj4.js';
+
+import proj4 from 'proj4';
+
+
+//======================================================================================
+// Define Projection
+//======================================================================================
+proj4.defs("EPSG:5179","+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
+register(proj4);
 
 //======================================================================================
 // Define Layer Style
@@ -101,7 +111,7 @@ const createRoadLayer = function(geoJsonName, color) {
 			format: new GeoJSON()
 		}),
 		style: function(feature) {
-			roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+			//roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
 			roadStyle[0].getStroke().setColor(color);
 			return roadStyle;
 		},
@@ -181,6 +191,11 @@ const sgg41xxx = createSGGLayer('41xxx.geojson');
 const sgg41131xxx = createEMDLayer('41131xxx.geojson');
 const sgg41133xxx = createEMDLayer('41133xxx.geojson');
 const sgg41135xxx = createEMDLayer('41135xxx.geojson');
+const sgg41610xxx = createEMDLayer('41610xxx.geojson');
+const sgg41461xxx = createEMDLayer('41461xxx.geojson');
+const sgg41463xxx = createEMDLayer('41463xxx.geojson');
+const sgg41465xxx = createEMDLayer('41465xxx.geojson');
+const sgg41117xxx = createEMDLayer('41117xxx.geojson');
 
 const highwayLayer1 = createRoadLayer('경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
 const highwayLayer2 = createRoadLayer('호남고속도로_EPSG4326.geojson', ROAD_STYLE_1);
@@ -207,6 +222,15 @@ const highwayLayer21 = createRoadLayer('중앙고속도로(춘천-금호)_EPSG43
 const nRoadLayer1 = createRoadLayer('내부순환로_EPSG4326.geojson', ROAD_STYLE_2);
 const nRoadLayer2 = createRoadLayer('분당수서간도시고속화도로_EPSG4326.geojson', ROAD_STYLE_2);
 const nRoadLayer3 = createRoadLayer('서울외곽순환고속도로_EPSG4326.geojson', ROAD_STYLE_2);
+const nRoadLayer4 = createRoadLayer('국도1호선.geojson', ROAD_STYLE_2);
+const nRoadLayer5 = createRoadLayer('국도2호선.geojson', ROAD_STYLE_2);
+const nRoadLayer6 = createRoadLayer('국도3호선.geojson', ROAD_STYLE_2);
+const nRoadLayer7 = createRoadLayer('분당내곡간도시고속화도로.geojson', ROAD_STYLE_2);
+const nRoadLayer8 = createRoadLayer('국도4호선.geojson', ROAD_STYLE_2);
+const nRoadLayer9 = createRoadLayer('국도6호선.geojson', ROAD_STYLE_2);
+const nRoadLayer10 = createRoadLayer('국도7호선.geojson', ROAD_STYLE_2);
+const nRoadLayer11 = createRoadLayer('동부간선도로.geojson', ROAD_STYLE_2);
+const nRoadLayer12 = createRoadLayer('올림픽대로.geojson', ROAD_STYLE_2);
 
 const map = new Map({
   layers: [
@@ -221,8 +245,10 @@ const map = new Map({
   	}),
   	new LayerGroup({
   		layers: [
-  			sgg11xxx, sgg41xxx, sgg41131xxx, sgg41133xxx, sgg41135xxx
-  			]
+  			sgg11xxx, sgg41xxx, sgg41131xxx, sgg41133xxx,
+  			sgg41135xxx, sgg41610xxx, sgg41461xxx, sgg41463xxx,
+  			sgg41465xxx, sgg41117xxx
+  		]
   	}),
   	new LayerGroup({
   		layers: [
@@ -235,7 +261,9 @@ const map = new Map({
   	}),
   	new LayerGroup({
   		layers: [
-  			nRoadLayer1, nRoadLayer2, nRoadLayer3
+  			nRoadLayer1, nRoadLayer2, nRoadLayer3, nRoadLayer4,
+  			nRoadLayer5, nRoadLayer6, nRoadLayer7, nRoadLayer8,
+  			nRoadLayer9, nRoadLayer10, nRoadLayer11, nRoadLayer12
   		]
   	})
   ],
@@ -318,10 +346,20 @@ map.getView().on('propertychange', function(e) {
 		sgg41131xxx.setVisible(true);
 		sgg41133xxx.setVisible(true);
 		sgg41135xxx.setVisible(true);
+		sgg41610xxx.setVisible(true);
+		sgg41461xxx.setVisible(true);
+		sgg41463xxx.setVisible(true);
+		sgg41465xxx.setVisible(true);
+		sgg41117xxx.setVisible(true);
 	} else {
 		sgg41131xxx.setVisible(false);
 		sgg41133xxx.setVisible(false);
 		sgg41135xxx.setVisible(false);
+		sgg41610xxx.setVisible(false);
+		sgg41461xxx.setVisible(false);
+		sgg41463xxx.setVisible(false);
+		sgg41465xxx.setVisible(false);
+		sgg41117xxx.setVisible(false);
 	}
 	
 	if (e.target.getZoom() >= 9) {
@@ -363,9 +401,33 @@ const init = function() {
 	map.getView().fit(extent, map.getSize());	
 }
 
-
-
-
+let isLabelOn = false;
+const toggleRoadLabel = function() {
+	isLabelOn = !isLabelOn;
+	map.getLayers().item(3).getLayers().forEach(function(layer) {
+		layer.setStyle(function(feature) {
+			if (isLabelOn) {
+				roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+			} else {
+				roadStyle[1].getText().setText(feature.get(''));
+			}
+			roadStyle[0].getStroke().setColor(ROAD_STYLE_2);
+			return roadStyle;
+		});
+	});
+	
+	map.getLayers().item(2).getLayers().forEach(function(layer) {
+		layer.setStyle(function(feature) {
+			if (isLabelOn) {
+				roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+			} else {
+				roadStyle[1].getText().setText(feature.get(''));
+			}
+			roadStyle[0].getStroke().setColor(ROAD_STYLE_1);
+			return roadStyle;
+		});
+	});
+}
 
 
 //======================================================================================
@@ -376,3 +438,4 @@ const init = function() {
 window.init = init;
 window.map = map;
 window.featureOverlay= featureOverlay;
+window.toggleRoadLabel = toggleRoadLabel;
