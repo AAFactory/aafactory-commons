@@ -238,34 +238,36 @@ const map = new Map({
   layers: [
   	new LayerGroup({
   		layers: [
-  			sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4,
-  		  sidoLayer5, sidoLayer6, sidoLayer7, sidoLayer8,
-  		  sidoLayer9, sidoLayer10, sidoLayer11, sidoLayer12,
-  		  sidoLayer13, sidoLayer14, sidoLayer15, sidoLayer16,
-  		  sidoLayer17, sidoLayer18, sidoLayer19
+  			sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4, sidoLayer5,
+  			sidoLayer6, sidoLayer7, sidoLayer8, sidoLayer9, sidoLayer10,
+  			sidoLayer11, sidoLayer12, sidoLayer13, sidoLayer14, sidoLayer15,
+  			sidoLayer16, sidoLayer17, sidoLayer18, sidoLayer19
   		]
   	}),
   	new LayerGroup({
   		layers: [
-  			sgg11xxx, sgg41xxx, sgg41131xxx, sgg41133xxx,
-  			sgg41135xxx, sgg41610xxx, sgg41461xxx, sgg41463xxx,
-  			sgg41465xxx, sgg41117xxx, sgg11140xxx, sgg11110xxx
+  			sgg11xxx, sgg41xxx
   		]
   	}),
   	new LayerGroup({
   		layers: [
-  			highwayLayer1, highwayLayer2, highwayLayer3, highwayLayer4,
-  		  highwayLayer5, highwayLayer6, highwayLayer7, highwayLayer8,
-  		  highwayLayer9, highwayLayer10, highwayLayer11, highwayLayer12,
-  		  highwayLayer13, highwayLayer14, highwayLayer15, highwayLayer16,
-  		  highwayLayer17, highwayLayer18, highwayLayer19, highwayLayer20
+  			sgg41131xxx, sgg41133xxx, sgg41135xxx, sgg41610xxx, sgg41461xxx,
+  			sgg41463xxx, sgg41465xxx, sgg41117xxx, sgg11140xxx, sgg11110xxx
+  			]
+  	}),
+  	new LayerGroup({
+  		layers: [
+  			highwayLayer1, highwayLayer2, highwayLayer3, highwayLayer4, highwayLayer5,
+  			highwayLayer6, highwayLayer7, highwayLayer8, highwayLayer9, highwayLayer10,
+  			highwayLayer11, highwayLayer12, highwayLayer13, highwayLayer14, highwayLayer15,
+  			highwayLayer16, highwayLayer17, highwayLayer18, highwayLayer19, highwayLayer20
   		]
   	}),
   	new LayerGroup({
   		layers: [
-  			nRoadLayer1, nRoadLayer2, nRoadLayer3, nRoadLayer4,
-  			nRoadLayer5, nRoadLayer6, nRoadLayer7, nRoadLayer8,
-  			nRoadLayer9, nRoadLayer10, nRoadLayer11, nRoadLayer12
+  			nRoadLayer1, nRoadLayer2, nRoadLayer3, nRoadLayer4, nRoadLayer5,
+  			nRoadLayer6, nRoadLayer7, nRoadLayer8, nRoadLayer9, nRoadLayer10,
+  			nRoadLayer11, nRoadLayer12
   		]
   	})
   ],
@@ -344,41 +346,25 @@ map.on('click', function(evt) {
 map.updateSize();
 
 map.getView().on('propertychange', function(e) { 
-	if (e.target.getZoom() >= 12) {
-		sgg41131xxx.setVisible(true);
-		sgg41133xxx.setVisible(true);
-		sgg41135xxx.setVisible(true);
-		sgg41610xxx.setVisible(true);
-		sgg41461xxx.setVisible(true);
-		sgg41463xxx.setVisible(true);
-		sgg41465xxx.setVisible(true);
-		sgg41117xxx.setVisible(true);
-	} else {
-		sgg41131xxx.setVisible(false);
-		sgg41133xxx.setVisible(false);
-		sgg41135xxx.setVisible(false);
-		sgg41610xxx.setVisible(false);
-		sgg41461xxx.setVisible(false);
-		sgg41463xxx.setVisible(false);
-		sgg41465xxx.setVisible(false);
-		sgg41117xxx.setVisible(false);
-	}
-	
-	if (e.target.getZoom() >= 14) {
-		sgg11140xxx.setVisible(true);
-		sgg11110xxx.setVisible(true);
-	} else {
-		sgg11140xxx.setVisible(false);
-		sgg11110xxx.setVisible(false);
-	}
-	
+	let visibleSggLayer = null;
 	if (e.target.getZoom() >= 9) {
-		sgg11xxx.setVisible(true);
-		sgg41xxx.setVisible(true);
+		visibleSggLayer = true;
 	} else {
-		sgg11xxx.setVisible(false);
-		sgg41xxx.setVisible(false);
+		visibleSggLayer = false;
 	}
+	map.getLayers().item(1).getLayers().forEach(function(sggLayer) {
+		sggLayer.setVisible(visibleSggLayer);
+	});
+	
+	let visibleEmdLayer = null;
+	if (e.target.getZoom() >= 12) {
+		visibleEmdLayer = true;
+	} else {
+		visibleEmdLayer = false;
+	}
+	map.getLayers().item(2).getLayers().forEach(function(emdLayer) {
+		emdLayer.setVisible(visibleEmdLayer);
+	});
 	
 //	if (e.target.getZoom() < 8) {
 //		sgg41xxx.setVisible(false);
@@ -426,7 +412,7 @@ const toggleRoadLabel = function() {
 		});
 	});
 	
-	map.getLayers().item(2).getLayers().forEach(function(layer) {
+	map.getLayers().item(4).getLayers().forEach(function(layer) {
 		layer.setStyle(function(feature) {
 			if (isLabelOn) {
 				roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
