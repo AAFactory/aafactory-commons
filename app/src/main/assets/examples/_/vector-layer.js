@@ -196,6 +196,8 @@ const sgg41461xxx = createEMDLayer('41461xxx.geojson');
 const sgg41463xxx = createEMDLayer('41463xxx.geojson');
 const sgg41465xxx = createEMDLayer('41465xxx.geojson');
 const sgg41117xxx = createEMDLayer('41117xxx.geojson');
+const sgg11140xxx = createEMDLayer('11140xxx.geojson');
+const sgg11110xxx = createEMDLayer('11110xxx.geojson');
 
 const highwayLayer1 = createRoadLayer('경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
 const highwayLayer2 = createRoadLayer('호남고속도로_EPSG4326.geojson', ROAD_STYLE_1);
@@ -247,7 +249,7 @@ const map = new Map({
   		layers: [
   			sgg11xxx, sgg41xxx, sgg41131xxx, sgg41133xxx,
   			sgg41135xxx, sgg41610xxx, sgg41461xxx, sgg41463xxx,
-  			sgg41465xxx, sgg41117xxx
+  			sgg41465xxx, sgg41117xxx, sgg11140xxx, sgg11110xxx
   		]
   	}),
   	new LayerGroup({
@@ -360,6 +362,14 @@ map.getView().on('propertychange', function(e) {
 		sgg41463xxx.setVisible(false);
 		sgg41465xxx.setVisible(false);
 		sgg41117xxx.setVisible(false);
+	}
+	
+	if (e.target.getZoom() >= 14) {
+		sgg11140xxx.setVisible(true);
+		sgg11110xxx.setVisible(true);
+	} else {
+		sgg11140xxx.setVisible(false);
+		sgg11110xxx.setVisible(false);
 	}
 	
 	if (e.target.getZoom() >= 9) {
