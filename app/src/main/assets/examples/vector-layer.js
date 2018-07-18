@@ -49873,7 +49873,7 @@ const createEMDLayer = function(geoJsonName) {
 			format: new format_GeoJSON()
 		}),
 		style: function(feature) {
-			vector_layer_style.getText().setText(feature.get('EMD_KOR_NM'));
+			vector_layer_style.getText().setText(feature.get('adm_nm'));
 			return vector_layer_style;
 		}
 	});
@@ -49907,16 +49907,15 @@ const sidoLayer19 = createSDLayer('세종특별자치시.geojson');
 
 const sgg11xxx = createSGGLayer('11xxx.geojson');
 const sgg41xxx = createSGGLayer('41xxx.geojson');
-const sgg41131xxx = createEMDLayer('41131xxx.geojson');
-const sgg41133xxx = createEMDLayer('41133xxx.geojson');
-const sgg41135xxx = createEMDLayer('41135xxx.geojson');
-const sgg41610xxx = createEMDLayer('41610xxx.geojson');
-const sgg41461xxx = createEMDLayer('41461xxx.geojson');
-const sgg41463xxx = createEMDLayer('41463xxx.geojson');
-const sgg41465xxx = createEMDLayer('41465xxx.geojson');
-const sgg41117xxx = createEMDLayer('41117xxx.geojson');
-const sgg11140xxx = createEMDLayer('11140xxx.geojson');
-const sgg11110xxx = createEMDLayer('11110xxx.geojson');
+
+const emd11010xx = createEMDLayer('11010xx.geojson');
+const emd11020xx = createEMDLayer('11020xx.geojson');
+const emd31021xx = createEMDLayer('31021xx.geojson');
+const emd31022xx = createEMDLayer('31022xx.geojson');
+const emd31023xx = createEMDLayer('31023xx.geojson');
+const emd31250xx = createEMDLayer('31250xx.geojson');
+const emd31180xx = createEMDLayer('31180xx.geojson');
+const emd31191xx = createEMDLayer('31191xx.geojson');
 
 const highwayLayer1 = createRoadLayer('경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
 const highwayLayer2 = createRoadLayer('호남고속도로_EPSG4326.geojson', ROAD_STYLE_1);
@@ -49970,8 +49969,9 @@ const vector_layer_map = new ol_Map({
   	}),
   	new Group({
   		layers: [
-  			sgg41131xxx, sgg41133xxx, sgg41135xxx, sgg41610xxx, sgg41461xxx,
-  			sgg41463xxx, sgg41465xxx, sgg41117xxx, sgg11140xxx, sgg11110xxx
+  			emd11010xx, emd11020xx,
+  			emd31021xx, emd31022xx, emd31023xx, emd31250xx, emd31180xx,
+  			emd31191xx
   			]
   	}),
   	new Group({
@@ -50065,34 +50065,31 @@ vector_layer_map.on('click', function(evt) {
 vector_layer_map.updateSize();
 
 vector_layer_map.getView().on('propertychange', function(e) { 
-	let visibleSggLayer = null;
-	if (e.target.getZoom() >= 9) {
-		visibleSggLayer = true;
-	} else {
-		visibleSggLayer = false;
+	if (e.target.getZoom() < 9) {
+		toggleLayers(true, 0);
+		toggleLayers(false, 1);
+		toggleLayers(false, 2);
+	} else if (e.target.getZoom() >= 9 && e.target.getZoom() < 12) {
+		toggleLayers(true, 0);
+		toggleLayers(true, 1);
+		toggleLayers(false, 2);
+	} else if (e.target.getZoom() >= 12) {
+		toggleLayers(false, 0);
+		toggleLayers(true, 1);
+		toggleLayers(true, 2);
 	}
-	vector_layer_map.getLayers().item(1).getLayers().forEach(function(sggLayer) {
-		sggLayer.setVisible(visibleSggLayer);
-	});
-	
-	let visibleEmdLayer = null;
-	if (e.target.getZoom() >= 12) {
-		visibleEmdLayer = true;
-	} else {
-		visibleEmdLayer = false;
-	}
-	vector_layer_map.getLayers().item(2).getLayers().forEach(function(emdLayer) {
-		emdLayer.setVisible(visibleEmdLayer);
-	});
-	
 //	if (e.target.getZoom() < 8) {
 //		sgg41xxx.setVisible(false);
 //		toggleLayer(true);
 //		map.getView().setCenter([14218435, 4385412]);
 //	} 
-	
-	
 });
+
+const toggleLayers = function(isVisible, index) {
+	vector_layer_map.getLayers().item(index).getLayers().forEach(function(sggLayer) {
+		sggLayer.setVisible(isVisible);
+	});
+}
 
 const toggleLayer = function(isShow) {
 //	map.getLayers().forEach(function(layer, i) { 
