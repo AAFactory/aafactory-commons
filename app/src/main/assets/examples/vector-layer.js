@@ -49906,7 +49906,21 @@ const sidoLayer18 = createSDLayer('대전광역시.geojson');
 const sidoLayer19 = createSDLayer('세종특별자치시.geojson');
 
 const sgg11xxx = createSGGLayer('11xxx.geojson');
+const sgg26xxx = createSGGLayer('26xxx.geojson');
+const sgg27xxx = createSGGLayer('27xxx.geojson');
+const sgg29xxx = createSGGLayer('29xxx.geojson');
+const sgg30xxx = createSGGLayer('30xxx.geojson');
+const sgg31xxx = createSGGLayer('31xxx.geojson');
+const sgg36xxx = createSGGLayer('36xxx.geojson');
 const sgg41xxx = createSGGLayer('41xxx.geojson');
+const sgg42xxx = createSGGLayer('42xxx.geojson');
+const sgg43xxx = createSGGLayer('43xxx.geojson');
+const sgg44xxx = createSGGLayer('44xxx.geojson');
+const sgg45xxx = createSGGLayer('45xxx.geojson');
+const sgg46xxx = createSGGLayer('46xxx.geojson');
+const sgg47xxx = createSGGLayer('47xxx.geojson');
+const sgg48xxx = createSGGLayer('48xxx.geojson');
+const sgg50xxx = createSGGLayer('50xxx.geojson');
 
 const emd11010xx = createEMDLayer('11010xx.geojson');
 const emd11020xx = createEMDLayer('11020xx.geojson');
@@ -49964,7 +49978,10 @@ const vector_layer_map = new ol_Map({
   	}),
   	new Group({
   		layers: [
-  			sgg11xxx, sgg41xxx
+  			sgg11xxx, sgg26xxx, sgg27xxx, sgg29xxx, sgg30xxx,
+  			sgg31xxx, sgg36xxx, sgg41xxx, sgg42xxx, sgg43xxx,
+  			sgg44xxx, sgg45xxx, sgg46xxx, sgg47xxx, sgg48xxx,
+  			sgg50xxx
   		]
   	}),
   	new Group({
