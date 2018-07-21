@@ -224,14 +224,30 @@ const sgg50xxx = createSGGLayer('50xxx.geojson');
 
 const emd11010xx = createEMDLayer('11010xx.geojson');
 const emd11020xx = createEMDLayer('11020xx.geojson');
+
 const emd31021xx = createEMDLayer('31021xx.geojson');
 const emd31022xx = createEMDLayer('31022xx.geojson');
 const emd31023xx = createEMDLayer('31023xx.geojson');
-const emd31250xx = createEMDLayer('31250xx.geojson');
+const emd31130xx = createEMDLayer('31130xx.geojson');
 const emd31180xx = createEMDLayer('31180xx.geojson');
 const emd31191xx = createEMDLayer('31191xx.geojson');
+const emd31192xx = createEMDLayer('31192xx.geojson');
+const emd31193xx = createEMDLayer('31193xx.geojson');
+const emd31250xx = createEMDLayer('31250xx.geojson');
+const emd31380xx = createEMDLayer('31380xx.geojson');
 
 const bEmd11110xxx = createBEMDLayer('11110xxx.geojson');
+const bEmd11140xxx = createBEMDLayer('11140xxx.geojson');
+const bEmd41117xxx = createBEMDLayer('41117xxx.geojson');
+const bEmd41131xxx = createBEMDLayer('41131xxx.geojson');
+const bEmd41133xxx = createBEMDLayer('41133xxx.geojson');
+const bEmd41135xxx = createBEMDLayer('41135xxx.geojson');
+const bEmd41370xxx = createBEMDLayer('41370xxx.geojson');
+const bEmd41461xxx = createBEMDLayer('41461xxx.geojson');
+const bEmd41463xxx = createBEMDLayer('41463xxx.geojson');
+const bEmd41465xxx = createBEMDLayer('41465xxx.geojson');
+const bEmd41590xxx = createBEMDLayer('41590xxx.geojson');
+const bEmd41610xxx = createBEMDLayer('41610xxx.geojson');
 
 const highwayLayer1 = createRoadLayer('경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
 const highwayLayer2 = createRoadLayer('호남고속도로_EPSG4326.geojson', ROAD_STYLE_1);
@@ -290,12 +306,14 @@ const map = new Map({
   		layers: [
   			emd11010xx, emd11020xx,
   			emd31021xx, emd31022xx, emd31023xx, emd31250xx, emd31180xx,
-  			emd31191xx
+  			emd31191xx, emd31192xx, emd31193xx, emd31380xx, emd31130xx
   		]
   	}),
   	new LayerGroup({
   		layers: [
-  			bEmd11110xxx
+  			bEmd11110xxx, bEmd11140xxx, bEmd41117xxx, bEmd41131xxx, bEmd41133xxx,
+  			bEmd41135xxx, bEmd41370xxx, bEmd41461xxx, bEmd41463xxx, bEmd41465xxx,
+  			bEmd41590xxx, bEmd41610xxx
   		]
   	}),
   	new LayerGroup({
