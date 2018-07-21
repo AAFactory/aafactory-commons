@@ -20,7 +20,7 @@
        }
        select { background: white; border: 0px; padding: 5px; display: block; width: 200px; }
        .legend {
-         width: 100px;
+         width: 80px;
          display: inline-block;
          position: absolute;
          right: 0px;
@@ -39,6 +39,10 @@
        }
        span { font-size: 10px; color: white; }
        #nRoadSelect {  }
+       #switchEMD {
+         top: 118px;
+         background: darkgrey;
+       }
     </style>
     
     <script type="text/javascript">
@@ -47,10 +51,10 @@
       	element.blur();
         var map = window.map;
         var featureOverlay = window.featureOverlay;
-      	map.getView().fit(map.getLayers().item(3).getLayers().item(element.value).getSource().getExtent(), map.getSize());
+      	map.getView().fit(map.getLayers().item(4).getLayers().item(element.value).getSource().getExtent(), map.getSize());
         //console.log(map.getLayers().item(element.value).get('name'));
         
-        var targetLayer = map.getLayers().item(3).getLayers().item(element.value).getSource().getFeatures()[0];
+        var targetLayer = map.getLayers().item(4).getLayers().item(element.value).getSource().getFeatures()[0];
         if (focusLayer) featureOverlay.getSource().removeFeature(focusLayer);
         featureOverlay.getSource().addFeature(targetLayer);
         focusLayer = targetLayer;
@@ -60,10 +64,10 @@
       	element.blur();
         var map = window.map;
         var featureOverlay = window.featureOverlay;
-        map.getView().fit(map.getLayers().item(4).getLayers().item(element.value).getSource().getExtent(), map.getSize());
+        map.getView().fit(map.getLayers().item(5).getLayers().item(element.value).getSource().getExtent(), map.getSize());
         //console.log(map.getLayers().item(element.value).get('name'));
         
-        var targetLayer = map.getLayers().item(4).getLayers().item(element.value).getSource().getFeatures()[0];
+        var targetLayer = map.getLayers().item(5).getLayers().item(element.value).getSource().getFeatures()[0];
         if (focusLayer) featureOverlay.getSource().removeFeature(focusLayer);
         featureOverlay.getSource().addFeature(targetLayer);
         focusLayer = targetLayer;
@@ -75,6 +79,17 @@
       		layer.setVisible(!layer.getVisible());
         });
       }
+      
+      function toggleEMDLayer() {
+      	var label = document.getElementById('switchEMD').children[0].innerText;
+      	if (label == '행정동') {
+      		document.getElementById('switchEMD').children[0].innerText = '법정동';
+      	} else if (label == '법정동') {
+      		document.getElementById('switchEMD').children[0].innerText = '행정동';
+      	}
+      	switchEMDLayer();
+      }
+      
     </script>
   </head>
   <body>
@@ -110,8 +125,9 @@
             <option value="2">서울외곽순환고속도로</option>
         </select>
         <div>
-          <div class="legend" onclick="toggleRoadLayer(3);" id="highway"><span>고속도로</span></div>
-          <div class="legend" onclick="toggleRoadLayer(4);" id="localRoad"><span>지방도, 국도</span></div>
+          <div class="legend" onclick="toggleRoadLayer(4);" id="highway"><span>고속도로</span></div>
+          <div class="legend" onclick="toggleRoadLayer(5);" id="localRoad"><span>지방도, 국도</span></div>
+          <div class="legend" onclick="toggleEMDLayer();" id="switchEMD"><span>행정동</span></div>
         </div>
     </div>
   </body>

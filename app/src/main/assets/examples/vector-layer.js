@@ -49731,6 +49731,11 @@ proj4_projs(core);
 
 
 
+//======================================================================================
+// Define Global Variable
+//======================================================================================
+let showHLayer = true;
+let showBLayer = false;
 
 //======================================================================================
 // Define Projection
@@ -49881,6 +49886,20 @@ const createEMDLayer = function(geoJsonName) {
 	return layer;
 }
 
+const createBEMDLayer = function(geoJsonName) {
+	const layer = new Vector({
+		source: new source_Vector({
+			url: 'data/geojson/' + geoJsonName,
+			format: new format_GeoJSON()
+		}),
+		style: function(feature) {
+			vector_layer_style.getText().setText(feature.get('EMD_KOR_NM'));
+			return vector_layer_style;
+		}
+	});
+	layer.setVisible(false);
+	return layer;
+}
 
 //======================================================================================
 // Define Layer 
@@ -49930,6 +49949,8 @@ const emd31023xx = createEMDLayer('31023xx.geojson');
 const emd31250xx = createEMDLayer('31250xx.geojson');
 const emd31180xx = createEMDLayer('31180xx.geojson');
 const emd31191xx = createEMDLayer('31191xx.geojson');
+
+const bEmd11110xxx = createBEMDLayer('11110xxx.geojson');
 
 const highwayLayer1 = createRoadLayer('경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
 const highwayLayer2 = createRoadLayer('호남고속도로_EPSG4326.geojson', ROAD_STYLE_1);
@@ -49989,7 +50010,12 @@ const vector_layer_map = new ol_Map({
   			emd11010xx, emd11020xx,
   			emd31021xx, emd31022xx, emd31023xx, emd31250xx, emd31180xx,
   			emd31191xx
-  			]
+  		]
+  	}),
+  	new Group({
+  		layers: [
+  			bEmd11110xxx
+  		]
   	}),
   	new Group({
   		layers: [
@@ -50015,7 +50041,6 @@ const vector_layer_map = new ol_Map({
   }),
   controls: []
 });
-
 
 
 //======================================================================================
@@ -50082,25 +50107,38 @@ vector_layer_map.on('click', function(evt) {
 vector_layer_map.updateSize();
 
 vector_layer_map.getView().on('propertychange', function(e) { 
-	if (e.target.getZoom() < 9) {
+	updateLayer(e.target.getZoom());
+});
+
+const updateLayer = function(zoomLevel) {
+	if (zoomLevel < 9) {
 		toggleLayers(true, 0);
 		toggleLayers(false, 1);
 		toggleLayers(false, 2);
-	} else if (e.target.getZoom() >= 9 && e.target.getZoom() < 12) {
+		toggleLayers(false, 3);
+	} else if (zoomLevel >= 9 && zoomLevel < 12) {
 		toggleLayers(true, 0);
 		toggleLayers(true, 1);
 		toggleLayers(false, 2);
-	} else if (e.target.getZoom() >= 12) {
+		toggleLayers(false, 3);
+	} else if (zoomLevel >= 12) {
 		toggleLayers(false, 0);
 		toggleLayers(true, 1);
-		toggleLayers(true, 2);
+		toggleLayers(showHLayer, 2);
+		toggleLayers(showBLayer, 3);
 	}
 //	if (e.target.getZoom() < 8) {
 //		sgg41xxx.setVisible(false);
 //		toggleLayer(true);
 //		map.getView().setCenter([14218435, 4385412]);
 //	} 
-});
+}
+
+const switchEMDLayer = function() {
+	showHLayer = !showHLayer;
+	showBLayer = !showBLayer;
+	updateLayer(vector_layer_map.getView().getZoom());
+}
 
 const toggleLayers = function(isVisible, index) {
 	vector_layer_map.getLayers().item(index).getLayers().forEach(function(sggLayer) {
@@ -50168,6 +50206,7 @@ window.init = vector_layer_init;
 window.map = vector_layer_map;
 window.featureOverlay= vector_layer_featureOverlay;
 window.toggleRoadLabel = toggleRoadLabel;
+window.switchEMDLayer = switchEMDLayer;
 
 
 /***/ }),
