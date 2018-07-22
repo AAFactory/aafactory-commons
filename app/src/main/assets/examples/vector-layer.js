@@ -49957,6 +49957,7 @@ const emd31380xx = createEMDLayer('31380xx.geojson');
 
 const bEmd11110xxx = createBEMDLayer('11110xxx.geojson');
 const bEmd11140xxx = createBEMDLayer('11140xxx.geojson');
+const bEmd11710xxx = createBEMDLayer('11710xxx.geojson');
 const bEmd41117xxx = createBEMDLayer('41117xxx.geojson');
 const bEmd41131xxx = createBEMDLayer('41131xxx.geojson');
 const bEmd41133xxx = createBEMDLayer('41133xxx.geojson');
@@ -50032,7 +50033,7 @@ const vector_layer_map = new ol_Map({
   	}),
   	new Group({
   		layers: [
-  			bEmd11110xxx, bEmd11140xxx, bEmd41117xxx, bEmd41131xxx, bEmd41133xxx,
+  			bEmd11110xxx, bEmd11140xxx, bEmd11710xxx, bEmd41117xxx, bEmd41131xxx, bEmd41133xxx,
   			bEmd41135xxx, bEmd41220xxx, bEmd41370xxx, bEmd41461xxx, bEmd41463xxx,
   			bEmd41465xxx, bEmd41550xxx, bEmd41590xxx, bEmd41610xxx
   		]

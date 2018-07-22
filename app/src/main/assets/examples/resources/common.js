@@ -1,8 +1,8 @@
 (function() {
-  var clipboard = new Clipboard('#copy-button');
-  clipboard.on('success', function(e) {
-    e.clearSelection();
-  });
+//  var clipboard = new Clipboard('#copy-button');
+//  clipboard.on('success', function(e) {
+//    e.clearSelection();
+//  });
 
   var codepenButton = document.getElementById('codepen-button');
   if (codepenButton) {
