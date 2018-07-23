@@ -90,6 +90,35 @@
       	switchEMDLayer();
       }
       
+      function printSidoName() {
+      	map.getLayers().item(0).getLayers().forEach(function(layer) { 
+      		console.log(layer.getSource().getFeatures()[0].get('area1'))
+      	});
+      }
+      
+      function printSggName() {
+      	map.getLayers().item(1).getLayers().forEach(function(layer) { 
+      		layer.getSource().getFeatures().forEach(function(feature) { 
+      			console.log(feature.get('SIG_KOR_NM'))
+      		}) 
+      	});
+      }
+      
+      function printHEmdName() {
+      	map.getLayers().item(2).getLayers().forEach(function(layer) { 
+          layer.getSource().getFeatures().forEach(function(feature) { 
+            console.log(feature.get('adm_cd'), feature.get('adm_nm'))
+          }) 
+        });
+      }
+      
+      function printBEmdName() {
+      	map.getLayers().item(3).getLayers().forEach(function(layer) { 
+          layer.getSource().getFeatures().forEach(function(feature) { 
+            console.log(feature.get('EMD_CD'), feature.get('EMD_KOR_NM'))
+          }) 
+        });
+      }
     </script>
   </head>
   <body>
