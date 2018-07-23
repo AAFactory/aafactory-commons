@@ -411,6 +411,7 @@ map.updateSize();
 map.getView().on('propertychange', function(e) { 
 	updateMapStatus(e.target.getCenter()[0], e.target.getCenter()[1], e.target.getZoom());
 	updateLayer(e.target.getZoom());
+	determineAreaName();
 });
 
 const updateLayer = function(zoomLevel) {
@@ -501,6 +502,16 @@ const toggleRoadLabel = function() {
 	toggleOptionsDiv();
 }
 
+const determineAreaName = function() {
+	const nameMap = {sido:'', sgg:'', hemd:'', bemd:''};
+	map.forEachFeatureAtPixel([window.innerWidth / 2, window.innerHeight / 2], function(feature) {
+		if (feature.get('area1')) nameMap.sido = feature.get('area1');
+		if (feature.get('SIG_KOR_NM')) nameMap.sgg = feature.get('SIG_KOR_NM');
+		if (feature.get('adm_nm')) nameMap.hemd = feature.get('adm_nm');
+		if (feature.get('EMD_KOR_NM')) nameMap.bemd = feature.get('EMD_KOR_NM');
+	});
+	updateAreaName(nameMap.sido + ' ' + nameMap.sgg + ' ' + nameMap.hemd + ' ' + nameMap.bemd);
+}
 
 //======================================================================================
 // Export Global Variable
