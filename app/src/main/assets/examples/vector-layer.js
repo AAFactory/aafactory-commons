@@ -50128,6 +50128,7 @@ vector_layer_map.on('click', function(evt) {
 vector_layer_map.updateSize();
 
 vector_layer_map.getView().on('propertychange', function(e) { 
+	updateMapStatus(e.target.getCenter()[0], e.target.getCenter()[1], e.target.getZoom());
 	updateLayer(e.target.getZoom());
 });
 
@@ -50215,6 +50216,8 @@ const toggleRoadLabel = function() {
 			return roadStyle;
 		});
 	});
+	
+	toggleOptionsDiv();
 }
 
 

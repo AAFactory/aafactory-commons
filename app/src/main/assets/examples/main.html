@@ -21,9 +21,6 @@
        select { background: white; border: 0px; padding: 5px; display: block; width: 200px; }
        .legend {
          width: 80px;
-         display: inline-block;
-         position: absolute;
-         right: 0px;
          border: solid white 1px;
          vertical-align: middle;
          text-align: right;
@@ -31,11 +28,9 @@
        }
        #highway {
          background: #00FF00;
-         top: 65px;
        }
        #localRoad {
          background: #ffbc66;
-         top: 92px;
        }
        span { font-size: 10px; color: white; }
        #nRoadSelect {  }
@@ -43,10 +38,29 @@
          top: 118px;
          background: darkgrey;
        }
+       #legend {
+         position: absolute;
+         right: 0;
+       }
+       #mapStatus {
+         top: 10px;
+         width: 100%;
+         position: absolute;
+         text-align: center;
+         color: black;
+       }
+       #selectOpttions {
+         display: none;
+       }
     </style>
     
     <script type="text/javascript">
       var focusLayer;
+    
+      function toggleOptionsDiv() {
+        $('#selectOpttions').toggle();
+      }
+      
       function fitboundsLayer(element) {
       	element.blur();
         var map = window.map;
@@ -119,47 +133,55 @@
           }) 
         });
       }
+      
+      function updateMapStatus(x, y, z) {
+      	$('#mapStatus').html(x + ' ' + y + ' ' + z);
+      }
     </script>
   </head>
   <body>
     <div id="map" class="map"></div>
     <div id="roadLayers">
-        <select onchange="fitboundsLayer(this);">
-            <option value="" disabled selected>고속도로</option>
-            <option value="0">경부고속도로</option>
-            <option value="1">호남고속도로</option>
-            <option value="2">중부고속도로</option>
-            <option value="3">통영대전고속도로</option>
-            <option value="4">중부내륙고속도로</option>
-            <option value="5">제2중부고속도로</option>
-            <option value="6">중부내륙고속도로지선</option>
-            <option value="7">서울양양고속도로</option>
-            <option value="8">영동고속도로</option>
-            <option value="9">경인고속도로</option>
-            <option value="10">광주원주고속도로</option>
-            <option value="11">세종포천고속도로(구리-포천)</option>
-            <option value="12">동해고속도로(부산-울산)</option>
-            <option value="13">동해고속도로(삼척-속초)</option>
-            <option value="14">동해고속도로(울산-포항)</option>
-            <option value="15">중앙고속도로(춘천-금호)</option>
-            <option value="16">서해안고속도로</option>
-            <option value="17">제2경인고속도로(안양-성남)</option>
-            <option value="18">제2경인고속도로(인천대교)</option>
-            <option value="19">중앙고속도로(부산-대구)</option>
-        </select>
-        <select id="nRoadSelect" onchange="fitboundsNRoadLayer(this);">
+        <div id="selectOpttions">
+            <select onchange="fitboundsLayer(this);">
+              <option value="" disabled selected>고속도로</option>
+              <option value="0">경부고속도로</option>
+              <option value="1">호남고속도로</option>
+              <option value="2">중부고속도로</option>
+              <option value="3">통영대전고속도로</option>
+              <option value="4">중부내륙고속도로</option>
+              <option value="5">제2중부고속도로</option>
+              <option value="6">중부내륙고속도로지선</option>
+              <option value="7">서울양양고속도로</option>
+              <option value="8">영동고속도로</option>
+              <option value="9">경인고속도로</option>
+              <option value="10">광주원주고속도로</option>
+              <option value="11">세종포천고속도로(구리-포천)</option>
+              <option value="12">동해고속도로(부산-울산)</option>
+              <option value="13">동해고속도로(삼척-속초)</option>
+              <option value="14">동해고속도로(울산-포항)</option>
+              <option value="15">중앙고속도로(춘천-금호)</option>
+              <option value="16">서해안고속도로</option>
+              <option value="17">제2경인고속도로(안양-성남)</option>
+              <option value="18">제2경인고속도로(인천대교)</option>
+              <option value="19">중앙고속도로(부산-대구)</option>
+            </select>
+            <select id="nRoadSelect" onchange="fitboundsNRoadLayer(this);">
             <option value="" disabled selected>국도</option>
             <option value="0">내부순환로</option>
             <option value="1">분당수서간도시고속화도로</option>
             <option value="2">서울외곽순환고속도로</option>
-        </select>
-        <div>
+            </select>
+        </div>
+        <div id="legend">
           <div class="legend" onclick="toggleRoadLayer(4);" id="highway"><span>고속도로</span></div>
           <div class="legend" onclick="toggleRoadLayer(5);" id="localRoad"><span>지방도, 국도</span></div>
           <div class="legend" onclick="toggleEMDLayer();" id="switchEMD"><span>행정동</span></div>
         </div>
     </div>
+    <div id="mapStatus"></div>
   </body>
+  <script src="./resources/jquery-3.3.1.min.js"></script>
   <script src="./resources/common.js"></script>
   <script src="./resources/prism/prism.min.js"></script>
   <script src="common.js"></script>
