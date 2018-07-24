@@ -50207,7 +50207,7 @@ const toggleRoadLabel = function() {
 			} else {
 				roadStyle[1].getText().setText(feature.get(''));
 			}
-			roadStyle[0].getStroke().setColor(ROAD_STYLE_2);
+			roadStyle[0].getStroke().setColor(ROAD_STYLE_1);
 			return roadStyle;
 		});
 	});
@@ -50219,7 +50219,7 @@ const toggleRoadLabel = function() {
 			} else {
 				roadStyle[1].getText().setText(feature.get(''));
 			}
-			roadStyle[0].getStroke().setColor(ROAD_STYLE_1);
+			roadStyle[0].getStroke().setColor(ROAD_STYLE_2);
 			return roadStyle;
 		});
 	});
