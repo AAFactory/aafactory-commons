@@ -13,16 +13,21 @@ import {register} from '../src/ol/proj/proj4.js';
 import proj4 from 'proj4';
 
 //======================================================================================
+//Define Projection
+//======================================================================================
+proj4.defs("EPSG:5179","+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
+register(proj4);
+
+
+//======================================================================================
 // Define Global Variable
 //======================================================================================
 let showHLayer = true;
 let showBLayer = false;
+const wgs84 = new proj4.Proj('EPSG:4326');
+const epsg5179 = new proj4.Proj('EPSG:5179');
+const epsg3857 = new proj4.Proj('EPSG:3857');
 
-//======================================================================================
-// Define Projection
-//======================================================================================
-proj4.defs("EPSG:5179","+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
-register(proj4);
 
 //======================================================================================
 // Define Layer Style
@@ -198,12 +203,11 @@ const sidoLayer10 = createSDLayer('부산광역시.geojson');
 const sidoLayer11 = createSDLayer('경상남도.geojson');
 const sidoLayer12 = createSDLayer('광주광역시.geojson');
 const sidoLayer13 = createSDLayer('대구광역시.geojson');
-const sidoLayer14 = createSDLayer('전라남도.geojson');
+const sidoLayer14 = createSDLayer('세종특별자치시.geojson');
 const sidoLayer15 = createSDLayer('서울특별시.geojson');
 const sidoLayer16 = createSDLayer('충청북도.geojson');
 const sidoLayer17 = createSDLayer('인천광역시.geojson');
-const sidoLayer18 = createSDLayer('대전광역시.geojson');
-const sidoLayer19 = createSDLayer('세종특별자치시.geojson');
+
 
 const sgg11xxx = createSGGLayer('11xxx.geojson');
 const sgg26xxx = createSGGLayer('26xxx.geojson');
@@ -294,7 +298,7 @@ const map = new Map({
   			sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4, sidoLayer5,
   			sidoLayer6, sidoLayer7, sidoLayer8, sidoLayer9, sidoLayer10,
   			sidoLayer11, sidoLayer12, sidoLayer13, sidoLayer14, sidoLayer15,
-  			sidoLayer16, sidoLayer17, sidoLayer18, sidoLayer19
+  			sidoLayer16, sidoLayer17
   		]
   	}),
   	new LayerGroup({
@@ -337,8 +341,8 @@ const map = new Map({
   ],
   target: 'map',
   view: new View({
-    projection: 'EPSG:3857',
-    center: [14218435, 4385412],
+  	 projection: 'EPSG:3857',
+     center: [14218435, 4385412],
     zoom: 7
   }),
   controls: []
@@ -409,7 +413,9 @@ map.on('click', function(evt) {
 map.updateSize();
 
 map.getView().on('propertychange', function(e) { 
-	updateMapStatus(e.target.getCenter()[0], e.target.getCenter()[1], e.target.getZoom());
+	const point = proj4.Point(e.target.getCenter()[0], e.target.getCenter()[1]);
+	const wgs84LatLng = proj4.transform(epsg3857, wgs84, point);
+	updateMapStatus(wgs84LatLng.x, wgs84LatLng.y, e.target.getZoom());
 	updateLayer(e.target.getZoom());
 	determineAreaName();
 });
@@ -420,12 +426,12 @@ const updateLayer = function(zoomLevel) {
 		toggleLayers(false, 1);
 		toggleLayers(false, 2);
 		toggleLayers(false, 3);
-	} else if (zoomLevel >= 9 && zoomLevel < 12) {
+	} else if (zoomLevel >= 9 && zoomLevel < 11) {
 		toggleLayers(true, 0);
 		toggleLayers(true, 1);
 		toggleLayers(false, 2);
 		toggleLayers(false, 3);
-	} else if (zoomLevel >= 12) {
+	} else if (zoomLevel >= 11) {
 		toggleLayers(false, 0);
 		toggleLayers(true, 1);
 		toggleLayers(showHLayer, 2);
@@ -475,7 +481,7 @@ const init = function() {
 let isLabelOn = false;
 const toggleRoadLabel = function() {
 	isLabelOn = !isLabelOn;
-	map.getLayers().item(3).getLayers().forEach(function(layer) {
+	map.getLayers().item(4).getLayers().forEach(function(layer) {
 		layer.setStyle(function(feature) {
 			if (isLabelOn) {
 				roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
@@ -487,7 +493,7 @@ const toggleRoadLabel = function() {
 		});
 	});
 	
-	map.getLayers().item(4).getLayers().forEach(function(layer) {
+	map.getLayers().item(5).getLayers().forEach(function(layer) {
 		layer.setStyle(function(feature) {
 			if (isLabelOn) {
 				roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
@@ -523,3 +529,4 @@ window.map = map;
 window.featureOverlay= featureOverlay;
 window.toggleRoadLabel = toggleRoadLabel;
 window.switchEMDLayer = switchEMDLayer;
+window.proj4 = proj4;

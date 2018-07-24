@@ -50,6 +50,13 @@
          display: none;
          margin-top: 5px;
        }
+       #centerCross {
+         color: red;
+         font-size: 30px;
+         position: absolute;
+         top: calc(100% / 2);
+         left: calc(100% / 2);
+       }
     </style>
     
     <script type="text/javascript">
@@ -183,6 +190,7 @@
         <div class="legend" onclick="toggleEMDLayer();" id="switchEMD"><span>행정동</span></div>
       </div>
     </div>
+    <div id="centerCross">+</div>
   </body>
   <script src="./resources/jquery-3.3.1.min.js"></script>
   <script src="./resources/common.js"></script>
