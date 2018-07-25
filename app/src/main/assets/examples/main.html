@@ -50,11 +50,21 @@
          display: none;
          margin-top: 5px;
        }
-       #centerCross {
-         color: red;
+       #xAxis {
+         background-color: red;
          position: absolute;
-         top: calc((100% / 2) - 8px);
-         left: calc((100% / 2) - 8px);
+         width: 20px;
+         height: 2px;
+         top: calc((100% / 2) - 1px);
+         left: calc((100% / 2) - 10px);
+       }
+       #yAxis {
+         background-color: red;
+         position: absolute;
+         width: 2px;
+         height: 20px;
+         top: calc((100% / 2) - 10px);
+         left: calc((100% / 2) - 1px);
        }
     </style>
     
@@ -189,7 +199,8 @@
         <div class="legend" onclick="toggleEMDLayer();" id="switchEMD"><span>행정동</span></div>
       </div>
     </div>
-    <div id="centerCross"><img src="./resources/plus-2-16.png" /></div>
+    <div id="xAxis"></div>
+    <div id="yAxis"></div>
   </body>
   <script src="./resources/jquery-3.3.1.min.js"></script>
   <script src="./resources/common.js"></script>
