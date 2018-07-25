@@ -249,6 +249,7 @@ const bEmd41133xxx = createBEMDLayer('41133xxx.geojson');
 const bEmd41135xxx = createBEMDLayer('41135xxx.geojson');
 const bEmd41220xxx = createBEMDLayer('41220xxx.geojson');
 const bEmd41370xxx = createBEMDLayer('41370xxx.geojson');
+const bEmd41450xxx = createBEMDLayer('41450xxx.geojson');
 const bEmd41461xxx = createBEMDLayer('41461xxx.geojson');
 const bEmd41463xxx = createBEMDLayer('41463xxx.geojson');
 const bEmd41465xxx = createBEMDLayer('41465xxx.geojson');
@@ -318,9 +319,10 @@ const map = new Map({
   	}),
   	new LayerGroup({
   		layers: [
-  			bEmd11110xxx, bEmd11140xxx, bEmd11710xxx, bEmd41117xxx, bEmd41131xxx, bEmd41133xxx,
-  			bEmd41135xxx, bEmd41220xxx, bEmd41370xxx, bEmd41461xxx, bEmd41463xxx,
-  			bEmd41465xxx, bEmd41550xxx, bEmd41590xxx, bEmd41610xxx
+  			bEmd11110xxx, bEmd11140xxx, bEmd11710xxx, bEmd41117xxx, bEmd41131xxx,
+  			bEmd41133xxx, bEmd41135xxx, bEmd41220xxx, bEmd41370xxx, bEmd41450xxx,
+  			bEmd41461xxx, bEmd41463xxx, bEmd41465xxx, bEmd41550xxx, bEmd41590xxx,
+  			bEmd41610xxx
   		]
   	}),
   	new LayerGroup({
@@ -395,7 +397,7 @@ const displayFeatureInfo = function(pixel) {
   }
   
   
-  map.getView().fit(feature.getGeometry().getExtent(), map.getSize());
+//  map.getView().fit(feature.getGeometry().getExtent(), map.getSize());
 };
 
 //map.on('pointermove', function(evt) {
