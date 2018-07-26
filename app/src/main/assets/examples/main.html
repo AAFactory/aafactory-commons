@@ -6,12 +6,12 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <link rel="stylesheet" href="./resources/prism/prism.css" type="text/css">
     <link rel="stylesheet" href="./css/ol.css" type="text/css">
-    <link rel="stylesheet" href="./resources/layout.css" type="text/css">
+    <script src="./resources/jquery-3.3.1.min.js"></script>
     <title>Vector Layer</title>
     
     <style>
        #map { height:100%; margin: 0 }
-       html, body { height:100%; border:0; margin:0; } 
+       html, body { height:100%; border:0; margin:0; font-family: monospace; } 
        #toolDiv {
          position: absolute;
          top: 10px;
@@ -24,6 +24,8 @@
          vertical-align: middle;
          text-align: right;
          padding: 5px 5px;
+         z-index: 10;
+         cursor: pointer;
        }
        #highway {
          background: #00FF00;
@@ -38,13 +40,13 @@
          background: darkgrey;
        }
        #legend {
-         position: absolute;
-         right: 0;
+         float: right;
          margin-top: 5px;
        }
        .mapInfo {
-         text-align: right;
+         text-align: center;
          color: black;
+         display: block;
        }
        #selectOpttions {
          display: none;
@@ -65,6 +67,26 @@
          height: 20px;
          top: calc((100% / 2) - 10px);
          left: calc((100% / 2) - 1px);
+       }
+       #buttonDiv {
+         position: absolute;
+         top: 10px;
+         left: 10px;
+         z-index: 10;
+       }
+       #infoDiv{
+         position: fixed;
+         top: 5px;
+         width: 100%;
+         text-align: center;
+       }
+       .button {
+         background: black;
+         color: white;
+         font-size: 10px;
+         padding: 5px;
+         display: inline-block;
+         cursor: pointer;
        }
     </style>
     
@@ -118,10 +140,19 @@
       	switchEMDLayer();
       }
       
-      function printSidoName() {
-      	map.getLayers().item(0).getLayers().forEach(function(layer) { 
-      		console.log(layer.getSource().getFeatures()[0].get('area1'))
-      	});
+      let isInitSido = false;
+      function initSido() {
+      	console.log(isInitSido);
+      	if (!isInitSido) {
+          var a = "<select id='nRoadSelect' onchange='fitboundsNRoadLayer(this);'>";
+          map.getLayers().item(0).getLayers().forEach(function(layer) { 
+          	//console.log(layer.getSource().getFeatures()[0].get('area1'));
+          	a += "<option value='0'>" + layer.getSource().getFeatures()[0].get('area1') + "</option>"	
+          });
+          a += "</select>";
+          $('#selectOpttions').append(a);
+          isInitSido = true;
+      	}
       }
       
       function printSggName() {
@@ -155,13 +186,28 @@
       function updateAreaName(areaName) {
         $('#areaName').html(areaName);
       }
+      
+      $(function() {
+      	$('.button').on('click', function() {
+      		if ($(this).hasClass('a')) {
+      			toggleOptionsDiv();
+      			initSido();
+      		} else if ($(this).hasClass('b')) {
+      			toggleRoadLabel();
+      		}
+      		
+      	});
+      });
     </script>
   </head>
   <body>
     <div id="map" class="map"></div>
     <div id="toolDiv">
-      <div id="mapStatus" class="mapInfo"></div>
-      <div id="areaName" class="mapInfo"></div>
+      <div id="legend">
+        <div class="legend" onclick="toggleRoadLayer(4);" id="highway"><span>고속도로</span></div>
+        <div class="legend" onclick="toggleRoadLayer(5);" id="localRoad"><span>지방도, 국도</span></div>
+        <div class="legend" onclick="toggleEMDLayer();" id="switchEMD"><span>행정동</span></div>
+      </div>
       <div id="selectOpttions">
         <select onchange="fitboundsLayer(this);">
           <option value="" disabled selected>고속도로</option>
@@ -187,22 +233,25 @@
           <option value="19">중앙고속도로(부산-대구)</option>
         </select>
         <select id="nRoadSelect" onchange="fitboundsNRoadLayer(this);">
-        <option value="" disabled selected>국도</option>
-        <option value="0">내부순환로</option>
-        <option value="1">분당수서간도시고속화도로</option>
-        <option value="2">서울외곽순환고속도로</option>
+          <option value="" disabled selected>국도</option>
+          <option value="0">내부순환로</option>
+          <option value="1">분당수서간도시고속화도로</option>
+          <option value="2">서울외곽순환고속도로</option>
         </select>
-      </div>
-      <div id="legend">
-        <div class="legend" onclick="toggleRoadLayer(4);" id="highway"><span>고속도로</span></div>
-        <div class="legend" onclick="toggleRoadLayer(5);" id="localRoad"><span>지방도, 국도</span></div>
-        <div class="legend" onclick="toggleEMDLayer();" id="switchEMD"><span>행정동</span></div>
       </div>
     </div>
     <div id="xAxis"></div>
     <div id="yAxis"></div>
+    <div id="buttonDiv">
+      <div class="button a">OPT</div>
+      <div class="button b">LAB</div>
+    </div>
+    <div id="infoDiv">
+      <div id="mapStatus" class="mapInfo"></div>
+      <div id="areaName" class="mapInfo"></div>
+    </div>
+    
   </body>
-  <script src="./resources/jquery-3.3.1.min.js"></script>
   <script src="./resources/common.js"></script>
   <script src="./resources/prism/prism.min.js"></script>
   <script src="common.js"></script>

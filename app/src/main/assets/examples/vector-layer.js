@@ -50225,8 +50225,6 @@ const toggleRoadLabel = function() {
 			return roadStyle;
 		});
 	});
-	
-	toggleOptionsDiv();
 }
 
 const determineAreaName = function() {
