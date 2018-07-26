@@ -17,6 +17,7 @@
          top: 10px;
          right: 10px; 
          font-size: 13px;
+         z-index: 10;
        }
        select { background: white; border: 0px; padding: 5px; display: block; width: 200px; }
        .legend {
@@ -85,7 +86,7 @@
          color: white;
          font-size: 10px;
          padding: 5px;
-         display: inline-block;
+         display: block;
          cursor: pointer;
        }
     </style>
@@ -144,7 +145,7 @@
       function initSido() {
       	console.log(isInitSido);
       	if (!isInitSido) {
-          var a = "<select id='nRoadSelect' onchange='fitboundsNRoadLayer(this);'>";
+          var a = "<select id='nRoadSelect'>";
           map.getLayers().item(0).getLayers().forEach(function(layer) { 
           	//console.log(layer.getSource().getFeatures()[0].get('area1'));
           	a += "<option value='0'>" + layer.getSource().getFeatures()[0].get('area1') + "</option>"	
@@ -153,6 +154,24 @@
           $('#selectOpttions').append(a);
           isInitSido = true;
       	}
+      }
+      
+      const hEmdArr = [];
+      function initHEmd() {
+        if (hEmdArr.length == 0) {
+          var a = "<select id='nRoadSelect'>";
+          map.getLayers().item(2).getLayers().forEach(function(layer) {
+          	layer.getSource().getFeatures().forEach(function(feature) {
+          		hEmdArr.push(feature.get('adm_nm'));
+          	});
+          });
+          	
+          $.each(hEmdArr, function(idx, name) {
+          	 a += "<option value='0'>" + name + "</option>"
+          });	
+          a += "</select>";
+          if (hEmdArr.length > 0) $('#selectOpttions').append(a);
+        }
       }
       
       function printSggName() {
@@ -192,6 +211,7 @@
       		if ($(this).hasClass('a')) {
       			toggleOptionsDiv();
       			initSido();
+      			initHEmd();
       		} else if ($(this).hasClass('b')) {
       			toggleRoadLabel();
       		}
