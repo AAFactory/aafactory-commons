@@ -92,6 +92,10 @@
     </style>
     
     <script type="text/javascript">
+      let labelMap = {
+        sgg: 'SIG_KOR_NM'		
+      }
+      
       var focusLayer;
     
       function toggleOptionsDiv() {
@@ -141,36 +145,69 @@
       	switchEMDLayer();
       }
       
-      let isInitSido = false;
+      const sidoArr = [];
       function initSido() {
-      	console.log(isInitSido);
-      	if (!isInitSido) {
-          var a = "<select id='nRoadSelect'>";
+      	if (sidoArr.length == 0) {
           map.getLayers().item(0).getLayers().forEach(function(layer) { 
-          	//console.log(layer.getSource().getFeatures()[0].get('area1'));
-          	a += "<option value='0'>" + layer.getSource().getFeatures()[0].get('area1') + "</option>"	
+          	sidoArr.push(layer);
           });
-          a += "</select>";
-          $('#selectOpttions').append(a);
-          isInitSido = true;
+          
+          $.each(sidoArr, function(idx, layer) {
+          	$('#sidoSelect').append($('<option>', {
+              value: idx,
+              text: layer.getSource().getFeatures()[0].get('area1')
+            }));
+          });
+          
+          $('#sidoSelect').on('change', function() {
+            map.getView().fit(sidoArr[$(this).val()].getSource().getExtent(), map.getSize());
+          });
       	}
+      }
+      
+      const sggArr = [];
+      function initSgg() {
+        if (sggArr.length == 0) {
+          map.getLayers().item(1).getLayers().forEach(function(layer) {
+            layer.getSource().getFeatures().forEach(function(feature) {
+              //hEmdArr.push(feature.get('adm_nm'));
+              sggArr.push(feature);
+            });
+          });
+            
+          $.each(sggArr, function(idx, feature) {
+          	$('#sggSelect').append($('<option>', {
+              value: idx,
+              text: feature.get(labelMap.sgg)
+            }));
+          }); 
+          
+          $('#sggSelect').on('change', function() {
+            map.getView().fit(sggArr[$(this).val()].getGeometry().getExtent(), map.getSize());
+          });
+        }
       }
       
       const hEmdArr = [];
       function initHEmd() {
         if (hEmdArr.length == 0) {
-          var a = "<select id='nRoadSelect'>";
+          var a = "<select id='hEmdSelect'>";
           map.getLayers().item(2).getLayers().forEach(function(layer) {
           	layer.getSource().getFeatures().forEach(function(feature) {
-          		hEmdArr.push(feature.get('adm_nm'));
+          		//hEmdArr.push(feature.get('adm_nm'));
+          		hEmdArr.push(feature);
           	});
           });
           	
-          $.each(hEmdArr, function(idx, name) {
-          	 a += "<option value='0'>" + name + "</option>"
+          $.each(hEmdArr, function(idx, feature) {
+          	 a += "<option value='" + idx + "'>" + feature.get('adm_nm') + "</option>"
           });	
           a += "</select>";
           if (hEmdArr.length > 0) $('#selectOpttions').append(a);
+          
+          $('#hEmdSelect').on('change', function() {
+            map.getView().fit(hEmdArr[$(this).val()].getGeometry().getExtent(), map.getSize());
+          });
         }
       }
       
@@ -214,6 +251,9 @@
       			initHEmd();
       		} else if ($(this).hasClass('b')) {
       			toggleRoadLabel();
+      		} else if ($(this).hasClass('c')) {
+            initSgg();
+            initHEmd();
       		}
       		
       	});
@@ -258,6 +298,8 @@
           <option value="1">분당수서간도시고속화도로</option>
           <option value="2">서울외곽순환고속도로</option>
         </select>
+        <select id='sidoSelect'></select>
+        <select id='sggSelect'></select>
       </div>
     </div>
     <div id="xAxis"></div>
@@ -265,6 +307,7 @@
     <div id="buttonDiv">
       <div class="button a">OPT</div>
       <div class="button b">LAB</div>
+      <div class="button c">UPD</div>
     </div>
     <div id="infoDiv">
       <div id="mapStatus" class="mapInfo"></div>

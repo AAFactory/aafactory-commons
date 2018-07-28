@@ -112,7 +112,7 @@ const highlightStyle = new Style({
 
 
 //======================================================================================
-//Factory Function
+// Factory Function
 //======================================================================================
 const createRoadLayer = function(geoJsonName, color) {
 	return new VectorLayer({
