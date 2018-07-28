@@ -49741,8 +49741,8 @@ proj4_register(lib);
 //======================================================================================
 // Define Global Variable
 //======================================================================================
-let showHLayer = true;
-let showBLayer = false;
+let showHLayer = false;
+let showBLayer = true;
 const vector_layer_wgs84 = new lib.Proj('EPSG:4326');
 const epsg5179 = new lib.Proj('EPSG:5179');
 const epsg3857 = new lib.Proj('EPSG:3857');
@@ -49855,6 +49855,7 @@ const createSDLayer = function(geoJsonName) {
 		}),
 		style: function(feature) {
 			vector_layer_style.getText().setText(feature.get('area1'));
+			vector_layer_style.getFill().setColor('rgba(255, 255, 255, 1)');
 			return vector_layer_style;
 		}
 	});
@@ -49869,6 +49870,7 @@ const createSGGLayer = function(geoJsonName) {
 		}),
 		style: function(feature) {
 			vector_layer_style.getText().setText(feature.get('SIG_KOR_NM'));
+			vector_layer_style.getFill().setColor('rgba(255, 255, 255, 1)');
 			return vector_layer_style;
 		}
 	});
@@ -49884,6 +49886,7 @@ const createEMDLayer = function(geoJsonName) {
 		}),
 		style: function(feature) {
 			vector_layer_style.getText().setText(feature.get('adm_nm'));
+			vector_layer_style.getFill().setColor('rgba(209, 199, 171, 1)');
 			return vector_layer_style;
 		}
 	});
@@ -49899,6 +49902,7 @@ const createBEMDLayer = function(geoJsonName) {
 		}),
 		style: function(feature) {
 			vector_layer_style.getText().setText(feature.get('EMD_KOR_NM'));
+			vector_layer_style.getFill().setColor('rgba(209, 199, 171, 1)');
 			return vector_layer_style;
 		}
 	});

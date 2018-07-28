@@ -22,8 +22,8 @@ register(proj4);
 //======================================================================================
 // Define Global Variable
 //======================================================================================
-let showHLayer = true;
-let showBLayer = false;
+let showHLayer = false;
+let showBLayer = true;
 const wgs84 = new proj4.Proj('EPSG:4326');
 const epsg5179 = new proj4.Proj('EPSG:5179');
 const epsg3857 = new proj4.Proj('EPSG:3857');
@@ -136,6 +136,7 @@ const createSDLayer = function(geoJsonName) {
 		}),
 		style: function(feature) {
 			style.getText().setText(feature.get('area1'));
+			style.getFill().setColor('rgba(255, 255, 255, 1)');
 			return style;
 		}
 	});
@@ -150,6 +151,7 @@ const createSGGLayer = function(geoJsonName) {
 		}),
 		style: function(feature) {
 			style.getText().setText(feature.get('SIG_KOR_NM'));
+			style.getFill().setColor('rgba(255, 255, 255, 1)');
 			return style;
 		}
 	});
@@ -165,6 +167,7 @@ const createEMDLayer = function(geoJsonName) {
 		}),
 		style: function(feature) {
 			style.getText().setText(feature.get('adm_nm'));
+			style.getFill().setColor('rgba(209, 199, 171, 1)');
 			return style;
 		}
 	});
@@ -180,6 +183,7 @@ const createBEMDLayer = function(geoJsonName) {
 		}),
 		style: function(feature) {
 			style.getText().setText(feature.get('EMD_KOR_NM'));
+			style.getFill().setColor('rgba(209, 199, 171, 1)');
 			return style;
 		}
 	});

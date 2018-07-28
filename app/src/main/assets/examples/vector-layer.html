@@ -416,8 +416,8 @@ register(proj4);
 //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
 // Define Global Variable
 //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-let showHLayer &#x3D; true;
-let showBLayer &#x3D; false;
+let showHLayer &#x3D; false;
+let showBLayer &#x3D; true;
 const wgs84 &#x3D; new proj4.Proj(&#x27;EPSG:4326&#x27;);
 const epsg5179 &#x3D; new proj4.Proj(&#x27;EPSG:5179&#x27;);
 const epsg3857 &#x3D; new proj4.Proj(&#x27;EPSG:3857&#x27;);
@@ -530,6 +530,7 @@ const createSDLayer &#x3D; function(geoJsonName) {
 		}),
 		style: function(feature) {
 			style.getText().setText(feature.get(&#x27;area1&#x27;));
+			style.getFill().setColor(&#x27;rgba(255, 255, 255, 1)&#x27;);
 			return style;
 		}
 	});
@@ -544,6 +545,7 @@ const createSGGLayer &#x3D; function(geoJsonName) {
 		}),
 		style: function(feature) {
 			style.getText().setText(feature.get(&#x27;SIG_KOR_NM&#x27;));
+			style.getFill().setColor(&#x27;rgba(255, 255, 255, 1)&#x27;);
 			return style;
 		}
 	});
@@ -559,6 +561,7 @@ const createEMDLayer &#x3D; function(geoJsonName) {
 		}),
 		style: function(feature) {
 			style.getText().setText(feature.get(&#x27;adm_nm&#x27;));
+			style.getFill().setColor(&#x27;rgba(209, 199, 171, 1)&#x27;);
 			return style;
 		}
 	});
@@ -574,6 +577,7 @@ const createBEMDLayer &#x3D; function(geoJsonName) {
 		}),
 		style: function(feature) {
 			style.getText().setText(feature.get(&#x27;EMD_KOR_NM&#x27;));
+			style.getFill().setColor(&#x27;rgba(209, 199, 171, 1)&#x27;);
 			return style;
 		}
 	});
@@ -1620,8 +1624,8 @@ window.determineAreaName &#x3D; determineAreaName;</textarea>
       //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
       // Define Global Variable
       //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-      let showHLayer &#x3D; true;
-      let showBLayer &#x3D; false;
+      let showHLayer &#x3D; false;
+      let showBLayer &#x3D; true;
       const wgs84 &#x3D; new proj4.Proj(&#x27;EPSG:4326&#x27;);
       const epsg5179 &#x3D; new proj4.Proj(&#x27;EPSG:5179&#x27;);
       const epsg3857 &#x3D; new proj4.Proj(&#x27;EPSG:3857&#x27;);
@@ -1734,6 +1738,7 @@ window.determineAreaName &#x3D; determineAreaName;</textarea>
       		}),
       		style: function(feature) {
       			style.getText().setText(feature.get(&#x27;area1&#x27;));
+      			style.getFill().setColor(&#x27;rgba(255, 255, 255, 1)&#x27;);
       			return style;
       		}
       	});
@@ -1748,6 +1753,7 @@ window.determineAreaName &#x3D; determineAreaName;</textarea>
       		}),
       		style: function(feature) {
       			style.getText().setText(feature.get(&#x27;SIG_KOR_NM&#x27;));
+      			style.getFill().setColor(&#x27;rgba(255, 255, 255, 1)&#x27;);
       			return style;
       		}
       	});
@@ -1763,6 +1769,7 @@ window.determineAreaName &#x3D; determineAreaName;</textarea>
       		}),
       		style: function(feature) {
       			style.getText().setText(feature.get(&#x27;adm_nm&#x27;));
+      			style.getFill().setColor(&#x27;rgba(209, 199, 171, 1)&#x27;);
       			return style;
       		}
       	});
@@ -1778,6 +1785,7 @@ window.determineAreaName &#x3D; determineAreaName;</textarea>
       		}),
       		style: function(feature) {
       			style.getText().setText(feature.get(&#x27;EMD_KOR_NM&#x27;));
+      			style.getFill().setColor(&#x27;rgba(209, 199, 171, 1)&#x27;);
       			return style;
       		}
       	});
