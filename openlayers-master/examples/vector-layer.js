@@ -530,3 +530,4 @@ window.featureOverlay= featureOverlay;
 window.toggleRoadLabel = toggleRoadLabel;
 window.switchEMDLayer = switchEMDLayer;
 window.proj4 = proj4;
+window.determineAreaName = determineAreaName;

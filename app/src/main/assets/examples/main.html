@@ -146,6 +146,11 @@
       	switchEMDLayer();
       }
       
+      function fitBounds(extent) {
+        map.getView().fit(extent, map.getSize());
+        setTimeout(function(){ determineAreaName(0 )}, 100);
+      }
+      
       const sidoArr = [];
       function initSido() {
       	if (sidoArr.length == 0) {
@@ -162,7 +167,7 @@
           });
           
           $('#sidoSelect').on('change', function() {
-            map.getView().fit(sidoArr[$(this).val()].getSource().getExtent(), map.getSize());
+          	fitBounds(sidoArr[$(this).val()].getSource().getExtent());
           });
       	}
       }
@@ -186,7 +191,7 @@
           }); 
           
           $('#sggSelect').on('change', function() {
-            map.getView().fit(sggArr[$(this).val()].getGeometry().getExtent(), map.getSize());
+            fitBounds(sggArr[$(this).val()].getGeometry().getExtent());
           });
         }
       }
@@ -199,7 +204,7 @@
           map.getLayers().item(2).getLayers().forEach(function(layer) {
           	layer.getSource().getFeatures().forEach(function(feature) {
           		//hEmdArr.push(feature.get('adm_nm'));
-          		console.log(feature);
+          		//console.log(feature);
           		hEmdArr.push(feature);
           	});
           });
@@ -213,6 +218,7 @@
           
           $('#hEmdSelect').on('change', function() {
             map.getView().fit(hEmdArr[$(this).val()].getGeometry().getExtent(), map.getSize());
+            fitBounds(sghEmdArr[$(this).val()].getGeometry().getExtent());
           });
         }
       }

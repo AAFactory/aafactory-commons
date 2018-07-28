@@ -50249,6 +50249,7 @@ window.featureOverlay= vector_layer_featureOverlay;
 window.toggleRoadLabel = toggleRoadLabel;
 window.switchEMDLayer = switchEMDLayer;
 window.proj4 = lib;
+window.determineAreaName = determineAreaName;
 
 /***/ }),
 /* 3 */
