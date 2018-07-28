@@ -85,16 +85,18 @@
          background: black;
          color: white;
          font-size: 10px;
-         padding: 5px;
+         padding: 10px;
          display: block;
          cursor: pointer;
+         margin-bottom: 3px;
        }
     </style>
     
     <script type="text/javascript">
       let labelMap = {
         sgg: 'SIG_KOR_NM',
-        hEmd: 'adm_nm'
+        hEmd: 'adm_nm',
+        bEmd: 'EMD_KOR_NM'
       }
       
       var focusLayer;
@@ -168,6 +170,7 @@
           
           $('#sidoSelect').on('change', function() {
           	fitBounds(sidoArr[$(this).val()].getSource().getExtent());
+          	updateSgg();
           });
       	}
       }
@@ -192,33 +195,52 @@
           
           $('#sggSelect').on('change', function() {
             fitBounds(sggArr[$(this).val()].getGeometry().getExtent());
+            updateEmd();
           });
         }
       }
       
-      const hEmdArr = [];
-      function initHEmd() {
-        if (sggArr.length > 0 && hEmdArr.length == 0) {
+      function updateSgg() {
+        sggArr.length = 0;
+        $('#sggSelect')[0].options.length = 0;
+        initSgg();
+      }
+      
+      function updateEmd() {
+        emdArr.length = 0;
+      	$('#emdSelect')[0].options.length = 0;
+      	initEmd();
+      }
+      
+      const emdArr = [];
+      function initEmd() {
+      	var itemIndex = $('#switchEMD span').html() == '행정동' ? 2 : 3;
+      	var labelName = $('#switchEMD span').html() == '행정동' ? labelMap.hEmd : labelMap.bEmd;
+        if (sggArr.length > 0 && emdArr.length == 0) {
         	var sggCode = sggArr[$('#sggSelect').val()].get('SIG_CD');
         	console.log(sggCode);
-          map.getLayers().item(2).getLayers().forEach(function(layer) {
+          map.getLayers().item(itemIndex).getLayers().forEach(function(layer) {
           	layer.getSource().getFeatures().forEach(function(feature) {
           		//hEmdArr.push(feature.get('adm_nm'));
-          		//console.log(feature);
-          		hEmdArr.push(feature);
+          		if (itemIndex == 2) {
+          			emdArr.push(feature);
+          		} else if (itemIndex == 3) {
+          			//console.log(feature.get("EMD_CD"));
+          		  if (feature.get("EMD_CD").indexOf(sggCode) == 0) emdArr.push(feature);
+          		}
           	});
           });
           
-          $.each(hEmdArr, function(idx, feature) {
-            $('#hEmdSelect').append($('<option>', {
+          $.each(emdArr, function(idx, feature) {
+            $('#emdSelect').append($('<option>', {
               value: idx,
-              text: feature.get(labelMap.hEmd)
+              text: feature.get(labelName)
             }));
           }); 
           
-          $('#hEmdSelect').on('change', function() {
-            map.getView().fit(hEmdArr[$(this).val()].getGeometry().getExtent(), map.getSize());
-            fitBounds(sghEmdArr[$(this).val()].getGeometry().getExtent());
+          $('#emdSelect').on('change', function() {
+            map.getView().fit(emdArr[$(this).val()].getGeometry().getExtent(), map.getSize());
+            fitBounds(emdArr[$(this).val()].getGeometry().getExtent());
           });
         }
       }
@@ -260,14 +282,13 @@
       		if ($(this).hasClass('a')) {
       			toggleOptionsDiv();
       			initSido();
-      			initHEmd();
+      			updateSgg();
+            updateEmd();
       		} else if ($(this).hasClass('b')) {
       			toggleRoadLabel();
       		} else if ($(this).hasClass('c')) {
-      			sggArr.length = 0;
-      			$('#sggSelect')[0].options.length = 0;
-            initSgg();
-            initHEmd();
+      			updateSgg();
+      			updateEmd();
       		}
       		
       	});
@@ -314,7 +335,7 @@
         </select>
         <select id='sidoSelect'></select>
         <select id='sggSelect'></select>
-        <select id='hEmdSelect'></select>
+        <select id='emdSelect'></select>
       </div>
     </div>
     <div id="xAxis"></div>
