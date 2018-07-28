@@ -93,7 +93,8 @@
     
     <script type="text/javascript">
       let labelMap = {
-        sgg: 'SIG_KOR_NM'		
+        sgg: 'SIG_KOR_NM',
+        hEmd: 'adm_nm'
       }
       
       var focusLayer;
@@ -148,7 +149,8 @@
       const sidoArr = [];
       function initSido() {
       	if (sidoArr.length == 0) {
-          map.getLayers().item(0).getLayers().forEach(function(layer) { 
+          map.getLayers().item(0).getLayers().forEach(function(layer) {
+          	//console.log(layer.getSource().getFeatures()[0]);
           	sidoArr.push(layer);
           });
           
@@ -168,10 +170,11 @@
       const sggArr = [];
       function initSgg() {
         if (sggArr.length == 0) {
+        	var sidoCode = sidoArr[$('#sidoSelect').val()].getSource().getFeatures()[0].get('admcode').substring(0, 2);
           map.getLayers().item(1).getLayers().forEach(function(layer) {
             layer.getSource().getFeatures().forEach(function(feature) {
               //hEmdArr.push(feature.get('adm_nm'));
-              sggArr.push(feature);
+              if (feature.get('SIG_CD').indexOf(sidoCode) == 0) sggArr.push(feature);
             });
           });
             
@@ -190,20 +193,23 @@
       
       const hEmdArr = [];
       function initHEmd() {
-        if (hEmdArr.length == 0) {
-          var a = "<select id='hEmdSelect'>";
+        if (sggArr.length > 0 && hEmdArr.length == 0) {
+        	var sggCode = sggArr[$('#sggSelect').val()].get('SIG_CD');
+        	console.log(sggCode);
           map.getLayers().item(2).getLayers().forEach(function(layer) {
           	layer.getSource().getFeatures().forEach(function(feature) {
           		//hEmdArr.push(feature.get('adm_nm'));
+          		console.log(feature);
           		hEmdArr.push(feature);
           	});
           });
-          	
+          
           $.each(hEmdArr, function(idx, feature) {
-          	 a += "<option value='" + idx + "'>" + feature.get('adm_nm') + "</option>"
-          });	
-          a += "</select>";
-          if (hEmdArr.length > 0) $('#selectOpttions').append(a);
+            $('#hEmdSelect').append($('<option>', {
+              value: idx,
+              text: feature.get(labelMap.hEmd)
+            }));
+          }); 
           
           $('#hEmdSelect').on('change', function() {
             map.getView().fit(hEmdArr[$(this).val()].getGeometry().getExtent(), map.getSize());
@@ -252,6 +258,8 @@
       		} else if ($(this).hasClass('b')) {
       			toggleRoadLabel();
       		} else if ($(this).hasClass('c')) {
+      			sggArr.length = 0;
+      			$('#sggSelect')[0].options.length = 0;
             initSgg();
             initHEmd();
       		}
@@ -300,6 +308,7 @@
         </select>
         <select id='sidoSelect'></select>
         <select id='sggSelect'></select>
+        <select id='hEmdSelect'></select>
       </div>
     </div>
     <div id="xAxis"></div>
