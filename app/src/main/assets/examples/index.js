@@ -1,1 +1,0 @@
-var info = {"examples":[{"link":"vector-layer.html","example":"vector-layer.html","title":"Vector Labels","shortdesc":"Example of GeoJSON features with labels.","tags":"geojson, vector, openstreetmap, label"}],"index":{"example":{"0":1},"of":{"0":1},"geojson":{"0":1},"features":{"0":1},"with":{"0":1},"labels":{"0":1},"vector":{"0":1},"openstreetmap":{"0":1},"label":{"0":1}}}
