@@ -183,7 +183,7 @@ const createBEMDLayer = function(geoJsonName) {
 		}),
 		style: function(feature) {
 			style.getText().setText(feature.get('EMD_KOR_NM'));
-			style.getFill().setColor('rgba(209, 199, 171, 1)');
+			style.getFill().setColor('rgba(248, 255, 155, 1)');
 			return style;
 		}
 	});
@@ -260,9 +260,12 @@ const bEmd41450xxx = createBEMDLayer('41450xxx.geojson');
 const bEmd41461xxx = createBEMDLayer('41461xxx.geojson');
 const bEmd41463xxx = createBEMDLayer('41463xxx.geojson');
 const bEmd41465xxx = createBEMDLayer('41465xxx.geojson');
+const bEmd41500xxx = createBEMDLayer('41500xxx.geojson');
 const bEmd41550xxx = createBEMDLayer('41550xxx.geojson');
 const bEmd41590xxx = createBEMDLayer('41590xxx.geojson');
 const bEmd41610xxx = createBEMDLayer('41610xxx.geojson');
+const bEmd41670xxx = createBEMDLayer('41670xxx.geojson');
+const bEmd41830xxx = createBEMDLayer('41830xxx.geojson');
 
 const highwayLayer1 = createRoadLayer('경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
 const highwayLayer2 = createRoadLayer('호남고속도로_EPSG4326.geojson', ROAD_STYLE_1);
@@ -328,8 +331,8 @@ const map = new Map({
   		layers: [
   			bEmd11110xxx, bEmd11140xxx, bEmd11710xxx, bEmd11740xxx, bEmd41117xxx, bEmd41131xxx,
   			bEmd41133xxx, bEmd41135xxx, bEmd41220xxx, bEmd41310xxx, bEmd41360xxx, bEmd41370xxx, bEmd41450xxx,
-  			bEmd41461xxx, bEmd41463xxx, bEmd41465xxx, bEmd41550xxx, bEmd41590xxx,
-  			bEmd41610xxx
+  			bEmd41461xxx, bEmd41463xxx, bEmd41465xxx, bEmd41500xxx, bEmd41550xxx, bEmd41590xxx,
+  			bEmd41610xxx, bEmd41670xxx, bEmd41830xxx
   		]
   	}),
   	new LayerGroup({
@@ -441,7 +444,7 @@ const updateLayer = function(zoomLevel) {
 		toggleLayers(false, 2);
 		toggleLayers(false, 3);
 	} else if (zoomLevel >= 11) {
-		toggleLayers(false, 0);
+		toggleLayers(true, 0);
 		toggleLayers(true, 1);
 		toggleLayers(showHLayer, 2);
 		toggleLayers(showBLayer, 3);

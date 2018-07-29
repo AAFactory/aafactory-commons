@@ -177,7 +177,7 @@ function printBEmdName() {
 }
 
 function updateMapStatus(x, y, z) {
-	$('#mapStatus').html(x.toFixed(2) + ' ' + y.toFixed(2) + ' ' + z.toFixed(2));
+	$('#mapStatus').html(x.toFixed(2) + ' ' + y.toFixed(2) + ' ' + z.toFixed(2) + ' '+ window.innerWidth + 'x' + window.innerHeight);
 }
 
 function updateAreaName(areaName) {
