@@ -194,23 +194,23 @@ const createBEMDLayer = function(geoJsonName) {
 //======================================================================================
 // Define Layer 
 //======================================================================================
-const sidoLayer1 = createSDLayer('경기도.geojson');
-const sidoLayer2 = createSDLayer('강원도.geojson');
-const sidoLayer3 = createSDLayer('경상북도.geojson');
-const sidoLayer4 = createSDLayer('대전광역시.geojson');
-const sidoLayer5 = createSDLayer('전라남도.geojson');
-const sidoLayer6 = createSDLayer('전라북도.geojson');
-const sidoLayer7 = createSDLayer('충청남도.geojson');
-const sidoLayer8 = createSDLayer('제주특별자치도.geojson');
-const sidoLayer9 = createSDLayer('울산광역시.geojson');
-const sidoLayer10 = createSDLayer('부산광역시.geojson');
-const sidoLayer11 = createSDLayer('경상남도.geojson');
-const sidoLayer12 = createSDLayer('광주광역시.geojson');
-const sidoLayer13 = createSDLayer('대구광역시.geojson');
-const sidoLayer14 = createSDLayer('세종특별자치시.geojson');
-const sidoLayer15 = createSDLayer('서울특별시.geojson');
-const sidoLayer16 = createSDLayer('충청북도.geojson');
-const sidoLayer17 = createSDLayer('인천광역시.geojson');
+const sidoLayer1 = createSDLayer('서울특별시.geojson');
+const sidoLayer2 = createSDLayer('부산광역시.geojson');
+const sidoLayer3 = createSDLayer('대구광역시.geojson');
+const sidoLayer4 = createSDLayer('인천광역시.geojson');
+const sidoLayer5 = createSDLayer('광주광역시.geojson');
+const sidoLayer6 = createSDLayer('대전광역시.geojson');
+const sidoLayer7 = createSDLayer('울산광역시.geojson');
+const sidoLayer8 = createSDLayer('세종특별자치시.geojson');
+const sidoLayer9 = createSDLayer('경기도.geojson');       
+const sidoLayer10 = createSDLayer('강원도.geojson'); 
+const sidoLayer11 = createSDLayer('충청북도.geojson'); 
+const sidoLayer12 = createSDLayer('충청남도.geojson'); 
+const sidoLayer13 = createSDLayer('전라북도.geojson');  
+const sidoLayer14 = createSDLayer('전라남도.geojson'); 
+const sidoLayer15 = createSDLayer('경상북도.geojson');
+const sidoLayer16 = createSDLayer('경상남도.geojson');
+const sidoLayer17 = createSDLayer('제주특별자치도.geojson');
 
 
 const sgg11xxx = createSGGLayer('11xxx.geojson');
@@ -247,11 +247,14 @@ const emd31380xx = createEMDLayer('31380xx.geojson');
 const bEmd11110xxx = createBEMDLayer('11110xxx.geojson');
 const bEmd11140xxx = createBEMDLayer('11140xxx.geojson');
 const bEmd11710xxx = createBEMDLayer('11710xxx.geojson');
+const bEmd11740xxx = createBEMDLayer('11740xxx.geojson');
 const bEmd41117xxx = createBEMDLayer('41117xxx.geojson');
 const bEmd41131xxx = createBEMDLayer('41131xxx.geojson');
 const bEmd41133xxx = createBEMDLayer('41133xxx.geojson');
 const bEmd41135xxx = createBEMDLayer('41135xxx.geojson');
 const bEmd41220xxx = createBEMDLayer('41220xxx.geojson');
+const bEmd41310xxx = createBEMDLayer('41310xxx.geojson');
+const bEmd41360xxx = createBEMDLayer('41360xxx.geojson');
 const bEmd41370xxx = createBEMDLayer('41370xxx.geojson');
 const bEmd41450xxx = createBEMDLayer('41450xxx.geojson');
 const bEmd41461xxx = createBEMDLayer('41461xxx.geojson');
@@ -323,8 +326,8 @@ const map = new Map({
   	}),
   	new LayerGroup({
   		layers: [
-  			bEmd11110xxx, bEmd11140xxx, bEmd11710xxx, bEmd41117xxx, bEmd41131xxx,
-  			bEmd41133xxx, bEmd41135xxx, bEmd41220xxx, bEmd41370xxx, bEmd41450xxx,
+  			bEmd11110xxx, bEmd11140xxx, bEmd11710xxx, bEmd11740xxx, bEmd41117xxx, bEmd41131xxx,
+  			bEmd41133xxx, bEmd41135xxx, bEmd41220xxx, bEmd41310xxx, bEmd41360xxx, bEmd41370xxx, bEmd41450xxx,
   			bEmd41461xxx, bEmd41463xxx, bEmd41465xxx, bEmd41550xxx, bEmd41590xxx,
   			bEmd41610xxx
   		]

@@ -83,6 +83,8 @@ function initSido() {
 const sggArr = [];
 function initSgg() {
   if (sggArr.length == 0) {
+  	updateEmd();
+  	
   	var sidoCode = sidoArr[$('#sidoSelect').val()].getSource().getFeatures()[0].get('admcode').substring(0, 2);
     map.getLayers().item(1).getLayers().forEach(function(layer) {
       layer.getSource().getFeatures().forEach(function(feature) {
@@ -97,7 +99,6 @@ function initSgg() {
         text: feature.get(labelMap.sgg)
       }));
     }); 
-    updateEmd();
     
     $('#sggSelect').on('change', function() {
       fitBounds(sggArr[$(this).val()].getGeometry().getExtent());
@@ -108,13 +109,13 @@ function initSgg() {
 
 function updateSgg() {
   sggArr.length = 0;
-  $('#sggSelect')[0].options.length = 0;
+  $('#sggSelect')[0].options.length = 1;
   initSgg();
 }
 
 function updateEmd() {
   emdArr.length = 0;
-	$('#emdSelect')[0].options.length = 0;
+	$('#emdSelect')[0].options.length = 1;
 	initEmd();
 }
 
@@ -188,8 +189,8 @@ $(function() {
 		if ($(this).hasClass('a')) {
 			toggleOptionsDiv();
 			initSido();
-			updateSgg();
-      updateEmd();
+//			updateSgg();
+//      updateEmd();
 		} else if ($(this).hasClass('b')) {
 			toggleRoadLabel();
 		} else if ($(this).hasClass('c')) {
