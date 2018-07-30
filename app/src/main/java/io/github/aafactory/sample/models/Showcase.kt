@@ -10,9 +10,9 @@ data class Showcase(
     val owner: String,
     val name: String,
     val displayName: String,
-    val description: String,
-    val stargazersCount: Int,
-    val forksCount: Int
+    var description: String,
+    var stargazersCount: Int,
+    var forksCount: Int
 ) {
     fun repositoryName() = when (displayName.isEmpty()) {
         true -> name
