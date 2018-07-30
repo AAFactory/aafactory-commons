@@ -2,10 +2,12 @@ package io.github.aafactory.sample.adapters
 
 import android.app.Activity
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.AdapterView
 import io.github.aafactory.sample.R
 import io.github.aafactory.sample.models.Showcase
+import kotlinx.android.synthetic.main.item_showcase.*
 import java.util.*
 
 /**
@@ -31,6 +33,9 @@ class ShowcaseAdapter(
         holder.bindData(listItem[position])
         holder.itemView.setOnClickListener { item ->
             onItemClickListener.onItemClick(null, item, holder.adapterPosition, holder.itemId)
+        }
+        holder.colorType.setOnClickListener { _ ->
+            Log.i("", listItem[position].repositoryName());
         }
     }
 

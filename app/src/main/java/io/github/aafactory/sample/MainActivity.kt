@@ -146,7 +146,8 @@ class MainActivity : BaseSimpleActivity() {
                 val name = it["name"] ?: ""
                 val displayName = it["displayName"] ?: name
                 val call = gitHubService.repository(owner, name)
-                val repository: Repository? = call.execute().body()
+//                val repository: Repository? = call.execute().body()
+                val repository: Repository? = Repository("", "", 0, 0)   
                 mListItem.add(Showcase(
                         owner,
                         name,
