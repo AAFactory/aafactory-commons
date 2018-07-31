@@ -126,17 +126,18 @@ function initEmd() {
   if (sggArr.length > 0 && emdArr.length == 0) {
   	var sggCode = sggArr[$('#sggSelect').val()].get('SIG_CD');
   	console.log(sggCode);
-    map.getLayers().item(itemIndex).getLayers().forEach(function(layer) {
-    	layer.getSource().getFeatures().forEach(function(feature) {
-    		//hEmdArr.push(feature.get('adm_nm'));
-    		if (itemIndex == 2) {
-    			emdArr.push(feature);
-    		} else if (itemIndex == 3) {
-    			//console.log(feature.get("EMD_CD"));
-    		  if (feature.get("EMD_CD").indexOf(sggCode) == 0) emdArr.push(feature);
-    		}
+    
+    if (itemIndex == 2) {
+    	map.getLayers().item(2).getSource().getFeatures().forEach(function(feature) {
+    		emdArr.push(feature);
     	});
-    });
+    } else if (itemIndex == 3) {
+    	map.getLayers().item(itemIndex).getLayers().forEach(function(layer) {
+      	layer.getSource().getFeatures().forEach(function(feature) {
+      		if (feature.get("EMD_CD").indexOf(sggCode) == 0) emdArr.push(feature);
+      	});
+      });
+    }
     
     $.each(emdArr, function(idx, feature) {
       $('#emdSelect').append($('<option>', {

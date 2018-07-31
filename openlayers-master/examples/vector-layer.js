@@ -167,7 +167,7 @@ const createEMDLayer = function(geoJsonName) {
 		}),
 		style: function(feature) {
 			style.getText().setText(feature.get('adm_nm'));
-			style.getFill().setColor('rgba(209, 199, 171, 1)');
+			style.getFill().setColor('rgba(248, 255, 155, 1)');
 			return style;
 		}
 	});
@@ -230,19 +230,7 @@ const sgg47xxx = createSGGLayer('47xxx.geojson');
 const sgg48xxx = createSGGLayer('48xxx.geojson');
 const sgg50xxx = createSGGLayer('50xxx.geojson');
 
-const emd11010xx = createEMDLayer('11010xx.geojson');
-const emd11020xx = createEMDLayer('11020xx.geojson');
-
-const emd31021xx = createEMDLayer('31021xx.geojson');
-const emd31022xx = createEMDLayer('31022xx.geojson');
-const emd31023xx = createEMDLayer('31023xx.geojson');
-const emd31130xx = createEMDLayer('31130xx.geojson');
-const emd31180xx = createEMDLayer('31180xx.geojson');
-const emd31191xx = createEMDLayer('31191xx.geojson');
-const emd31192xx = createEMDLayer('31192xx.geojson');
-const emd31193xx = createEMDLayer('31193xx.geojson');
-const emd31250xx = createEMDLayer('31250xx.geojson');
-const emd31380xx = createEMDLayer('31380xx.geojson');
+const hemdLayer = createEMDLayer('hemd.geojson');
 
 const bEmd11110xxx = createBEMDLayer('11110xxx.geojson');
 const bEmd11140xxx = createBEMDLayer('11140xxx.geojson');
@@ -320,13 +308,7 @@ const map = new Map({
   			sgg50xxx
   		]
   	}),
-  	new LayerGroup({
-  		layers: [
-  			emd11010xx, emd11020xx,
-  			emd31021xx, emd31022xx, emd31023xx, emd31250xx, emd31180xx,
-  			emd31191xx, emd31192xx, emd31193xx, emd31380xx, emd31130xx
-  		]
-  	}),
+  	hemdLayer,
   	new LayerGroup({
   		layers: [
   			bEmd11110xxx, bEmd11140xxx, bEmd11710xxx, bEmd11740xxx, bEmd41117xxx, bEmd41131xxx,
@@ -463,9 +445,13 @@ const switchEMDLayer = function() {
 }
 
 const toggleLayers = function(isVisible, index) {
-	map.getLayers().item(index).getLayers().forEach(function(sggLayer) {
-		sggLayer.setVisible(isVisible);
-	});
+	if (index == 2) {
+		map.getLayers().item(index).setVisible(isVisible);
+	} else {
+		map.getLayers().item(index).getLayers().forEach(function(sggLayer) {
+			sggLayer.setVisible(isVisible);
+		});
+	}
 }
 
 const toggleLayer = function(isShow) {
