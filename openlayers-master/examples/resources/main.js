@@ -181,8 +181,8 @@ function updateMapStatus(x, y, z) {
 	$('#mapStatus').html(x.toFixed(2) + ' ' + y.toFixed(2) + ' ' + z.toFixed(2) + ' '+ window.innerWidth + 'x' + window.innerHeight);
 }
 
-function updateAreaName(areaName) {
-  $('#areaName').html(areaName);
+function updateAreaName(nameMap) {
+  $('#areaName').html(nameMap.sido + ' ' + nameMap.sgg + ' ' + nameMap.hemd + ' ' + nameMap.bemd + '<br />' + nameMap.roadName);
 }
 
 $(function() {

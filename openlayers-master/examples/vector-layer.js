@@ -505,14 +505,15 @@ const toggleRoadLabel = function() {
 }
 
 const determineAreaName = function() {
-	const nameMap = {sido:'', sgg:'', hemd:'', bemd:''};
+	const nameMap = {sido:'', sgg:'', hemd:'', bemd:'', roadName:''};
 	map.forEachFeatureAtPixel([window.innerWidth / 2, window.innerHeight / 2], function(feature) {
 		if (feature.get('area1')) nameMap.sido = feature.get('area1');
 		if (feature.get('SIG_KOR_NM')) nameMap.sgg = feature.get('SIG_KOR_NM');
 		if (feature.get('adm_nm')) nameMap.hemd = feature.get('adm_nm');
 		if (feature.get('EMD_KOR_NM')) nameMap.bemd = feature.get('EMD_KOR_NM');
+		if (feature.get('ROAD_NAME')) nameMap.roadName = feature.get('ROAD_NAME');
 	});
-	updateAreaName(nameMap.sido + ' ' + nameMap.sgg + ' ' + nameMap.hemd + ' ' + nameMap.bemd);
+	updateAreaName(nameMap);
 }
 
 //======================================================================================
