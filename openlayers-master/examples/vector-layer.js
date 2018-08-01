@@ -407,6 +407,9 @@ map.on('click', function(evt) {
 map.updateSize();
 
 map.getView().on('propertychange', function(e) { 
+	var degree = (map.getView().getRotation() * 57.2) + 180;
+	console.log(degree);
+	 $('#compass').css({'transform' : 'rotate('+ degree +'deg)'});
 	const point = proj4.Point(e.target.getCenter()[0], e.target.getCenter()[1]);
 	const wgs84LatLng = proj4.transform(epsg3857, wgs84, point);
 	updateMapStatus(wgs84LatLng.x, wgs84LatLng.y, e.target.getZoom());

@@ -198,6 +198,9 @@ $(function() {
 			updateSgg();
 			updateEmd();
 		}
-		
+	});
+	
+	$('#compass img').on('click', function() {
+		map.getView().setRotation(0);
 	});
 });
