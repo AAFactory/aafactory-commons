@@ -52,8 +52,8 @@ const style = new Style({
   })
 });
 
-const ROAD_STYLE_1 = '#00FF00';
-const ROAD_STYLE_2 = '#ffbc66';
+const ROAD_STYLE_1 = 'rgba(0, 0, 255, 0.5)';
+const ROAD_STYLE_2 = 'rgba(0, 255, 0, 0.5)';
 const roadStyle = [
 	/* We are using two different styles for the polygons:
 	 *  - The first style is for the polygons themselves.
@@ -70,7 +70,7 @@ const roadStyle = [
 	}),
 	new Style({
 		stroke: new Stroke({
-	    color: '#FFFFFF',
+	    color: 'rgba(255, 255, 255, 0.5)',
 	    width: 3
 	  }),
 	  text: new Text({

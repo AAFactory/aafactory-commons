@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="./resources/prism/prism.css" type="text/css">
+    <link rel="stylesheet" href="./css/ol.css" type="text/css">
+    <link rel="stylesheet" href="./resources/main.css" type="text/css">
+    <script src="./resources/jquery-3.3.1.min.js"></script>
+    <script src="./resources/main.js"></script>
+    <title>Vector Layer</title>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+    <div id="toolDiv">
+      <div id="legend">
+        <div class="legend" onclick="toggleRoadLayer(4);" id="highway"><span>고속도로</span></div>
+        <div class="legend" onclick="toggleRoadLayer(5);" id="localRoad"><span>지방도, 국도</span></div>
+        <div class="legend" onclick="toggleEMDLayer();" id="switchEMD"><span>법정동</span></div>
+      </div>
+      <div id="selectOpttions">
+        <select id='highwaySelect'><option value="">고속도로</option></select>
+        <select id="nRoadSelect" onchange="fitboundsNRoadLayer(this);">
+          <option value="" disabled selected>국도</option>
+          <option value="0">내부순환로</option>
+          <option value="1">분당수서간도시고속화도로</option>
+          <option value="2">서울외곽순환고속도로</option>
+        </select>
+        <select id='sidoSelect'><option value="">시도</option></select>
+        <select id='sggSelect'><option value="">시군구</option></select>
+        <select id='emdSelect'><option value="">읍면동</option></select>
+      </div>
+    </div>
+    <div id="xAxis"></div>
+    <div id="yAxis"></div>
+    <div id="buttonDiv">
+      <div class="button a">OPT</div>
+      <div class="button b">LAB</div>
+      <div class="button c">UPD</div>
+    </div>
+    <div id="infoDiv">
+      <div id="mapStatus" class="mapInfo"></div>
+      <div id="areaName" class="mapInfo"></div>
+    </div>
+    <div id="compass"><img src="./resources/arrow-down-4-48.png" /></div>
+  </body>
+  <script src="./resources/common.js"></script>
+  <script src="./resources/prism/prism.min.js"></script>
+  <script src="common.js"></script>
+  <script src="vector-layer.js"></script>
+</html>

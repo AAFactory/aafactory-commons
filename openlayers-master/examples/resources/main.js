@@ -1,7 +1,8 @@
 let labelMap = {
   sgg: 'SIG_KOR_NM',
   hEmd: 'adm_nm',
-  bEmd: 'EMD_KOR_NM'
+  bEmd: 'EMD_KOR_NM',
+  highway: 'ROAD_NAME'
 }
 
 var focusLayer;
@@ -10,14 +11,13 @@ function toggleOptionsDiv() {
   $('#selectOpttions').toggle();
 }
 
-function fitboundsLayer(element) {
-	element.blur();
+function fitboundsLayer(index) {
   var map = window.map;
   var featureOverlay = window.featureOverlay;
-	map.getView().fit(map.getLayers().item(4).getLayers().item(element.value).getSource().getExtent(), map.getSize());
+	map.getView().fit(map.getLayers().item(4).getLayers().item(index).getSource().getExtent(), map.getSize());
   //console.log(map.getLayers().item(element.value).get('name'));
   
-  var targetLayer = map.getLayers().item(4).getLayers().item(element.value).getSource().getFeatures()[0];
+  var targetLayer = map.getLayers().item(4).getLayers().item(index).getSource().getFeatures()[0];
   if (focusLayer) featureOverlay.getSource().removeFeature(focusLayer);
   featureOverlay.getSource().addFeature(targetLayer);
   focusLayer = targetLayer;
@@ -58,6 +58,28 @@ function fitBounds(extent) {
   setTimeout(function(){ determineAreaName(0 )}, 100);
 }
 
+const highwayArr = [];
+function initHighway() {
+	if (highwayArr.length == 0) {
+		map.getLayers().item(4).getLayers().forEach(function(layer) {
+      layer.getSource().getFeatures().forEach(function(feature) {
+      	highwayArr.push(feature);
+      });
+    });
+      
+    $.each(highwayArr, function(idx, feature) {
+    	$('#highwaySelect').append($('<option>', {
+        value: idx,
+        text: feature.get(labelMap.highway)
+      }));
+    }); 
+    
+    $('#highwaySelect').on('change', function() {
+    	fitboundsLayer($(this).val());
+    });
+  }
+}
+
 const sidoArr = [];
 function initSido() {
 	if (sidoArr.length == 0) {
@@ -82,7 +104,7 @@ function initSido() {
 
 const sggArr = [];
 function initSgg() {
-  if (sggArr.length == 0) {
+  if (sggArr.length == 0 && $('#sidoSelect').val()) {
   	updateEmd();
   	
   	var sidoCode = sidoArr[$('#sidoSelect').val()].getSource().getFeatures()[0].get('admcode').substring(0, 2);
@@ -197,6 +219,7 @@ $(function() {
 		} else if ($(this).hasClass('c')) {
 			updateSgg();
 			updateEmd();
+			initHighway();
 		}
 	});
 	
