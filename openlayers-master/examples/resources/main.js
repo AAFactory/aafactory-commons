@@ -110,6 +110,7 @@ function initSgg() {
   	var sidoCode = sidoArr[$('#sidoSelect').val()].getSource().getFeatures()[0].get('admcode').substring(0, 2);
     map.getLayers().item(1).getLayers().forEach(function(layer) {
       layer.getSource().getFeatures().forEach(function(feature) {
+      	console.log(feature);
         //hEmdArr.push(feature.get('adm_nm'));
         if (feature.get('SIG_CD').indexOf(sidoCode) == 0) sggArr.push(feature);
       });
@@ -154,10 +155,8 @@ function initEmd() {
     		emdArr.push(feature);
     	});
     } else if (itemIndex == 3) {
-    	map.getLayers().item(itemIndex).getLayers().forEach(function(layer) {
-      	layer.getSource().getFeatures().forEach(function(feature) {
-      		if (feature.get("EMD_CD").indexOf(sggCode) == 0) emdArr.push(feature);
-      	});
+    	map.getLayers().item(3).getSource().getFeatures().forEach(function(feature) {
+    		if (feature.get("EMD_CD").indexOf(sggCode) == 0) emdArr.push(feature);
       });
     }
     

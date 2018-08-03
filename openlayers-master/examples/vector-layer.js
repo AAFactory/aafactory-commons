@@ -231,29 +231,7 @@ const sgg48xxx = createSGGLayer('48xxx.geojson');
 const sgg50xxx = createSGGLayer('50xxx.geojson');
 
 const hemdLayer = createEMDLayer('hemd.geojson');
-
-const bEmd11110xxx = createBEMDLayer('11110xxx.geojson');
-const bEmd11140xxx = createBEMDLayer('11140xxx.geojson');
-const bEmd11710xxx = createBEMDLayer('11710xxx.geojson');
-const bEmd11740xxx = createBEMDLayer('11740xxx.geojson');
-const bEmd41117xxx = createBEMDLayer('41117xxx.geojson');
-const bEmd41131xxx = createBEMDLayer('41131xxx.geojson');
-const bEmd41133xxx = createBEMDLayer('41133xxx.geojson');
-const bEmd41135xxx = createBEMDLayer('41135xxx.geojson');
-const bEmd41220xxx = createBEMDLayer('41220xxx.geojson');
-const bEmd41310xxx = createBEMDLayer('41310xxx.geojson');
-const bEmd41360xxx = createBEMDLayer('41360xxx.geojson');
-const bEmd41370xxx = createBEMDLayer('41370xxx.geojson');
-const bEmd41450xxx = createBEMDLayer('41450xxx.geojson');
-const bEmd41461xxx = createBEMDLayer('41461xxx.geojson');
-const bEmd41463xxx = createBEMDLayer('41463xxx.geojson');
-const bEmd41465xxx = createBEMDLayer('41465xxx.geojson');
-const bEmd41500xxx = createBEMDLayer('41500xxx.geojson');
-const bEmd41550xxx = createBEMDLayer('41550xxx.geojson');
-const bEmd41590xxx = createBEMDLayer('41590xxx.geojson');
-const bEmd41610xxx = createBEMDLayer('41610xxx.geojson');
-const bEmd41670xxx = createBEMDLayer('41670xxx.geojson');
-const bEmd41830xxx = createBEMDLayer('41830xxx.geojson');
+const bemdLayer = createBEMDLayer('bemd.geojson');
 
 const highwayLayer1 = createRoadLayer('highway/경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
 const highwayLayer2 = createRoadLayer('highway/경인고속도로_EPSG4326.geojson', ROAD_STYLE_1);
@@ -311,14 +289,7 @@ const map = new Map({
   		]
   	}),
   	hemdLayer,
-  	new LayerGroup({
-  		layers: [
-  			bEmd11110xxx, bEmd11140xxx, bEmd11710xxx, bEmd11740xxx, bEmd41117xxx, bEmd41131xxx,
-  			bEmd41133xxx, bEmd41135xxx, bEmd41220xxx, bEmd41310xxx, bEmd41360xxx, bEmd41370xxx, bEmd41450xxx,
-  			bEmd41461xxx, bEmd41463xxx, bEmd41465xxx, bEmd41500xxx, bEmd41550xxx, bEmd41590xxx,
-  			bEmd41610xxx, bEmd41670xxx, bEmd41830xxx
-  		]
-  	}),
+  	bemdLayer,
   	new LayerGroup({
   		layers: [
   			highwayLayer1, highwayLayer2, highwayLayer3, highwayLayer4, highwayLayer5,
@@ -413,7 +384,8 @@ map.getView().on('propertychange', function(e) {
 	var degree = (map.getView().getRotation() * 57.2) + 180;
 	console.log(degree);
 	 $('#compass').css({'transform' : 'rotate('+ degree +'deg)'});
-	const point = proj4.Point(e.target.getCenter()[0], e.target.getCenter()[1]);
+//	const point = proj4.Point(e.target.getCenter()[0], e.target.getCenter()[1]);
+	const point = {x: e.target.getCenter()[0], y: e.target.getCenter()[1]};
 	const wgs84LatLng = proj4.transform(epsg3857, wgs84, point);
 	updateMapStatus(wgs84LatLng.x, wgs84LatLng.y, e.target.getZoom());
 	updateLayer(e.target.getZoom());
@@ -451,7 +423,7 @@ const switchEMDLayer = function() {
 }
 
 const toggleLayers = function(isVisible, index) {
-	if (index == 2) {
+	if (index == 2 || index == 3) {
 		map.getLayers().item(index).setVisible(isVisible);
 	} else {
 		map.getLayers().item(index).getLayers().forEach(function(sggLayer) {
