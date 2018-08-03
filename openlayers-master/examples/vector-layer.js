@@ -255,27 +255,29 @@ const bEmd41610xxx = createBEMDLayer('41610xxx.geojson');
 const bEmd41670xxx = createBEMDLayer('41670xxx.geojson');
 const bEmd41830xxx = createBEMDLayer('41830xxx.geojson');
 
-const highwayLayer1 = createRoadLayer('경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer2 = createRoadLayer('호남고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer3 = createRoadLayer('중부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer4 = createRoadLayer('통영대전고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer5 = createRoadLayer('중부내륙고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer6 = createRoadLayer('제2중부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer7 = createRoadLayer('중부내륙고속도로지선_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer8 = createRoadLayer('서울양양고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer9 = createRoadLayer('영동고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer10 = createRoadLayer('경인고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer11 = createRoadLayer('광주원주고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer12 = createRoadLayer('세종포천고속도로(구리-포천)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer13 = createRoadLayer('동해고속도로(부산-울산)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer14 = createRoadLayer('동해고속도로(삼척-속초)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer15 = createRoadLayer('동해고속도로(울산-포항)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer16 = createRoadLayer('중앙고속도로(춘천-금호)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer17 = createRoadLayer('서해안고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer18 = createRoadLayer('제2경인고속도로(안양-성남)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer19 = createRoadLayer('제2경인고속도로(인천대교)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer20 = createRoadLayer('중앙고속도로(부산-대구)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer21 = createRoadLayer('중앙고속도로(춘천-금호)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer1 = createRoadLayer('highway/경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer2 = createRoadLayer('highway/경인고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer3 = createRoadLayer('highway/광주원주고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer4 = createRoadLayer('highway/동해고속도로(부산-울산)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer5 = createRoadLayer('highway/동해고속도로(삼척-속초)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer6 = createRoadLayer('highway/동해고속도로(울산-포항)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer7 = createRoadLayer('highway/서울양양고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer8 = createRoadLayer('highway/서해안고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer9 = createRoadLayer('highway/세종포천고속도로(구리-포천)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer11 = createRoadLayer('highway/제2경인고속도로(안양-성남)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer10 = createRoadLayer('highway/영동고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer12 = createRoadLayer('highway/제2경인고속도로(인천대교)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer13 = createRoadLayer('highway/제2중부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer14 = createRoadLayer('highway/중부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer15 = createRoadLayer('highway/중부내륙고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer16 = createRoadLayer('highway/중부내륙고속도로지선_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer17 = createRoadLayer('highway/중앙고속도로(부산-대구)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer18 = createRoadLayer('highway/중앙고속도로(삼락-대동)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer19 = createRoadLayer('highway/중앙고속도로(춘천-금호)_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer20 = createRoadLayer('highway/통영대전고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer21 = createRoadLayer('highway/호남고속도로_EPSG4326.geojson', ROAD_STYLE_1);
+const highwayLayer22 = createRoadLayer('highway/광주대구고속도로.geojson', ROAD_STYLE_1);
+const highwayLayer23 = createRoadLayer('highway/평택제천고속도.geojson', ROAD_STYLE_1);
 
 const nRoadLayer1 = createRoadLayer('내부순환로_EPSG4326.geojson', ROAD_STYLE_2);
 const nRoadLayer2 = createRoadLayer('분당수서간도시고속화도로_EPSG4326.geojson', ROAD_STYLE_2);
@@ -322,7 +324,8 @@ const map = new Map({
   			highwayLayer1, highwayLayer2, highwayLayer3, highwayLayer4, highwayLayer5,
   			highwayLayer6, highwayLayer7, highwayLayer8, highwayLayer9, highwayLayer10,
   			highwayLayer11, highwayLayer12, highwayLayer13, highwayLayer14, highwayLayer15,
-  			highwayLayer16, highwayLayer17, highwayLayer18, highwayLayer19, highwayLayer20
+  			highwayLayer16, highwayLayer17, highwayLayer18, highwayLayer19, highwayLayer20,
+  			highwayLayer21, highwayLayer22, highwayLayer23
   		]
   	}),
   	new LayerGroup({
