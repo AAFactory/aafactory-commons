@@ -325,7 +325,7 @@ const map = new Map({
   			highwayLayer6, highwayLayer7, highwayLayer8, highwayLayer9, highwayLayer10,
   			highwayLayer11, highwayLayer12, highwayLayer13, highwayLayer14, highwayLayer15,
   			highwayLayer16, highwayLayer17, highwayLayer18, highwayLayer19, highwayLayer20,
-  			highwayLayer21, highwayLayer22, highwayLayer23
+  			highwayLayer21/*, highwayLayer22, highwayLayer23*/
   		]
   	}),
   	new LayerGroup({
