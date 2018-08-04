@@ -416,6 +416,10 @@ const updateLayer = function(zoomLevel) {
 //	} 
 }
 
+bemdLayer.on('change', function(e) { 
+	$('#spinner').css('display', 'none');
+});
+
 const switchEMDLayer = function() {
 	showHLayer = !showHLayer;
 	showBLayer = !showBLayer;
@@ -424,6 +428,10 @@ const switchEMDLayer = function() {
 
 const toggleLayers = function(isVisible, index) {
 	if (index == 2 || index == 3) {
+		if (index == 3 && isVisible && map.getLayers().item(3).getSource().getFeatures().length == 0) {
+			console.log('~~~~~')
+			$('#spinner').css('display', 'block');
+		}
 		map.getLayers().item(index).setVisible(isVisible);
 	} else {
 		map.getLayers().item(index).getLayers().forEach(function(sggLayer) {
@@ -493,6 +501,7 @@ const determineAreaName = function() {
 	});
 	updateAreaName(nameMap);
 }
+
 
 //======================================================================================
 // Export Global Variable

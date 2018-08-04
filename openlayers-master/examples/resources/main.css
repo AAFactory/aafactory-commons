@@ -49,6 +49,13 @@ span { font-size: 10px; color: white; }
   top: calc((100% / 2) - 1px);
   left: calc((100% / 2) - 10px);
 }
+#spinner{
+  position: absolute;
+  top: calc((100% / 2) - 35px);
+  width: 100%;
+  text-align: center;
+  display: none;
+}
 #yAxis {
   background-color: red;
   position: absolute;
