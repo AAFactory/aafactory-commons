@@ -155,9 +155,11 @@ function initEmd() {
     		emdArr.push(feature);
     	});
     } else if (itemIndex == 3) {
-    	map.getLayers().item(3).getSource().getFeatures().forEach(function(feature) {
-    		if (feature.get("EMD_CD").indexOf(sggCode) == 0) emdArr.push(feature);
-      });
+    	map.getLayers().item(3).getLayers().forEach(function(layer) {
+    		layer.getSource().getFeatures().forEach(function(feature) {
+      		if (feature.get("EMD_CD").indexOf(sggCode) == 0) emdArr.push(feature);
+        });
+    	});
     }
     
     $.each(emdArr, function(idx, feature) {

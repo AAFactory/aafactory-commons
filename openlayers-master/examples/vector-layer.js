@@ -231,7 +231,9 @@ const sgg48xxx = createSGGLayer('48xxx.geojson');
 const sgg50xxx = createSGGLayer('50xxx.geojson');
 
 const hemdLayer = createEMDLayer('hemd.geojson');
+
 const bemdLayer = createBEMDLayer('bemd.geojson');
+const bemd11xxxxxx = createBEMDLayer('11xxxxxx.geojson');
 
 const highwayLayer1 = createRoadLayer('highway/경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
 const highwayLayer2 = createRoadLayer('highway/경인고속도로_EPSG4326.geojson', ROAD_STYLE_1);
@@ -289,7 +291,11 @@ const map = new Map({
   		]
   	}),
   	hemdLayer,
-  	bemdLayer,
+  	new LayerGroup({
+  		layers: [
+  			bemdLayer, bemd11xxxxxx
+  		]
+  	}),
   	new LayerGroup({
   		layers: [
   			highwayLayer1, highwayLayer2, highwayLayer3, highwayLayer4, highwayLayer5,
@@ -382,7 +388,7 @@ map.updateSize();
 
 map.getView().on('propertychange', function(e) { 
 	var degree = (map.getView().getRotation() * 57.2) + 180;
-	console.log(degree);
+//	console.log(degree);
 	 $('#compass').css({'transform' : 'rotate('+ degree +'deg)'});
 //	const point = proj4.Point(e.target.getCenter()[0], e.target.getCenter()[1]);
 	const point = {x: e.target.getCenter()[0], y: e.target.getCenter()[1]};
@@ -416,9 +422,18 @@ const updateLayer = function(zoomLevel) {
 //	} 
 }
 
-bemdLayer.on('change', function(e) { 
-	$('#spinner').css('display', 'none');
+bemdLayer.on('change', function(e) {
+	if (isInitLayer(map.getLayers().item(3).getLayers())) {
+		$('#spinner').css('display', 'none');
+	}
 });
+
+bemd11xxxxxx.on('change', function(e) {
+	if (isInitLayer(map.getLayers().item(3).getLayers())) {
+		$('#spinner').css('display', 'none');
+	}
+});
+
 
 const switchEMDLayer = function() {
 	showHLayer = !showHLayer;
@@ -427,17 +442,29 @@ const switchEMDLayer = function() {
 }
 
 const toggleLayers = function(isVisible, index) {
-	if (index == 2 || index == 3) {
-		if (index == 3 && isVisible && map.getLayers().item(3).getSource().getFeatures().length == 0) {
-			console.log('~~~~~')
+	if (index == 2) {
+		map.getLayers().item(index).setVisible(isVisible);
+	} else if (index == 3) {
+		if (isVisible && !isInitLayer(map.getLayers().item(index).getLayers())) {
 			$('#spinner').css('display', 'block');
 		}
-		map.getLayers().item(index).setVisible(isVisible);
+		map.getLayers().item(index).getLayers().forEach(function(bEmdLayer) {
+			bEmdLayer.setVisible(isVisible);
+		});
 	} else {
 		map.getLayers().item(index).getLayers().forEach(function(sggLayer) {
 			sggLayer.setVisible(isVisible);
 		});
 	}
+}
+
+const isInitLayer = function(layers) {
+	var count = 0;
+	layers.forEach(function(subLayer) {
+		if (subLayer.getSource().getFeatures().length > 0) count++;
+	});
+	console.log(count, layers.getArray().length, count == layers.length);
+	return count == layers.getArray().length
 }
 
 const toggleLayer = function(isShow) {
