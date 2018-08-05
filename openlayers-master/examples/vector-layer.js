@@ -54,6 +54,7 @@ const style = new Style({
 
 const ROAD_STYLE_1 = 'rgba(0, 0, 255, 0.5)';
 const ROAD_STYLE_2 = 'rgba(0, 255, 0, 0.5)';
+const ROAD_STYLE_3 = 'rgba(100, 114, 101, 0.5)';
 const roadStyle = [
 	/* We are using two different styles for the polygons:
 	 *  - The first style is for the polygons themselves.
@@ -114,18 +115,31 @@ const highlightStyle = new Style({
 //======================================================================================
 // Factory Function
 //======================================================================================
-const createRoadLayer = function(geoJsonName, color) {
-	return new VectorLayer({
+const createRoadLayer = function(geoJsonName, color, isSimple) {
+	var layer = new VectorLayer({
 		source: new VectorSource({
 			url: 'data/geojson/' + geoJsonName,
 			format: new GeoJSON()
 		}),
 		style: function(feature) {
-			//roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+			if (isSimple) {
+				roadStyle[1].getText().setText('');
+			} else {
+				roadStyle[1].getText().setText(feature.get('ROAD_NAME'));
+			}
 			roadStyle[0].getStroke().setColor(color);
 			return roadStyle;
 		},
 	});
+	if (!isSimple) {
+		layer.setVisible(false);
+		layer.on('change', function(e) {
+			if (isInitLayer(map.getLayers().item(6).getLayers())) {
+				$('#spinner').css('display', 'none');
+			}
+		});
+	}
+	return layer;
 }
 
 const createSDLayer = function(geoJsonName) {
@@ -235,46 +249,54 @@ const hemdLayer = createEMDLayer('hemd.geojson');
 const bemdLayer = createBEMDLayer('bemd.geojson');
 const bemd11xxxxxx = createBEMDLayer('11xxxxxx.geojson');
 
-const highwayLayer1 = createRoadLayer('highway/경부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer2 = createRoadLayer('highway/경인고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer3 = createRoadLayer('highway/광주원주고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer4 = createRoadLayer('highway/동해고속도로(부산-울산)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer5 = createRoadLayer('highway/동해고속도로(삼척-속초)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer6 = createRoadLayer('highway/동해고속도로(울산-포항)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer7 = createRoadLayer('highway/서울양양고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer8 = createRoadLayer('highway/서해안고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer9 = createRoadLayer('highway/세종포천고속도로(구리-포천)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer11 = createRoadLayer('highway/제2경인고속도로(안양-성남)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer10 = createRoadLayer('highway/영동고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer12 = createRoadLayer('highway/제2경인고속도로(인천대교)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer13 = createRoadLayer('highway/제2중부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer14 = createRoadLayer('highway/중부고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer15 = createRoadLayer('highway/중부내륙고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer16 = createRoadLayer('highway/중부내륙고속도로지선_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer17 = createRoadLayer('highway/중앙고속도로(부산-대구)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer18 = createRoadLayer('highway/중앙고속도로(삼락-대동)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer19 = createRoadLayer('highway/중앙고속도로(춘천-금호)_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer20 = createRoadLayer('highway/통영대전고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer21 = createRoadLayer('highway/호남고속도로_EPSG4326.geojson', ROAD_STYLE_1);
-const highwayLayer22 = createRoadLayer('highway/광주대구고속도로.geojson', ROAD_STYLE_1);
-const highwayLayer23 = createRoadLayer('highway/평택제천고속도.geojson', ROAD_STYLE_1);
+const highwayLayer1 = createRoadLayer('highway/경부고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer2 = createRoadLayer('highway/경인고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer3 = createRoadLayer('highway/광주원주고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer4 = createRoadLayer('highway/동해고속도로(부산-울산)_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer5 = createRoadLayer('highway/동해고속도로(삼척-속초)_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer6 = createRoadLayer('highway/동해고속도로(울산-포항)_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer7 = createRoadLayer('highway/서울양양고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer8 = createRoadLayer('highway/서해안고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer9 = createRoadLayer('highway/세종포천고속도로(구리-포천)_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer11 = createRoadLayer('highway/제2경인고속도로(안양-성남)_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer10 = createRoadLayer('highway/영동고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer12 = createRoadLayer('highway/제2경인고속도로(인천대교)_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer13 = createRoadLayer('highway/제2중부고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer14 = createRoadLayer('highway/중부고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer15 = createRoadLayer('highway/중부내륙고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer16 = createRoadLayer('highway/중부내륙고속도로지선_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer17 = createRoadLayer('highway/중앙고속도로(부산-대구)_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer18 = createRoadLayer('highway/중앙고속도로(삼락-대동)_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer19 = createRoadLayer('highway/중앙고속도로(춘천-금호)_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer20 = createRoadLayer('highway/통영대전고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer21 = createRoadLayer('highway/호남고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
+const highwayLayer22 = createRoadLayer('highway/광주대구고속도로.geojson', ROAD_STYLE_1, true);
+const highwayLayer23 = createRoadLayer('highway/평택제천고속도.geojson', ROAD_STYLE_1, true);
 
-const nRoadLayer1 = createRoadLayer('내부순환로_EPSG4326.geojson', ROAD_STYLE_2);
-const nRoadLayer2 = createRoadLayer('분당수서간도시고속화도로_EPSG4326.geojson', ROAD_STYLE_2);
-const nRoadLayer3 = createRoadLayer('서울외곽순환고속도로_EPSG4326.geojson', ROAD_STYLE_2);
-const nRoadLayer4 = createRoadLayer('국도1호선.geojson', ROAD_STYLE_2);
-const nRoadLayer5 = createRoadLayer('국도2호선.geojson', ROAD_STYLE_2);
-const nRoadLayer6 = createRoadLayer('국도3호선.geojson', ROAD_STYLE_2);
-const nRoadLayer7 = createRoadLayer('분당내곡간도시고속화도로.geojson', ROAD_STYLE_2);
-const nRoadLayer8 = createRoadLayer('국도4호선.geojson', ROAD_STYLE_2);
-const nRoadLayer9 = createRoadLayer('국도6호선.geojson', ROAD_STYLE_2);
-const nRoadLayer10 = createRoadLayer('국도7호선.geojson', ROAD_STYLE_2);
-const nRoadLayer11 = createRoadLayer('동부간선도로.geojson', ROAD_STYLE_2);
-const nRoadLayer12 = createRoadLayer('올림픽대로.geojson', ROAD_STYLE_2);
+const nRoadLayer1 = createRoadLayer('내부순환로_EPSG4326.geojson', ROAD_STYLE_2, true);
+const nRoadLayer2 = createRoadLayer('분당수서간도시고속화도로_EPSG4326.geojson', ROAD_STYLE_2, true);
+const nRoadLayer3 = createRoadLayer('서울외곽순환고속도로_EPSG4326.geojson', ROAD_STYLE_2, true);
+const nRoadLayer4 = createRoadLayer('국도1호선.geojson', ROAD_STYLE_2, true);
+const nRoadLayer5 = createRoadLayer('국도2호선.geojson', ROAD_STYLE_2, true);
+const nRoadLayer6 = createRoadLayer('국도3호선.geojson', ROAD_STYLE_2, true);
+const nRoadLayer7 = createRoadLayer('분당내곡간도시고속화도로.geojson', ROAD_STYLE_2, true);
+const nRoadLayer8 = createRoadLayer('국도4호선.geojson', ROAD_STYLE_2, true);
+const nRoadLayer9 = createRoadLayer('국도6호선.geojson', ROAD_STYLE_2, true);
+const nRoadLayer10 = createRoadLayer('국도7호선.geojson', ROAD_STYLE_2, true);
+const nRoadLayer11 = createRoadLayer('동부간선도로.geojson', ROAD_STYLE_2, true);
+const nRoadLayer12 = createRoadLayer('올림픽대로.geojson', ROAD_STYLE_2, true);
+
+const preciseRoadLayer01 = createRoadLayer('highway/평택제천고속도.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer02 = createRoadLayer('highway/서울외곽순환고속도로.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer03 = createRoadLayer('highway/서울외곽순환고속도로.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer04 = createRoadLayer('highway/성남대로.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer05 = createRoadLayer('highway/헌릉로.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer06 = createRoadLayer('highway/일반국도3호선.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer07 = createRoadLayer('highway/동부간선도로.geojson', ROAD_STYLE_3, false);
 
 const map = new Map({
   layers: [
-  	new LayerGroup({
+  	new LayerGroup({ // index 0
   		layers: [
   			sidoLayer1, sidoLayer2, sidoLayer3, sidoLayer4, sidoLayer5,
   			sidoLayer6, sidoLayer7, sidoLayer8, sidoLayer9, sidoLayer10,
@@ -282,7 +304,7 @@ const map = new Map({
   			sidoLayer16, sidoLayer17
   		]
   	}),
-  	new LayerGroup({
+  	new LayerGroup({ // index 1  
   		layers: [
   			sgg11xxx, sgg26xxx, sgg27xxx, sgg29xxx, sgg30xxx,
   			sgg31xxx, sgg36xxx, sgg41xxx, sgg42xxx, sgg43xxx,
@@ -290,13 +312,13 @@ const map = new Map({
   			sgg50xxx
   		]
   	}),
-  	hemdLayer,
-  	new LayerGroup({
+  	hemdLayer,       // index 2
+  	new LayerGroup({ // index 3
   		layers: [
   			bemdLayer, bemd11xxxxxx
   		]
   	}),
-  	new LayerGroup({
+  	new LayerGroup({ // index 4
   		layers: [
   			highwayLayer1, highwayLayer2, highwayLayer3, highwayLayer4, highwayLayer5,
   			highwayLayer6, highwayLayer7, highwayLayer8, highwayLayer9, highwayLayer10,
@@ -305,11 +327,17 @@ const map = new Map({
   			highwayLayer21/*, highwayLayer22, highwayLayer23*/
   		]
   	}),
-  	new LayerGroup({
+  	new LayerGroup({ // index 5
   		layers: [
   			nRoadLayer1, nRoadLayer2, nRoadLayer3, nRoadLayer4, nRoadLayer5,
   			nRoadLayer6, nRoadLayer7, nRoadLayer8, nRoadLayer9, nRoadLayer10,
   			nRoadLayer11, nRoadLayer12
+  		]
+  	}),
+  	new LayerGroup({ // index 6
+  		layers: [
+  			preciseRoadLayer01, preciseRoadLayer02, preciseRoadLayer03, preciseRoadLayer04, preciseRoadLayer05,
+  			preciseRoadLayer06, preciseRoadLayer07
   		]
   	})
   ],
@@ -409,11 +437,14 @@ const updateLayer = function(zoomLevel) {
 		toggleLayers(true, 1);
 		toggleLayers(false, 2);
 		toggleLayers(false, 3);
-	} else if (zoomLevel >= 11) {
+	} else if (zoomLevel >= 11 && zoomLevel < 14) {
 		toggleLayers(true, 0);
 		toggleLayers(true, 1);
 		toggleLayers(showHLayer, 2);
 		toggleLayers(showBLayer, 3);
+		toggleLayers(false, 6);
+	} else if (zoomLevel >= 14) {
+		toggleLayers(true, 6);
 	}
 //	if (e.target.getZoom() < 8) {
 //		sgg41xxx.setVisible(false);
@@ -444,12 +475,17 @@ const switchEMDLayer = function() {
 const toggleLayers = function(isVisible, index) {
 	if (index == 2) {
 		map.getLayers().item(index).setVisible(isVisible);
-	} else if (index == 3) {
+	} else if (index == 3 || index == 6) {
 		if (isVisible && !isInitLayer(map.getLayers().item(index).getLayers())) {
+			if (index == 3) {
+				$('#spinner').html("Loading...");
+			} else if (index == 6) {
+				$('#spinner').html("Update Road Layer...");
+			}
 			$('#spinner').css('display', 'block');
 		}
-		map.getLayers().item(index).getLayers().forEach(function(bEmdLayer) {
-			bEmdLayer.setVisible(isVisible);
+		map.getLayers().item(index).getLayers().forEach(function(layer) {
+			layer.setVisible(isVisible);
 		});
 	} else {
 		map.getLayers().item(index).getLayers().forEach(function(sggLayer) {
@@ -463,7 +499,7 @@ const isInitLayer = function(layers) {
 	layers.forEach(function(subLayer) {
 		if (subLayer.getSource().getFeatures().length > 0) count++;
 	});
-	console.log(count, layers.getArray().length, count == layers.length);
+	console.log(count, layers.getArray().length, count == layers.getArray().length);
 	return count == layers.getArray().length
 }
 
