@@ -24,6 +24,7 @@ register(proj4);
 //======================================================================================
 let showHLayer = false;
 let showBLayer = true;
+let showPrecisionLayer = false;
 const wgs84 = new proj4.Proj('EPSG:4326');
 const epsg5179 = new proj4.Proj('EPSG:5179');
 const epsg3857 = new proj4.Proj('EPSG:3857');
@@ -54,7 +55,7 @@ const style = new Style({
 
 const ROAD_STYLE_1 = 'rgba(0, 0, 255, 0.5)';
 const ROAD_STYLE_2 = 'rgba(0, 255, 0, 0.5)';
-const ROAD_STYLE_3 = 'rgba(100, 114, 101, 0.5)';
+const ROAD_STYLE_3 = 'rgba(100, 114, 101, 1)';
 const roadStyle = [
 	/* We are using two different styles for the polygons:
 	 *  - The first style is for the polygons themselves.
@@ -66,12 +67,12 @@ const roadStyle = [
 	new Style({
 	  stroke: new Stroke({
 	  	color: ROAD_STYLE_1,
-	    width: 5
+	    width: 2
 	  })
 	}),
 	new Style({
 		stroke: new Stroke({
-	    color: 'rgba(255, 255, 255, 0.5)',
+	    color: 'rgba(255, 255, 255, 0)',
 	    width: 3
 	  }),
 	  text: new Text({
@@ -79,6 +80,7 @@ const roadStyle = [
 	    fill: new Fill({
 	      color: '#000'
 	    }),
+	    overflow: false,
 	    maxangle: 30,
 	    placement : 'line',
 	    align: 'center',
@@ -107,7 +109,12 @@ const highlightStyle = new Style({
     stroke: new Stroke({
       color: '#f00',
       width: 1
-    })
+    }),
+    overflow: false,
+    maxangle: 30,
+    placement : 'line',
+    align: 'center',
+    textBaseline: 'bottom'
   })
 });
 
@@ -130,6 +137,7 @@ const createRoadLayer = function(geoJsonName, color, isSimple) {
 			roadStyle[0].getStroke().setColor(color);
 			return roadStyle;
 		},
+		declutter: true
 	});
 	if (!isSimple) {
 		layer.setVisible(false);
@@ -208,46 +216,45 @@ const createBEMDLayer = function(geoJsonName) {
 //======================================================================================
 // Define Layer 
 //======================================================================================
-const sidoLayer1 = createSDLayer('서울특별시.geojson');
-const sidoLayer2 = createSDLayer('부산광역시.geojson');
-const sidoLayer3 = createSDLayer('대구광역시.geojson');
-const sidoLayer4 = createSDLayer('인천광역시.geojson');
-const sidoLayer5 = createSDLayer('광주광역시.geojson');
-const sidoLayer6 = createSDLayer('대전광역시.geojson');
-const sidoLayer7 = createSDLayer('울산광역시.geojson');
-const sidoLayer8 = createSDLayer('세종특별자치시.geojson');
-const sidoLayer9 = createSDLayer('경기도.geojson');       
-const sidoLayer10 = createSDLayer('강원도.geojson'); 
-const sidoLayer11 = createSDLayer('충청북도.geojson'); 
-const sidoLayer12 = createSDLayer('충청남도.geojson'); 
-const sidoLayer13 = createSDLayer('전라북도.geojson');  
-const sidoLayer14 = createSDLayer('전라남도.geojson'); 
-const sidoLayer15 = createSDLayer('경상북도.geojson');
-const sidoLayer16 = createSDLayer('경상남도.geojson');
-const sidoLayer17 = createSDLayer('제주특별자치도.geojson');
+const sidoLayer1 = createSDLayer('sido/11.geojson');  // 서울
+const sidoLayer2 = createSDLayer('sido/26.geojson');  // 부산광역시
+const sidoLayer3 = createSDLayer('sido/27.geojson');  // 대구광역시
+const sidoLayer4 = createSDLayer('sido/28.geojson');  // 인천광역시
+const sidoLayer5 = createSDLayer('sido/29.geojson');  // 광주광역시
+const sidoLayer6 = createSDLayer('sido/30.geojson');  // 대전광역시
+const sidoLayer7 = createSDLayer('sido/31.geojson');  // 울산광역시
+const sidoLayer8 = createSDLayer('sido/36.geojson');  // 세종특별자치시
+const sidoLayer9 = createSDLayer('sido/41.geojson');  // 경기도       
+const sidoLayer10 = createSDLayer('sido/42.geojson'); // 강원도
+const sidoLayer11 = createSDLayer('sido/43.geojson'); // 충청북도 
+const sidoLayer12 = createSDLayer('sido/44.geojson'); // 충청남도 
+const sidoLayer13 = createSDLayer('sido/45.geojson'); // 전라북도  
+const sidoLayer14 = createSDLayer('sido/46.geojson'); // 전라남도 
+const sidoLayer15 = createSDLayer('sido/47.geojson'); // 경상북도
+const sidoLayer16 = createSDLayer('sido/48.geojson'); // 경상남도
+const sidoLayer17 = createSDLayer('sido/50.geojson'); // 제주특별자치도
 
 
-const sgg11xxx = createSGGLayer('11xxx.geojson');
-const sgg26xxx = createSGGLayer('26xxx.geojson');
-const sgg27xxx = createSGGLayer('27xxx.geojson');
-const sgg29xxx = createSGGLayer('29xxx.geojson');
-const sgg30xxx = createSGGLayer('30xxx.geojson');
-const sgg31xxx = createSGGLayer('31xxx.geojson');
-const sgg36xxx = createSGGLayer('36xxx.geojson');
-const sgg41xxx = createSGGLayer('41xxx.geojson');
-const sgg42xxx = createSGGLayer('42xxx.geojson');
-const sgg43xxx = createSGGLayer('43xxx.geojson');
-const sgg44xxx = createSGGLayer('44xxx.geojson');
-const sgg45xxx = createSGGLayer('45xxx.geojson');
-const sgg46xxx = createSGGLayer('46xxx.geojson');
-const sgg47xxx = createSGGLayer('47xxx.geojson');
-const sgg48xxx = createSGGLayer('48xxx.geojson');
-const sgg50xxx = createSGGLayer('50xxx.geojson');
+const sgg11xxx = createSGGLayer('sgg/11xxx.geojson');
+const sgg26xxx = createSGGLayer('sgg/26xxx.geojson');
+const sgg27xxx = createSGGLayer('sgg/27xxx.geojson');
+const sgg29xxx = createSGGLayer('sgg/29xxx.geojson');
+const sgg30xxx = createSGGLayer('sgg/30xxx.geojson');
+const sgg31xxx = createSGGLayer('sgg/31xxx.geojson');
+const sgg36xxx = createSGGLayer('sgg/36xxx.geojson');
+const sgg41xxx = createSGGLayer('sgg/41xxx.geojson');
+const sgg42xxx = createSGGLayer('sgg/42xxx.geojson');
+const sgg43xxx = createSGGLayer('sgg/43xxx.geojson');
+const sgg44xxx = createSGGLayer('sgg/44xxx.geojson');
+const sgg45xxx = createSGGLayer('sgg/45xxx.geojson');
+const sgg46xxx = createSGGLayer('sgg/46xxx.geojson');
+const sgg47xxx = createSGGLayer('sgg/47xxx.geojson');
+const sgg48xxx = createSGGLayer('sgg/48xxx.geojson');
+const sgg50xxx = createSGGLayer('sgg/50xxx.geojson');
 
-const hemdLayer = createEMDLayer('hemd.geojson');
-
-const bemdLayer = createBEMDLayer('bemd.geojson');
-const bemd11xxxxxx = createBEMDLayer('11xxxxxx.geojson');
+const hemdLayer = createEMDLayer('emd/hemd.geojson');
+const bemdLayer = createBEMDLayer('emd/bemd.geojson');
+const bemd11xxxxxx = createBEMDLayer('emd/11xxxxxx.geojson');
 
 const highwayLayer1 = createRoadLayer('highway/경부고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
 const highwayLayer2 = createRoadLayer('highway/경인고속도로_EPSG4326.geojson', ROAD_STYLE_1, true);
@@ -273,26 +280,27 @@ const highwayLayer21 = createRoadLayer('highway/호남고속도로_EPSG4326.geoj
 const highwayLayer22 = createRoadLayer('highway/광주대구고속도로.geojson', ROAD_STYLE_1, true);
 const highwayLayer23 = createRoadLayer('highway/평택제천고속도.geojson', ROAD_STYLE_1, true);
 
-const nRoadLayer1 = createRoadLayer('내부순환로_EPSG4326.geojson', ROAD_STYLE_2, true);
-const nRoadLayer2 = createRoadLayer('분당수서간도시고속화도로_EPSG4326.geojson', ROAD_STYLE_2, true);
-const nRoadLayer3 = createRoadLayer('서울외곽순환고속도로_EPSG4326.geojson', ROAD_STYLE_2, true);
-const nRoadLayer4 = createRoadLayer('국도1호선.geojson', ROAD_STYLE_2, true);
-const nRoadLayer5 = createRoadLayer('국도2호선.geojson', ROAD_STYLE_2, true);
-const nRoadLayer6 = createRoadLayer('국도3호선.geojson', ROAD_STYLE_2, true);
-const nRoadLayer7 = createRoadLayer('분당내곡간도시고속화도로.geojson', ROAD_STYLE_2, true);
-const nRoadLayer8 = createRoadLayer('국도4호선.geojson', ROAD_STYLE_2, true);
-const nRoadLayer9 = createRoadLayer('국도6호선.geojson', ROAD_STYLE_2, true);
-const nRoadLayer10 = createRoadLayer('국도7호선.geojson', ROAD_STYLE_2, true);
-const nRoadLayer11 = createRoadLayer('동부간선도로.geojson', ROAD_STYLE_2, true);
-const nRoadLayer12 = createRoadLayer('올림픽대로.geojson', ROAD_STYLE_2, true);
+const nRoadLayer1 = createRoadLayer('nationalroad/내부순환로_EPSG4326.geojson', ROAD_STYLE_2, true);
+const nRoadLayer2 = createRoadLayer('nationalroad/분당수서간도시고속화도로_EPSG4326.geojson', ROAD_STYLE_2, true);
+const nRoadLayer3 = createRoadLayer('nationalroad/서울외곽순환고속도로_EPSG4326.geojson', ROAD_STYLE_2, true);
+const nRoadLayer4 = createRoadLayer('nationalroad/국도1호선.geojson', ROAD_STYLE_2, true);
+const nRoadLayer5 = createRoadLayer('nationalroad/국도2호선.geojson', ROAD_STYLE_2, true);
+const nRoadLayer6 = createRoadLayer('nationalroad/국도3호선.geojson', ROAD_STYLE_2, true);
+const nRoadLayer7 = createRoadLayer('nationalroad/분당내곡간도시고속화도로.geojson', ROAD_STYLE_2, true);
+const nRoadLayer8 = createRoadLayer('nationalroad/국도4호선.geojson', ROAD_STYLE_2, true);
+const nRoadLayer9 = createRoadLayer('nationalroad/국도6호선.geojson', ROAD_STYLE_2, true);
+const nRoadLayer10 = createRoadLayer('nationalroad/국도7호선.geojson', ROAD_STYLE_2, true);
+const nRoadLayer11 = createRoadLayer('nationalroad/동부간선도로.geojson', ROAD_STYLE_2, true);
+const nRoadLayer12 = createRoadLayer('nationalroad/올림픽대로.geojson', ROAD_STYLE_2, true);
 
-const preciseRoadLayer01 = createRoadLayer('highway/평택제천고속도.geojson', ROAD_STYLE_3, false);
-const preciseRoadLayer02 = createRoadLayer('highway/서울외곽순환고속도로.geojson', ROAD_STYLE_3, false);
-const preciseRoadLayer03 = createRoadLayer('highway/서울외곽순환고속도로.geojson', ROAD_STYLE_3, false);
-const preciseRoadLayer04 = createRoadLayer('highway/성남대로.geojson', ROAD_STYLE_3, false);
-const preciseRoadLayer05 = createRoadLayer('highway/헌릉로.geojson', ROAD_STYLE_3, false);
-const preciseRoadLayer06 = createRoadLayer('highway/일반국도3호선.geojson', ROAD_STYLE_3, false);
-const preciseRoadLayer07 = createRoadLayer('highway/동부간선도로.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer01 = createRoadLayer('precision/평택제천고속도.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer02 = createRoadLayer('precision/서울외곽순환고속도로.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer03 = createRoadLayer('precision/서울외곽순환고속도로.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer04 = createRoadLayer('precision/성남대로.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer05 = createRoadLayer('precision/헌릉로.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer06 = createRoadLayer('precision/일반국도3호선.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer07 = createRoadLayer('precision/동부간선도로.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer08 = createRoadLayer('precision/20400xxxxx.geojson', ROAD_STYLE_3, false);
 
 const map = new Map({
   layers: [
@@ -337,7 +345,7 @@ const map = new Map({
   	new LayerGroup({ // index 6
   		layers: [
   			preciseRoadLayer01, preciseRoadLayer02, preciseRoadLayer03, preciseRoadLayer04, preciseRoadLayer05,
-  			preciseRoadLayer06, preciseRoadLayer07
+  			preciseRoadLayer06, preciseRoadLayer07, preciseRoadLayer08
   		]
   	})
   ],
@@ -367,10 +375,13 @@ const featureOverlay = new VectorLayer({
   style: function(feature) {
     highlightStyle.getText().setText(feature.get('ROAD_NAME'));
     return highlightStyle;
-  }
+  },
+  declutter: true
 });
 
 let highlight;
+const getHighlight = function() { return highlight; }
+const setHighlight = function(feature) { highlight = feature; }
 const displayFeatureInfo = function(pixel) {
 
   const feature = map.forEachFeatureAtPixel(pixel, function(feature) {
@@ -442,10 +453,7 @@ const updateLayer = function(zoomLevel) {
 		toggleLayers(true, 1);
 		toggleLayers(showHLayer, 2);
 		toggleLayers(showBLayer, 3);
-		toggleLayers(false, 6);
-	} else if (zoomLevel >= 14) {
-		toggleLayers(true, 6);
-	}
+	} 
 //	if (e.target.getZoom() < 8) {
 //		sgg41xxx.setVisible(false);
 //		toggleLayer(true);
@@ -575,6 +583,10 @@ window.init = init;
 window.map = map;
 window.featureOverlay= featureOverlay;
 window.toggleRoadLabel = toggleRoadLabel;
+window.toggleLayers = toggleLayers;
 window.switchEMDLayer = switchEMDLayer;
 window.proj4 = proj4;
 window.determineAreaName = determineAreaName;
+window.showPrecisionLayer = showPrecisionLayer;
+window.getHighlight = getHighlight;
+window.setHighlight = setHighlight;

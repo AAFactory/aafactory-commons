@@ -2,38 +2,22 @@ let labelMap = {
   sgg: 'SIG_KOR_NM',
   hEmd: 'adm_nm',
   bEmd: 'EMD_KOR_NM',
-  highway: 'ROAD_NAME'
+  highway: 'ROAD_NAME',
+	nationRoad: 'ROAD_NAME'
 }
-
-var focusLayer;
 
 function toggleOptionsDiv() {
   $('#selectOpttions').toggle();
 }
 
-function fitboundsLayer(index) {
-  var map = window.map;
-  var featureOverlay = window.featureOverlay;
-	map.getView().fit(map.getLayers().item(4).getLayers().item(index).getSource().getExtent(), map.getSize());
+function fitboundsLayer(layerGroupIndex, index) {
+	map.getView().fit(map.getLayers().item(layerGroupIndex).getLayers().item(index).getSource().getExtent(), map.getSize());
   //console.log(map.getLayers().item(element.value).get('name'));
   
-  var targetLayer = map.getLayers().item(4).getLayers().item(index).getSource().getFeatures()[0];
-  if (focusLayer) featureOverlay.getSource().removeFeature(focusLayer);
+  var targetLayer = map.getLayers().item(layerGroupIndex).getLayers().item(index).getSource().getFeatures()[0];
+  if (getHighlight()) featureOverlay.getSource().removeFeature(getHighlight());
   featureOverlay.getSource().addFeature(targetLayer);
-  focusLayer = targetLayer;
-}
-
-function fitboundsNRoadLayer(element) {
-	element.blur();
-  var map = window.map;
-  var featureOverlay = window.featureOverlay;
-  map.getView().fit(map.getLayers().item(5).getLayers().item(element.value).getSource().getExtent(), map.getSize());
-  //console.log(map.getLayers().item(element.value).get('name'));
-  
-  var targetLayer = map.getLayers().item(5).getLayers().item(element.value).getSource().getFeatures()[0];
-  if (focusLayer) featureOverlay.getSource().removeFeature(focusLayer);
-  featureOverlay.getSource().addFeature(targetLayer);
-  focusLayer = targetLayer;
+  setHighlight(targetLayer);
 }
 
 function toggleRoadLayer(index) {
@@ -75,7 +59,29 @@ function initHighway() {
     }); 
     
     $('#highwaySelect').on('change', function() {
-    	fitboundsLayer($(this).val());
+    	fitboundsLayer(4, $(this).val());
+    });
+  }
+}
+
+const nationRoadArr = [];
+function initnationRoad() {
+	if (nationRoadArr.length == 0) {
+		map.getLayers().item(5).getLayers().forEach(function(layer) {
+      layer.getSource().getFeatures().forEach(function(feature) {
+      	nationRoadArr.push(feature);
+      });
+    });
+      
+    $.each(nationRoadArr, function(idx, feature) {
+    	$('#nationRoadSelect').append($('<option>', {
+        value: idx,
+        text: feature.get(labelMap.nationRoad)
+      }));
+    }); 
+    
+    $('#nationRoadSelect').on('change', function() {
+    	fitboundsLayer(5, $(this).val());
     });
   }
 }
@@ -221,6 +227,10 @@ $(function() {
 			updateSgg();
 			updateEmd();
 			initHighway();
+			initnationRoad();
+		} else if ($(this).hasClass('d')) {
+			showPrecisionLayer = !showPrecisionLayer;
+			toggleLayers(showPrecisionLayer, 6);
 		}
 	});
 	
