@@ -229,8 +229,8 @@ $(function() {
 			initHighway();
 			initnationRoad();
 		} else if ($(this).hasClass('d')) {
-			showPrecisionLayer = !showPrecisionLayer;
-			toggleLayers(showPrecisionLayer, 6);
+			setPrecisionLayer(!getPrecisionLayer());
+			toggleLayers(getPrecisionLayer(), 6);
 		}
 	});
 	

@@ -213,6 +213,27 @@ const createBEMDLayer = function(geoJsonName) {
 	return layer;
 }
 
+const createBuildingLayer = function(geoJsonName) {
+	const layer = new VectorLayer({
+		source: new VectorSource({
+			url: 'data/geojson/' + geoJsonName,
+			format: new GeoJSON()
+		}),
+		style: function(feature) {
+			style.getText().setText(feature.get('BULD_NM'));
+			style.getFill().setColor('rgba(255, 255, 255, 1)');
+			return style;
+		}
+	});
+	layer.setVisible(false);
+	layer.on('change', function(e) {
+		if (isInitLayer(map.getLayers().item(7).getLayers())) {
+			$('#spinner').css('display', 'none');
+		}
+	});
+	return layer;
+}
+
 //======================================================================================
 // Define Layer 
 //======================================================================================
@@ -238,6 +259,7 @@ const sidoLayer17 = createSDLayer('sido/50.geojson'); // 제주특별자치도
 const sgg11xxx = createSGGLayer('sgg/11xxx.geojson');
 const sgg26xxx = createSGGLayer('sgg/26xxx.geojson');
 const sgg27xxx = createSGGLayer('sgg/27xxx.geojson');
+const sgg28xxx = createSGGLayer('sgg/28xxx.geojson');
 const sgg29xxx = createSGGLayer('sgg/29xxx.geojson');
 const sgg30xxx = createSGGLayer('sgg/30xxx.geojson');
 const sgg31xxx = createSGGLayer('sgg/31xxx.geojson');
@@ -301,6 +323,10 @@ const preciseRoadLayer05 = createRoadLayer('precision/헌릉로.geojson', ROAD_S
 const preciseRoadLayer06 = createRoadLayer('precision/일반국도3호선.geojson', ROAD_STYLE_3, false);
 const preciseRoadLayer07 = createRoadLayer('precision/동부간선도로.geojson', ROAD_STYLE_3, false);
 const preciseRoadLayer08 = createRoadLayer('precision/20400xxxxx.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer09 = createRoadLayer('precision/20401xxxxx.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer10 = createRoadLayer('precision/20500xxxxx.geojson', ROAD_STYLE_3, false);
+
+const buildingLayer1 = createBuildingLayer('buildings/elementary_school.geojson');
 
 const map = new Map({
   layers: [
@@ -314,10 +340,10 @@ const map = new Map({
   	}),
   	new LayerGroup({ // index 1  
   		layers: [
-  			sgg11xxx, sgg26xxx, sgg27xxx, sgg29xxx, sgg30xxx,
-  			sgg31xxx, sgg36xxx, sgg41xxx, sgg42xxx, sgg43xxx,
-  			sgg44xxx, sgg45xxx, sgg46xxx, sgg47xxx, sgg48xxx,
-  			sgg50xxx
+  			sgg11xxx, sgg26xxx, sgg27xxx, sgg28xxx, sgg29xxx,
+  			sgg30xxx, sgg31xxx, sgg36xxx, sgg41xxx, sgg42xxx,
+  			sgg43xxx, sgg44xxx, sgg45xxx, sgg46xxx, sgg47xxx,
+  			sgg48xxx, sgg50xxx
   		]
   	}),
   	hemdLayer,       // index 2
@@ -345,7 +371,12 @@ const map = new Map({
   	new LayerGroup({ // index 6
   		layers: [
   			preciseRoadLayer01, preciseRoadLayer02, preciseRoadLayer03, preciseRoadLayer04, preciseRoadLayer05,
-  			preciseRoadLayer06, preciseRoadLayer07, preciseRoadLayer08
+  			preciseRoadLayer06, preciseRoadLayer07, preciseRoadLayer08, preciseRoadLayer09, preciseRoadLayer10
+  		]
+  	}),
+  	new LayerGroup({ // index 7
+  		layers: [
+  			buildingLayer1
   		]
   	})
   ],
@@ -454,6 +485,21 @@ const updateLayer = function(zoomLevel) {
 		toggleLayers(showHLayer, 2);
 		toggleLayers(showBLayer, 3);
 	} 
+	
+	if (zoomLevel >= 15) {
+		showPrecisionLayer = true; 
+		toggleLayers(showPrecisionLayer, 6);
+	} else {
+		showPrecisionLayer = false;
+		toggleLayers(showPrecisionLayer, 6);
+	}
+
+	if (zoomLevel >= 16) {
+		toggleLayers(true, 7);
+	} else {
+		toggleLayers(false, 7);
+	}
+	
 //	if (e.target.getZoom() < 8) {
 //		sgg41xxx.setVisible(false);
 //		toggleLayer(true);
@@ -483,12 +529,14 @@ const switchEMDLayer = function() {
 const toggleLayers = function(isVisible, index) {
 	if (index == 2) {
 		map.getLayers().item(index).setVisible(isVisible);
-	} else if (index == 3 || index == 6) {
+	} else if (index == 3 || index == 6 || index == 7) {
 		if (isVisible && !isInitLayer(map.getLayers().item(index).getLayers())) {
 			if (index == 3) {
 				$('#spinner').html("Loading...");
 			} else if (index == 6) {
 				$('#spinner').html("Update Road Layer...");
+			} else if (index == 7) {
+				$('#spinner').html("Update Building Layer...");
 			}
 			$('#spinner').css('display', 'block');
 		}
@@ -573,6 +621,13 @@ const determineAreaName = function() {
 	updateAreaName(nameMap);
 }
 
+const setPrecisionLayer = function(flag) {
+	showPrecisionLayer = flag;
+}
+
+const getPrecisionLayer = function() {
+	return showPrecisionLayer;
+}
 
 //======================================================================================
 // Export Global Variable
@@ -587,6 +642,7 @@ window.toggleLayers = toggleLayers;
 window.switchEMDLayer = switchEMDLayer;
 window.proj4 = proj4;
 window.determineAreaName = determineAreaName;
-window.showPrecisionLayer = showPrecisionLayer;
+window.setPrecisionLayer = setPrecisionLayer;
+window.getPrecisionLayer = getPrecisionLayer;
 window.getHighlight = getHighlight;
 window.setHighlight = setHighlight;
