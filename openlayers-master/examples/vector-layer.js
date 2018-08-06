@@ -49,7 +49,8 @@ const style = new Style({
     stroke: new Stroke({
       color: '#fff',
       width: 3
-    })
+    }),
+    overflow: false,
   })
 });
 
@@ -118,6 +119,26 @@ const highlightStyle = new Style({
   })
 });
 
+const buildingStyle = new Style({
+  fill: new Fill({
+    color: 'rgba(255, 255, 255, 0.8)'
+  }),
+  stroke: new Stroke({
+    color: '#000000',
+    width: 1
+  }),
+  text: new Text({
+    font: '12px Calibri,sans-serif',
+    fill: new Fill({
+      color: '#000'
+    }),
+    stroke: new Stroke({
+      color: '#fff',
+      width: 3
+    }),
+    overflow: true,
+  })
+});
 
 //======================================================================================
 // Factory Function
@@ -143,7 +164,7 @@ const createRoadLayer = function(geoJsonName, color, isSimple) {
 		layer.setVisible(false);
 		layer.on('change', function(e) {
 			if (isInitLayer(map.getLayers().item(6).getLayers())) {
-				$('#spinner').css('display', 'none');
+				loadBuildingLayer();
 			}
 		});
 	}
@@ -160,7 +181,8 @@ const createSDLayer = function(geoJsonName) {
 			style.getText().setText(feature.get('area1'));
 			style.getFill().setColor('rgba(255, 255, 255, 1)');
 			return style;
-		}
+		},
+		declutter: true
 	});
 	return layer;
 }
@@ -175,7 +197,8 @@ const createSGGLayer = function(geoJsonName) {
 			style.getText().setText(feature.get('SIG_KOR_NM'));
 			style.getFill().setColor('rgba(255, 255, 255, 1)');
 			return style;
-		}
+		},
+		declutter: true
 	});
 	layer.setVisible(false);
 	return layer;
@@ -191,7 +214,8 @@ const createEMDLayer = function(geoJsonName) {
 			style.getText().setText(feature.get('adm_nm'));
 			style.getFill().setColor('rgba(248, 255, 155, 1)');
 			return style;
-		}
+		},
+		declutter: true
 	});
 	layer.setVisible(false);
 	return layer;
@@ -207,7 +231,8 @@ const createBEMDLayer = function(geoJsonName) {
 			style.getText().setText(feature.get('EMD_KOR_NM'));
 			style.getFill().setColor('rgba(248, 255, 155, 1)');
 			return style;
-		}
+		},
+		declutter: true
 	});
 	layer.setVisible(false);
 	return layer;
@@ -220,10 +245,11 @@ const createBuildingLayer = function(geoJsonName) {
 			format: new GeoJSON()
 		}),
 		style: function(feature) {
-			style.getText().setText(feature.get('BULD_NM'));
-			style.getFill().setColor('rgba(255, 255, 255, 1)');
-			return style;
-		}
+			buildingStyle.getText().setText(feature.get('BULD_NM'));
+			buildingStyle.getFill().setColor('rgba(255, 255, 255, 1)');
+			return buildingStyle;
+		},
+		declutter: true
 	});
 	layer.setVisible(false);
 	layer.on('change', function(e) {
@@ -327,6 +353,8 @@ const preciseRoadLayer09 = createRoadLayer('precision/20401xxxxx.geojson', ROAD_
 const preciseRoadLayer10 = createRoadLayer('precision/20500xxxxx.geojson', ROAD_STYLE_3, false);
 
 const buildingLayer1 = createBuildingLayer('buildings/elementary_school.geojson');
+const buildingLayer2 = createBuildingLayer('buildings/parking_lot.geojson');
+const buildingLayer3 = createBuildingLayer('buildings/apartment.geojson');
 
 const map = new Map({
   layers: [
@@ -376,7 +404,7 @@ const map = new Map({
   	}),
   	new LayerGroup({ // index 7
   		layers: [
-  			buildingLayer1
+  			buildingLayer1, buildingLayer2, buildingLayer3
   		]
   	})
   ],
@@ -489,14 +517,10 @@ const updateLayer = function(zoomLevel) {
 	if (zoomLevel >= 15) {
 		showPrecisionLayer = true; 
 		toggleLayers(showPrecisionLayer, 6);
+		toggleLayers(true, 7);
 	} else {
 		showPrecisionLayer = false;
 		toggleLayers(showPrecisionLayer, 6);
-	}
-
-	if (zoomLevel >= 16) {
-		toggleLayers(true, 7);
-	} else {
 		toggleLayers(false, 7);
 	}
 	
@@ -519,7 +543,6 @@ bemd11xxxxxx.on('change', function(e) {
 	}
 });
 
-
 const switchEMDLayer = function() {
 	showHLayer = !showHLayer;
 	showBLayer = !showBLayer;
@@ -529,14 +552,12 @@ const switchEMDLayer = function() {
 const toggleLayers = function(isVisible, index) {
 	if (index == 2) {
 		map.getLayers().item(index).setVisible(isVisible);
-	} else if (index == 3 || index == 6 || index == 7) {
+	} else if (index == 3 || index == 6) {
 		if (isVisible && !isInitLayer(map.getLayers().item(index).getLayers())) {
 			if (index == 3) {
 				$('#spinner').html("Loading...");
 			} else if (index == 6) {
 				$('#spinner').html("Update Road Layer...");
-			} else if (index == 7) {
-				$('#spinner').html("Update Building Layer...");
 			}
 			$('#spinner').css('display', 'block');
 		}
@@ -548,6 +569,13 @@ const toggleLayers = function(isVisible, index) {
 			sggLayer.setVisible(isVisible);
 		});
 	}
+}
+
+const loadBuildingLayer = function() {
+	$('#spinner').html("Update Building Layer...");
+	map.getLayers().item(7).getLayers().forEach(function(layer) {
+		layer.setVisible(true);
+	});
 }
 
 const isInitLayer = function(layers) {
