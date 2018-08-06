@@ -351,10 +351,11 @@ const preciseRoadLayer07 = createRoadLayer('precision/동부간선도로.geojson
 const preciseRoadLayer08 = createRoadLayer('precision/20400xxxxx.geojson', ROAD_STYLE_3, false);
 const preciseRoadLayer09 = createRoadLayer('precision/20401xxxxx.geojson', ROAD_STYLE_3, false);
 const preciseRoadLayer10 = createRoadLayer('precision/20500xxxxx.geojson', ROAD_STYLE_3, false);
+const preciseRoadLayer11 = createRoadLayer('precision/20601xxxxx.geojson', ROAD_STYLE_3, false);
 
 const buildingLayer1 = createBuildingLayer('buildings/elementary_school.geojson');
 const buildingLayer2 = createBuildingLayer('buildings/parking_lot.geojson');
-const buildingLayer3 = createBuildingLayer('buildings/apartment_41131.geojson');
+const buildingLayer3 = createBuildingLayer('buildings/apartment_4113x.geojson');
 
 const map = new Map({
   layers: [
@@ -399,7 +400,8 @@ const map = new Map({
   	new LayerGroup({ // index 6
   		layers: [
   			preciseRoadLayer01, preciseRoadLayer02, preciseRoadLayer03, preciseRoadLayer04, preciseRoadLayer05,
-  			preciseRoadLayer06, preciseRoadLayer07, preciseRoadLayer08, preciseRoadLayer09, preciseRoadLayer10
+  			preciseRoadLayer06, preciseRoadLayer07, preciseRoadLayer08, preciseRoadLayer09, preciseRoadLayer10,
+  			preciseRoadLayer11
   		]
   	}),
   	new LayerGroup({ // index 7
