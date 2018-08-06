@@ -354,7 +354,7 @@ const preciseRoadLayer10 = createRoadLayer('precision/20500xxxxx.geojson', ROAD_
 
 const buildingLayer1 = createBuildingLayer('buildings/elementary_school.geojson');
 const buildingLayer2 = createBuildingLayer('buildings/parking_lot.geojson');
-const buildingLayer3 = createBuildingLayer('buildings/apartment.geojson');
+const buildingLayer3 = createBuildingLayer('buildings/apartment_41131.geojson');
 
 const map = new Map({
   layers: [
