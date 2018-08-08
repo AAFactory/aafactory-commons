@@ -92,3 +92,9 @@ span { font-size: 10px; color: white; }
   transform: rotate(180deg);
 }
 #compass img { width: 20px; height: 25px; }
+#areaName {
+   display: inline-block;
+   padding: 5px;
+   color: white;
+   background: rgba(0, 0, 0, 0.5);
+}

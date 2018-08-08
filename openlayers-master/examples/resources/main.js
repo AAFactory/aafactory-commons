@@ -211,7 +211,13 @@ function updateMapStatus(x, y, z) {
 }
 
 function updateAreaName(nameMap) {
-  $('#areaName').html(nameMap.sido + ' ' + nameMap.sgg + ' ' + nameMap.hemd + ' ' + nameMap.bemd + '<br />' + nameMap.roadName);
+	var name = "";
+	if (nameMap.sido) name = nameMap.sido;
+	if (name && nameMap.sgg) name += ' ' + nameMap.sgg;
+	if (name && nameMap.hemd) name += ' ' + nameMap.hemd;
+	if (name && nameMap.bemd) name += ' ' + nameMap.bemd;
+	if (name && nameMap.roadName) name += '<br />' + nameMap.roadName;
+  $('#areaName').html(name);
 }
 
 $(function() {
