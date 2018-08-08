@@ -357,6 +357,7 @@ const preciseRoadLayer12 = createRoadLayer('precision/20602xxxxx.geojson', ROAD_
 const buildingLayer1 = createBuildingLayer('buildings/elementary_school.geojson');
 const buildingLayer2 = createBuildingLayer('buildings/parking_lot.geojson');
 const buildingLayer3 = createBuildingLayer('buildings/apartment_4113x.geojson');
+const buildingLayer4 = createBuildingLayer('buildings/railway_station.geojson');
 
 const map = new Map({
   layers: [
@@ -407,7 +408,7 @@ const map = new Map({
   	}),
   	new LayerGroup({ // index 7
   		layers: [
-  			buildingLayer1, buildingLayer2, buildingLayer3
+  			buildingLayer1, buildingLayer2, buildingLayer3, buildingLayer4
   		]
   	})
   ],
