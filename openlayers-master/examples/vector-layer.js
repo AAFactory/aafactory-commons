@@ -3,12 +3,15 @@ import View from '../src/ol/View.js';
 import GeoJSON from '../src/ol/format/GeoJSON.js';
 import VectorLayer from '../src/ol/layer/Vector.js';
 import VectorSource from '../src/ol/source/Vector.js';
-import {Fill, Stroke, Style, Text} from '../src/ol/style.js';
+import {Circle as CircleStyle, Fill, Stroke, Style, Text} from '../src/ol/style.js';
 import {boundingExtent, createEmpty, extend} from '../src/ol/extent.js';
 import {toStringXY} from '../src/ol/coordinate';
 import {Group as LayerGroup, Tile as TileLayer} from '../src/ol/layer.js';
 import Select from '../src/ol/interaction/Select.js';
 import {register} from '../src/ol/proj/proj4.js';
+import Feature from '../src/ol/Feature.js';
+import Geolocation from '../src/ol/Geolocation.js';
+import Point from '../src/ol/geom/Point.js';
 
 import proj4 from 'proj4';
 
@@ -364,6 +367,20 @@ const buildingLayer2 = createBuildingLayer('buildings/parking_lot.geojson');
 const buildingLayer3 = createBuildingLayer('buildings/apartment_4113x.geojson');
 const buildingLayer4 = createBuildingLayer('buildings/railway_station.geojson');
 
+var positionFeature = new Feature();
+positionFeature.setStyle(new Style({
+  image: new CircleStyle({
+    radius: 6,
+    fill: new Fill({
+      color: '#3399CC'
+    }),
+    stroke: new Stroke({
+      color: '#fff',
+      width: 2
+    })
+  })
+}));
+
 const map = new Map({
   layers: [
   	new LayerGroup({ // index 0
@@ -418,6 +435,7 @@ const map = new Map({
   		]
   	})
   ],
+  
   target: 'map',
   view: new View({
   	 projection: 'EPSG:3857',
@@ -425,6 +443,27 @@ const map = new Map({
     zoom: 7
   }),
   controls: []
+});
+
+const geolocation = new Geolocation({
+  // enableHighAccuracy must be set to true to have the heading value.
+  trackingOptions: {
+    enableHighAccuracy: true
+  },
+  projection: map.getView().getProjection()
+});
+geolocation.setTracking(true);
+
+const accuracyFeature = new Feature();
+const positionLayer = new VectorLayer({
+  source: new VectorSource({
+    features: [accuracyFeature]
+  }),
+  map: map
+});
+
+geolocation.on('change:accuracyGeometry', function() {
+  accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
 });
 
 
@@ -650,7 +689,7 @@ const toggleRoadLabel = function() {
 const determineAreaName = function() {
 	const nameMap = {sido:'', sgg:'', hemd:'', bemd:'', roadName:''};
 	map.forEachFeatureAtPixel([window.innerWidth / 2, window.innerHeight / 2], function(feature) {
-		console.log(feature)
+//		console.log(feature)
 		if (feature.get('area1')) nameMap.sido = feature.get('area1');
 		if (feature.get('SIG_KOR_NM')) nameMap.sgg = feature.get('SIG_KOR_NM');
 		if (feature.get('adm_nm')) nameMap.hemd = feature.get('adm_nm');
@@ -668,6 +707,27 @@ const getPrecisionLayer = function() {
 	return showPrecisionLayer;
 }
 
+const overlayCurrentLocation = function() {
+	var positionFeature = new Feature();
+  positionFeature.setStyle(new Style({
+     image: new CircleStyle({
+       radius: 6,
+       fill: new Fill({
+         color: '#3399CC'
+       }),
+       stroke: new Stroke({
+         color: '#fff',
+         width: 2
+       })
+     })
+  }));
+	
+	var coordinates = geolocation.getPosition();
+  positionFeature.setGeometry(coordinates ? new Point(coordinates) : null);
+  positionLayer.getSource().addFeature(positionFeature);
+}
+
+
 //======================================================================================
 // Export Global Variable
 //======================================================================================
@@ -675,6 +735,8 @@ const getPrecisionLayer = function() {
 // map.getView().fit(map.getLayers().item(1).getSource().getFeatures()[0].getGeometry().getExtent(), map.getSize());
 window.init = init;
 window.map = map;
+window.geolocation = geolocation;
+window.overlayCurrentLocation = overlayCurrentLocation;
 window.featureOverlay= featureOverlay;
 window.toggleRoadLabel = toggleRoadLabel;
 window.toggleLayers = toggleLayers;

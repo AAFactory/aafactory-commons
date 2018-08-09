@@ -236,6 +236,8 @@ $(function() {
 		} else if ($(this).hasClass('d')) {
 			setPrecisionLayer(!getPrecisionLayer());
 			toggleLayers(getPrecisionLayer(), 6);
+		} else if ($(this).hasClass('e')) {
+			overlayCurrentLocation();
 		}
 	});
 	
