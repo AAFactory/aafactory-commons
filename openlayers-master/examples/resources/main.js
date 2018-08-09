@@ -211,8 +211,7 @@ function updateMapStatus(x, y, z) {
 }
 
 function updateAreaName(nameMap) {
-	var name = "";
-	if (nameMap.sido) name = nameMap.sido;
+	var name = nameMap.sido ? nameMap.sido : '시도정보 없음';
 	if (name && nameMap.sgg) name += ' ' + nameMap.sgg;
 	if (name && nameMap.hemd) name += ' ' + nameMap.hemd;
 	if (name && nameMap.bemd) name += ' ' + nameMap.bemd;

@@ -517,7 +517,7 @@ const updateLayer = function(zoomLevel) {
 		toggleLayers(true, 1);
 		toggleLayers(false, 2);
 		toggleLayers(false, 3);
-	} else if (zoomLevel >= 11 && zoomLevel < 14) {
+	} else if (zoomLevel >= 11) {
 		toggleLayers(true, 0);
 		toggleLayers(true, 1);
 		toggleLayers(showHLayer, 2);
@@ -650,6 +650,7 @@ const toggleRoadLabel = function() {
 const determineAreaName = function() {
 	const nameMap = {sido:'', sgg:'', hemd:'', bemd:'', roadName:''};
 	map.forEachFeatureAtPixel([window.innerWidth / 2, window.innerHeight / 2], function(feature) {
+		console.log(feature)
 		if (feature.get('area1')) nameMap.sido = feature.get('area1');
 		if (feature.get('SIG_KOR_NM')) nameMap.sgg = feature.get('SIG_KOR_NM');
 		if (feature.get('adm_nm')) nameMap.hemd = feature.get('adm_nm');
