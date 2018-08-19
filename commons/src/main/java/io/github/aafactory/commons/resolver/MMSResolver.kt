@@ -3,6 +3,8 @@ package io.github.aafactory.commons.resolver
 import android.app.Activity
 import android.content.ContentResolver
 import android.net.Uri
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.Log
 import java.io.BufferedReader
 import java.io.IOException
@@ -17,14 +19,82 @@ import java.util.*
 class MMSResolver {
     
     companion object {
-        fun getMMSList(activity: Activity, callback: (msg: String) -> Unit): ArrayList<MMSDto> {
-            var listOfSMSDto: ArrayList<MMSDto> = arrayListOf()
+
+        /*0 = "_id"
+        1 = "thread_id"
+        2 = "date"
+        3 = "date_sent"
+        4 = "msg_box"
+        5 = "read"
+        6 = "m_id"
+        7 = "sub"
+        8 = "sub_cs"
+        9 = "ct_t"
+        10 = "ct_l"
+        11 = "exp"
+        12 = "m_cls"
+        13 = "m_type"
+        14 = "v"
+        15 = "m_size"
+        16 = "pri"
+        17 = "rr"
+        18 = "rpt_a"
+        19 = "resp_st"
+        20 = "st"
+        21 = "tr_id"
+        22 = "retr_st"
+        23 = "retr_txt"
+        24 = "retr_txt_cs"
+        25 = "read_status"
+        26 = "ct_cls"
+        27 = "resp_txt"
+        28 = "d_tm"
+        29 = "d_rpt"
+        30 = "locked"
+        31 = "sub_id"
+        32 = "seen"
+        33 = "creator"
+        34 = "sim_slot"
+        35 = "sim_imsi"
+        36 = "deletable"
+        37 = "hidden"
+        38 = "app_id"
+        39 = "msg_id"
+        40 = "callback_set"
+        41 = "reserved"
+        42 = "text_only"
+        43 = "spam_report"
+        44 = "secret_mode"
+        45 = "safe_message"
+        46 = "favorite"
+        47 = "d_rpt_st"
+        48 = "rr_st"
+        49 = "using_mode"
+        50 = "from_address"
+        51 = "device_name"
+
+        0 = "_id"
+        1 = "mid"
+        2 = "seq"
+        3 = "ct"
+        4 = "name"
+        5 = "chset"
+        6 = "cd"
+        7 = "fn"
+        8 = "cid"
+        9 = "cl"
+        10 = "ctt_s"
+        11 = "ctt_t"
+        12 = "_data"
+        13 = "text*/
+        fun getMMSList(activity: Activity, listOfSMSDto: ArrayList<MMSDto>,  callback: (msg: String) -> Unit): ArrayList<MMSDto> {
             val projection = arrayOf("*")
             val uri = Uri.parse("content://mms")
             val query = activity.contentResolver.query(uri, projection, null, null, null)
-            if (query.moveToFirst()) {
+            if (query.moveToPosition(listOfSMSDto.size)) {
                 do {
                     val selectionPart = "mid = '${query.getString(0)}'"
+                    val timestamp = query.getLong(query.getColumnIndex("date")) * 1000
                     val curPart = activity.contentResolver.query(Uri.parse("content://mms/part"), null, selectionPart, null, null)
                     Log.i("selectionPart", selectionPart + ", " + query.position + ", " + query.count)
                     val msg = "${query.position} / ${query.count}"
@@ -46,9 +116,11 @@ class MMSResolver {
                         }
                         if (body != null) {
                             //                        Log.i("selectionPart", body);
-                            val smsDto = MMSDto(query.getString(0))
-                            smsDto.body = body
-                            listOfSMSDto.add(smsDto)
+                            val mmsDto = MMSDto(query.getString(0))
+                            mmsDto.body = body
+                            mmsDto.timestamp = timestamp
+                            mmsDto.address = query.getString(query.getColumnIndex("from_address")) 
+                            listOfSMSDto.add(mmsDto)
                         }
                     }
                     curPart.close()
@@ -88,7 +160,7 @@ class MMSResolver {
 
     data class MMSDto(
         var messageId: String?
-    ) {
+    ) : Parcelable {
         private val formatter = SimpleDateFormat("MM/dd HH:mm")
         var threadId: Long = -1
         var address: String? = null
@@ -105,8 +177,60 @@ class MMSResolver {
         var locked: Long= -1
         var errorCode: Long= -1
         var seen: Long = -1
+
+        constructor(parcel: Parcel) : this(parcel.readString()) {
+            threadId = parcel.readLong()
+            address = parcel.readString()
+            contactId = parcel.readLong()
+            timestamp = parcel.readLong()
+            body = parcel.readString()
+            protocol = parcel.readLong()
+            read = parcel.readLong()
+            status = parcel.readLong()
+            type = parcel.readLong()
+            replyPathPresent = parcel.readString()
+            subject = parcel.readString()
+            serviceCenter = parcel.readString()
+            locked = parcel.readLong()
+            errorCode = parcel.readLong()
+            seen = parcel.readLong()
+        }
+
         fun getTimestampString(): String {
             return formatter.format(Date(timestamp))
+        }
+
+        override fun writeToParcel(parcel: Parcel, flags: Int) {
+            parcel.writeString(messageId)
+            parcel.writeLong(threadId)
+            parcel.writeString(address)
+            parcel.writeLong(contactId)
+            parcel.writeLong(timestamp)
+            parcel.writeString(body)
+            parcel.writeLong(protocol)
+            parcel.writeLong(read)
+            parcel.writeLong(status)
+            parcel.writeLong(type)
+            parcel.writeString(replyPathPresent)
+            parcel.writeString(subject)
+            parcel.writeString(serviceCenter)
+            parcel.writeLong(locked)
+            parcel.writeLong(errorCode)
+            parcel.writeLong(seen)
+        }
+
+        override fun describeContents(): Int {
+            return 0
+        }
+
+        companion object CREATOR : Parcelable.Creator<MMSDto> {
+            override fun createFromParcel(parcel: Parcel): MMSDto {
+                return MMSDto(parcel)
+            }
+
+            override fun newArray(size: Int): Array<MMSDto?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

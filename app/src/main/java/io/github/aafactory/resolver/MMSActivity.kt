@@ -19,14 +19,25 @@ class MMSActivity: BaseSimpleActivity() {
 
     lateinit var adapter: MMSArrayAdapter
     var listOfSMSDto = ArrayList<MMSResolver.MMSDto>()
-
+    companion object {
+        const val SMS_LIST = "sms_list"
+    }
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.aaf_activity_mms)
         adapter = MMSArrayAdapter(this, R.layout.aaf_item_mms, listOfSMSDto)
         listView.adapter = adapter
+        savedInstanceState?.getParcelableArrayList<MMSResolver.MMSDto>(SMS_LIST)?.let {
+            listOfSMSDto.addAll(it)
+        }
         
         showReadSMSWithPermissionCheck()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        outState?.putParcelableArrayList(SMS_LIST, listOfSMSDto)
+        super.onSaveInstanceState(outState)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -38,7 +49,7 @@ class MMSActivity: BaseSimpleActivity() {
     @NeedsPermission(Manifest.permission.READ_SMS)
     fun showReadSMS() {
         Thread(Runnable {
-            listOfSMSDto.addAll(MMSResolver.getMMSList(this, { msg -> runOnUiThread { workProgress.text = msg } }))
+            MMSResolver.getMMSList(this, listOfSMSDto, { msg -> runOnUiThread { workProgress.text = msg } })
             runOnUiThread { adapter.notifyDataSetChanged() }
         }).start()
     }
