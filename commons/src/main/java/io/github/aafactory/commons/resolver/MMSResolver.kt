@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
 import android.util.Log
+import android.widget.Toast
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
@@ -109,7 +110,7 @@ class MMSResolver {
                             val data = curPart.getString(curPart.getColumnIndex("_data"))
                             if (data != null) {
                                 // implementation of this method below
-                                body = getMmsText(activity.contentResolver, curPart.getString(0))
+                                body = getMMSText(activity.contentResolver, curPart.getString(0))
                             } else {
                                 body = curPart.getString(curPart.getColumnIndex("text"))
                             }
@@ -129,7 +130,7 @@ class MMSResolver {
             return listOfSMSDto
         }
 
-        private fun getMmsText(contentResolver: ContentResolver, id: String): String {
+        private fun getMMSText(contentResolver: ContentResolver, id: String): String {
             val partURI = Uri.parse("content://mms/part/" + id)
             var `is`: InputStream? = null
             val sb = StringBuilder()
@@ -155,6 +156,42 @@ class MMSResolver {
                 }
             }
             return sb.toString()
+        }
+
+        private fun getSMSList(activity: Activity): ArrayList<MMSDto> {
+            val listOfSMSDto = ArrayList<MMSDto>()
+            val uri = Uri.parse("content://sms/inbox")
+            val cursor = activity.contentResolver.query(
+                    uri,
+                    arrayOf("_id", "thread_id", "address", "person", "date", "body", "protocol", "read", "status", "type", "reply_path_present", "subject", "service_center", "locked", "error_code", "seen"),
+                    null, null,
+                    "date DESC"
+            )
+            val formatter = SimpleDateFormat("MM/dd HH:mm")
+            val count = 0
+
+            while (cursor.moveToNext()) {
+                val mmsDto = MMSDto(cursor.getString(0))
+                mmsDto.threadId = cursor.getLong(1)
+                mmsDto.address = cursor.getString(2)
+                mmsDto.contactId = cursor.getLong(3)
+                mmsDto.timestamp = cursor.getLong(4)
+                mmsDto.body = cursor.getString(5)
+                mmsDto.protocol = cursor.getLong(6)
+                mmsDto.read = cursor.getLong(7)
+                mmsDto.status = cursor.getLong(8)
+                mmsDto.type = cursor.getLong(9)
+                mmsDto.replyPathPresent = cursor.getString(10)
+                mmsDto.subject = cursor.getString(11)
+                mmsDto.serviceCenter = cursor.getString(12)
+                mmsDto.locked = cursor.getLong(13)
+                mmsDto.errorCode = cursor.getLong(14)
+                mmsDto.seen = cursor.getLong(15)
+                listOfSMSDto.add(mmsDto)
+            }
+            cursor.close()
+            
+            return listOfSMSDto
         }
     }
 
