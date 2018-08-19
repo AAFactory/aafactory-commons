@@ -40,7 +40,7 @@ import io.github.aafactory.sample.R;
  * @author kyjkim
  */
 public class NMapViewerResourceProvider extends NMapResourceProvider implements NMapCalloutCustomOldOverlay.ResourceProvider {
-	private static final String LOG_TAG = "NMapViewerResourceProvider";
+	private static final String LOG_TAG = "NMap";
 	private static final boolean DEBUG = false;
 
 	private static final Bitmap.Config BITMAP_CONFIG_DEFAULT = Bitmap.Config.ARGB_8888;

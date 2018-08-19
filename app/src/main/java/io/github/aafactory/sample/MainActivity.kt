@@ -14,6 +14,7 @@ import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.extensions.dpToPixel
 import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_COARSE_LOCATION
 import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_FINE_LOCATION
+import io.github.aafactory.resolver.MMSActivity
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
 import io.github.aafactory.sample.api.GitHubService
 import io.github.aafactory.sample.helpers.GIT_HUB_API_BASE_URL
@@ -29,7 +30,10 @@ import java.util.*
 
 class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
-            mapOf("owner" to "openlayers",
+            mapOf("owner" to "AAFactory",
+                    "name" to "aafactory-commons"
+            )
+            , mapOf("owner" to "openlayers",
                     "name" to "openlayers"
             )
             , mapOf("owner" to "juanchosaravia",
@@ -106,6 +110,7 @@ class MainActivity : BaseSimpleActivity() {
                         }
                         "android-ConstraintLayoutExamples" -> startActivity(Intent(this, com.example.android.constraintlayoutexamples.MainActivity::class.java))
                         "openlayers" -> startActivity(Intent(this, OpenlayersActivity::class.java))
+                        "aafactory-commons" -> startActivity(Intent(this, MMSActivity::class.java))
                     }
                 }
         ) 
