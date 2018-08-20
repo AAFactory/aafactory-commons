@@ -2,6 +2,9 @@ package io.github.aafactory.resolver
 
 import android.Manifest
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.AbsListView
 import android.widget.Toast
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.resolver.MMSResolver
@@ -31,6 +34,19 @@ class MMSActivity: BaseSimpleActivity() {
         savedInstanceState?.getParcelableArrayList<MMSResolver.MMSDto>(SMS_LIST)?.let {
             listOfSMSDto.addAll(it)
         }
+
+        listView.setOnScrollListener(object: AbsListView.OnScrollListener {
+            override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {
+            }
+
+            override fun onScroll(view: AbsListView?, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
+                val lastItem = firstVisibleItem + visibleItemCount;
+                if (lastItem == totalItemCount && progress.visibility == View.GONE) {
+                    Log.i("testCode", "onScroll")
+                    loadItems()           
+                }
+            }
+        })
         
         showReadSMSWithPermissionCheck()
     }
@@ -46,12 +62,20 @@ class MMSActivity: BaseSimpleActivity() {
         onRequestPermissionsResult(requestCode, grantResults)
     }
 
+    fun loadItems() {
+        progress.visibility = View.VISIBLE
+        Thread(Runnable {
+            MMSResolver.getMMSList(this, listOfSMSDto, 100, { msg -> runOnUiThread { workProgress.text = msg } })
+            runOnUiThread { 
+                adapter.notifyDataSetChanged()
+                progress.visibility = View.GONE
+            }
+        }).start()
+    }
+    
     @NeedsPermission(Manifest.permission.READ_SMS)
     fun showReadSMS() {
-        Thread(Runnable {
-            MMSResolver.getMMSList(this, listOfSMSDto, { msg -> runOnUiThread { workProgress.text = msg } })
-            runOnUiThread { adapter.notifyDataSetChanged() }
-        }).start()
+        loadItems()
     }
 
     @OnPermissionDenied(Manifest.permission.READ_SMS)

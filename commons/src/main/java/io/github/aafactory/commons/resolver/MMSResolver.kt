@@ -91,16 +91,18 @@ class MMSResolver {
         11 = "ctt_t"
         12 = "_data"
         13 = "text*/
-        fun getMMSList(activity: Activity, listOfSMSDto: ArrayList<MMSDto>,  callback: (msg: String) -> Unit): ArrayList<MMSDto> {
+        fun getMMSList(activity: Activity, listOfSMSDto: ArrayList<MMSDto>, endIndex: Int = 10, callback: (msg: String) -> Unit): ArrayList<MMSDto> {
+            var fetchCount = 0
             val projection = arrayOf("*")
             val uri = Uri.parse("content://mms")
             val query = activity.contentResolver.query(uri, projection, null, null, null)
             if (query.moveToPosition(listOfSMSDto.size)) {
                 do {
+                    if (fetchCount >= endIndex) break
                     val selectionPart = "mid = '${query.getString(0)}'"
                     val timestamp = query.getLong(query.getColumnIndex("date")) * 1000
                     val curPart = activity.contentResolver.query(Uri.parse("content://mms/part"), null, selectionPart, null, null)
-                    Log.i("selectionPart", selectionPart + ", " + query.position + ", " + query.count)
+//                    Log.i("selectionPart", selectionPart + ", " + query.position + ", " + query.count)
                     val msg = "${query.position} / ${query.count}"
                     callback(msg)
 //                    activity.runOnUiThread(Runnable { workProgress.setText(msg) })
@@ -120,12 +122,13 @@ class MMSResolver {
                         }
                         
                         if (body != null) {
-                            //                        Log.i("selectionPart", body);
+                            //                         Log.i("selectionPart", body);
                             val mmsDto = MMSDto(query.getString(0))
                             mmsDto.body = body
                             mmsDto.timestamp = timestamp
                             mmsDto.address = getAddressNumber(activity, query.getString(0).toInt()) 
                             listOfSMSDto.add(mmsDto)
+                            fetchCount++
                         }
                     }
                     curPart.close()
