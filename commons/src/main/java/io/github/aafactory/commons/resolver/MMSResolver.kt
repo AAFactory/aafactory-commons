@@ -11,8 +11,11 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
+import java.text.MessageFormat
 import java.text.SimpleDateFormat
 import java.util.*
+
+
 
 /**
  * Created by CHO HANJOONG on 2018-08-19.
@@ -115,12 +118,13 @@ class MMSResolver {
                                 body = curPart.getString(curPart.getColumnIndex("text"))
                             }
                         }
+                        
                         if (body != null) {
                             //                        Log.i("selectionPart", body);
                             val mmsDto = MMSDto(query.getString(0))
                             mmsDto.body = body
                             mmsDto.timestamp = timestamp
-                            mmsDto.address = query.getString(query.getColumnIndex("from_address")) 
+                            mmsDto.address = getAddressNumber(activity, query.getString(0).toInt()) 
                             listOfSMSDto.add(mmsDto)
                         }
                     }
@@ -130,6 +134,34 @@ class MMSResolver {
             return listOfSMSDto
         }
 
+        private fun getAddressNumber(activity: Activity, id: Int): String? {
+            val selectionAdd = "msg_id=$id"
+            val uriStr = "content://mms/$id/addr"
+            val uriAddress = Uri.parse(uriStr)
+            val cursor = activity.contentResolver.query(uriAddress, null,
+                    selectionAdd, null, null)
+            var name: String? = null
+            if (cursor.moveToFirst()) {
+                do {
+                    val number = cursor.getString(cursor.getColumnIndex("address"))
+                    if (number != null) {
+                        try {
+                            java.lang.Long.parseLong(number.replace("-", ""))
+                            name = number
+                        } catch (nfe: NumberFormatException) {
+                            if (name == null) {
+                                name = number
+                            }
+                        }
+
+                    }
+                } while (cursor.moveToNext())
+            }
+            
+            cursor.close()
+            return name
+        }
+        
         private fun getMMSText(contentResolver: ContentResolver, id: String): String {
             val partURI = Uri.parse("content://mms/part/" + id)
             var `is`: InputStream? = null
