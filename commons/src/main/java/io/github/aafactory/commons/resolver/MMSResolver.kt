@@ -103,7 +103,7 @@ class MMSResolver {
                     val timestamp = query.getLong(query.getColumnIndex("date")) * 1000
                     val curPart = activity.contentResolver.query(Uri.parse("content://mms/part"), null, selectionPart, null, null)
 //                    Log.i("selectionPart", selectionPart + ", " + query.position + ", " + query.count)
-                    val msg = "${query.position} / ${query.count}"
+                    val msg = "${query.position + 1} / ${query.count}"
                     callback(msg)
 //                    activity.runOnUiThread(Runnable { workProgress.setText(msg) })
                     while (curPart.moveToNext()) {

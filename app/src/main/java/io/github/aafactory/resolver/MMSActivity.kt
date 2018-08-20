@@ -65,7 +65,7 @@ class MMSActivity: BaseSimpleActivity() {
     fun loadItems() {
         progress.visibility = View.VISIBLE
         Thread(Runnable {
-            MMSResolver.getMMSList(this, listOfSMSDto, 100, { msg -> runOnUiThread { workProgress.text = msg } })
+            MMSResolver.getMMSList(this, listOfSMSDto, 30, { msg -> runOnUiThread { workProgress.text = msg } })
             runOnUiThread { 
                 adapter.notifyDataSetChanged()
                 progress.visibility = View.GONE
