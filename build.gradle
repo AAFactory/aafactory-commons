@@ -4,7 +4,6 @@ buildscript {
     ext {
         kotlinVersion = '1.2.31'
         supportLibs = '27.1.1'
-        propVersionName = '0.0.1'
         propCompileSdkVersion = 27
         propTargetSdkVersion = propCompileSdkVersion
         propMinSdkVersion = 16

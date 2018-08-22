@@ -5,12 +5,12 @@ apply plugin: 'kotlin-android-extensions'
 
 
 android {
-    compileSdkVersion propCompileSdkVersion
+    compileSdkVersion COMPILE_SDK_VERSION
     
     defaultConfig {
         applicationId "io.github.aafactory.sample"
-        minSdkVersion 21
-        targetSdkVersion propTargetSdkVersion
+        minSdkVersion MIN_SDK_VERSION
+        targetSdkVersion TARGET_SDK_VERSION
         versionCode propVersionCode
         versionName propVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
