@@ -33,6 +33,9 @@ class MainActivity : BaseSimpleActivity() {
             mapOf("owner" to "AAFactory",
                     "name" to "aafactory-commons"
             )
+            , mapOf("owner" to "devunwired",
+                    "name" to "recyclerview-playground"
+            )
             , mapOf("owner" to "openlayers",
                     "name" to "openlayers"
             )
@@ -111,6 +114,7 @@ class MainActivity : BaseSimpleActivity() {
                         "android-ConstraintLayoutExamples" -> startActivity(Intent(this, com.example.android.constraintlayoutexamples.MainActivity::class.java))
                         "openlayers" -> startActivity(Intent(this, OpenlayersActivity::class.java))
                         "aafactory-commons" -> startActivity(Intent(this, MMSActivity::class.java))
+                        "recyclerview-playground" -> startActivity(Intent(this, com.example.android.recyclerplayground.MainActivity::class.java))
                     }
                 }
         ) 

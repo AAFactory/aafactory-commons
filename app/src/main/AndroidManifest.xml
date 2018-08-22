@@ -198,5 +198,10 @@
         <activity
             android:name="io.github.aafactory.resolver.MMSActivity" android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <!--https://github.com/devunwired/recyclerview-playground-->
+        <activity
+            android:name="com.example.android.recyclerplayground.MainActivity" android:theme="@style/AppTheme">
+        </activity>
     </application>
 </manifest>
