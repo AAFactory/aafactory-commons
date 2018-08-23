@@ -30,7 +30,10 @@ import java.util.*
 
 class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
-            mapOf("owner" to "rubensousa",
+            mapOf("owner" to "googlesamples",
+                    "name" to "android-FingerprintDialog"
+            )
+            , mapOf("owner" to "rubensousa",
                     "name" to "ViewPagerCards"
             )
             , mapOf("owner" to "AAFactory",
@@ -119,6 +122,7 @@ class MainActivity : BaseSimpleActivity() {
                         "aafactory-commons" -> startActivity(Intent(this, MMSActivity::class.java))
                         "recyclerview-playground" -> startActivity(Intent(this, com.example.android.recyclerplayground.MainActivity::class.java))
                         "ViewPagerCards" -> startActivity(Intent(this, com.github.rubensousa.viewpagercards.MainActivity::class.java))
+                        "android-FingerprintDialog" -> startActivity(Intent(this, com.example.android.fingerprintdialog.MainActivity::class.java))
                     }
                 }
         ) 

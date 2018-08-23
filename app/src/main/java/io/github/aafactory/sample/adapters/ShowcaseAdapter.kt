@@ -70,7 +70,7 @@ class ShowcaseAdapter(
             val call = gitHubService.repository(item.owner, item.name)
             val repository: Repository? = call.execute().body()
             repository?.let {
-                item.description = it.description
+                item.description = it.description ?: ""
                 item.stargazersCount = it.stargazers_count
                 item.forksCount = it.forks_count
             }

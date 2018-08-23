@@ -206,5 +206,8 @@
 
         <!--https://github.com/rubensousa/ViewPagerCards-->
         <activity android:name="com.github.rubensousa.viewpagercards.MainActivity" android:theme="@style/AppTheme" />
+
+        <!--https://github.com/googlesamples/android-FingerprintDialog-->
+        <activity android:name="com.example.android.fingerprintdialog.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
     </application>
 </manifest>
