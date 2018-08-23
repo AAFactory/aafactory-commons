@@ -203,5 +203,8 @@
         <activity
             android:name="com.example.android.recyclerplayground.MainActivity" android:theme="@style/AppTheme">
         </activity>
+
+        <!--https://github.com/rubensousa/ViewPagerCards-->
+        <activity android:name="com.github.rubensousa.viewpagercards.MainActivity" android:theme="@style/AppTheme" />
     </application>
 </manifest>

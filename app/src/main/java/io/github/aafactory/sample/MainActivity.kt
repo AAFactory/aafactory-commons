@@ -30,7 +30,10 @@ import java.util.*
 
 class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
-            mapOf("owner" to "AAFactory",
+            mapOf("owner" to "rubensousa",
+                    "name" to "ViewPagerCards"
+            )
+            , mapOf("owner" to "AAFactory",
                     "name" to "aafactory-commons"
             )
             , mapOf("owner" to "devunwired",
@@ -115,6 +118,7 @@ class MainActivity : BaseSimpleActivity() {
                         "openlayers" -> startActivity(Intent(this, OpenlayersActivity::class.java))
                         "aafactory-commons" -> startActivity(Intent(this, MMSActivity::class.java))
                         "recyclerview-playground" -> startActivity(Intent(this, com.example.android.recyclerplayground.MainActivity::class.java))
+                        "ViewPagerCards" -> startActivity(Intent(this, com.github.rubensousa.viewpagercards.MainActivity::class.java))
                     }
                 }
         ) 

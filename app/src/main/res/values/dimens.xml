@@ -30,4 +30,7 @@
     <dimen name="card_insets">8dp</dimen>
     <dimen name="card_min_width">240dp</dimen>
     <dimen name="card_staggered_height">240dp</dimen>
+
+    <!--https://github.com/rubensousa/ViewPagerCards-->
+    <dimen name="card_padding">60dp</dimen>
 </resources>

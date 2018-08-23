@@ -201,5 +201,12 @@ The lake was formed about 2 million years ago and is a part of the Lake Tahoe Ba
     <string name="action_large">Large Grid</string>
     <string name="action_scroll_zero">Scroll Home</string>
     <string name="action_smooth_zero">Smooth Scroll Home</string>
+
+    <!--https://github.com/rubensousa/ViewPagerCards-->
+    <string name="title_1">Cool card</string>
+    <string name="title_2">Ok card</string>
+    <string name="title_3">Bad card</string>
+    <string name="title_4">Ugly card</string>
+    <string name="text_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam eget ligula eu lectus lobortis condimentum.</string>
 </resources>
 
