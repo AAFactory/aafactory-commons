@@ -25,6 +25,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Scale" />
+
+        <CheckBox
+            android:id="@+id/useCompatPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="UseCompatPadding" />
     </LinearLayout>
 
     <android.support.v4.view.ViewPager

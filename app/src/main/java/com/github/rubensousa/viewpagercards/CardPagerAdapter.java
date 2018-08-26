@@ -17,6 +17,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     private List<CardView> mViews;
     private List<CardItem> mData;
     private float mBaseElevation;
+    private boolean mCompatPadding;
 
     public CardPagerAdapter() {
         mData = new ArrayList<>();
@@ -30,6 +31,10 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
 
     public float getBaseElevation() {
         return mBaseElevation;
+    }
+  
+    public void setCompatPadding(boolean mCompatPadding) {
+        this.mCompatPadding = mCompatPadding;
     }
 
     @Override
@@ -60,6 +65,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
         }
 
         cardView.setMaxCardElevation(mBaseElevation * MAX_ELEVATION_FACTOR);
+        cardView.setUseCompatPadding(mCompatPadding);
         mViews.set(position, cardView);
         return view;
     }

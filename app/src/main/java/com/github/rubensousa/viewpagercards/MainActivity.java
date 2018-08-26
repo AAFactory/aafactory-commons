@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         mButton = (Button) findViewById(R.id.cardTypeBtn);
         ((CheckBox) findViewById(R.id.checkBox)).setOnCheckedChangeListener(this);
+        ((CheckBox) findViewById(R.id.useCompatPadding)).setOnCheckedChangeListener(this);
         mButton.setOnClickListener(this);
 
         mCardAdapter = new CardPagerAdapter();
@@ -70,7 +71,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        mCardShadowTransformer.enableScaling(b);
-        mFragmentCardShadowTransformer.enableScaling(b);
+        switch (compoundButton.getId()) {
+            case R.id.checkBox:
+                mCardShadowTransformer.enableScaling(b);
+                mFragmentCardShadowTransformer.enableScaling(b);
+                break;
+            case R.id.useCompatPadding:
+                mCardAdapter.setCompatPadding(b);
+                if (!mShowingFragments) mViewPager.setAdapter(mCardAdapter);
+                break;
+        }
     }
 }
