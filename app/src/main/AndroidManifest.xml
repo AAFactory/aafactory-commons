@@ -209,5 +209,8 @@
 
         <!--https://github.com/googlesamples/android-FingerprintDialog-->
         <activity android:name="com.example.android.fingerprintdialog.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
+
+        <!--https://github.com/afollestad/material-dialogs-->
+        <activity android:name="com.afollestad.materialdialogssample.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
     </application>
 </manifest>

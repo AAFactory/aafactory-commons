@@ -30,7 +30,10 @@ import java.util.*
 
 class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
-            mapOf("owner" to "googlesamples",
+            mapOf("owner" to "afollestad",
+                    "name" to "material-dialogs"
+            )
+            , mapOf("owner" to "googlesamples",
                     "name" to "android-FingerprintDialog"
             )
             , mapOf("owner" to "rubensousa",
@@ -123,6 +126,7 @@ class MainActivity : BaseSimpleActivity() {
                         "recyclerview-playground" -> startActivity(Intent(this, com.example.android.recyclerplayground.MainActivity::class.java))
                         "ViewPagerCards" -> startActivity(Intent(this, com.github.rubensousa.viewpagercards.MainActivity::class.java))
                         "android-FingerprintDialog" -> startActivity(Intent(this, com.example.android.fingerprintdialog.MainActivity::class.java))
+                        "material-dialogs" -> startActivity(Intent(this, com.afollestad.materialdialogssample.MainActivity::class.java))
                     }
                 }
         ) 
