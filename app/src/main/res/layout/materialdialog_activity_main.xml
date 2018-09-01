@@ -30,10 +30,24 @@
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/button16"
+                android:id="@+id/basic_titled_buttons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="Basic + Title + Buttons" />
+
+            <Button
+                android:id="@+id/basic_icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Basic + Icon + Buttons"
+                />
+            
+            <Button
+                android:id="@+id/buttons_callbacks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Button Callbacks"
+                />
         </LinearLayout>
     </ScrollView>
 </android.support.design.widget.CoordinatorLayout>
