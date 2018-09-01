@@ -188,9 +188,13 @@ class MainActivity : BaseSimpleActivity() {
     }
 
     private inner class ItemDecoration(private val context: Context) : RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
+        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
             super.getItemOffsets(outRect, view, parent, state)
-            outRect?.bottom = context.dpToPixel(3F)
+            outRect.bottom = context.dpToPixel(3F)
         }
+//        override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
+//            super.getItemOffsets(outRect, view, parent, state)
+//            outRect?.bottom = context.dpToPixel(3F)
+//        }
     }
 }

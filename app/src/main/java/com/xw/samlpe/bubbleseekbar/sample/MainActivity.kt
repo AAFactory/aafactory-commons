@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
-        to?.let {
+        from?.let {
             if (it.isAdded) {
                 ft.hide(from).show(to)
             } else {
