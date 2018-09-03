@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.checkbox.checkBoxPrompt
 import io.github.aafactory.sample.R
 import io.github.aafactory.sample.helpers.SampleActivity
 import kotlinx.android.synthetic.main.materialdialog_activity_main.*
@@ -31,6 +32,15 @@ class MainActivity : SampleActivity() {
             }
         }
 
+        basic_long_titled_buttons.setOnClickListener {
+            MaterialDialog(this).show {
+                title(R.string.useGoogleLocationServices)
+                message(R.string.loremIpsum)
+                positiveButton(R.string.agree)
+                negativeButton(R.string.disagree)
+            }
+        }
+
         basic_icon.setOnClickListener {
             MaterialDialog(this).show {
                 title(R.string.useGoogleLocationServices)
@@ -41,6 +51,18 @@ class MainActivity : SampleActivity() {
             }
         }
 
+        basic_checkbox_titled_buttons.setOnClickListener {
+            MaterialDialog(this).show {
+                title(R.string.useGoogleLocationServices)
+                message(R.string.useGoogleLocationServicesPrompt)
+                positiveButton(R.string.agree)
+                negativeButton(R.string.disagree)
+                checkBoxPrompt(R.string.checkboxConfirm) { checked ->
+                    toast("Checked? $checked")
+                }
+            }
+        }
+        
         buttons_callbacks.setOnClickListener {
             MaterialDialog(this).show {
                 title(R.string.useGoogleLocationServices)
@@ -57,7 +79,6 @@ class MainActivity : SampleActivity() {
             }
         }
     }
-
 
     var toast: Toast? = null
     internal fun Activity.toast(message: CharSequence) {

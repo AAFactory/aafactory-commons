@@ -61,7 +61,7 @@ dependencies {
     implementation project(':commons')
 
     // jetbrains
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     // Retrofit
     implementation "com.squareup.okhttp3:okhttp:${OK_HTTP_VERSION}"

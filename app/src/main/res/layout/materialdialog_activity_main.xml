@@ -28,25 +28,100 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-
+            <TextView
+                android:layout_marginTop="0dp"
+                android:text="Basic"
+                style="@style/SampleHeader"
+                />
+            
             <Button
                 android:id="@+id/basic_titled_buttons"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/sample_button_height"
+                android:layout_marginTop="@dimen/sample_button_spacing"
                 android:text="Basic + Title + Buttons" />
 
             <Button
+                android:id="@+id/basic_long_titled_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sample_button_height"
+                android:layout_marginTop="@dimen/sample_button_spacing"
+                android:text="Basic Long + Title + Buttons"
+                />
+            
+            <Button
                 android:id="@+id/basic_icon"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/sample_button_height"
+                android:layout_marginTop="@dimen/sample_button_spacing"
                 android:text="Basic + Icon + Buttons"
+                />
+
+            <Button
+                android:id="@+id/basic_checkbox_titled_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sample_button_height"
+                android:layout_marginTop="@dimen/sample_button_spacing"
+                android:text="Basic + Title + Checkbox + Buttons"
+                />
+            
+            <TextView
+                android:text="Lists"
+                style="@style/SampleHeader"
+                />
+
+            <TextView
+                android:text="Single Choice Lists"
+                style="@style/SampleHeader"
+                />
+
+            <TextView
+                android:text="Multiple Choice Lists"
+                style="@style/SampleHeader"
+                />
+
+            <TextView
+                android:text="Action Buttons"
+                style="@style/SampleHeader"
                 />
             
             <Button
                 android:id="@+id/buttons_callbacks"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/sample_button_height"
+                android:layout_marginTop="@dimen/sample_button_spacing"
                 android:text="Button Callbacks"
+                />
+            
+            <TextView
+                android:text="Miscellaneous"
+                style="@style/SampleHeader"
+                />
+
+            <TextView
+                android:text="Text Input"
+                style="@style/SampleHeader"
+                />
+
+
+            <TextView
+                android:text="Custom Views"
+                style="@style/SampleHeader"
+                />
+
+            <TextView
+                android:text="Color"
+                style="@style/SampleHeader"
+                />
+
+            <TextView
+                android:text="File Choosers"
+                style="@style/SampleHeader"
+                />
+            
+            <TextView
+                android:text="Folder Choosers"
+                style="@style/SampleHeader"
                 />
         </LinearLayout>
     </ScrollView>

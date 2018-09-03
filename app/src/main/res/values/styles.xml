@@ -1,5 +1,4 @@
-<resources>
-
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -137,4 +136,18 @@
     </style>
 
     <!--https://github.com/googlesamples/android-FingerprintDialog-->
+
+    <!--https://github.com/afollestad/material-dialogs-->
+    <style name="SampleHeader" tools:ignore="NewApi">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textSize">@dimen/headerTitle</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:layout_marginLeft">@dimen/headerMarginStart</item>
+        <item name="android:layout_marginStart">@dimen/headerMarginStart</item>
+        <item name="android:layout_marginTop">@dimen/headerMarginVertical</item>
+        <item name="android:layout_marginBottom">@dimen/headerMarginVertical</item>
+    </style>
 </resources>
