@@ -113,11 +113,12 @@ dependencies {
     implementation 'com.github.hotchemi:permissionsdispatcher:3.3.1'
     kapt "com.github.hotchemi:permissionsdispatcher-processor:3.3.1"
 
-    implementation 'com.afollestad.material-dialogs:core:2.0.0-alpha05'
+    implementation 'com.afollestad.material-dialogs:core:2.0.0-alpha06'
+    implementation 'com.afollestad.material-dialogs:input:2.0.0-alpha06'
 }
+
 repositories {
     mavenCentral()
-    maven {
-        url "http://repository.jetbrains.com/all"
-    }
+    maven { url "http://repository.jetbrains.com/all" }
+    maven { url "https://dl.bintray.com/drummer-aidan/maven/" }
 }

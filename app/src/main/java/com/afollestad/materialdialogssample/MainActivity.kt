@@ -2,10 +2,14 @@ package com.afollestad.materialdialogssample
 
 import android.app.Activity
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.checkbox.checkBoxPrompt
 import com.afollestad.materialdialogs.list.listItems
+import com.afollestad.materialdialogs.list.listItemsMultiChoice
+import com.afollestad.materialdialogs.list.listItemsSingleChoice
+import com.afollestad.materialdialogs.input.input
 import io.github.aafactory.sample.R
 import io.github.aafactory.sample.helpers.SampleActivity
 import kotlinx.android.synthetic.main.materialdialog_activity_main.*
@@ -100,7 +104,33 @@ class MainActivity : SampleActivity() {
                 }
             }
         }
-        
+
+        single_choice_disabled_items.setOnClickListener {
+            MaterialDialog(this).show {
+                title(R.string.socialNetworks)
+                listItemsSingleChoice(
+                        R.array.socialNetworks, initialSelection = 1, disabledIndices = intArrayOf(1, 3)
+                ) { _, index, text ->
+                    toast("Selected item $text at index $index")
+                }
+                positiveButton(R.string.choose)
+            }
+        }
+
+        multiple_choice_disabled_items.setOnClickListener {
+            MaterialDialog(this).show {
+                title(R.string.socialNetworks)
+                listItemsMultiChoice(
+                        R.array.socialNetworks,
+                        initialSelection = intArrayOf(2, 3),
+                        disabledIndices = intArrayOf(1, 3)
+                ) { _, indices, text ->
+                    toast("Selected items ${text.joinToString()} at indices ${indices.joinToString()}")
+                }
+                positiveButton(R.string.choose)
+            }
+        }
+
         buttons_callbacks.setOnClickListener {
             MaterialDialog(this).show {
                 title(R.string.useGoogleLocationServices)
@@ -113,6 +143,68 @@ class MainActivity : SampleActivity() {
                 }
                 neutralButton(R.string.more_info) { _ ->
                     toast("On neutral")
+                }
+            }
+        }
+
+        input.setOnClickListener {
+            MaterialDialog(this).show {
+                title(R.string.useGoogleLocationServices)
+                input(
+                        hint = "Type something",
+                        inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS
+                ) { _, text ->
+                    toast("Input: $text")
+                }
+                positiveButton(R.string.agree)
+                negativeButton(R.string.disagree)
+            }
+        }
+
+        input_message.setOnClickListener {
+            MaterialDialog(this).show {
+                title(R.string.useGoogleLocationServices)
+                message(R.string.useGoogleLocationServicesPrompt)
+                input(
+                        hint = "Type something",
+                        prefill = "Pre-filled!",
+                        inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS
+                ) { _, text ->
+                    toast("Input: $text")
+                }
+                positiveButton(R.string.agree)
+                negativeButton(R.string.disagree)
+            }
+        }
+
+        input_counter.setOnClickListener {
+            MaterialDialog(this).show {
+                title(R.string.useGoogleLocationServices)
+                input(
+                        hint = "Type something",
+                        inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS,
+                        maxLength = 8
+                ) { _, text ->
+                    toast("Input: $text")
+                }
+                positiveButton(R.string.agree)
+                negativeButton(R.string.disagree)
+            }
+        }
+
+        input_check_prompt.setOnClickListener {
+            MaterialDialog(this).show {
+                title(R.string.useGoogleLocationServices)
+                input(
+                        hint = "Type something",
+                        inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS
+                ) { _, text ->
+                    toast("Input: $text")
+                }
+                positiveButton(R.string.agree)
+                negativeButton(R.string.disagree)
+                checkBoxPrompt(R.string.checkboxConfirm) { checked ->
+                    toast("Checked? $checked")
                 }
             }
         }
