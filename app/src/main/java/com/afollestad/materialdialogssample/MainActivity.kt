@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.checkbox.checkBoxPrompt
+import com.afollestad.materialdialogs.list.listItems
 import io.github.aafactory.sample.R
 import io.github.aafactory.sample.helpers.SampleActivity
 import kotlinx.android.synthetic.main.materialdialog_activity_main.*
@@ -55,6 +56,43 @@ class MainActivity : SampleActivity() {
             MaterialDialog(this).show {
                 title(R.string.useGoogleLocationServices)
                 message(R.string.useGoogleLocationServicesPrompt)
+                positiveButton(R.string.agree)
+                negativeButton(R.string.disagree)
+                checkBoxPrompt(R.string.checkboxConfirm) { checked ->
+                    toast("Checked? $checked")
+                }
+            }
+        }
+
+        list_titled_buttons.setOnClickListener {
+            MaterialDialog(this).show {
+                title(R.string.socialNetworks)
+                listItems(R.array.socialNetworks) { _, index, text ->
+                    toast("Selected item $text at index $index")
+                }
+                positiveButton(R.string.agree)
+                negativeButton(R.string.disagree)
+            }
+        }
+
+        list_long_titled_buttons.setOnClickListener {
+            MaterialDialog(this).show {
+                title(R.string.states)
+                listItems(R.array.states) { _, index, text ->
+                    toast("Selected item $text at index $index")
+                }
+                positiveButton(R.string.agree)
+                negativeButton(R.string.disagree)
+            }
+        }
+
+
+        list_checkPrompt_buttons.setOnClickListener {
+            MaterialDialog(this).show {
+                title(R.string.socialNetworks)
+                listItems(R.array.socialNetworks_longItems) { _, index, text ->
+                    toast("Selected item $text at index $index")
+                }
                 positiveButton(R.string.agree)
                 negativeButton(R.string.disagree)
                 checkBoxPrompt(R.string.checkboxConfirm) { checked ->
