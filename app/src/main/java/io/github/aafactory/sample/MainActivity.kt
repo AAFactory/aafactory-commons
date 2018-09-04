@@ -30,7 +30,11 @@ import java.util.*
 
 class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
-            mapOf("owner" to "afollestad",
+            mapOf("owner" to "googlesamples",
+                "name" to "android-architecture",
+                "displayName" to "todo-mvp-kotlin"
+            )
+            , mapOf("owner" to "afollestad",
                     "name" to "material-dialogs"
             )
             , mapOf("owner" to "googlesamples",
@@ -127,6 +131,7 @@ class MainActivity : BaseSimpleActivity() {
                         "ViewPagerCards" -> startActivity(Intent(this, com.github.rubensousa.viewpagercards.MainActivity::class.java))
                         "android-FingerprintDialog" -> startActivity(Intent(this, com.example.android.fingerprintdialog.MainActivity::class.java))
                         "material-dialogs" -> startActivity(Intent(this, com.afollestad.materialdialogssample.MainActivity::class.java))
+//                        "todo-mvp-kotlin"
                     }
                 }
         ) 

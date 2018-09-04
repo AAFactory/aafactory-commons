@@ -150,4 +150,7 @@
         <item name="android:layout_marginTop">@dimen/headerMarginVertical</item>
         <item name="android:layout_marginBottom">@dimen/headerMarginVertical</item>
     </style>
+
+    <!--https://github.com/googlesamples/android-architecture/tree/todo-mvp-kotlin/-->
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar" /> 
 </resources>
