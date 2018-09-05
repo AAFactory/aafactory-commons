@@ -212,5 +212,8 @@
 
         <!--https://github.com/afollestad/material-dialogs-->
         <activity android:name="com.afollestad.materialdialogssample.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
+
+        <!--https://github.com/googlesamples/android-architecture/tree/todo-mvp-kotlin/-->
+        <activity android:name="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity" android:theme="@style/BaseAppTheme.OverlapSystemBar" />
     </application>
 </manifest>

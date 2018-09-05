@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.AdapterView
 import cn.pedant.SweetAlert.sample.SweetAlertDialogActivity
+import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import com.litesuits.common.utils.DialogUtil
 import com.nhn.android.mapviewer.NMapViewer
 import io.github.aafactory.commons.activities.BaseSimpleActivity
@@ -131,7 +132,7 @@ class MainActivity : BaseSimpleActivity() {
                         "ViewPagerCards" -> startActivity(Intent(this, com.github.rubensousa.viewpagercards.MainActivity::class.java))
                         "android-FingerprintDialog" -> startActivity(Intent(this, com.example.android.fingerprintdialog.MainActivity::class.java))
                         "material-dialogs" -> startActivity(Intent(this, com.afollestad.materialdialogssample.MainActivity::class.java))
-//                        "todo-mvp-kotlin"
+                        "todo-mvp-kotlin" -> startActivity(Intent(this, TasksActivity::class.java))
                     }
                 }
         ) 

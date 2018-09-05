@@ -29,10 +29,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
-import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.addedittask.AddEditTaskActivity
 import com.example.android.architecture.blueprints.todoapp.addedittask.AddEditTaskFragment
 import com.example.android.architecture.blueprints.todoapp.util.showSnackBar
+import io.github.aafactory.sample.R
 
 /**
  * Main UI for the task detail screen.
@@ -57,7 +57,7 @@ class TaskDetailFragment : Fragment(), TaskDetailContract.View {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.taskdetail_frag, container, false)
+        val root = inflater.inflate(R.layout.todomvp_taskdetail_frag, container, false)
         setHasOptionsMenu(true)
         with(root) {
             detailTitle = findViewById(R.id.task_detail_title)
@@ -79,7 +79,7 @@ class TaskDetailFragment : Fragment(), TaskDetailContract.View {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {
-        inflater.inflate(R.menu.taskdetail_fragment_menu, menu)
+        inflater.inflate(R.menu.todomvp_taskdetail_fragment_menu, menu)
     }
 
     override fun setLoadingIndicator(active: Boolean) {

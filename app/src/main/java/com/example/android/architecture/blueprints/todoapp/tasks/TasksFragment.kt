@@ -139,12 +139,12 @@ class TasksFragment : Fragment(), TasksContract.View {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {
-        inflater.inflate(R.menu.tasks_fragment_menu, menu)
+        inflater.inflate(R.menu.todomvp_tasks_fragment_menu, menu)
     }
 
     override fun showFilteringPopUpMenu() {
         PopupMenu(context!!, activity!!.findViewById(R.id.menu_filter)).apply {
-            menuInflater.inflate(R.menu.filter_tasks, menu)
+            menuInflater.inflate(R.menu.todomvp_filter_tasks, menu)
             setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.active -> presenter.currentFiltering = TasksFilterType.ACTIVE_TASKS
@@ -261,7 +261,7 @@ class TasksFragment : Fragment(), TasksContract.View {
         override fun getView(i: Int, view: View?, viewGroup: ViewGroup): View {
             val task = getItem(i)
             val rowView = view ?: LayoutInflater.from(viewGroup.context)
-                    .inflate(R.layout.task_item, viewGroup, false)
+                    .inflate(R.layout.todomvp_task_item, viewGroup, false)
 
             with(rowView.findViewById<TextView>(R.id.title)) {
                 text = task.titleForList
