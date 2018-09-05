@@ -26,22 +26,38 @@ import java.util.ArrayList
 /**
  * Listens to user actions from the UI ([TasksFragment]), retrieves the data and updates the
  * UI as required.
+ * 01. constructor receive repository and view
  */
 class TasksPresenter(val tasksRepository: TasksRepository, val tasksView: TasksContract.View)
     : TasksContract.Presenter {
 
+    /**
+     * 02. set filtering flag to default value
+     */
     override var currentFiltering = TasksFilterType.ALL_TASKS
 
+    /**
+     * 03. set first loading flag to true
+     */
     private var firstLoad = true
 
+    /**
+     * 04. define presenter in the view that receive from constructor
+     */
     init {
         tasksView.presenter = this
     }
 
+    /**
+     * 05. implemented interface 'start' that define from 'BasePresenter'
+     */
     override fun start() {
         loadTasks(false)
     }
 
+    /**
+     * 06. implemented interface 'result' that define from 'Presenter'
+     */
     override fun result(requestCode: Int, resultCode: Int) {
         // If a task was successfully added, show snackbar
         if (AddEditTaskActivity.REQUEST_ADD_TASK ==
