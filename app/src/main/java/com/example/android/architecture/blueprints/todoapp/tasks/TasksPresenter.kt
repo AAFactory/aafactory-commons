@@ -66,6 +66,9 @@ class TasksPresenter(val tasksRepository: TasksRepository, val tasksView: TasksC
         }
     }
 
+    /**
+     * 07. implemented interface 'loadTasks' that define from 'Presenter'
+     */
     override fun loadTasks(forceUpdate: Boolean) {
         // Simplification for sample: a network reload will be forced on first load.
         loadTasks(forceUpdate || firstLoad, true)
@@ -133,6 +136,9 @@ class TasksPresenter(val tasksRepository: TasksRepository, val tasksView: TasksC
         })
     }
 
+    /**
+     * -> this method is called when the repository data loaded 
+     */
     private fun processTasks(tasks: List<Task>) {
         if (tasks.isEmpty()) {
             // Show a message indicating there are no tasks for that filter type.
