@@ -40,4 +40,7 @@
     <dimen name="headerMarginStart">12dp</dimen>
     <dimen name="sample_button_height">56dp</dimen>
     <dimen name="sample_button_spacing">2dp</dimen>
+
+    <!--https://github.com/googlesamples/android-architecture/tree/todo-mvp-kotlin/-->
+    <dimen name="list_item_padding">8dp</dimen>
 </resources>
