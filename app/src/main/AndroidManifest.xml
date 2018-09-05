@@ -215,5 +215,17 @@
 
         <!--https://github.com/googlesamples/android-architecture/tree/todo-mvp-kotlin/-->
         <activity android:name="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity" android:theme="@style/BaseAppTheme.OverlapSystemBar" />
+        <activity android:name="com.example.android.architecture.blueprints.todoapp.taskdetail.TaskDetailActivity" android:theme="@style/Base.AppTheme" />
+        <activity android:name="com.example.android.architecture.blueprints.todoapp.addedittask.AddEditTaskActivity" android:theme="@style/Base.AppTheme" />
+        <activity
+            android:theme="@style/Base.AppTheme"
+            android:name="com.example.android.architecture.blueprints.todoapp.statistics.StatisticsActivity"
+            android:parentActivityName="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity"
+            tools:ignore="UnusedAttribute">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity" />
+        </activity>
     </application>
 </manifest>
