@@ -196,7 +196,7 @@
 
         <!--https://github.com/AAFactory/aafactory-commons-->
         <activity
-            android:name="io.github.aafactory.resolver.MMSActivity" android:theme="@style/AppTheme.NoActionBar">
+            android:name="io.github.aafactory.mms.MMSActivity" android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <!--https://github.com/devunwired/recyclerview-playground-->

@@ -15,7 +15,7 @@ import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.extensions.dpToPixel
 import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_COARSE_LOCATION
 import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_FINE_LOCATION
-import io.github.aafactory.resolver.MMSActivity
+import io.github.aafactory.mms.MMSActivity
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
 import io.github.aafactory.sample.api.GitHubService
 import io.github.aafactory.sample.helpers.GIT_HUB_API_BASE_URL

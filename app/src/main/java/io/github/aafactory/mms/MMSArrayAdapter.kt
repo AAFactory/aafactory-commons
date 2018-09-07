@@ -1,4 +1,4 @@
-package io.github.aafactory.resolver
+package io.github.aafactory.mms
 
 import android.app.Activity
 import android.content.Context

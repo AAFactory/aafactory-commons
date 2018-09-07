@@ -1,4 +1,4 @@
-package io.github.aafactory.resolver
+package io.github.aafactory.mms
 
 import android.Manifest
 import android.os.Bundle
