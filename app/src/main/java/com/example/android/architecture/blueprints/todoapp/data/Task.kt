@@ -15,25 +15,29 @@
  */
 package com.example.android.architecture.blueprints.todoapp.data
 
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import java.util.UUID
 
 /**
- * Immutable model class for a Task.
+ * Model class for a Task.
+ *
  * @param title       title of the task
- *
  * @param description description of the task
- *
  * @param id          id of the task
- *
- * @param completed   true if the task is completed, false if it's active
  */
+@Entity(tableName = "tasks")
 data class Task @JvmOverloads constructor(
-        val title: String,
-        val description: String = "",
-        val id: String = UUID.randomUUID().toString()
+        @ColumnInfo(name = "title") var title: String = "",
+        @ColumnInfo(name = "description") var description: String = "",
+        @PrimaryKey @ColumnInfo(name = "entryid") var id: String = UUID.randomUUID().toString()
 ) {
 
-    var isCompleted = false
+    /**
+     * True if the task is completed, false if it's active.
+     */
+    @ColumnInfo(name = "completed") var isCompleted = false
 
     val titleForList: String
         get() = if (title.isNotEmpty()) title else description

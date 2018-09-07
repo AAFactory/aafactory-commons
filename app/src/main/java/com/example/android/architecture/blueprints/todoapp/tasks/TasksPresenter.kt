@@ -39,7 +39,7 @@ class TasksPresenter(val tasksRepository: TasksRepository, val tasksView: TasksC
     /**
      * 03. set first loading flag to true
      */
-    private var firstLoad = true
+    private var firstLoad = false
 
     /**
      * 04. define presenter in the view that receive from constructor
