@@ -142,6 +142,9 @@ class TasksFragment : Fragment(), TasksContract.View {
         inflater.inflate(R.menu.todomvp_tasks_fragment_menu, menu)
     }
 
+    /**
+     * -> implemented interface 'showFilteringPopUpMenu' that define from 'TasksContract.View'
+     */
     override fun showFilteringPopUpMenu() {
         PopupMenu(context!!, activity!!.findViewById(R.id.menu_filter)).apply {
             menuInflater.inflate(R.menu.todomvp_filter_tasks, menu)
@@ -158,6 +161,9 @@ class TasksFragment : Fragment(), TasksContract.View {
         }
     }
 
+    /**
+     * -> implemented interface 'setLoadingIndicator' that define from 'TasksContract.View'
+     */
     override fun setLoadingIndicator(active: Boolean) {
         val root = view ?: return
         with(root.findViewById<SwipeRefreshLayout>(R.id.refresh_layout)) {
@@ -166,24 +172,39 @@ class TasksFragment : Fragment(), TasksContract.View {
         }
     }
 
+    /**
+     * -> implemented interface 'showTasks' that define from 'TasksContract.View'
+     */
     override fun showTasks(tasks: List<Task>) {
         listAdapter.tasks = tasks
         tasksView.visibility = View.VISIBLE
         noTasksView.visibility = View.GONE
     }
 
+    /**
+     * -> implemented interface 'showNoActiveTasks' that define from 'TasksContract.View'
+     */
     override fun showNoActiveTasks() {
         showNoTasksViews(resources.getString(R.string.no_tasks_active), R.drawable.ic_check_circle_24dp, false)
     }
-
+    
+    /**
+     * -> implemented interface 'showNoTasks' that define from 'TasksContract.View'
+     */
     override fun showNoTasks() {
         showNoTasksViews(resources.getString(R.string.no_tasks_all), R.drawable.ic_assignment_turned_in_24dp, false)
     }
-
+    
+    /**
+     * -> implemented interface 'showNoCompletedTasks' that define from 'TasksContract.View'
+     */
     override fun showNoCompletedTasks() {
         showNoTasksViews(resources.getString(R.string.no_tasks_completed), R.drawable.ic_verified_user_24dp, false)
     }
-
+    
+    /**
+     * -> implemented interface 'showSuccessfullySavedMessage' that define from 'TasksContract.View'
+     */
     override fun showSuccessfullySavedMessage() {
         showMessage(getString(R.string.successfully_saved_task_message))
     }
@@ -196,24 +217,39 @@ class TasksFragment : Fragment(), TasksContract.View {
         noTaskIcon.setImageResource(iconRes)
         noTaskAddView.visibility = if (showAddView) View.VISIBLE else View.GONE
     }
-
+    
+    /**
+     * -> implemented interface 'showActiveFilterLabel' that define from 'TasksContract.View'
+     */
     override fun showActiveFilterLabel() {
         filteringLabelView.text = resources.getString(R.string.label_active)
     }
-
+    
+    /**
+     * -> implemented interface 'showCompletedFilterLabel' that define from 'TasksContract.View'
+     */
     override fun showCompletedFilterLabel() {
         filteringLabelView.text = resources.getString(R.string.label_completed)
     }
 
+    /**
+     * -> implemented interface 'showAllFilterLabel' that define from 'TasksContract.View'
+     */
     override fun showAllFilterLabel() {
         filteringLabelView.text = resources.getString(R.string.label_all)
     }
-
+    
+    /**
+     * -> implemented interface 'showAddTask' that define from 'TasksContract.View'
+     */
     override fun showAddTask() {
         val intent = Intent(context, AddEditTaskActivity::class.java)
         startActivityForResult(intent, AddEditTaskActivity.REQUEST_ADD_TASK)
     }
-
+    
+    /**
+     * -> implemented interface 'showTaskDetailsUi' that define from 'TasksContract.View'
+     */
     override fun showTaskDetailsUi(taskId: String) {
         // in it's own Activity, since it makes more sense that way and it gives us the flexibility
         // to show some Intent stubbing.
@@ -222,19 +258,31 @@ class TasksFragment : Fragment(), TasksContract.View {
         }
         startActivity(intent)
     }
-
+    
+    /**
+     * -> implemented interface 'showTaskMarkedComplete' that define from 'TasksContract.View'
+     */
     override fun showTaskMarkedComplete() {
         showMessage(getString(R.string.task_marked_complete))
     }
-
+    
+    /**
+     * -> implemented interface 'showTaskMarkedActive' that define from 'TasksContract.View'
+     */
     override fun showTaskMarkedActive() {
         showMessage(getString(R.string.task_marked_active))
     }
-
+    
+    /**
+     * -> implemented interface 'showCompletedTasksCleared' that define from 'TasksContract.View'
+     */
     override fun showCompletedTasksCleared() {
         showMessage(getString(R.string.completed_tasks_cleared))
     }
-
+    
+    /**
+     * -> implemented interface 'showLoadingTasksError' that define from 'TasksContract.View'
+     */
     override fun showLoadingTasksError() {
         showMessage(getString(R.string.loading_tasks_error))
     }
