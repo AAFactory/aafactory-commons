@@ -28,7 +28,7 @@ class OpenlayersActivity : BaseSimpleActivity() {
         webSettings.allowFileAccess = true
         webSettings.allowFileAccessFromFileURLs = true
         webSettings.allowUniversalAccessFromFileURLs = true
-        webView.loadUrl("file:///android_asset/examples/main.html")
+        
         webView.webChromeClient = object: WebChromeClient() {
             override fun onGeolocationPermissionsShowPrompt(origin: String, callback: GeolocationPermissions.Callback) {
                 callback.invoke(origin, true, false)
@@ -51,6 +51,7 @@ class OpenlayersActivity : BaseSimpleActivity() {
 
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
     fun accessFineLocation() {
+        webView.loadUrl("file:///android_asset/examples/main.html")
         webView.showSnackBar("accessFineLocation", Snackbar.LENGTH_SHORT)
     }
 

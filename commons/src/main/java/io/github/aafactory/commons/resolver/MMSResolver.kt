@@ -121,15 +121,13 @@ class MMSResolver {
                             }
                         }
                         
-                        if (body != null) {
-                            //                         Log.i("selectionPart", body);
-                            val mmsDto = MMSDto(query.getString(0))
-                            mmsDto.body = body
-                            mmsDto.timestamp = timestamp
-                            mmsDto.address = getAddressNumber(activity, query.getString(0).toInt()) 
-                            listOfSMSDto.add(mmsDto)
-                            fetchCount++
-                        }
+                        if (body == null) body = "Contents is empty"
+                        val mmsDto = MMSDto(query.getString(0))
+                        mmsDto.timestamp = timestamp
+                        mmsDto.address = getAddressNumber(activity, query.getString(0).toInt())
+                        mmsDto.body = body
+                        listOfSMSDto.add(mmsDto)
+                        fetchCount++
                     }
                     curPart.close()
                 } while (query.moveToNext())
