@@ -98,6 +98,7 @@ class MMSResolver {
             val query = activity.contentResolver.query(uri, projection, null, null, null)
             if (query.moveToPosition(listOfSMSDto.size)) {
                 do {
+                    Log.i("test-start", "${query.position}")
                     if (fetchCount >= endIndex) break
                     val selectionPart = "mid = '${query.getString(0)}'"
                     val timestamp = query.getLong(query.getColumnIndex("date")) * 1000
@@ -106,29 +107,34 @@ class MMSResolver {
                     val msg = "${query.position + 1} / ${query.count}"
                     callback(msg)
 //                    activity.runOnUiThread(Runnable { workProgress.setText(msg) })
+                    var body: String? = null
                     while (curPart.moveToNext()) {
-                        var body: String? = null
+                        Log.i("test ${query.position}", curPart.getString(3))
                         if (curPart.getString(3) == "image/jpeg") {
                             // implementation of this method is below
                             //                        bitmap = getMmsImage(curPart.getString(0));
                         } else if ("text/plain" == curPart.getString(3)) {
                             val data = curPart.getString(curPart.getColumnIndex("_data"))
-                            if (data != null) {
-                                // implementation of this method below
-                                body = getMMSText(activity.contentResolver, curPart.getString(0))
-                            } else {
-                                body = curPart.getString(curPart.getColumnIndex("text"))
+                            Log.i("test ${query.position}", data ?: "data is null")
+                            body = when(data) {
+                                null -> {
+                                    curPart.getString(curPart.getColumnIndex("text"))    
+                                }
+                                else -> {
+                                    // implementation of this method below
+                                    getMMSText(activity.contentResolver, curPart.getString(0))    
+                                }
                             }
                         }
-                        
-                        if (body == null) body = "Contents is empty"
-                        val mmsDto = MMSDto(query.getString(0))
-                        mmsDto.timestamp = timestamp
-                        mmsDto.address = getAddressNumber(activity, query.getString(0).toInt())
-                        mmsDto.body = body
-                        listOfSMSDto.add(mmsDto)
-                        fetchCount++
                     }
+
+                    if (body == null) body = "Contents is empty"
+                    val mmsDto = MMSDto(query.getString(0))
+                    mmsDto.timestamp = timestamp
+                    mmsDto.address = getAddressNumber(activity, query.getString(0).toInt())
+                    mmsDto.body = "${query.position}" + "$body"
+                    listOfSMSDto.add(mmsDto)
+                    fetchCount++
                     curPart.close()
                 } while (query.moveToNext())
             }
