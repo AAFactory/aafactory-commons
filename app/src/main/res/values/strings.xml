@@ -316,5 +316,9 @@ The lake was formed about 2 million years ago and is a part of the Lake Tahoe Ba
     <string name="no_tasks_completed">You have no completed TO-DOs!</string>
     <string name="no_tasks_add">Add a TO-DO item +</string>
     <string name="refresh">Refresh</string>
+
+    <!--https://github.com/googlesamples/android-architecture/tree/todo-mvvm-live-kotlin-->
+    <string name="successfully_deleted_task_message">Task was deleted</string>
+    <string name="successfully_added_task_message">TO-DO added</string>
 </resources>
 

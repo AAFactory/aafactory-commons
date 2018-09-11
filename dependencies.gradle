@@ -18,5 +18,6 @@ ext.versions = [
     mockitoVersion    : '2.8.47',
     hamcrestVersion   : '1.3',
     runnerVersion     : '1.0.1',
-    espressoVersion   : '3.0.1'
+    espressoVersion   : '3.0.1',
+    archLifecycleVersion : "1.0.0-alpha9" // Architecture Components dependencies
 ]
