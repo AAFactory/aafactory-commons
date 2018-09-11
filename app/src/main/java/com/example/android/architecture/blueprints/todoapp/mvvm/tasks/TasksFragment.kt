@@ -42,9 +42,9 @@ class TasksFragment : LifecycleFragment() {
     private lateinit var viewDataBinding: TodomvvmTasksFragBinding
     private lateinit var listAdapter: TasksAdapter
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
-        viewDataBinding = TodomvvmTasksFragBinding.inflate(inflater!!, container, false).apply {
+        viewDataBinding = TodomvvmTasksFragBinding.inflate(inflater, container, false).apply {
             viewmodel = (activity as TasksActivity).obtainViewModel()
         }
         setHasOptionsMenu(true)
