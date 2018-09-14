@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.AdapterView
 import cn.pedant.SweetAlert.sample.SweetAlertDialogActivity
-import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
+import com.example.android.architecture.blueprints.todoapp.mvp.tasks.TasksActivity
 import com.litesuits.common.utils.DialogUtil
 import com.nhn.android.mapviewer.NMapViewer
 import io.github.aafactory.commons.activities.BaseSimpleActivity

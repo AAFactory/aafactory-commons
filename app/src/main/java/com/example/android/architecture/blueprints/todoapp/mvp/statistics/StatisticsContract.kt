@@ -13,16 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.architecture.blueprints.todoapp.utils
+package com.example.android.architecture.blueprints.todoapp.mvp.statistics
 
-import com.example.android.architecture.blueprints.todoapp.mvp.util.AppExecutors
-import java.util.concurrent.Executor
+import com.example.android.architecture.blueprints.todoapp.mvp.BasePresenter
+import com.example.android.architecture.blueprints.todoapp.mvp.BaseView
 
 /**
- * Allow instant execution of tasks.
+ * This specifies the contract between the view and the presenter.
  */
-class SingleExecutors : AppExecutors(instant, instant, instant) {
-    companion object {
-        private val instant = Executor { command -> command.run() }
+interface StatisticsContract {
+
+    interface View : BaseView<Presenter> {
+        val isActive: Boolean
+
+        fun setProgressIndicator(active: Boolean)
+
+        fun showStatistics(numberOfIncompleteTasks: Int, numberOfCompletedTasks: Int)
+
+        fun showLoadingStatisticsError()
     }
+
+    interface Presenter : BasePresenter
 }

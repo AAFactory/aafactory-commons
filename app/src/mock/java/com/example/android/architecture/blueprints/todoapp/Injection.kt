@@ -17,12 +17,12 @@ package com.example.android.architecture.blueprints.todoapp
 
 import android.content.Context
 
-import com.example.android.architecture.blueprints.todoapp.data.FakeTasksRemoteDataSource
-import com.example.android.architecture.blueprints.todoapp.data.source.TasksDataSource
-import com.example.android.architecture.blueprints.todoapp.data.source.TasksRepository
-import com.example.android.architecture.blueprints.todoapp.data.source.local.TasksLocalDataSource
-import com.example.android.architecture.blueprints.todoapp.data.source.local.ToDoDatabase
-import com.example.android.architecture.blueprints.todoapp.util.AppExecutors
+import com.example.android.architecture.blueprints.todoapp.mvp.data.FakeTasksRemoteDataSource
+import com.example.android.architecture.blueprints.todoapp.mvp.data.source.TasksDataSource
+import com.example.android.architecture.blueprints.todoapp.mvp.data.source.TasksRepository
+import com.example.android.architecture.blueprints.todoapp.mvp.data.source.local.TasksLocalDataSource
+import com.example.android.architecture.blueprints.todoapp.mvp.data.source.local.ToDoDatabase
+import com.example.android.architecture.blueprints.todoapp.mvp.util.AppExecutors
 
 /**
  * Enables injection of mock implementations for

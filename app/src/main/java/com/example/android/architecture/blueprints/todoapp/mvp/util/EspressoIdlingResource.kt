@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 The Android Open Source Project
+ * Copyright 2017, The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,16 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.architecture.blueprints.todoapp.utils
 
-import com.example.android.architecture.blueprints.todoapp.mvp.util.AppExecutors
-import java.util.concurrent.Executor
+package com.example.android.architecture.blueprints.todoapp.mvp.util
+
+import android.support.test.espresso.IdlingResource
 
 /**
- * Allow instant execution of tasks.
+ * Contains a static reference to [IdlingResource], only available in the 'mock' build type.
  */
-class SingleExecutors : AppExecutors(instant, instant, instant) {
-    companion object {
-        private val instant = Executor { command -> command.run() }
+object EspressoIdlingResource {
+
+    private val RESOURCE = "GLOBAL"
+
+    val countingIdlingResource = SimpleCountingIdlingResource(RESOURCE)
+
+    fun increment() {
+        countingIdlingResource.increment()
+    }
+
+    fun decrement() {
+        countingIdlingResource.decrement()
     }
 }
