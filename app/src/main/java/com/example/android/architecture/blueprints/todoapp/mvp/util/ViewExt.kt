@@ -13,16 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.architecture.blueprints.todoapp.utils
+package com.example.android.architecture.blueprints.todoapp.mvp.util
 
-import com.example.android.architecture.blueprints.todoapp.mvp.util.AppExecutors
-import java.util.concurrent.Executor
+import android.support.design.widget.Snackbar
+import android.view.View
 
-/**
- * Allow instant execution of tasks.
- */
-class SingleExecutors : AppExecutors(instant, instant, instant) {
-    companion object {
-        private val instant = Executor { command -> command.run() }
-    }
+fun View.showSnackBar(message: String, duration: Int) {
+    Snackbar.make(this, message, duration).show()
 }

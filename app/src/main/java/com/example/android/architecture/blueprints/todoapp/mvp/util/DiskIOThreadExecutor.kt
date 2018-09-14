@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.architecture.blueprints.todoapp.utils
+package com.example.android.architecture.blueprints.todoapp.mvp.util
 
-import com.example.android.architecture.blueprints.todoapp.mvp.util.AppExecutors
 import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 
 /**
- * Allow instant execution of tasks.
+ * Executor that runs a task on a new background thread.
  */
-class SingleExecutors : AppExecutors(instant, instant, instant) {
-    companion object {
-        private val instant = Executor { command -> command.run() }
-    }
+class DiskIOThreadExecutor : Executor {
+
+    private val diskIO = Executors.newSingleThreadExecutor()
+
+    override fun execute(command: Runnable) { diskIO.execute(command) }
 }

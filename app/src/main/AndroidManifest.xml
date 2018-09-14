@@ -214,18 +214,18 @@
         <activity android:name="com.afollestad.materialdialogssample.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
 
         <!--https://github.com/googlesamples/android-architecture/tree/todo-mvp-kotlin/-->
-        <activity android:name="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity" android:theme="@style/BaseAppTheme.OverlapSystemBar" />
-        <activity android:name="com.example.android.architecture.blueprints.todoapp.taskdetail.TaskDetailActivity" android:theme="@style/Base.AppTheme" />
-        <activity android:name="com.example.android.architecture.blueprints.todoapp.addedittask.AddEditTaskActivity" android:theme="@style/Base.AppTheme" />
+        <activity android:name="com.example.android.architecture.blueprints.todoapp.mvp.tasks.TasksActivity" android:theme="@style/BaseAppTheme.OverlapSystemBar" />
+        <activity android:name="com.example.android.architecture.blueprints.todoapp.mvp.taskdetail.TaskDetailActivity" android:theme="@style/Base.AppTheme" />
+        <activity android:name="com.example.android.architecture.blueprints.todoapp.mvp.addedittask.AddEditTaskActivity" android:theme="@style/Base.AppTheme" />
         <activity
             android:theme="@style/Base.AppTheme"
-            android:name="com.example.android.architecture.blueprints.todoapp.statistics.StatisticsActivity"
-            android:parentActivityName="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity"
+            android:name="com.example.android.architecture.blueprints.todoapp.mvp.statistics.StatisticsActivity"
+            android:parentActivityName="com.example.android.architecture.blueprints.todoapp.mvp.tasks.TasksActivity"
             tools:ignore="UnusedAttribute">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity" />
+                android:value="com.example.android.architecture.blueprints.todoapp.mvp.tasks.TasksActivity" />
         </activity>
 
         <!--https://github.com/googlesamples/android-architecture/tree/todo-mvvm-live-kotlin/-->

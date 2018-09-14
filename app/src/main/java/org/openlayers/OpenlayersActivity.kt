@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.webkit.WebChromeClient
 import android.widget.Toast
-import com.example.android.architecture.blueprints.todoapp.util.showSnackBar
+import com.example.android.architecture.blueprints.todoapp.mvp.util.showSnackBar
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.sample.R
 import kotlinx.android.synthetic.main.activity_openlayers.*
