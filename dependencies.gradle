@@ -13,11 +13,11 @@ ext.versions = [
     // App dependencies
     kotlin            : '1.2.41',
     supportLib        : '28.0.0-rc01',
-    roomVersion       : '1.0.0',
+    roomVersion       : '1.1.1',
     junitVersion      : '4.12',
     mockitoVersion    : '2.8.47',
     hamcrestVersion   : '1.3',
     runnerVersion     : '1.0.1',
     espressoVersion   : '3.0.1',
-    archLifecycleVersion : "1.0.0" // Architecture Components dependencies
+    archLifecycleVersion : "1.1.1" // Architecture Components dependencies
 ]

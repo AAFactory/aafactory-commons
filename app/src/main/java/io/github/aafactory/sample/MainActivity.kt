@@ -32,6 +32,10 @@ import java.util.*
 class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
             mapOf("owner" to "googlesamples",
+                    "name" to "android-architecture",
+                    "displayName" to "todo-mvvm-live-kotlin"
+            )
+            , mapOf("owner" to "googlesamples",
                 "name" to "android-architecture",
                 "displayName" to "todo-mvp-kotlin"
             )
@@ -133,6 +137,7 @@ class MainActivity : BaseSimpleActivity() {
                         "android-FingerprintDialog" -> startActivity(Intent(this, com.example.android.fingerprintdialog.MainActivity::class.java))
                         "material-dialogs" -> startActivity(Intent(this, com.afollestad.materialdialogssample.MainActivity::class.java))
                         "todo-mvp-kotlin" -> startActivity(Intent(this, TasksActivity::class.java))
+                        "todo-mvvm-live-kotlin" -> startActivity(Intent(this, com.example.android.architecture.blueprints.todoapp.mvvm.tasks.TasksActivity::class.java))
                     }
                 }
         ) 
