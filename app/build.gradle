@@ -114,7 +114,7 @@ dependencies {
         exclude module: 'support-v4'
     }
     implementation "android.arch.lifecycle:extensions:$versions.archLifecycleVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$versions.archLifecycleVersion"
+//    annotationProcessor "android.arch.lifecycle:compiler:$versions.archLifecycleVersion"
 
     // implementation project(':simple-commons')
     implementation project(':commons')
