@@ -23,7 +23,7 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 
-import com.example.android.architecture.blueprints.todoapp.Injection
+import com.example.android.architecture.blueprints.todoapp.mvp.Injection
 import com.example.android.architecture.blueprints.todoapp.mvp.util.replaceFragmentInActivity
 import com.example.android.architecture.blueprints.todoapp.mvp.util.setupActionBar
 import io.github.aafactory.sample.R

@@ -17,7 +17,7 @@ package com.example.android.architecture.blueprints.todoapp.mvp.taskdetail
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.example.android.architecture.blueprints.todoapp.Injection
+import com.example.android.architecture.blueprints.todoapp.mvp.Injection
 import com.example.android.architecture.blueprints.todoapp.mvp.util.replaceFragmentInActivity
 import com.example.android.architecture.blueprints.todoapp.mvp.util.setupActionBar
 import io.github.aafactory.sample.R
