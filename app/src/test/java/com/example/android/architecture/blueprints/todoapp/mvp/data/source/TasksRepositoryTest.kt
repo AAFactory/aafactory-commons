@@ -15,10 +15,10 @@
  */
 package com.example.android.architecture.blueprints.todoapp.mvp.data.source
 
-import com.example.android.architecture.blueprints.todoapp.any
-import com.example.android.architecture.blueprints.todoapp.capture
+import com.example.android.architecture.blueprints.todoapp.mvp.any
+import com.example.android.architecture.blueprints.todoapp.mvp.capture
 import com.example.android.architecture.blueprints.todoapp.mvp.data.Task
-import com.example.android.architecture.blueprints.todoapp.eq
+import com.example.android.architecture.blueprints.todoapp.mvp.eq
 import com.google.common.collect.Lists
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.After

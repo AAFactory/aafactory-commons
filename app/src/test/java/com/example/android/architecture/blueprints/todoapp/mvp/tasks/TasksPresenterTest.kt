@@ -15,9 +15,9 @@
  */
 package com.example.android.architecture.blueprints.todoapp.mvp.tasks
 
-import com.example.android.architecture.blueprints.todoapp.any
-import com.example.android.architecture.blueprints.todoapp.argumentCaptor
-import com.example.android.architecture.blueprints.todoapp.capture
+import com.example.android.architecture.blueprints.todoapp.mvp.any
+import com.example.android.architecture.blueprints.todoapp.mvp.argumentCaptor
+import com.example.android.architecture.blueprints.todoapp.mvp.capture
 import com.example.android.architecture.blueprints.todoapp.mvp.data.Task
 import com.example.android.architecture.blueprints.todoapp.mvp.data.source.TasksDataSource.LoadTasksCallback
 import com.example.android.architecture.blueprints.todoapp.mvp.data.source.TasksRepository

@@ -31,8 +31,8 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v4.widget.DrawerLayout
 import android.view.Gravity
-import com.example.android.architecture.blueprints.todoapp.TestUtils.getToolbarNavigationContentDescription
-import com.example.android.architecture.blueprints.todoapp.custom.action.NavigationViewActions.navigateTo
+import com.example.android.architecture.blueprints.todoapp.mvp.TestUtils.getToolbarNavigationContentDescription
+import com.example.android.architecture.blueprints.todoapp.mvp.action.NavigationViewActions.navigateTo
 import io.github.aafactory.sample.R
 import junit.framework.Assert.fail
 import org.junit.Rule

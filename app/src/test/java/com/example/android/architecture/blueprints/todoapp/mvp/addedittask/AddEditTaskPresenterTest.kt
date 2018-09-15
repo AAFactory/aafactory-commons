@@ -16,12 +16,12 @@
 
 package com.example.android.architecture.blueprints.todoapp.mvp.addedittask
 
-import com.example.android.architecture.blueprints.todoapp.any
-import com.example.android.architecture.blueprints.todoapp.capture
+import com.example.android.architecture.blueprints.todoapp.mvp.any
+import com.example.android.architecture.blueprints.todoapp.mvp.capture
 import com.example.android.architecture.blueprints.todoapp.mvp.data.Task
 import com.example.android.architecture.blueprints.todoapp.mvp.data.source.TasksDataSource
 import com.example.android.architecture.blueprints.todoapp.mvp.data.source.TasksRepository
-import com.example.android.architecture.blueprints.todoapp.eq
+import com.example.android.architecture.blueprints.todoapp.mvp.eq
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Before

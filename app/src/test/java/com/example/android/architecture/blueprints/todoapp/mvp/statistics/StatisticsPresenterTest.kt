@@ -15,7 +15,7 @@
  */
 package com.example.android.architecture.blueprints.todoapp.mvp.statistics
 
-import com.example.android.architecture.blueprints.todoapp.capture
+import com.example.android.architecture.blueprints.todoapp.mvp.capture
 import com.example.android.architecture.blueprints.todoapp.mvp.data.Task
 import com.example.android.architecture.blueprints.todoapp.mvp.data.source.TasksDataSource
 import com.example.android.architecture.blueprints.todoapp.mvp.data.source.TasksRepository

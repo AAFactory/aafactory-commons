@@ -15,11 +15,11 @@
  */
 package com.example.android.architecture.blueprints.todoapp.mvp.taskdetail
 
-import com.example.android.architecture.blueprints.todoapp.capture
+import com.example.android.architecture.blueprints.todoapp.mvp.capture
 import com.example.android.architecture.blueprints.todoapp.mvp.data.Task
 import com.example.android.architecture.blueprints.todoapp.mvp.data.source.TasksDataSource
 import com.example.android.architecture.blueprints.todoapp.mvp.data.source.TasksRepository
-import com.example.android.architecture.blueprints.todoapp.eq
+import com.example.android.architecture.blueprints.todoapp.mvp.eq
 import org.junit.Before
 import org.junit.Test
 import org.mockito.ArgumentCaptor

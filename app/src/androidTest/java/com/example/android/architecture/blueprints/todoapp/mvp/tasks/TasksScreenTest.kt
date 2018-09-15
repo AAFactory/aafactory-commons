@@ -40,7 +40,7 @@ import android.support.test.runner.AndroidJUnit4
 import android.view.View
 import android.widget.ListView
 import com.example.android.architecture.blueprints.todoapp.mvp.Injection
-import com.example.android.architecture.blueprints.todoapp.TestUtils
+import com.example.android.architecture.blueprints.todoapp.mvp.TestUtils
 import com.example.android.architecture.blueprints.todoapp.mvp.data.source.TasksDataSource
 import com.google.common.base.Preconditions.checkArgument
 import io.github.aafactory.sample.R

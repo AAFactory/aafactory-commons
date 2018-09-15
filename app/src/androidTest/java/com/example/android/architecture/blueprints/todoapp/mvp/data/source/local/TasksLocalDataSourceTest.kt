@@ -34,7 +34,7 @@ import org.mockito.Mockito.never
 import org.mockito.Mockito.verify
 import java.util.LinkedList
 import android.arch.persistence.room.Room
-import com.example.android.architecture.blueprints.todoapp.utils.SingleExecutors
+import com.example.android.architecture.blueprints.todoapp.mvp.utils.SingleExecutors
 
 /**
  * Integration test for the [TasksDataSource].
