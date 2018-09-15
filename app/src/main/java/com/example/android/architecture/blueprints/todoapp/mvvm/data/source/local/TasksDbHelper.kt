@@ -42,7 +42,7 @@ class TasksDbHelper(context: Context)
     companion object {
         val DATABASE_VERSION = 1
 
-        val DATABASE_NAME = "Tasks.db"
+        val DATABASE_NAME = "Tasks_mvvm.db"
 
         private val SQL_CREATE_ENTRIES =
                 "CREATE TABLE $TABLE_NAME (" +
