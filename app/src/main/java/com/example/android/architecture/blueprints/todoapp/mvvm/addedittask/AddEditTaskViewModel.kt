@@ -84,7 +84,7 @@ class AddEditTaskViewModel(
 
     // Called when clicking on fab.
     fun saveTask() {
-        val task = Task(title.get()!!, description.get()!!)
+        val task = Task(title.get(), description.get())
         if (task.isEmpty) {
             showSnackbarMessage(R.string.empty_task_message)
             return

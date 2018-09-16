@@ -28,20 +28,20 @@ import java.util.UUID
  * @param completed   true if the task is completed, false if it's active
  */
 data class Task @JvmOverloads constructor(
-        val title: String,
-        val description: String = "",
+        val title: String?,
+        val description: String?,
         val id: String = UUID.randomUUID().toString()
 ) {
 
     var isCompleted = false
 
     val titleForList: String
-        get() = if (title.isNotEmpty()) title else description
+        get() = title ?: description!!
 
 
     val isActive
         get() = !isCompleted
 
     val isEmpty
-        get() = title.isEmpty() && description.isEmpty()
+        get() = title?.isEmpty() ?: true && description?.isEmpty() ?: true
 }
