@@ -39,6 +39,28 @@ It is intended to create test cases for open source libraries and to make them u
 >maps.android  
  https://github.com/navermaps/maps.android    
  
+>android-ConstraintLayoutExamples  
+ https://github.com/googlesamples/android-ConstraintLayoutExamples
+ 
+>aafactory-commons  
+ https://github.com/AAFactory/aafactory-commons
+ 
+>recyclerview-playground  
+ https://github.com/devunwired/recyclerview-playground
+ 
+>ViewPagerCards   
+ https://github.com/rubensousa/ViewPagerCards
+ 
+>android-FingerprintDialog   
+ https://github.com/googlesamples/android-FingerprintDialog 
+ 
+>material-dialogs   
+ https://github.com/afollestad/material-dialogs 
+
+>android-architecture  
+ https://github.com/googlesamples/android-architecture
+ 
+
 # License
 ```
 Copyright 2018 Awesome Application Factory
