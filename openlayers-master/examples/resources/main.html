@@ -21,12 +21,7 @@
       </div>
       <div id="selectOpttions">
         <select id='highwaySelect'><option value="">고속도로</option></select>
-        <select id="nRoadSelect" onchange="fitboundsNRoadLayer(this);">
-          <option value="" disabled selected>국도</option>
-          <option value="0">내부순환로</option>
-          <option value="1">분당수서간도시고속화도로</option>
-          <option value="2">서울외곽순환고속도로</option>
-        </select>
+        <select id='nationRoadSelect'><option value="">지방도, 국도</option></select>
         <select id='sidoSelect'><option value="">시도</option></select>
         <select id='sggSelect'><option value="">시군구</option></select>
         <select id='emdSelect'><option value="">읍면동</option></select>
@@ -38,12 +33,15 @@
       <div class="button a">OPT</div>
       <div class="button b">LAB</div>
       <div class="button c">UPD</div>
+      <div class="button d">PRE</div>
+      <div class="button e">GEO</div>
     </div>
     <div id="infoDiv">
       <div id="mapStatus" class="mapInfo"></div>
-      <div id="areaName" class="mapInfo"></div>
+      <div class="mapInfo"><div id="areaName">지역명</div></div>
     </div>
     <div id="compass"><img src="./resources/arrow-down-4-48.png" /></div>
+    <div id="spinner">Loading...</div>
   </body>
   <script src="./resources/common.js"></script>
   <script src="./resources/prism/prism.min.js"></script>
