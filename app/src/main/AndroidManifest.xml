@@ -236,5 +236,9 @@
         <activity android:name="com.example.android.architecture.blueprints.todoapp.mvvm.taskdetail.TaskDetailActivity" android:theme="@style/Base.AppTheme" />
         <activity android:name="com.example.android.architecture.blueprints.todoapp.mvvm.addedittask.AddEditTaskActivity" android:theme="@style/Base.AppTheme" />
         <activity android:name="com.example.android.architecture.blueprints.todoapp.mvvm.statistics.StatisticsActivity" android:theme="@style/Base.AppTheme" />
+
+        <!--https://github.com/zoonooz/simple-view-behavior-->
+        <activity android:name="com.zoonref.demo.DemoActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.zoonref.demo.ProfileActivity" android:theme="@style/AppTheme.NoActionBar" />
     </application>
 </manifest>

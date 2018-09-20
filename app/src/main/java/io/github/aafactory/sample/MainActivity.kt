@@ -11,6 +11,7 @@ import cn.pedant.SweetAlert.sample.SweetAlertDialogActivity
 import com.example.android.architecture.blueprints.todoapp.mvp.tasks.TasksActivity
 import com.litesuits.common.utils.DialogUtil
 import com.nhn.android.mapviewer.NMapViewer
+import com.zoonref.demo.DemoActivity
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.extensions.dpToPixel
 import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_COARSE_LOCATION
@@ -31,6 +32,8 @@ import java.util.*
 
 class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
+            mapOf("owner" to "zoonooz",
+                    "name" to "simple-view-behavior"),
             mapOf("owner" to "googlesamples",
                     "name" to "android-architecture",
                     "displayName" to "todo-mvvm-live-kotlin"
@@ -138,6 +141,7 @@ class MainActivity : BaseSimpleActivity() {
                         "material-dialogs" -> startActivity(Intent(this, com.afollestad.materialdialogssample.MainActivity::class.java))
                         "todo-mvp-kotlin" -> startActivity(Intent(this, TasksActivity::class.java))
                         "todo-mvvm-live-kotlin" -> startActivity(Intent(this, com.example.android.architecture.blueprints.todoapp.mvvm.tasks.TasksActivity::class.java))
+                        "simple-view-behavior" -> startActivity(Intent(this, DemoActivity::class.java))
                     }
                 }
         ) 
