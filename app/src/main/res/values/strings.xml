@@ -415,5 +415,6 @@ The lake was formed about 2 million years ago and is a part of the Lake Tahoe Ba
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="simple_view_behavior">com.zoonref.viewbehavior.SimpleViewBehavior</string>
     <string name="animation_view_behavior">com.zoonref.viewbehavior.AnimationViewBehavior</string>
+    <string name="action_profile">Profile</string>
 </resources>
 

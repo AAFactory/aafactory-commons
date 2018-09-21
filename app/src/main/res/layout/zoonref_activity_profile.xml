@@ -63,7 +63,7 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main"/>
+    <include layout="@layout/zoonref_content_main"/>
 
     <ImageView
         android:layout_width="120dp"
