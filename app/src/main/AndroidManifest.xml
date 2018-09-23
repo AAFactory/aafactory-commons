@@ -240,5 +240,8 @@
         <!--https://github.com/zoonooz/simple-view-behavior-->
         <activity android:name="com.zoonref.demo.DemoActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.zoonref.demo.ProfileActivity" android:theme="@style/AppTheme.NoActionBar" />
+
+        <!--https://github.com/kioko/motion-layout-playground-->
+        <activity android:name="com.thomaskioko.materialmotion.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
     </application>
 </manifest>

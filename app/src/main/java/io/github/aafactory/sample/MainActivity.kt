@@ -32,6 +32,8 @@ import java.util.*
 
 class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
+            mapOf("owner" to "kioko",
+                    "name" to "motion-layout-playground"),
             mapOf("owner" to "zoonooz",
                     "name" to "simple-view-behavior"),
             mapOf("owner" to "googlesamples",
@@ -142,6 +144,7 @@ class MainActivity : BaseSimpleActivity() {
                         "todo-mvp-kotlin" -> startActivity(Intent(this, TasksActivity::class.java))
                         "todo-mvvm-live-kotlin" -> startActivity(Intent(this, com.example.android.architecture.blueprints.todoapp.mvvm.tasks.TasksActivity::class.java))
                         "simple-view-behavior" -> startActivity(Intent(this, DemoActivity::class.java))
+                        "motion-layout-playground" -> startActivity(Intent(this, com.thomaskioko.materialmotion.MainActivity::class.java))
                     }
                 }
         ) 
