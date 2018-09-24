@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.AdapterView
 import cn.pedant.SweetAlert.sample.SweetAlertDialogActivity
 import com.example.android.architecture.blueprints.todoapp.mvp.tasks.TasksActivity
+import com.google.android.gms.drive.sample.demo.HomeActivity
 import com.litesuits.common.utils.DialogUtil
 import com.nhn.android.mapviewer.NMapViewer
 import com.zoonref.demo.DemoActivity
@@ -32,6 +33,10 @@ import java.util.*
 
 class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
+            mapOf("owner" to "gsuitedevs",
+                    "name" to "android-samples",
+                    "displayName" to "Google Drive Android API Demos"
+            ),
             mapOf("owner" to "kioko",
                     "name" to "motion-layout-playground"),
             mapOf("owner" to "zoonooz",
@@ -145,6 +150,7 @@ class MainActivity : BaseSimpleActivity() {
                         "todo-mvvm-live-kotlin" -> startActivity(Intent(this, com.example.android.architecture.blueprints.todoapp.mvvm.tasks.TasksActivity::class.java))
                         "simple-view-behavior" -> startActivity(Intent(this, DemoActivity::class.java))
                         "motion-layout-playground" -> startActivity(Intent(this, com.thomaskioko.materialmotion.MainActivity::class.java))
+                        "Google Drive Android API Demos" -> startActivity(Intent(this, HomeActivity::class.java))
                     }
                 }
         ) 

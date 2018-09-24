@@ -243,5 +243,9 @@
 
         <!--https://github.com/kioko/motion-layout-playground-->
         <activity android:name="com.thomaskioko.materialmotion.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
+
+        <!--https://github.com/gsuitedevs/android-samples/tree/master/drive/demos-->
+        <activity android:name="com.google.android.gms.drive.sample.demo.HomeActivity" />
+        <activity android:name="com.google.android.gms.drive.sample.demo.CreateFolderActivity" />
     </application>
 </manifest>
