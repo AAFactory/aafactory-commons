@@ -22,5 +22,6 @@ ext.versions = [
     archLifecycleVersion: "1.1.1", // Architecture Components dependencies
     dagger: "2.14.1",
     gms: "15.0.1",
-    retrofit2: "2.4.0"    
+    retrofit2: "2.4.0",
+    okhttp3: "3.9.1"
 ]
