@@ -78,7 +78,7 @@ public class CrawlerTest {
     }
     
     static final class PageAdapter implements Converter<ResponseBody, Page> {
-        static final Converter.Factory FACTORY = new Converter.Factory() {
+        static final Factory FACTORY = new Factory() {
             @Override public Converter<ResponseBody, ?> responseBodyConverter(
                     Type type, Annotation[] annotations, Retrofit retrofit) {
                 if (type == Page.class) return new PageAdapter();

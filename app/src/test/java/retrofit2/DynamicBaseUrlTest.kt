@@ -3,7 +3,6 @@ package retrofit2
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
-import org.apache.commons.lang3.StringUtils
 import org.junit.Assert
 import org.junit.Test
 import retrofit2.http.GET

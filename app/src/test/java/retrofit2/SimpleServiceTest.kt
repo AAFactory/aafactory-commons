@@ -1,13 +1,11 @@
 package retrofit2
 
-import org.junit.Test
 import org.junit.Assert
-
-import java.io.IOException
-
+import org.junit.Test
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import java.io.IOException
 
 /**
  * Created by CHO HANJOONG on 2018-05-05.

@@ -50,17 +50,8 @@ dependencies {
     // apache commons
     implementation "commons-io:commons-io:2.6"
     implementation "org.apache.commons:commons-lang3:3.7"
-
-    // square
-    implementation "com.squareup.okhttp3:okhttp:$versions.okhttp3"
-    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit2"
-    implementation "com.squareup.retrofit2:adapter-rxjava:$versions.retrofit2"
-    implementation "com.squareup.retrofit2:converter-moshi:$versions.retrofit2"
-    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit2"
-    implementation 'com.squareup.picasso:picasso:2.5.2'
     
     implementation 'com.simplemobiletools:commons:3.7.8'
-    implementation "org.jsoup:jsoup:1.10.3"
     implementation 'id.zelory:compressor:2.1.0'
     implementation 'com.luffykou:android-common-utils:1.1.3'
 
