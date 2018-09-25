@@ -247,5 +247,6 @@
         <!--https://github.com/gsuitedevs/android-samples/tree/master/drive/demos-->
         <activity android:name="com.google.android.gms.drive.sample.demo.HomeActivity" />
         <activity android:name="com.google.android.gms.drive.sample.demo.CreateFolderActivity" />
+        <activity android:name="com.google.android.gms.drive.sample.demo.CreateFileActivity" />
     </application>
 </manifest>

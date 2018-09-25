@@ -26,6 +26,7 @@ import io.github.aafactory.sample.R;
 public class HomeActivity extends Activity {
     private final Class[] sActivities = new Class[] {
             CreateFolderActivity.class
+            , CreateFileActivity.class
             /*CreateEmptyFileActivity.class,
             CreateFileActivity.class, CreateFolderActivity.class, CreateFileInFolderActivity.class,
             CreateFolderInFolderActivity.class, CreateFileInAppFolderActivity.class,
