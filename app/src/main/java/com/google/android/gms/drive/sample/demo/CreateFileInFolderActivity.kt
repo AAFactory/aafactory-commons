@@ -18,6 +18,8 @@ import android.os.Environment
 import android.util.Log
 import com.google.android.gms.drive.*
 import io.github.aafactory.sample.R
+import org.apache.commons.io.FileUtils
+import org.apache.commons.io.IOUtils
 import permissions.dispatcher.*
 import java.io.File
 import java.io.OutputStreamWriter
@@ -42,36 +44,41 @@ class CreateFileInFolderActivity : BaseDemoActivity() {
                 }
     }
 
-    private fun createFileInFolder(parent: DriveFolder) {
+    private fun createFileInFolder() {
         val photoPath = "${Environment.getExternalStorageDirectory().absolutePath}$AAF_EASY_DIARY_PHOTO_DIRECTORY"    
         File(photoPath).listFiles().map { file ->
-            Log.i(TAG, file.absolutePath)
+            uploadDiaryPhoto(file)
         }
+    }
+    
+    private fun uploadDiaryPhoto(file: File) {
+        Log.i(TAG, file.absolutePath)
+        
+        driveResourceClient
+        .createContents()
+        .continueWithTask<DriveFile> { task ->
+            val contents = task.result
+            val outputStream = contents.outputStream
+            FileUtils.copyFile(file, outputStream)
+//            OutputStreamWriter(outputStream).use { writer -> writer.write("Hello World!") }
 
-//        driveResourceClient
-//                .createContents()
-//                .continueWithTask<DriveFile> { task ->
-//                    val contents = task.result
-//                    val outputStream = contents.outputStream
-//                    OutputStreamWriter(outputStream).use { writer -> writer.write("Hello World!") }
-//
-//                    val changeSet = MetadataChangeSet.Builder()
-//                            .setTitle("New file")
-//                            .setMimeType(AAF_EASY_DIARY_PHOTO)
-//                            .setStarred(true)
-//                            .build()
-//
-//                    driveResourceClient.createFile(parent, changeSet, contents)
-//                }
-//                .addOnSuccessListener(this
-//                ) { driveFile ->
-//                    showMessage(getString(R.string.file_created,
-//                            driveFile.getDriveId().encodeToString()))
-//                }
-//                .addOnFailureListener(this) { e ->
-//                    Log.e(TAG, "Unable to create file", e)
-//                    showMessage(getString(R.string.file_create_error))
-//                }
+            val changeSet = MetadataChangeSet.Builder()
+                    .setTitle(file.name)
+                    .setMimeType(AAF_EASY_DIARY_PHOTO)
+                    .setStarred(true)
+                    .build()
+
+            driveResourceClient.createFile(driveId.asDriveFolder(), changeSet, contents)
+        }
+        .addOnSuccessListener(this
+        ) { driveFile ->
+            showMessage(getString(R.string.file_created,
+                    driveFile.getDriveId().encodeToString()))
+        }
+        .addOnFailureListener(this) { e ->
+            Log.e(TAG, "Unable to create file", e)
+            showMessage(getString(R.string.file_create_error))
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -82,7 +89,7 @@ class CreateFileInFolderActivity : BaseDemoActivity() {
     
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     fun readExternalStorage() {
-        createFileInFolder(driveId.asDriveFolder())
+        createFileInFolder()
     }
 
     @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
