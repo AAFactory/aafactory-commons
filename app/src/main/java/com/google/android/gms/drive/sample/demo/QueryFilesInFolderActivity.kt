@@ -14,13 +14,12 @@
 package com.google.android.gms.drive.sample.demo
 
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.widget.ListView
-import com.google.android.gms.drive.AAF_EASY_DIARY_PHOTO
+import com.google.android.gms.drive.*
+import com.google.android.gms.drive.events.OpenFileCallback
 
-import com.google.android.gms.drive.DriveFolder
-import com.google.android.gms.drive.Metadata
-import com.google.android.gms.drive.MetadataBuffer
 import com.google.android.gms.drive.query.Filters
 import com.google.android.gms.drive.query.Query
 import com.google.android.gms.drive.query.SearchableField
@@ -28,6 +27,11 @@ import com.google.android.gms.drive.widget.DataBufferAdapter
 import com.google.android.gms.tasks.Task
 
 import io.github.aafactory.sample.R
+import org.apache.commons.io.FileUtils
+import java.io.BufferedReader
+import java.io.File
+import java.io.IOException
+import java.io.InputStreamReader
 
 /**
  * An activity that illustrates how to query files in a folder.
@@ -77,9 +81,12 @@ class QueryFilesInFolderActivity : BaseDemoActivity() {
         queryTask
                 .addOnSuccessListener(this) { metadataBuffer ->
                     mResultsAdapter?.append(metadataBuffer)
-                    metadataBuffer.forEachIndexed { index, metadata ->  
-                        Log.i(TAG, metadata?.title)
-//                        metadata.
+                    metadataBuffer.forEachIndexed { index, metadata ->
+                        metadata?.let {
+                            Log.i(TAG, it.title)
+                            val photoPath = "${Environment.getExternalStorageDirectory().absolutePath}$AAF_EASY_DIARY_PHOTO_DIRECTORY"
+                            retrieveContents(it.driveId.asDriveFile(), "$photoPath${it.title}")
+                        }
                     }
                 }
                 .addOnFailureListener(this) { e ->
@@ -89,6 +96,35 @@ class QueryFilesInFolderActivity : BaseDemoActivity() {
                 }
     }
 
+    private fun retrieveContents(file: DriveFile, destFilePath: String) {
+        // [START drive_android_read_with_progress_listener]
+        val openCallback = object : OpenFileCallback() {
+            override fun onProgress(bytesDownloaded: Long, bytesExpected: Long) {}
+
+            override fun onContents(driveContents: DriveContents) {
+                // [START_EXCLUDE]
+                try {
+                    FileUtils.copyInputStreamToFile(driveContents.inputStream, File(destFilePath))
+                } catch (e: IOException) {
+                    onError(e)
+                }
+                // [END_EXCLUDE]
+            }
+
+            override fun onError(e: Exception) {
+                // Handle error
+                // [START_EXCLUDE]
+                Log.e(TAG, "Unable to read contents", e)
+                showMessage(getString(R.string.read_failed))
+                finish()
+                // [END_EXCLUDE]
+            }
+        }
+
+        driveResourceClient.openFile(file, DriveFile.MODE_READ_ONLY, openCallback)
+        // [END drive_android_read_with_progress_listener]
+    }
+    
     companion object {
         private val TAG = "QueryFilesInFolder"
     }
