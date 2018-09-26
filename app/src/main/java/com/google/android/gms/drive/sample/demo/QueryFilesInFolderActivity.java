@@ -20,7 +20,9 @@ import android.widget.ListView;
 import com.google.android.gms.drive.DriveFolder;
 import com.google.android.gms.drive.Metadata;
 import com.google.android.gms.drive.MetadataBuffer;
+import com.google.android.gms.drive.query.Filters;
 import com.google.android.gms.drive.query.Query;
+import com.google.android.gms.drive.query.SearchableField;
 import com.google.android.gms.drive.widget.DataBufferAdapter;
 import com.google.android.gms.tasks.Task;
 
@@ -71,7 +73,7 @@ public class QueryFilesInFolderActivity extends BaseDemoActivity {
      */
     private void listFilesInFolder(DriveFolder folder) {
         Query query = new Query.Builder()
-//                              .addFilter(Filters.eq(SearchableField.MIME_TYPE, "text/plain"))
+                              .addFilter(Filters.eq(SearchableField.MIME_TYPE, "text/plain"))
                               .build();
         // [START drive_android_query_children]
         Task<MetadataBuffer> queryTask = getDriveResourceClient().queryChildren(folder, query);

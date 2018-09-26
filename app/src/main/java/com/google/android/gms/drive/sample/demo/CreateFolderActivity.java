@@ -20,6 +20,8 @@ import com.google.android.gms.drive.MetadataChangeSet;
 
 import io.github.aafactory.sample.R;
 
+import static com.google.android.gms.drive.ConstantsKt.AAF_EASY_DIARY_BACKUP_DIRECTORY_TITLE;
+
 /**
  * An activity to illustrate how to create a new folder.
  */
@@ -38,7 +40,7 @@ public class CreateFolderActivity extends BaseDemoActivity {
                 .continueWithTask(task -> {
                     DriveFolder parentFolder = task.getResult();
                     MetadataChangeSet changeSet = new MetadataChangeSet.Builder()
-                                                          .setTitle("New folder")
+                                                          .setTitle(AAF_EASY_DIARY_BACKUP_DIRECTORY_TITLE)
                                                           .setMimeType(DriveFolder.MIME_TYPE)
                                                           .setStarred(true)
                                                           .build();

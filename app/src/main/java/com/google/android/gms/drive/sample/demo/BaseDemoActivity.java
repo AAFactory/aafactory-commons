@@ -41,6 +41,8 @@ import java.util.Set;
 
 import io.github.aafactory.sample.R;
 
+import static com.google.android.gms.drive.ConstantsKt.AAF_EASY_DIARY_BACKUP_DIRECTORY_TITLE;
+
 /**
  * An abstract activity that handles authorization and connection to the Drive services.
  */
@@ -171,7 +173,7 @@ public abstract class BaseDemoActivity extends Activity {
         OpenFileActivityOptions openOptions =
                 new OpenFileActivityOptions.Builder()
                         .setSelectionFilter(
-                                Filters.eq(SearchableField.MIME_TYPE, DriveFolder.MIME_TYPE))
+                                Filters.eq(SearchableField.TITLE, AAF_EASY_DIARY_BACKUP_DIRECTORY_TITLE))
                         .setActivityTitle(getString(R.string.select_folder))
                         .build();
         return pickItem(openOptions);
