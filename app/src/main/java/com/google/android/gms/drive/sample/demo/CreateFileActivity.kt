@@ -44,7 +44,7 @@ class CreateFileActivity : BaseDemoActivity() {
                     OutputStreamWriter(outputStream).use { writer -> writer.write("Hello World!") }
 
                     val changeSet = MetadataChangeSet.Builder()
-                            .setTitle("HelloWorld.txt")
+                            .setTitle("AAF_TEST")
                             .setMimeType("text/plain")
                             .setStarred(true)
                             .build()

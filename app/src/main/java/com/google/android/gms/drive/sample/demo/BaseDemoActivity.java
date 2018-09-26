@@ -170,10 +170,9 @@ public abstract class BaseDemoActivity extends Activity {
      * @return Task that resolves with the selected item's ID.
      */
     protected Task<DriveId> pickFolder() {
-        OpenFileActivityOptions openOptions =
-                new OpenFileActivityOptions.Builder()
+        OpenFileActivityOptions openOptions = new OpenFileActivityOptions.Builder()
                         .setSelectionFilter(
-                                Filters.eq(SearchableField.TITLE, AAF_EASY_DIARY_BACKUP_DIRECTORY_TITLE))
+                            Filters.eq(SearchableField.MIME_TYPE, DriveFolder.MIME_TYPE))   
                         .setActivityTitle(getString(R.string.select_folder))
                         .build();
         return pickItem(openOptions);
