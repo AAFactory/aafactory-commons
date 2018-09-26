@@ -27,6 +27,7 @@ public class HomeActivity extends Activity {
     private final Class[] sActivities = new Class[] {
             CreateFolderActivity.class
             , CreateFileActivity.class
+            , QueryFilesInFolderActivity.class
             /*CreateEmptyFileActivity.class,
             CreateFileActivity.class, CreateFolderActivity.class, CreateFileInFolderActivity.class,
             CreateFolderInFolderActivity.class, CreateFileInAppFolderActivity.class,
