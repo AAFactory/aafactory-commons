@@ -249,5 +249,6 @@
         <activity android:name="com.google.android.gms.drive.sample.demo.CreateFolderActivity" />
         <activity android:name="com.google.android.gms.drive.sample.demo.CreateFileActivity" />
         <activity android:name="com.google.android.gms.drive.sample.demo.QueryFilesInFolderActivity" />
+        <activity android:name="com.google.android.gms.drive.sample.demo.CreateFileInFolderActivity" />
     </application>
 </manifest>
