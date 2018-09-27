@@ -13,6 +13,7 @@
  */
 package com.google.android.gms.drive.sample.demo
 
+import android.app.Notification
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -32,6 +33,15 @@ import java.io.BufferedReader
 import java.io.File
 import java.io.IOException
 import java.io.InputStreamReader
+import android.content.Context.NOTIFICATION_SERVICE
+import android.support.v4.content.ContextCompat.getSystemService
+import android.app.NotificationManager
+import android.content.Context
+import android.graphics.BitmapFactory
+import android.support.v4.app.NotificationCompat
+import io.github.aafactory.sample.R.mipmap.ic_launcher
+
+
 
 /**
  * An activity that illustrates how to query files in a folder.
@@ -39,6 +49,11 @@ import java.io.InputStreamReader
 class QueryFilesInFolderActivity : BaseDemoActivity() {
 
     private var mResultsAdapter: DataBufferAdapter<Metadata>? = null
+    private var totalCount: Int = 0
+    private var currentCount: Int = 0
+    private lateinit var notificationBuilder: NotificationCompat.Builder
+    private lateinit var notificationManager: NotificationManager
+    
 
     override fun onCreate(b: Bundle?) {
         super.onCreate(b)
@@ -80,6 +95,23 @@ class QueryFilesInFolderActivity : BaseDemoActivity() {
         // END drive_android_query_children]
         queryTask
                 .addOnSuccessListener(this) { metadataBuffer ->
+
+                    notificationBuilder = NotificationCompat.Builder(applicationContext, "M_CH_ID")
+                    notificationBuilder.setAutoCancel(true)
+                            .setDefaults(Notification.DEFAULT_ALL)
+                            .setWhen(System.currentTimeMillis())
+                            .setSmallIcon(android.R.drawable.ic_input_get)
+                            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_launcher_round))
+                            .setTicker("Hearty365")
+                            .setPriority(Notification.PRIORITY_MAX) // this is deprecated in API 26 but you can still use for below 26. check below update for 26 API
+                            .setContentTitle("Default notification")
+                            .setContentText("Downloading stored file from google drive.")
+                            .setContentInfo("Info")
+                            .setOnlyAlertOnce(true)
+                    notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                    notificationManager.notify(1, notificationBuilder.build())
+
+                    totalCount = metadataBuffer.count
                     mResultsAdapter?.append(metadataBuffer)
                     metadataBuffer.forEachIndexed { index, metadata ->
                         metadata?.let {
@@ -105,6 +137,9 @@ class QueryFilesInFolderActivity : BaseDemoActivity() {
                 // [START_EXCLUDE]
                 try {
                     FileUtils.copyInputStreamToFile(driveContents.inputStream, File(destFilePath))
+                    notificationBuilder.setContentTitle("${++currentCount}/$totalCount")
+                    notificationManager.notify(1, notificationBuilder.build())
+                    
                 } catch (e: IOException) {
                     onError(e)
                 }
