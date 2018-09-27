@@ -41,8 +41,6 @@ import java.util.Set;
 
 import io.github.aafactory.sample.R;
 
-import static com.google.android.gms.drive.ConstantsKt.AAF_EASY_DIARY_BACKUP_DIRECTORY_TITLE;
-
 /**
  * An abstract activity that handles authorization and connection to the Drive services.
  */

@@ -94,6 +94,7 @@ class CreateFileInFolderActivity : BaseDemoActivity() {
         ) { driveFile ->
 //            showMessage(getString(R.string.file_created, driveFile.getDriveId().encodeToString()))
             notificationBuilder.setContentTitle("${++currentCount}/$totalCount")
+            notificationBuilder.setProgress(totalCount, currentCount, false)
             notificationManager.notify(1, notificationBuilder.build())
         }
         .addOnFailureListener(this) { e ->

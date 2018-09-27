@@ -14,33 +14,24 @@
 package com.google.android.gms.drive.sample.demo
 
 import android.app.Notification
+import android.app.NotificationManager
+import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
+import android.support.v4.app.NotificationCompat
 import android.util.Log
 import android.widget.ListView
 import com.google.android.gms.drive.*
 import com.google.android.gms.drive.events.OpenFileCallback
-
 import com.google.android.gms.drive.query.Filters
 import com.google.android.gms.drive.query.Query
 import com.google.android.gms.drive.query.SearchableField
 import com.google.android.gms.drive.widget.DataBufferAdapter
-import com.google.android.gms.tasks.Task
-
 import io.github.aafactory.sample.R
 import org.apache.commons.io.FileUtils
-import java.io.BufferedReader
 import java.io.File
 import java.io.IOException
-import java.io.InputStreamReader
-import android.content.Context.NOTIFICATION_SERVICE
-import android.support.v4.content.ContextCompat.getSystemService
-import android.app.NotificationManager
-import android.content.Context
-import android.graphics.BitmapFactory
-import android.support.v4.app.NotificationCompat
-import io.github.aafactory.sample.R.mipmap.ic_launcher
-
 
 
 /**
@@ -112,6 +103,7 @@ class QueryFilesInFolderActivity : BaseDemoActivity() {
                     notificationManager.notify(1, notificationBuilder.build())
 
                     totalCount = metadataBuffer.count
+                    currentCount = 0
                     mResultsAdapter?.append(metadataBuffer)
                     metadataBuffer.forEachIndexed { index, metadata ->
                         metadata?.let {
@@ -138,8 +130,9 @@ class QueryFilesInFolderActivity : BaseDemoActivity() {
                 try {
                     FileUtils.copyInputStreamToFile(driveContents.inputStream, File(destFilePath))
                     notificationBuilder.setContentTitle("${++currentCount}/$totalCount")
+                    notificationBuilder.setProgress(totalCount, currentCount, false)
                     notificationManager.notify(1, notificationBuilder.build())
-                    
+                    if (currentCount == totalCount) finish()
                 } catch (e: IOException) {
                     onError(e)
                 }
