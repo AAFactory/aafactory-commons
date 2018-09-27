@@ -14,22 +14,29 @@
 package com.google.android.gms.drive.sample.demo
 
 import android.Manifest
+import android.app.Notification
+import android.app.NotificationManager
+import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Environment
+import android.support.v4.app.NotificationCompat
 import android.util.Log
 import com.google.android.gms.drive.*
 import io.github.aafactory.sample.R
 import org.apache.commons.io.FileUtils
-import org.apache.commons.io.IOUtils
 import permissions.dispatcher.*
 import java.io.File
-import java.io.OutputStreamWriter
 
 /**
  * An activity to create a file inside a folder.
  */
 @RuntimePermissions
 class CreateFileInFolderActivity : BaseDemoActivity() {
-    lateinit var driveId: DriveId
+    private lateinit var driveId: DriveId
+    private lateinit var notificationBuilder: NotificationCompat.Builder
+    private lateinit var notificationManager: NotificationManager
+    private var totalCount: Int = 0
+    private var currentCount: Int = 0
     
     override fun onDriveClientReady() {
         pickFolder()
@@ -45,8 +52,21 @@ class CreateFileInFolderActivity : BaseDemoActivity() {
     }
 
     private fun createFileInFolder() {
+        notificationBuilder = NotificationCompat.Builder(applicationContext, "M_CH_ID")
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(android.R.drawable.ic_input_get)
+                .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_launcher_round))
+                .setPriority(Notification.PRIORITY_MAX) // this is deprecated in API 26 but you can still use for below 26. check below update for 26 API
+                .setContentText("Uploading files to Google Drive.")
+                .setOnlyAlertOnce(true)
+        notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(1, notificationBuilder.build())
+        
         val photoPath = "${Environment.getExternalStorageDirectory().absolutePath}$AAF_EASY_DIARY_PHOTO_DIRECTORY"    
         File(photoPath).listFiles().map { file ->
+            totalCount = File(photoPath).listFiles().size 
             uploadDiaryPhoto(file)
         }
     }
@@ -72,8 +92,9 @@ class CreateFileInFolderActivity : BaseDemoActivity() {
         }
         .addOnSuccessListener(this
         ) { driveFile ->
-            showMessage(getString(R.string.file_created,
-                    driveFile.getDriveId().encodeToString()))
+//            showMessage(getString(R.string.file_created, driveFile.getDriveId().encodeToString()))
+            notificationBuilder.setContentTitle("${++currentCount}/$totalCount")
+            notificationManager.notify(1, notificationBuilder.build())
         }
         .addOnFailureListener(this) { e ->
             Log.e(TAG, "Unable to create file", e)

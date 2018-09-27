@@ -105,7 +105,7 @@ class QueryFilesInFolderActivity : BaseDemoActivity() {
                             .setTicker("Hearty365")
                             .setPriority(Notification.PRIORITY_MAX) // this is deprecated in API 26 but you can still use for below 26. check below update for 26 API
                             .setContentTitle("Default notification")
-                            .setContentText("Downloading stored file from google drive.")
+                            .setContentText("Downloading stored file from Google Drive.")
                             .setContentInfo("Info")
                             .setOnlyAlertOnce(true)
                     notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
