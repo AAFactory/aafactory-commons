@@ -31,7 +31,7 @@ import java.io.File
  * An activity to create a file inside a folder.
  */
 @RuntimePermissions
-class CreateFileInFolderActivity : BaseDemoActivity() {
+class CreateFileInFolderActivity : BaseDriveActivity() {
     private lateinit var driveId: DriveId
     private lateinit var notificationBuilder: NotificationCompat.Builder
     private lateinit var notificationManager: NotificationManager
@@ -75,8 +75,8 @@ class CreateFileInFolderActivity : BaseDemoActivity() {
         Log.i(TAG, file.absolutePath)
         
         driveResourceClient
-        .createContents()
-        .continueWithTask<DriveFile> { task ->
+        ?.createContents()
+        ?.continueWithTask<DriveFile> { task ->
             val contents = task.result
             val outputStream = contents.outputStream
             FileUtils.copyFile(file, outputStream)
@@ -88,16 +88,16 @@ class CreateFileInFolderActivity : BaseDemoActivity() {
                     .setStarred(true)
                     .build()
 
-            driveResourceClient.createFile(driveId.asDriveFolder(), changeSet, contents)
+            driveResourceClient?.createFile(driveId.asDriveFolder(), changeSet, contents)
         }
-        .addOnSuccessListener(this
+        ?.addOnSuccessListener(this
         ) { driveFile ->
 //            showMessage(getString(R.string.file_created, driveFile.getDriveId().encodeToString()))
             notificationBuilder.setContentTitle("${++currentCount}/$totalCount")
             notificationBuilder.setProgress(totalCount, currentCount, false)
             notificationManager.notify(1, notificationBuilder.build())
         }
-        .addOnFailureListener(this) { e ->
+        ?.addOnFailureListener(this) { e ->
             Log.e(TAG, "Unable to create file", e)
             showMessage(getString(R.string.file_create_error))
         }

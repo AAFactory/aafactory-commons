@@ -37,7 +37,7 @@ import java.io.IOException
 /**
  * An activity that illustrates how to query files in a folder.
  */
-class QueryFilesInFolderActivity : BaseDemoActivity() {
+class QueryFilesInFolderActivity : BaseDriveActivity() {
 
     private var mResultsAdapter: DataBufferAdapter<Metadata>? = null
     private var totalCount: Int = 0
@@ -82,10 +82,10 @@ class QueryFilesInFolderActivity : BaseDemoActivity() {
                 .addFilter(Filters.eq(SearchableField.MIME_TYPE, AAF_EASY_DIARY_PHOTO))
                 .build()
         // [START drive_android_query_children]
-        val queryTask = driveResourceClient.queryChildren(folder, query)
+        val queryTask = driveResourceClient?.queryChildren(folder, query)
         // END drive_android_query_children]
         queryTask
-                .addOnSuccessListener(this) { metadataBuffer ->
+                ?.addOnSuccessListener(this) { metadataBuffer ->
 
                     notificationBuilder = NotificationCompat.Builder(applicationContext, "M_CH_ID")
                     notificationBuilder.setAutoCancel(true)
@@ -113,7 +113,7 @@ class QueryFilesInFolderActivity : BaseDemoActivity() {
                         }
                     }
                 }
-                .addOnFailureListener(this) { e ->
+                ?.addOnFailureListener(this) { e ->
                     Log.e(TAG, "Error retrieving files", e)
                     showMessage(getString(R.string.query_failed))
                     finish()
@@ -149,7 +149,7 @@ class QueryFilesInFolderActivity : BaseDemoActivity() {
             }
         }
 
-        driveResourceClient.openFile(file, DriveFile.MODE_READ_ONLY, openCallback)
+        driveResourceClient?.openFile(file, DriveFile.MODE_READ_ONLY, openCallback)
         // [END drive_android_read_with_progress_listener]
     }
     
