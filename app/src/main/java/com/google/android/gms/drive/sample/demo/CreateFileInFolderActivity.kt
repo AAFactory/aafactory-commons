@@ -42,11 +42,11 @@ class CreateFileInFolderActivity : BaseDriveActivity() {
     
     override fun onDriveClientReady() {
         pickFolder()
-                .addOnSuccessListener(this) { driveId ->
+                ?.addOnSuccessListener(this) { driveId ->
                     this.driveId = driveId
                     readExternalStorageWithPermissionCheck()
                 }
-                .addOnFailureListener(this) { e ->
+                ?.addOnFailureListener(this) { e ->
                     Log.e(TAG, "No folder selected", e)
                     showMessage(getString(R.string.folder_not_selected))
                     finish()

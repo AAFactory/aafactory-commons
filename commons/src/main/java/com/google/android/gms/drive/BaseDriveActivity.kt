@@ -58,7 +58,7 @@ abstract class BaseDriveActivity : Activity() {
     /**
      * Handles resolution callbacks.
      */
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             REQUEST_CODE_SIGN_IN -> {
@@ -80,7 +80,7 @@ abstract class BaseDriveActivity : Activity() {
                 }
             }
             REQUEST_CODE_OPEN_ITEM -> if (resultCode == Activity.RESULT_OK) {
-                val driveId = data.getParcelableExtra<DriveId>(
+                val driveId = data?.getParcelableExtra<DriveId>(
                         OpenFileActivityOptions.EXTRA_RESPONSE_DRIVE_ID)
                 mOpenItemTaskSource?.setResult(driveId)
             } else {
@@ -125,7 +125,7 @@ abstract class BaseDriveActivity : Activity() {
      *
      * @return Task that resolves with the selected item's ID.
      */
-    protected fun pickTextFile(): Task<DriveId> {
+    protected fun pickTextFile(): Task<DriveId>? {
         val openOptions = OpenFileActivityOptions.Builder()
                 .setSelectionFilter(Filters.eq(SearchableField.MIME_TYPE, "text/plain"))
                 .setActivityTitle(getString(R.string.select_file))
@@ -138,7 +138,7 @@ abstract class BaseDriveActivity : Activity() {
      *
      * @return Task that resolves with the selected item's ID.
      */
-    protected fun pickFolder(): Task<DriveId> {
+    protected fun pickFolder(): Task<DriveId>? {
         val openOptions = OpenFileActivityOptions.Builder()
                 .setSelectionFilter(
                         Filters.eq(SearchableField.MIME_TYPE, DriveFolder.MIME_TYPE))
@@ -153,7 +153,7 @@ abstract class BaseDriveActivity : Activity() {
      * @param openOptions Filter that should be applied to the selection
      * @return Task that resolves with the selected item's ID.
      */
-    private fun pickItem(openOptions: OpenFileActivityOptions): Task<DriveId> {
+    private fun pickItem(openOptions: OpenFileActivityOptions): Task<DriveId>? {
         mOpenItemTaskSource = TaskCompletionSource()
         driveClient?.run {
             newOpenFileActivityIntentSender(openOptions)
@@ -164,7 +164,7 @@ abstract class BaseDriveActivity : Activity() {
             })
         }
                 
-        return mOpenItemTaskSource!!.task
+        return mOpenItemTaskSource?.task
     }
 
     /**
