@@ -13,10 +13,13 @@
  */
 package com.google.android.gms.drive.sample.demo
 
+import android.Manifest
 import android.app.Notification
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.support.v4.app.NotificationCompat
@@ -30,6 +33,7 @@ import com.google.android.gms.drive.query.SearchableField
 import com.google.android.gms.drive.widget.DataBufferAdapter
 import io.github.aafactory.sample.R
 import org.apache.commons.io.FileUtils
+import permissions.dispatcher.*
 import java.io.File
 import java.io.IOException
 
@@ -37,6 +41,7 @@ import java.io.IOException
 /**
  * An activity that illustrates how to query files in a folder.
  */
+@RuntimePermissions
 class QueryFilesInFolderActivity : BaseDriveActivity() {
 
     private var mResultsAdapter: DataBufferAdapter<Metadata>? = null
@@ -44,6 +49,7 @@ class QueryFilesInFolderActivity : BaseDriveActivity() {
     private var currentCount: Int = 0
     private lateinit var notificationBuilder: NotificationCompat.Builder
     private lateinit var notificationManager: NotificationManager
+    private lateinit var driveId: DriveId
     
 
     override fun onCreate(b: Bundle?) {
@@ -56,7 +62,10 @@ class QueryFilesInFolderActivity : BaseDriveActivity() {
 
     override fun onDriveClientReady() {
         pickFolder()
-                .addOnSuccessListener(this) { driveId -> listFilesInFolder(driveId.asDriveFolder()) }
+                .addOnSuccessListener(this) { driveId ->
+                    this.driveId = driveId
+                    writeExternalStorageWithPermissionCheck()
+                }
                 .addOnFailureListener(this) { e ->
                     Log.e(TAG, "No folder selected", e)
                     showMessage(getString(R.string.folder_not_selected))
@@ -78,6 +87,20 @@ class QueryFilesInFolderActivity : BaseDriveActivity() {
      * it retrieves results for the first page.
      */
     private fun listFilesInFolder(folder: DriveFolder) {
+        val channelId = "M_CH_ID"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create the NotificationChannel
+            val name = "CHANNEL_NAME"
+            val descriptionText = "CHANNEL_DESCRIPTION"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val mChannel = NotificationChannel(channelId, name, importance)
+            mChannel.description = descriptionText
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(mChannel)
+        }
+        
         val query = Query.Builder()
                 .addFilter(Filters.eq(SearchableField.MIME_TYPE, AAF_EASY_DIARY_PHOTO))
                 .build()
@@ -86,8 +109,8 @@ class QueryFilesInFolderActivity : BaseDriveActivity() {
         // END drive_android_query_children]
         queryTask
                 ?.addOnSuccessListener(this) { metadataBuffer ->
-
-                    notificationBuilder = NotificationCompat.Builder(applicationContext, "M_CH_ID")
+                    
+                    notificationBuilder = NotificationCompat.Builder(applicationContext, channelId)
                     notificationBuilder.setAutoCancel(true)
                             .setDefaults(Notification.DEFAULT_ALL)
                             .setWhen(System.currentTimeMillis())
@@ -151,6 +174,32 @@ class QueryFilesInFolderActivity : BaseDriveActivity() {
 
         driveResourceClient?.openFile(file, DriveFile.MODE_READ_ONLY, openCallback)
         // [END drive_android_read_with_progress_listener]
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        // NOTE: delegate the permission handling to generated method
+        onRequestPermissionsResult(requestCode, grantResults)
+    }
+
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    fun writeExternalStorage() {
+        listFilesInFolder(driveId.asDriveFolder())
+    }
+
+    @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    fun writeExternalStorageDenied() {
+
+    }
+
+    @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    fun showRationaleForWriteExternalStorage(request: PermissionRequest) {
+
+    }
+
+    @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    fun writeExternalStorageAskAgain() {
+
     }
     
     companion object {

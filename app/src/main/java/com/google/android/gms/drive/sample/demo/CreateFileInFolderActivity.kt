@@ -15,9 +15,11 @@ package com.google.android.gms.drive.sample.demo
 
 import android.Manifest
 import android.app.Notification
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Environment
 import android.support.v4.app.NotificationCompat
 import android.util.Log
@@ -52,7 +54,21 @@ class CreateFileInFolderActivity : BaseDriveActivity() {
     }
 
     private fun createFileInFolder() {
-        notificationBuilder = NotificationCompat.Builder(applicationContext, "M_CH_ID")
+        val channelId = "M_CH_ID"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create the NotificationChannel
+            val name = "CHANNEL_NAME"
+            val descriptionText = "CHANNEL_DESCRIPTION"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val mChannel = NotificationChannel(channelId, name, importance)
+            mChannel.description = descriptionText
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(mChannel)
+        }
+        
+        notificationBuilder = NotificationCompat.Builder(applicationContext, channelId)
         notificationBuilder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
