@@ -29,6 +29,7 @@ public class HomeActivity extends Activity {
             , CreateFileActivity.class
             , QueryFilesInFolderActivity.class
             , CreateFileInFolderActivity.class
+            , QueryFileActivity.class
             /*CreateEmptyFileActivity.class,
             CreateFileActivity.class, CreateFolderActivity.class, CreateFileInFolderActivity.class,
             CreateFolderInFolderActivity.class, CreateFileInAppFolderActivity.class,

@@ -153,7 +153,7 @@ abstract class BaseDriveActivity : Activity() {
      * @param openOptions Filter that should be applied to the selection
      * @return Task that resolves with the selected item's ID.
      */
-    private fun pickItem(openOptions: OpenFileActivityOptions): Task<DriveId>? {
+    protected fun pickItem(openOptions: OpenFileActivityOptions): Task<DriveId>? {
         mOpenItemTaskSource = TaskCompletionSource()
         driveClient?.run {
             newOpenFileActivityIntentSender(openOptions)
