@@ -21,8 +21,6 @@ import android.util.Log
 import android.widget.ListView
 import com.google.android.gms.drive.*
 import com.google.android.gms.drive.events.OpenFileCallback
-import com.google.android.gms.drive.query.Filters
-import com.google.android.gms.drive.query.SearchableField
 import com.google.android.gms.drive.widget.DataBufferAdapter
 import io.github.aafactory.sample.R
 import org.apache.commons.io.IOUtils
@@ -56,16 +54,18 @@ class QueryFileActivity : BaseDriveActivity() {
         val openOptions = OpenFileActivityOptions.Builder()
                 .setActivityTitle(getString(io.github.aafactory.commons.R.string.select_file))
                 .build()
-        pickItem(openOptions)
-                ?.addOnSuccessListener(this) { driveId ->
-                    this.driveId = driveId
-                    writeExternalStorageWithPermissionCheck()
-                }
-                ?.addOnFailureListener(this) { e ->
-                    Log.e(TAG, "No folder selected", e)
-                    showMessage(getString(R.string.folder_not_selected))
-                    finish()
-                }
+        pickItem(openOptions)?.let {
+            it.addOnSuccessListener(this) { driveId ->
+                this.driveId = driveId
+                writeExternalStorageWithPermissionCheck()
+            }
+            
+            it.addOnFailureListener(this) { e ->
+                Log.e(TAG, "No folder selected", e)
+                showMessage(getString(R.string.folder_not_selected))
+                finish()
+            }
+        }
     }
 
     /**

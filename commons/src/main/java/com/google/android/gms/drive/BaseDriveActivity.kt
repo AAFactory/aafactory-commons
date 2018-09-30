@@ -80,8 +80,7 @@ abstract class BaseDriveActivity : Activity() {
                 }
             }
             REQUEST_CODE_OPEN_ITEM -> if (resultCode == Activity.RESULT_OK) {
-                val driveId = data?.getParcelableExtra<DriveId>(
-                        OpenFileActivityOptions.EXTRA_RESPONSE_DRIVE_ID)
+                val driveId = data?.getParcelableExtra<DriveId>(OpenFileActivityOptions.EXTRA_RESPONSE_DRIVE_ID)
                 mOpenItemTaskSource?.setResult(driveId)
             } else {
                 mOpenItemTaskSource?.setException(RuntimeException("Unable to open file"))
@@ -140,8 +139,7 @@ abstract class BaseDriveActivity : Activity() {
      */
     protected fun pickFolder(): Task<DriveId>? {
         val openOptions = OpenFileActivityOptions.Builder()
-                .setSelectionFilter(
-                        Filters.eq(SearchableField.MIME_TYPE, DriveFolder.MIME_TYPE))
+                .setSelectionFilter(Filters.eq(SearchableField.MIME_TYPE, DriveFolder.MIME_TYPE))
                 .setActivityTitle(getString(R.string.select_folder))
                 .build()
         return pickItem(openOptions)
@@ -156,14 +154,10 @@ abstract class BaseDriveActivity : Activity() {
     protected fun pickItem(openOptions: OpenFileActivityOptions): Task<DriveId>? {
         mOpenItemTaskSource = TaskCompletionSource()
         driveClient?.run {
-            newOpenFileActivityIntentSender(openOptions)
-            .continueWith({ task ->
-                startIntentSenderForResult(
-                        task.result, REQUEST_CODE_OPEN_ITEM, null, 0, 0, 0)
-                null
+            newOpenFileActivityIntentSender(openOptions).continueWith({ task ->
+                startIntentSenderForResult(task.result, REQUEST_CODE_OPEN_ITEM, null, 0, 0, 0)
             })
         }
-                
         return mOpenItemTaskSource?.task
     }
 
