@@ -24,6 +24,9 @@ import android.os.Environment
 import android.support.v4.app.NotificationCompat
 import android.util.Log
 import com.google.android.gms.drive.*
+import com.google.android.gms.drive.query.Filters
+import com.google.android.gms.drive.query.Query
+import com.google.android.gms.drive.query.SearchableField
 import io.github.aafactory.sample.R
 import org.apache.commons.io.FileUtils
 import permissions.dispatcher.*
@@ -39,18 +42,20 @@ class CreateFileInFolderActivity : BaseDriveActivity() {
     private lateinit var notificationManager: NotificationManager
     private var totalCount: Int = 0
     private var currentCount: Int = 0
+    private var uploadedFilenames = arrayListOf<String>()
+    private var newFiles = arrayListOf<File>()
     
     override fun onDriveClientReady() {
-        pickFolder()
-                ?.addOnSuccessListener(this) { driveId ->
-                    this.driveId = driveId
-                    readExternalStorageWithPermissionCheck()
-                }
-                ?.addOnFailureListener(this) { e ->
-                    Log.e(TAG, "No folder selected", e)
-                    showMessage(getString(R.string.folder_not_selected))
-                    finish()
-                }
+        pickFolder()?.let {
+            it.addOnSuccessListener(this) { driveId ->
+                this.driveId = driveId
+                readExternalStorageWithPermissionCheck()
+            }.addOnFailureListener(this) { e ->
+                Log.e(TAG, "No folder selected", e)
+                showMessage(getString(R.string.folder_not_selected))
+                finish()
+            }
+        }
     }
 
     private fun createFileInFolder() {
@@ -82,40 +87,59 @@ class CreateFileInFolderActivity : BaseDriveActivity() {
         
         val photoPath = "${Environment.getExternalStorageDirectory().absolutePath}$AAF_EASY_DIARY_PHOTO_DIRECTORY"    
         File(photoPath).listFiles().map { file ->
-            totalCount = File(photoPath).listFiles().size 
-            uploadDiaryPhoto(file)
+            if (!uploadedFilenames.contains(file.name)) {
+                newFiles.add(file)
+            }
+        }
+
+        totalCount = newFiles.size
+        newFiles.map {
+            uploadDiaryPhoto(it)
         }
     }
     
     private fun uploadDiaryPhoto(file: File) {
-        Log.i(TAG, file.absolutePath)
-        
-        driveResourceClient
-        ?.createContents()
-        ?.continueWithTask<DriveFile> { task ->
-            val contents = task.result
-            val outputStream = contents.outputStream
-            FileUtils.copyFile(file, outputStream)
+        driveResourceClient?.let {
+            it.createContents()
+                    .continueWithTask<DriveFile> { task ->
+                        val contents = task.result
+                        val outputStream = contents.outputStream
+                        FileUtils.copyFile(file, outputStream)
 //            OutputStreamWriter(outputStream).use { writer -> writer.write("Hello World!") }
-
-            val changeSet = MetadataChangeSet.Builder()
-                    .setTitle(file.name)
-                    .setMimeType(AAF_EASY_DIARY_PHOTO)
-                    .setStarred(true)
-                    .build()
-
-            driveResourceClient?.createFile(driveId.asDriveFolder(), changeSet, contents)
+                        val changeSet = MetadataChangeSet.Builder()
+                            .setTitle(file.name)
+                            .setMimeType(AAF_EASY_DIARY_PHOTO)
+                            .setStarred(true)
+                            .build()
+                    it.createFile(driveId.asDriveFolder(), changeSet, contents)
+                    }
+                    .addOnSuccessListener(this) { driveFile ->
+                    //            showMessage(getString(R.string.file_created, driveFile.getDriveId().encodeToString()))
+                        notificationBuilder.setContentTitle("${++currentCount}/$totalCount")
+                        notificationBuilder.setProgress(totalCount, currentCount, false)
+                        notificationManager.notify(1, notificationBuilder.build())
+                    }
+                    .addOnFailureListener(this) { e ->
+                        Log.e(TAG, "Unable to create file", e)
+                        showMessage(getString(R.string.file_create_error))
+                    }
         }
-        ?.addOnSuccessListener(this
-        ) { driveFile ->
-//            showMessage(getString(R.string.file_created, driveFile.getDriveId().encodeToString()))
-            notificationBuilder.setContentTitle("${++currentCount}/$totalCount")
-            notificationBuilder.setProgress(totalCount, currentCount, false)
-            notificationManager.notify(1, notificationBuilder.build())
-        }
-        ?.addOnFailureListener(this) { e ->
-            Log.e(TAG, "Unable to create file", e)
-            showMessage(getString(R.string.file_create_error))
+    }
+
+    private fun listFilesInFolder() {
+        val query = Query.Builder()
+                .addFilter(Filters.eq(SearchableField.MIME_TYPE, AAF_EASY_DIARY_PHOTO))
+                .build()
+        val queryTask = driveResourceClient?.queryChildren(driveId.asDriveFolder(), query)
+        queryTask?.let { 
+            it.addOnSuccessListener { metadataBuffer ->
+                metadataBuffer.forEachIndexed { index, metadata ->
+                    metadata?.let {
+                        uploadedFilenames.add(it.title)
+                    }
+                }
+                createFileInFolder()
+            }
         }
     }
 
@@ -127,7 +151,7 @@ class CreateFileInFolderActivity : BaseDriveActivity() {
     
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     fun readExternalStorage() {
-        createFileInFolder()
+        listFilesInFolder()
     }
 
     @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)

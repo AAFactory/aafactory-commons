@@ -177,6 +177,6 @@ dependencies {
 
 repositories {
     mavenCentral()
-    maven { url "http://repository.jetbrains.com/all" }
+    maven { url "http://repository.jetbrains.com/all" } 
     maven { url "https://dl.bintray.com/drummer-aidan/maven/" }
 }
