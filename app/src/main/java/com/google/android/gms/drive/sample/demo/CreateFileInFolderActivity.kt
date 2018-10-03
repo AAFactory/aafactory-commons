@@ -93,6 +93,7 @@ class CreateFileInFolderActivity : BaseDriveActivity() {
         }
 
         totalCount = newFiles.size
+        if (totalCount == 0) finish()
         newFiles.map {
             uploadDiaryPhoto(it)
         }
