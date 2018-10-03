@@ -118,6 +118,7 @@ class CreateFileInFolderActivity : BaseDriveActivity() {
                         notificationBuilder.setContentTitle("${++currentCount}/$totalCount")
                         notificationBuilder.setProgress(totalCount, currentCount, false)
                         notificationManager.notify(1, notificationBuilder.build())
+                        if (currentCount == totalCount) finish()
                     }
                     .addOnFailureListener(this) { e ->
                         Log.e(TAG, "Unable to create file", e)
