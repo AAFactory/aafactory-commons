@@ -12,4 +12,8 @@
 
     <!--GoogleDriveUtils-->
     <string name="google_drive_connect_message">Google Drive in sync...</string>
+
+    <!--com.google.android.gms.drive-->
+    <string name="read_failed">Error while retrieving file.</string>
+    <string name="folder_not_selected">No folder selected, can not continue.</string>
 </resources>
