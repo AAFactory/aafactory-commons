@@ -253,5 +253,6 @@
         <activity android:name="com.google.android.gms.drive.sample.demo.QueryFilesInFolderActivity" />
         <activity android:name="com.google.android.gms.drive.sample.demo.CreateFileInFolderActivity" />
         <activity android:name="com.google.android.gms.drive.sample.demo.QueryFileActivity" />
+        <activity android:name="com.google.android.gms.drive.sample.demo.CreateFileWithCreatorActivity" />
     </application>
 </manifest>

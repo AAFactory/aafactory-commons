@@ -21,13 +21,13 @@
         <item>Query files in a folder</item>
         <item>Create a file in a folder</item>
         <item>Download d file</item>
+        <item>Create a file with creator activity</item>
         <!--<item>Create an empty file</item>
         <item>Create a file</item>
         <item>Create a folder</item>
         <item>Create a file in a folder</item>
         <item>Create a folder in a folder</item>
         <item>Create a file in App Folder</item>
-        <item>Create a file with creator activity</item>
         <item>Retrieve metadata</item>
         <item>Retrieve contents</item>
         <item>Listen download progress</item>
