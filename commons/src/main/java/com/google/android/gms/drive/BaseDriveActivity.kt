@@ -15,6 +15,7 @@ package com.google.android.gms.drive
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -50,6 +51,11 @@ abstract class BaseDriveActivity : Activity() {
      */
     private var mOpenItemTaskSource: TaskCompletionSource<DriveId>? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_google_drive)
+    }
+    
     override fun onStart() {
         super.onStart()
         signIn()
