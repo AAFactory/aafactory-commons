@@ -14,6 +14,8 @@
     <string name="google_drive_connect_message">Googleドライブの同期...</string>
 
     <!--com.google.android.gms.drive-->
+    <string name="file_created">Created file: %1$s.</string>
+    <string name="file_create_error">Error while trying to create the file.</string>
     <string name="read_failed">Error while retrieving file.</string>
     <string name="folder_not_selected">No folder selected, can not continue.</string>
 </resources>
