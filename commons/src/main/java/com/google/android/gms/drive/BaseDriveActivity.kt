@@ -27,12 +27,13 @@ import com.google.android.gms.drive.query.SearchableField
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskCompletionSource
 import io.github.aafactory.commons.R
+import io.github.aafactory.commons.activities.BaseSimpleActivity
 import java.util.*
 
 /**
  * An abstract activity that handles authorization and connection to the Drive services.
  */
-abstract class BaseDriveActivity : Activity() {
+abstract class BaseDriveActivity : BaseSimpleActivity() {
 
     /**
      * Handles high-level drive functions like sync
