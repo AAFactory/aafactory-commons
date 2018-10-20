@@ -254,5 +254,13 @@
         <activity android:name="com.google.android.gms.drive.sample.demo.CreateFileInFolderActivity" />
         <activity android:name="com.google.android.gms.drive.sample.demo.QueryFileActivity" />
         <activity android:name="com.google.android.gms.drive.sample.demo.CreateFileWithCreatorActivity" />
+
+        <!--https://github.com/donglua/PhotoPicker-->
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:name="me.iwf.photopicker.PhotoPagerActivity" />
+        <activity android:name="me.iwf.PhotoPickerDemo.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
     </application>
 </manifest>

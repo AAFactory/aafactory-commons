@@ -33,15 +33,16 @@ import java.util.*
 
 class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
-            mapOf("owner" to "gsuitedevs",
+            mapOf("owner" to "donglua",
+                    "name" to "PhotoPicker")
+            , mapOf("owner" to "gsuitedevs",
                     "name" to "android-samples",
-                    "displayName" to "Google Drive Android API Demos"
-            ),
-            mapOf("owner" to "kioko",
-                    "name" to "motion-layout-playground"),
-            mapOf("owner" to "zoonooz",
-                    "name" to "simple-view-behavior"),
-            mapOf("owner" to "googlesamples",
+                    "displayName" to "Google Drive Android API Demos")
+            , mapOf("owner" to "kioko",
+                    "name" to "motion-layout-playground")
+            , mapOf("owner" to "zoonooz",
+                    "name" to "simple-view-behavior")
+            , mapOf("owner" to "googlesamples",
                     "name" to "android-architecture",
                     "displayName" to "todo-mvvm-live-kotlin"
             )
@@ -151,6 +152,7 @@ class MainActivity : BaseSimpleActivity() {
                         "simple-view-behavior" -> startActivity(Intent(this, DemoActivity::class.java))
                         "motion-layout-playground" -> startActivity(Intent(this, com.thomaskioko.materialmotion.MainActivity::class.java))
                         "Google Drive Android API Demos" -> startActivity(Intent(this, HomeActivity::class.java))
+                        "PhotoPicker" -> startActivity(Intent(this, me.iwf.PhotoPickerDemo.MainActivity::class.java))
                     }
                 }
         ) 

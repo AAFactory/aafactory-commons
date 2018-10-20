@@ -1,1 +1,2 @@
-include ':app', ':commons'
+include ':app', ':commons', ':PhotoPicker'
+project(':PhotoPicker').projectDir = new File(settingsDir, "../PhotoPicker/PhotoPicker")

@@ -460,5 +460,12 @@ The lake was formed about 2 million years ago and is a part of the Lake Tahoe Ba
     <string name="init_failed">Unable to initialize activity.</string>
     <string name="file_not_selected">No file selected, can not continue.</string>
     <string name="folder_not_selected">No folder selected, can not continue.</string>
+
+    <!--https://github.com/donglua/PhotoPicker-->
+    <string name="pick_photo">Pick Photo</string>
+    <string name="pick_photo_without_camera">Pick Photo Without Camera &amp;&amp; Disable Preview</string>
+    <string name="pick_one_photo">Pick Single Photo</string>
+    <string name="pick_photo_gif">Pick Photos (show gif)</string>
+    <string name="multiple_pick_photo">Multiple Pick Photo</string>
 </resources>
 
