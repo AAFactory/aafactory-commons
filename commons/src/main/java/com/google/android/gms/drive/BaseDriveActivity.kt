@@ -93,7 +93,6 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
                 mOpenItemTaskSource?.setException(RuntimeException("Unable to open file"))
             }
         }
-        super.onActivityResult(requestCode, resultCode, data)
     }
 
     /**
