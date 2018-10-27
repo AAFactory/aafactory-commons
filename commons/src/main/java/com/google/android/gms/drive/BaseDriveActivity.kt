@@ -160,9 +160,9 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
     protected fun pickItem(openOptions: OpenFileActivityOptions): Task<DriveId>? {
         mOpenItemTaskSource = TaskCompletionSource()
         driveClient?.run {
-            newOpenFileActivityIntentSender(openOptions).continueWith({ task ->
+            newOpenFileActivityIntentSender(openOptions).continueWith { task ->
                 startIntentSenderForResult(task.result, REQUEST_CODE_OPEN_ITEM, null, 0, 0, 0)
-            })
+            }
         }
         return mOpenItemTaskSource?.task
     }
