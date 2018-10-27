@@ -22,8 +22,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.Scope
-import com.google.android.gms.drive.query.Filters
-import com.google.android.gms.drive.query.SearchableField
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskCompletionSource
 import io.github.aafactory.commons.R
@@ -52,14 +50,30 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
      */
     private var mOpenItemTaskSource: TaskCompletionSource<DriveId>? = null
 
+    private var isRestart = false
+
+    protected var mTask: Task<DriveId>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_google_drive)
+        isRestart = savedInstanceState != null
     }
     
     override fun onStart() {
         super.onStart()
-        signIn()
+        when {
+            mOpenItemTaskSource != null -> addListener()
+            isRestart -> {
+                mOpenItemTaskSource = TaskCompletionSource()
+                mTask = mOpenItemTaskSource?.task
+                GoogleSignIn.getLastSignedInAccount(this)?.let {
+                    driveResourceClient = Drive.getDriveResourceClient(this, it)
+                }
+                addListener()
+            }
+            else -> signIn()
+        }
     }
 
     /**
@@ -125,31 +139,31 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
         onDriveClientReady()
     }
 
-    /**
-     * Prompts the user to select a text file using OpenFileActivity.
-     *
-     * @return Task that resolves with the selected item's ID.
-     */
-    protected fun pickTextFile(): Task<DriveId>? {
-        val openOptions = OpenFileActivityOptions.Builder()
-                .setSelectionFilter(Filters.eq(SearchableField.MIME_TYPE, "text/plain"))
-                .setActivityTitle(getString(R.string.select_file))
-                .build()
-        return pickItem(openOptions)
-    }
+//    /**
+//     * Prompts the user to select a text file using OpenFileActivity.
+//     *
+//     * @return Task that resolves with the selected item's ID.
+//     */
+//    protected fun pickTextFile(): Task<DriveId>? {
+//        val openOptions = OpenFileActivityOptions.Builder()
+//                .setSelectionFilter(Filters.eq(SearchableField.MIME_TYPE, "text/plain"))
+//                .setActivityTitle(getString(R.string.select_file))
+//                .build()
+//        return pickItem(openOptions)
+//    }
 
-    /**
-     * Prompts the user to select a folder using OpenFileActivity.
-     *
-     * @return Task that resolves with the selected item's ID.
-     */
-    protected fun pickFolder(): Task<DriveId>? {
-        val openOptions = OpenFileActivityOptions.Builder()
-                .setSelectionFilter(Filters.eq(SearchableField.MIME_TYPE, DriveFolder.MIME_TYPE))
-                .setActivityTitle(getString(R.string.select_folder))
-                .build()
-        return pickItem(openOptions)
-    }
+//    /**
+//     * Prompts the user to select a folder using OpenFileActivity.
+//     *
+//     * @return Task that resolves with the selected item's ID.
+//     */
+//    protected fun pickFolder(): Task<DriveId>? {
+//        val openOptions = OpenFileActivityOptions.Builder()
+//                .setSelectionFilter(Filters.eq(SearchableField.MIME_TYPE, DriveFolder.MIME_TYPE))
+//                .setActivityTitle(getString(R.string.select_folder))
+//                .build()
+//        return pickItem(openOptions)
+//    }
 
     /**
      * Prompts the user to select a folder using OpenFileActivity.
@@ -157,14 +171,16 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
      * @param openOptions Filter that should be applied to the selection
      * @return Task that resolves with the selected item's ID.
      */
-    protected fun pickItem(openOptions: OpenFileActivityOptions): Task<DriveId>? {
-        mOpenItemTaskSource = TaskCompletionSource()
+    protected fun pickItem(openOptions: OpenFileActivityOptions) {
         driveClient?.run {
             newOpenFileActivityIntentSender(openOptions).continueWith { task ->
                 startIntentSenderForResult(task.result, REQUEST_CODE_OPEN_ITEM, null, 0, 0, 0)
             }
         }
-        return mOpenItemTaskSource?.task
+
+        mOpenItemTaskSource = TaskCompletionSource()
+        mTask = mOpenItemTaskSource?.task
+        addListener()
     }
 
     /**
@@ -178,6 +194,8 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
      * Called after the user has signed in and the Drive client has been initialized.
      */
     protected abstract fun onDriveClientReady()
+    
+    protected abstract fun addListener()
 
     companion object {
         private const val TAG = "BaseDriveActivity"
