@@ -62,15 +62,19 @@ class QueryFilesInFolderActivity : BaseDriveActivity() {
 
     override fun onDriveClientReady() {
         pickFolder()
-                ?.addOnSuccessListener(this) { driveId ->
-                    this.driveId = driveId
-                    writeExternalStorageWithPermissionCheck()
-                }
-                ?.addOnFailureListener(this) { e ->
-                    Log.e(TAG, "No folder selected", e)
-                    showMessage(getString(R.string.folder_not_selected))
-                    finish()
-                }
+    }
+
+    override fun addListener() {
+        mTask?.let {
+            it.addOnSuccessListener(this) { driveId ->
+                this.driveId = driveId
+                writeExternalStorageWithPermissionCheck()
+            }.addOnFailureListener(this) { e ->
+                Log.e(TAG, "No folder selected", e)
+                showMessage(getString(R.string.folder_not_selected))
+                finish()
+            }
+        }
     }
 
     /**

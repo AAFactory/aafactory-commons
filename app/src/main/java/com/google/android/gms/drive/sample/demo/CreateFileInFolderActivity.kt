@@ -46,7 +46,11 @@ class CreateFileInFolderActivity : BaseDriveActivity() {
     private var newFiles = arrayListOf<File>()
     
     override fun onDriveClientReady() {
-        pickFolder()?.let {
+        pickFolder()
+    }
+
+    override fun addListener() {
+        mTask?.let {
             it.addOnSuccessListener(this) { driveId ->
                 this.driveId = driveId
                 readExternalStorageWithPermissionCheck()

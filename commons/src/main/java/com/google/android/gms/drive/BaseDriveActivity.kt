@@ -22,6 +22,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.Scope
+import com.google.android.gms.drive.query.Filters
+import com.google.android.gms.drive.query.SearchableField
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskCompletionSource
 import io.github.aafactory.commons.R
@@ -197,6 +199,14 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
         mOpenItemTaskSource = TaskCompletionSource()
         mTask = mOpenItemTaskSource?.task
         addListener()
+    }
+
+    protected fun pickFolder() {
+        val openOptions = OpenFileActivityOptions.Builder()
+                .setSelectionFilter(Filters.eq(SearchableField.MIME_TYPE, DriveFolder.MIME_TYPE))
+                .setActivityTitle(getString(R.string.select_folder))
+                .build()
+        pickItem(openOptions)
     }
     
     /**
