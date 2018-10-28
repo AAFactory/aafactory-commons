@@ -54,27 +54,29 @@ class QueryFileActivity : BaseDriveActivity() {
         val openOptions = OpenFileActivityOptions.Builder()
                 .setActivityTitle(getString(io.github.aafactory.commons.R.string.select_file))
                 .build()
-        pickItem(openOptions)?.let {
+        pickItem(openOptions)
+    }
+
+    override fun addListener() {
+        mTask?.let {
             it.addOnSuccessListener(this) { driveId ->
                 this.driveId = driveId
                 writeExternalStorageWithPermissionCheck()
-            }
-            
-            it.addOnFailureListener(this) { e ->
+            }.addOnFailureListener(this) { e ->
                 Log.e(TAG, "No folder selected", e)
                 showMessage(getString(R.string.folder_not_selected))
                 finish()
             }
         }
     }
-
+    
     /**
      * Clears the result buffer to avoid memory leaks as soon
      * as the activity is no longer visible by the user.
      */
     override fun onStop() {
         super.onStop()
-        mResultsAdapter!!.clear()
+        mResultsAdapter?.clear()
     }
 
     private fun retrieveContents(file: DriveFile) {
