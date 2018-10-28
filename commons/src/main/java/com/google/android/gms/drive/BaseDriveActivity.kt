@@ -106,6 +106,12 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
             } else {
                 mOpenItemTaskSource?.setException(RuntimeException("Unable to open file"))
             }
+            REQUEST_CODE_CREATE_FILE -> if (resultCode == Activity.RESULT_OK) {
+                val driveId = data?.getParcelableExtra<DriveId>(OpenFileActivityOptions.EXTRA_RESPONSE_DRIVE_ID)
+                mOpenItemTaskSource?.setResult(driveId)
+            } else {
+                mOpenItemTaskSource?.setException(RuntimeException(getString(R.string.folder_not_selected)))
+            }
         }
     }
 
@@ -183,6 +189,16 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
         addListener()
     }
 
+    protected fun pickUploadFolder(createOptions: CreateFileActivityOptions) {
+        driveClient?.newCreateFileActivityIntentSender(createOptions)?.continueWith { subTask ->
+            startIntentSenderForResult(subTask.result, REQUEST_CODE_CREATE_FILE, null, 0, 0, 0)
+        }
+
+        mOpenItemTaskSource = TaskCompletionSource()
+        mTask = mOpenItemTaskSource?.task
+        addListener()
+    }
+    
     /**
      * Shows a toast message.
      */
@@ -209,5 +225,7 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
          * Request code for the Drive picker
          */
         protected const val REQUEST_CODE_OPEN_ITEM = 1
+
+        const val REQUEST_CODE_CREATE_FILE = 2
     }
 }
