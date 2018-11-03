@@ -148,18 +148,14 @@ class QueryFilesInFolderActivity : BaseDriveActivity() {
     }
 
     private fun retrieveContents(file: DriveFile, destFilePath: String) {
-        // [START drive_android_read_with_progress_listener]
         val openCallback = object : OpenFileCallback() {
             override fun onProgress(bytesDownloaded: Long, bytesExpected: Long) {}
 
             override fun onContents(driveContents: DriveContents) {
                 // [START_EXCLUDE]
                 try {
-                    if (File(destFilePath).exists()) FileUtils.copyInputStreamToFile(driveContents.inputStream, File(destFilePath))
-                    notificationBuilder.setContentTitle("${++currentCount}/$totalCount")
-                    notificationBuilder.setProgress(totalCount, currentCount, false)
-                    notificationManager.notify(1, notificationBuilder.build())
-                    if (currentCount == totalCount) finish()
+                    FileUtils.copyInputStreamToFile(driveContents.inputStream, File(destFilePath))
+                    updateNotification()
                 } catch (e: IOException) {
                     onError(e)
                 }
@@ -176,8 +172,17 @@ class QueryFilesInFolderActivity : BaseDriveActivity() {
             }
         }
 
-        driveResourceClient?.openFile(file, DriveFile.MODE_READ_ONLY, openCallback)
-        // [END drive_android_read_with_progress_listener]
+        when (File(destFilePath).exists()) {
+            true -> updateNotification()
+            false -> driveResourceClient?.openFile(file, DriveFile.MODE_READ_ONLY, openCallback)
+        }
+    }
+    
+    private fun updateNotification() {
+        notificationBuilder.setContentTitle("${++currentCount}/$totalCount")
+        notificationBuilder.setProgress(totalCount, currentCount, false)
+        notificationManager.notify(1, notificationBuilder.build())
+        if (currentCount == totalCount) finish()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
