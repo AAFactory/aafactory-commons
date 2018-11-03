@@ -155,7 +155,7 @@ class QueryFilesInFolderActivity : BaseDriveActivity() {
             override fun onContents(driveContents: DriveContents) {
                 // [START_EXCLUDE]
                 try {
-                    FileUtils.copyInputStreamToFile(driveContents.inputStream, File(destFilePath))
+                    if (File(destFilePath).exists()) FileUtils.copyInputStreamToFile(driveContents.inputStream, File(destFilePath))
                     notificationBuilder.setContentTitle("${++currentCount}/$totalCount")
                     notificationBuilder.setProgress(totalCount, currentCount, false)
                     notificationManager.notify(1, notificationBuilder.build())
