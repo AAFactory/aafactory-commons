@@ -141,6 +141,9 @@ dependencies {
     implementation "org.jsoup:jsoup:1.10.3"
 //    implementation 'me.iwf.photopicker:PhotoPicker:0.9.12@aar'
     implementation project(':PhotoPicker') // Glide sub version(glide:4.1.1) is declared, therefore must be imported directly
+    implementation 'gun0912.ted:tedpermission:2.2.0'
+    implementation 'gun0912.ted:tedbottompicker:1.2.6'
+    
     kapt 'com.github.bumptech.glide:compiler:4.8.0'
     kapt "com.github.hotchemi:permissionsdispatcher-processor:3.3.1"
     

@@ -259,8 +259,11 @@
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:name="me.iwf.photopicker.PhotoPagerActivity" />
-        <activity android:name="me.iwf.PhotoPickerDemo.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
+            android:name="me.iwf.photopicker.PhotoPagerActivity" android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="me.iwf.PhotoPickerDemo.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
+
+        <!--https://github.com/ParkSangGwon/TedBottomPicker-->
+        <activity android:name="gun0912.tedbottompickerdemo.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
     </application>
 </manifest>
