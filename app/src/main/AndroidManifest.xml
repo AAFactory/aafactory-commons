@@ -264,6 +264,6 @@
             android:name="me.iwf.PhotoPickerDemo.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
 
         <!--https://github.com/ParkSangGwon/TedBottomPicker-->
-        <activity android:name="gun0912.tedbottompickerdemo.MainActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="gun0912.tedbottompickerdemo.MainActivity" />
     </application>
 </manifest>
