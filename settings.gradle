@@ -1,3 +1,2 @@
 include ':app', ':commons', ':PhotoPicker', ':pickphotoview'
 project(':PhotoPicker').projectDir = new File(settingsDir, "../PhotoPicker/PhotoPicker")
-project(':pickphotoview').projectDir = new File(settingsDir, "../PickPhotoSample/pickphotoview")
