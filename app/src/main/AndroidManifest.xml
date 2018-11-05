@@ -265,5 +265,8 @@
 
         <!--https://github.com/ParkSangGwon/TedBottomPicker-->
         <activity android:name="gun0912.tedbottompickerdemo.MainActivity" />
+
+        <!--https://github.com/Werb/PickPhotoSample/-->
+        <activity android:name="com.werb.pickphotosample.MainActivity" />
     </application>
 </manifest>
