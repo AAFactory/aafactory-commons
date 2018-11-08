@@ -4,6 +4,8 @@
     <dimen name="card_layout_padding">3dp</dimen>
     <dimen name="card_layout_margin">3dp</dimen>
     <dimen name="card_contents_padding">15dp</dimen>
+
+    <dimen name="settings_summary_margin">5dp</dimen>
     
     <dimen name="spacing_normal">8dp</dimen>
     <dimen name="spacing_double">16dp</dimen>
