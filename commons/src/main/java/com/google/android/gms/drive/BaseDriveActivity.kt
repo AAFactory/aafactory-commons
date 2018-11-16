@@ -28,13 +28,15 @@ import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskCompletionSource
 import io.github.aafactory.commons.R
 import io.github.aafactory.commons.activities.BaseSimpleActivity
+import io.github.aafactory.commons.helpers.GOOGLE_DRIVE_VISIBLE_DIALOG
 import java.util.*
 
 /**
  * An abstract activity that handles authorization and connection to the Drive services.
  */
 abstract class BaseDriveActivity : BaseSimpleActivity() {
-
+    protected var visibleDialog = false
+    
     /**
      * Handles high-level drive functions like sync
      */
@@ -60,6 +62,9 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_google_drive)
         isRestart = savedInstanceState != null
+        savedInstanceState?.let {
+            visibleDialog = it.getBoolean(GOOGLE_DRIVE_VISIBLE_DIALOG, false)
+        }
     }
     
     override fun onStart() {
@@ -67,17 +72,29 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
         when {
             mOpenItemTaskSource != null -> addListener()
             isRestart -> {
-                mOpenItemTaskSource = TaskCompletionSource()
-                mTask = mOpenItemTaskSource?.task
-                GoogleSignIn.getLastSignedInAccount(this)?.let {
-                    driveResourceClient = Drive.getDriveResourceClient(this, it)
+                when (visibleDialog) {
+                    true -> showDialog()
+                    false -> {
+                        mOpenItemTaskSource = TaskCompletionSource()
+                        mTask = mOpenItemTaskSource?.task
+                        GoogleSignIn.getLastSignedInAccount(this)?.let {
+                            driveResourceClient = Drive.getDriveResourceClient(this, it)
+                        }
+                        addListener()
+                    }
                 }
-                addListener()
             }
             else -> signIn()
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+        outState?.let {
+            it.putBoolean(GOOGLE_DRIVE_VISIBLE_DIALOG, visibleDialog)
+        }
+        super.onSaveInstanceState(outState)
+    }
+    
     /**
      * Handles resolution callbacks.
      */
@@ -222,6 +239,8 @@ abstract class BaseDriveActivity : BaseSimpleActivity() {
     protected abstract fun onDriveClientReady()
     
     protected abstract fun addListener()
+    
+    protected abstract fun showDialog() 
 
     companion object {
         private const val TAG = "BaseDriveActivity"

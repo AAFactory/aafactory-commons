@@ -15,3 +15,6 @@ const val AAF_THEME_CHANGE = "aaf_theme_change"
 // permissions
 const val PERMISSION_ACCESS_COARSE_LOCATION = 10
 const val PERMISSION_ACCESS_FINE_LOCATION = 11
+
+// Save Instance State
+const val GOOGLE_DRIVE_VISIBLE_DIALOG = "google_drive_visible_dialog"
