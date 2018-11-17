@@ -62,6 +62,8 @@ class CreateFileInFolderActivity : BaseDriveActivity() {
         }
     }
 
+    override fun showDialog() {}
+
     private fun createFileInFolder() {
         val channelId = "M_CH_ID"
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

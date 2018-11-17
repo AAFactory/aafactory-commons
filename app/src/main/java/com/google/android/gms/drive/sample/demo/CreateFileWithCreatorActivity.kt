@@ -25,7 +25,6 @@ import java.io.OutputStreamWriter
  * created file.
  */
 class CreateFileWithCreatorActivity : BaseDriveActivity() {
-
     override fun onDriveClientReady() {
         createFileWithIntent()
     }
@@ -37,6 +36,8 @@ class CreateFileWithCreatorActivity : BaseDriveActivity() {
             }
         }
     }
+
+    override fun showDialog() {}
     
     private fun createFileWithIntent() {
         // [START drive_android_create_file_with_intent]

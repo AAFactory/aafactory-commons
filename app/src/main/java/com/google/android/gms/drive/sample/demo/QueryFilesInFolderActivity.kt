@@ -86,6 +86,8 @@ class QueryFilesInFolderActivity : BaseDriveActivity() {
         mResultsAdapter!!.clear()
     }
 
+    override fun showDialog() {}
+    
     /**
      * Retrieves results for the next page. For the first run,
      * it retrieves results for the first page.
