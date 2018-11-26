@@ -15,5 +15,5 @@ https://github.com/commonsguy/cw-omnibus/tree/master/EventBus/AsyncDemo3
 - This sample Android app demonstrates the use of the 2.x generation of greenrobot's EventBus.
 https://github.com/commonsguy/cw-omnibus/tree/master/EventBus/GreenRobot
 
-- This sample Android app demonstrates the use of Square's Otto event bus.
+- This sample Android app demonstrates the use of Square's Otto event bus.  
 https://github.com/commonsguy/cw-omnibus/tree/master/EventBus/Otto
