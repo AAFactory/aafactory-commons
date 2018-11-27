@@ -32,7 +32,7 @@ android {
     // If you need to add more flavors, consider using flavor dimensions.
     productFlavors {
         mock {
-            applicationIdSuffix = ".mock"
+//            applicationIdSuffix = ".mock"
             dimension "default"
         }
         prod {
