@@ -9,6 +9,9 @@ http://greenrobot.org/eventbus/documentation/how-to-get-started/
 https://academy.realm.io/kr/posts/eric-maxwell-mvc-mvp-and-mvvm-on-android/  
 
 # SAMPLE CODE
+- A sample that demonstrates to use registered fingerprints to authenticate the user in your app 
+https://github.com/googlesamples/android-FingerprintDialog  
+
 - This sample Android app demonstrates a service using startForeground()  
 https://github.com/commonsguy/cw-omnibus/tree/v8.4/Notifications/Foreground
 
