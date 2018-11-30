@@ -8,6 +8,9 @@ http://greenrobot.org/eventbus/documentation/how-to-get-started/
 - 안드로이드의 MVC, MVP, MVVM 종합 안내서 by Eric Maxwell Feb 7 2017  
 https://academy.realm.io/kr/posts/eric-maxwell-mvc-mvp-and-mvvm-on-android/  
 
+- 안드로이드 ConstraintLayout 개념과 사용법 정복하기 - 개발자 직강 by Nicolas Roard Jan 13 2017  
+https://academy.realm.io/kr/posts/constraintlayout-it-can-do-what-now/  
+
 # SAMPLE CODE
 - A sample that demonstrates to use registered fingerprints to authenticate the user in your app 
 https://github.com/googlesamples/android-FingerprintDialog  
