@@ -248,7 +248,8 @@ fun String.getMimeType(): String {
         put("air", "application/vnd.adobe.air-application-installer-package+zip")
         put("amc", "application/mpeg")
         put("anx", "application/annodex")
-        put("apk", "application/vnd.android.package-archive")
+//        https://github.com/hanjoongcho/aaf-easydiary/issues/37
+//        put("apk", "application/vnd.android.package-archive")
         put("application", "application/x-ms-application")
         put("art", "image/x-jg")
         put("asa", "application/xml")
