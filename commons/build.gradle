@@ -51,7 +51,11 @@ dependencies {
     // apache commons
     implementation "commons-io:commons-io:2.6"
     implementation "org.apache.commons:commons-lang3:3.7"
-    
+
+    // SimpleMobileTools
+    // Include 'Simple-Commons' v3.16.14 library directly in package
+    // implementation 'com.simplemobiletools:commons:3.17.19'
+
     implementation 'id.zelory:compressor:2.1.0'
 
     // test
