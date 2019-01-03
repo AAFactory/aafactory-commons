@@ -19,8 +19,6 @@ import android.support.v4.content.FileProvider
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.github.ajalt.reprint.core.Reprint
-import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.helpers.MyContentProvider.Companion.COL_BACKGROUND_COLOR
 import com.simplemobiletools.commons.helpers.MyContentProvider.Companion.COL_LAST_UPDATED_TS
@@ -28,6 +26,7 @@ import com.simplemobiletools.commons.helpers.MyContentProvider.Companion.COL_PRI
 import com.simplemobiletools.commons.helpers.MyContentProvider.Companion.COL_TEXT_COLOR
 import com.simplemobiletools.commons.models.SharedTheme
 import com.simplemobiletools.commons.views.*
+import io.github.aafactory.commons.R
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -56,8 +55,8 @@ fun Context.updateTextColors(viewGroup: ViewGroup, tmpTextColor: Int = 0, tmpAcc
                     is MyTextView -> it.setColors(textColor, accentColor, backgroundColor)
                     is MyAppCompatSpinner -> it.setColors(textColor, accentColor, backgroundColor)
                     is MySwitchCompat -> it.setColors(textColor, accentColor, backgroundColor)
-                    is MyCompatRadioButton -> it.setColors(textColor, accentColor, backgroundColor)
-                    is MyAppCompatCheckbox -> it.setColors(textColor, accentColor, backgroundColor)
+//                    is MyCompatRadioButton -> it.setColors(textColor, accentColor, backgroundColor)
+//                    is MyAppCompatCheckbox -> it.setColors(textColor, accentColor, backgroundColor)
                     is MyEditText -> it.setColors(textColor, accentColor, backgroundColor)
                     is MyFloatingActionButton -> it.setColors(textColor, accentColor, backgroundColor)
                     is MySeekBar -> it.setColors(textColor, accentColor, backgroundColor)
@@ -88,11 +87,6 @@ fun Context.toast(msg: String, length: Int = Toast.LENGTH_SHORT) {
 }
 
 val Context.baseConfig: BaseConfig get() = BaseConfig.newInstance(this)
-val Context.sdCardPath: String get() = baseConfig.sdCardPath
-val Context.internalStoragePath: String get() = baseConfig.internalStoragePath
-
-@SuppressLint("InlinedApi", "NewApi")
-fun Context.isFingerPrintSensorAvailable() = isMarshmallowPlus() && Reprint.isHardwarePresent()
 
 fun Context.getLatestMediaId(uri: Uri = MediaStore.Files.getContentUri("external")): Long {
     val MAX_VALUE = "max_value"
@@ -263,30 +257,6 @@ fun Context.getMimeTypeFromUri(uri: Uri): String {
     return mimetype
 }
 
-fun Context.ensurePublicUri(path: String, applicationId: String): Uri? {
-    return if (path.startsWith(OTG_PATH)) {
-        getDocumentFile(path)?.uri
-    } else {
-        val uri = Uri.parse(path)
-        if (uri.scheme == "content") {
-            uri
-        } else {
-            val newPath = if (uri.toString().startsWith("/")) uri.toString() else uri.path
-            val file = File(newPath)
-            getFilePublicUri(file, applicationId)
-        }
-    }
-}
-
-fun Context.ensurePublicUri(uri: Uri, applicationId: String): Uri {
-    return if (uri.scheme == "content") {
-        uri
-    } else {
-        val file = File(uri.path)
-        getFilePublicUri(file, applicationId)
-    }
-}
-
 fun Context.getFilenameFromContentUri(uri: Uri): String? {
     var cursor: Cursor? = null
     try {
@@ -325,21 +295,9 @@ fun Context.getSharedTheme(callback: (sharedTheme: SharedTheme?) -> Unit) {
     }.start()
 }
 
-fun Context.getDialogTheme() = if (baseConfig.backgroundColor.getContrastColor() == Color.WHITE) R.style.MyDialogTheme_Dark else R.style.MyDialogTheme
-
 fun Context.getCurrentFormattedDateTime(): String {
     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd_HH-mm", Locale.getDefault())
     return simpleDateFormat.format(Date(System.currentTimeMillis()))
-}
-
-fun Context.updateSDCardPath() {
-    Thread {
-        val oldPath = baseConfig.sdCardPath
-        baseConfig.sdCardPath = getSDCardPath().trimEnd('/')
-        if (oldPath != baseConfig.sdCardPath) {
-            baseConfig.treeUri = ""
-        }
-    }.start()
 }
 
 fun Context.getUriMimeType(path: String, newUri: Uri): String {

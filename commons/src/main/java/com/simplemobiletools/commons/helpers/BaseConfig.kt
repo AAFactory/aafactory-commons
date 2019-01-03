@@ -2,10 +2,8 @@ package com.simplemobiletools.commons.helpers
 
 import android.content.Context
 import android.text.format.DateFormat
-import com.simplemobiletools.commons.R
-import com.simplemobiletools.commons.extensions.getInternalStoragePath
-import com.simplemobiletools.commons.extensions.getSDCardPath
 import com.simplemobiletools.commons.extensions.getSharedPrefs
+import io.github.aafactory.commons.R
 import java.util.*
 
 open class BaseConfig(val context: Context) {
@@ -34,14 +32,6 @@ open class BaseConfig(val context: Context) {
     var OTGBasePath: String
         get() = prefs.getString(OTG_BASE_PATH, "")
         set(OTGBasePath) = prefs.edit().putString(OTG_BASE_PATH, OTGBasePath).apply()
-
-    var sdCardPath: String
-        get() = prefs.getString(SD_CARD_PATH, context.getSDCardPath())
-        set(sdCardPath) = prefs.edit().putString(SD_CARD_PATH, sdCardPath).apply()
-
-    var internalStoragePath: String
-        get() = prefs.getString(INTERNAL_STORAGE_PATH, context.getInternalStoragePath())
-        set(internalStoragePath) = prefs.edit().putString(INTERNAL_STORAGE_PATH, internalStoragePath).apply()
 
     var textColor: Int
         get() = prefs.getInt(TEXT_COLOR, context.resources.getColor(R.color.default_text_color))
@@ -152,10 +142,6 @@ open class BaseConfig(val context: Context) {
     var avoidWhatsNew: Boolean
         get() = prefs.getBoolean(AVOID_WHATS_NEW, false)
         set(avoidWhatsNew) = prefs.edit().putBoolean(AVOID_WHATS_NEW, avoidWhatsNew).apply()
-
-    var sorting: Int
-        get() = prefs.getInt(SORT_ORDER, context.resources.getInteger(R.integer.default_sorting))
-        set(sorting) = prefs.edit().putInt(SORT_ORDER, sorting).apply()
 
     var hadThankYouInstalled: Boolean
         get() = prefs.getBoolean(HAD_THANK_YOU_INSTALLED, false)

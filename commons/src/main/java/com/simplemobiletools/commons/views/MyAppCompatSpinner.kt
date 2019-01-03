@@ -6,9 +6,9 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
-import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.adapters.MyArrayAdapter
 import com.simplemobiletools.commons.extensions.applyColorFilter
+import io.github.aafactory.commons.R
 
 class MyAppCompatSpinner : AppCompatSpinner {
     constructor(context: Context) : super(context)

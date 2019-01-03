@@ -3,10 +3,10 @@ package com.simplemobiletools.commons.dialogs
 import android.support.v7.app.AlertDialog
 import android.view.View
 import android.view.WindowManager
-import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.interfaces.LineColorPickerListener
+import io.github.aafactory.commons.R
 import kotlinx.android.synthetic.main.dialog_line_color_picker.view.*
 import java.util.*
 

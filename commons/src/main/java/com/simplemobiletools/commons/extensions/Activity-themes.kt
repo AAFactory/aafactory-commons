@@ -1,7 +1,7 @@
 package com.simplemobiletools.commons.extensions
 
 import android.app.Activity
-import com.simplemobiletools.commons.R
+import io.github.aafactory.commons.R
 
 fun Activity.getThemeId(color: Int = baseConfig.primaryColor) = when (color) {
     -12846 -> R.style.AppTheme_Red_100

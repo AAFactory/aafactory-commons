@@ -1,7 +1,5 @@
 package com.simplemobiletools.commons.extensions
 
-import android.content.Context
-import com.simplemobiletools.commons.models.FileDirItem
 import java.io.File
 
 fun File.isImageVideoGif() = absolutePath.isImageFast() || absolutePath.isVideoFast() || absolutePath.isGif()
@@ -70,4 +68,3 @@ private fun getDirectoryFileCount(dir: File, countHiddenItems: Boolean): Int {
 
 fun File.getDirectChildrenCount(countHiddenItems: Boolean) = listFiles()?.filter { if (countHiddenItems) true else !it.isHidden }?.size ?: 0
 
-fun File.toFileDirItem(context: Context) = FileDirItem(absolutePath, name, context.getIsPathDirectory(absolutePath), 0, length())

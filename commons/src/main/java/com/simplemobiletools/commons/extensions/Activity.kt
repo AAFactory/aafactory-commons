@@ -1,6 +1,5 @@
 package com.simplemobiletools.commons.extensions
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -8,11 +7,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import android.os.Looper
 import android.os.TransactionTooLargeException
-import android.provider.DocumentsContract
 import android.provider.MediaStore
-import android.support.v4.provider.DocumentFile
 import android.support.v7.app.AlertDialog
 import android.view.View
 import android.view.ViewGroup
@@ -22,17 +18,15 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
-import com.simplemobiletools.commons.dialogs.*
+import com.simplemobiletools.commons.dialogs.WhatsNewDialog
 import com.simplemobiletools.commons.helpers.*
-import com.simplemobiletools.commons.models.FileDirItem
-import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.commons.models.Release
 import com.simplemobiletools.commons.models.SharedTheme
 import com.simplemobiletools.commons.views.MyTextView
+import io.github.aafactory.commons.R
 import kotlinx.android.synthetic.main.dialog_title.view.*
-import java.io.*
+import java.io.File
 import java.util.*
 
 fun Activity.toast(id: Int, length: Int = Toast.LENGTH_SHORT) {
@@ -75,48 +69,6 @@ fun Activity.showErrorToast(exception: Exception, length: Int = Toast.LENGTH_LON
     showErrorToast(exception.toString(), length)
 }
 
-@SuppressLint("NewApi")
-fun Activity.appLaunched() {
-    baseConfig.internalStoragePath = getInternalStoragePath()
-    updateSDCardPath()
-    baseConfig.appRunCount++
-
-    if (!baseConfig.hadThankYouInstalled) {
-        if (isThankYouInstalled()) {
-            baseConfig.hadThankYouInstalled = true
-        } else if (baseConfig.appRunCount % 50 == 0) {
-            DonateDialog(this)
-        }
-    }
-}
-
-@SuppressLint("InlinedApi")
-fun Activity.isShowingSAFDialog(path: String, treeUri: String, requestCode: Int): Boolean {
-    return if (needsStupidWritePermissions(path) && (treeUri.isEmpty() || !hasProperStoredTreeUri())) {
-        runOnUiThread {
-            WritePermissionDialog(this, false) {
-                Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).apply {
-                    putExtra("android.content.extra.SHOW_ADVANCED", true)
-                    if (resolveActivity(packageManager) == null) {
-                        type = "*/*"
-                    }
-
-                    if (resolveActivity(packageManager) != null) {
-                        startActivityForResult(this, requestCode)
-                    } else {
-                        toast(R.string.unknown_error_occurred)
-                    }
-                }
-            }
-        }
-        true
-    } else {
-        false
-    }
-}
-
-fun Activity.launchViewIntent(id: Int) = launchViewIntent(resources.getString(id))
-
 fun Activity.launchViewIntent(url: String) {
     Thread {
         Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
@@ -127,153 +79,6 @@ fun Activity.launchViewIntent(url: String) {
             }
         }
     }.start()
-}
-
-fun Activity.sharePathIntent(path: String, applicationId: String) {
-    Thread {
-        val newUri = getFinalUriFromPath(path, applicationId) ?: return@Thread
-        Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_STREAM, newUri)
-            type = getUriMimeType(path, newUri)
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-            try {
-                if (resolveActivity(packageManager) != null) {
-                    startActivity(Intent.createChooser(this, getString(R.string.share_via)))
-                } else {
-                    toast(R.string.no_app_found)
-                }
-            } catch (e: RuntimeException) {
-                if (e.cause is TransactionTooLargeException) {
-                    toast(R.string.maximum_share_reached)
-                } else {
-                    showErrorToast(e)
-                }
-            }
-        }
-    }.start()
-}
-
-fun Activity.sharePathsIntent(paths: ArrayList<String>, applicationId: String) {
-    Thread {
-        if (paths.size == 1) {
-            sharePathIntent(paths.first(), applicationId)
-        } else {
-            val uriPaths = ArrayList<String>()
-            val newUris = paths.map {
-                val uri = getFinalUriFromPath(it, applicationId) ?: return@Thread
-                uriPaths.add(uri.path)
-                uri
-            } as ArrayList<Uri>
-
-            var mimeType = uriPaths.getMimeType()
-            if (mimeType.isEmpty() || mimeType == "*/*") {
-                mimeType = paths.getMimeType()
-            }
-
-            Intent().apply {
-                action = Intent.ACTION_SEND_MULTIPLE
-                type = mimeType
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                putParcelableArrayListExtra(Intent.EXTRA_STREAM, newUris)
-
-                try {
-                    if (resolveActivity(packageManager) != null) {
-                        startActivity(Intent.createChooser(this, getString(R.string.share_via)))
-                    } else {
-                        toast(R.string.no_app_found)
-                    }
-                } catch (e: RuntimeException) {
-                    if (e.cause is TransactionTooLargeException) {
-                        toast(R.string.maximum_share_reached)
-                    } else {
-                        showErrorToast(e)
-                    }
-                }
-            }
-        }
-    }.start()
-}
-
-fun Activity.setAsIntent(path: String, applicationId: String) {
-    Thread {
-        val newUri = getFinalUriFromPath(path, applicationId) ?: return@Thread
-        Intent().apply {
-            action = Intent.ACTION_ATTACH_DATA
-            setDataAndType(newUri, getUriMimeType(path, newUri))
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            val chooser = Intent.createChooser(this, getString(R.string.set_as))
-
-            if (resolveActivity(packageManager) != null) {
-                startActivityForResult(chooser, REQUEST_SET_AS)
-            } else {
-                toast(R.string.no_app_found)
-            }
-        }
-    }.start()
-}
-
-fun Activity.openEditorIntent(path: String, applicationId: String) {
-    Thread {
-        val newUri = getFinalUriFromPath(path, applicationId) ?: return@Thread
-        Intent().apply {
-            action = Intent.ACTION_EDIT
-            setDataAndType(newUri, getUriMimeType(path, newUri))
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            putExtra(MediaStore.EXTRA_OUTPUT, newUri)
-            putExtra(REAL_FILE_PATH, path)
-
-            if (resolveActivity(packageManager) != null) {
-                startActivityForResult(this, REQUEST_EDIT_IMAGE)
-            } else {
-                toast(R.string.no_app_found)
-            }
-        }
-    }.start()
-}
-
-fun Activity.openPathIntent(path: String, forceChooser: Boolean, applicationId: String) {
-    Thread {
-        val newUri = getFinalUriFromPath(path, applicationId) ?: return@Thread
-        val mimeType = getUriMimeType(path, newUri)
-        Intent().apply {
-            action = Intent.ACTION_VIEW
-            setDataAndType(newUri, mimeType)
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-            if (applicationId == "com.simplemobiletools.gallery" || applicationId == "com.simplemobiletools.gallery.debug") {
-                putExtra(IS_FROM_GALLERY, true)
-            }
-
-            putExtra(REAL_FILE_PATH, path)
-
-            if (resolveActivity(packageManager) != null) {
-                val chooser = Intent.createChooser(this, getString(R.string.open_with))
-                startActivity(if (forceChooser) chooser else this)
-            } else {
-                if (!tryGenericMimeType(this, mimeType, newUri)) {
-                    toast(R.string.no_app_found)
-                }
-            }
-        }
-    }.start()
-}
-
-fun Activity.getFinalUriFromPath(path: String, applicationId: String): Uri? {
-    val uri = try {
-        ensurePublicUri(path, applicationId)
-    } catch (e: Exception) {
-        showErrorToast(e)
-        return null
-    }
-
-    if (uri == null) {
-        toast(R.string.unknown_error_occurred)
-        return null
-    }
-
-    return uri
 }
 
 fun Activity.tryGenericMimeType(intent: Intent, mimeType: String, uri: Uri): Boolean {
@@ -307,152 +112,6 @@ fun BaseSimpleActivity.checkWhatsNew(releases: List<Release>, currVersion: Int) 
     baseConfig.lastVersion = currVersion
 }
 
-fun BaseSimpleActivity.deleteFolders(folders: ArrayList<FileDirItem>, deleteMediaOnly: Boolean = true, callback: ((wasSuccess: Boolean) -> Unit)? = null) {
-    if (Looper.myLooper() == Looper.getMainLooper()) {
-        Thread {
-            deleteFoldersBg(folders, deleteMediaOnly, callback)
-        }.start()
-    } else {
-        deleteFoldersBg(folders, deleteMediaOnly, callback)
-    }
-}
-
-fun BaseSimpleActivity.deleteFoldersBg(folders: ArrayList<FileDirItem>, deleteMediaOnly: Boolean = true, callback: ((wasSuccess: Boolean) -> Unit)? = null) {
-    var wasSuccess = false
-    var needPermissionForPath = ""
-    for (folder in folders) {
-        if (needsStupidWritePermissions(folder.path) && baseConfig.treeUri.isEmpty()) {
-            needPermissionForPath = folder.path
-            break
-        }
-    }
-
-    handleSAFDialog(needPermissionForPath) {
-        folders.forEachIndexed { index, folder ->
-            deleteFolderBg(folder, deleteMediaOnly) {
-                if (it)
-                    wasSuccess = true
-
-                if (index == folders.size - 1) {
-                    runOnUiThread {
-                        callback?.invoke(wasSuccess)
-                    }
-                }
-            }
-        }
-    }
-}
-
-fun BaseSimpleActivity.deleteFolder(folder: FileDirItem, deleteMediaOnly: Boolean = true, callback: ((wasSuccess: Boolean) -> Unit)? = null) {
-    if (Looper.myLooper() == Looper.getMainLooper()) {
-        Thread {
-            deleteFolderBg(folder, deleteMediaOnly, callback)
-        }.start()
-    } else {
-        deleteFolderBg(folder, deleteMediaOnly, callback)
-    }
-}
-
-fun BaseSimpleActivity.deleteFolderBg(fileDirItem: FileDirItem, deleteMediaOnly: Boolean = true, callback: ((wasSuccess: Boolean) -> Unit)? = null) {
-    val folder = File(fileDirItem.path)
-    if (folder.exists()) {
-        val filesArr = folder.listFiles()
-        if (filesArr == null) {
-            runOnUiThread {
-                callback?.invoke(true)
-            }
-            return
-        }
-
-        val filesList = (filesArr as Array).toList()
-        val files = filesList.filter { !deleteMediaOnly || it.isImageVideoGif() }
-        for (file in files) {
-            deleteFileBg(file.toFileDirItem(applicationContext), false) { }
-        }
-
-        if (folder.listFiles()?.isEmpty() == true) {
-            deleteFileBg(fileDirItem, true) { }
-        }
-    }
-    runOnUiThread {
-        callback?.invoke(true)
-    }
-}
-
-fun BaseSimpleActivity.deleteFiles(files: ArrayList<FileDirItem>, allowDeleteFolder: Boolean = false, callback: ((wasSuccess: Boolean) -> Unit)? = null) {
-    if (Looper.myLooper() == Looper.getMainLooper()) {
-        Thread {
-            deleteFilesBg(files, allowDeleteFolder, callback)
-        }.start()
-    } else {
-        deleteFilesBg(files, allowDeleteFolder, callback)
-    }
-}
-
-fun BaseSimpleActivity.deleteFilesBg(files: ArrayList<FileDirItem>, allowDeleteFolder: Boolean = false, callback: ((wasSuccess: Boolean) -> Unit)? = null) {
-    if (files.isEmpty()) {
-        runOnUiThread {
-            callback?.invoke(true)
-        }
-        return
-    }
-
-    var wasSuccess = false
-    handleSAFDialog(files[0].path) {
-        files.forEachIndexed { index, file ->
-            deleteFileBg(file, allowDeleteFolder) {
-                if (it) {
-                    wasSuccess = true
-                }
-
-                if (index == files.size - 1) {
-                    runOnUiThread {
-                        callback?.invoke(wasSuccess)
-                    }
-                }
-            }
-        }
-    }
-}
-
-fun BaseSimpleActivity.deleteFile(fileDirItem: FileDirItem, allowDeleteFolder: Boolean = false, callback: ((wasSuccess: Boolean) -> Unit)? = null) {
-    if (Looper.myLooper() == Looper.getMainLooper()) {
-        Thread {
-            deleteFileBg(fileDirItem, allowDeleteFolder, callback)
-        }.start()
-    } else {
-        deleteFileBg(fileDirItem, allowDeleteFolder, callback)
-    }
-}
-
-@SuppressLint("NewApi")
-fun BaseSimpleActivity.deleteFileBg(fileDirItem: FileDirItem, allowDeleteFolder: Boolean = false, callback: ((wasSuccess: Boolean) -> Unit)? = null) {
-    val path = fileDirItem.path
-    val file = File(path)
-    var fileDeleted = !path.startsWith(OTG_PATH) && ((!file.exists() && file.length() == 0L) || file.delete())
-    if (fileDeleted) {
-        rescanDeletedPath(path) {
-            runOnUiThread {
-                callback?.invoke(true)
-            }
-        }
-    } else {
-        if (file.isDirectory && allowDeleteFolder) {
-            fileDeleted = deleteRecursively(file)
-        }
-
-        if (!fileDeleted) {
-            if (isPathOnSD(path)) {
-                handleSAFDialog(path) {
-                    trySAFFileDelete(fileDirItem, allowDeleteFolder, callback)
-                }
-            } else if (path.startsWith(OTG_PATH)) {
-                trySAFFileDelete(fileDirItem, allowDeleteFolder, callback)
-            }
-        }
-    }
-}
-
 private fun deleteRecursively(file: File): Boolean {
     if (file.isDirectory) {
         val files = file.listFiles() ?: return file.delete()
@@ -462,88 +121,6 @@ private fun deleteRecursively(file: File): Boolean {
     }
 
     return file.delete()
-}
-
-fun Activity.scanFile(file: File, callback: (() -> Unit)? = null) {
-    applicationContext.scanFile(file, callback)
-}
-
-fun Activity.scanPath(path: String, callback: (() -> Unit)? = null) {
-    applicationContext.scanPath(path, callback)
-}
-
-fun Activity.scanFiles(files: ArrayList<File>, callback: (() -> Unit)? = null) {
-    applicationContext.scanFiles(files, callback)
-}
-
-fun Activity.scanPaths(paths: ArrayList<String>, callback: (() -> Unit)? = null) {
-    applicationContext.scanPaths(paths, callback)
-}
-
-fun Activity.rescanPaths(paths: ArrayList<String>, callback: (() -> Unit)? = null) {
-    applicationContext.rescanPaths(paths, callback)
-}
-
-@SuppressLint("NewApi")
-fun BaseSimpleActivity.renameFile(oldPath: String, newPath: String, callback: ((success: Boolean) -> Unit)? = null) {
-    if (needsStupidWritePermissions(newPath)) {
-        handleSAFDialog(newPath) {
-            val document = getDocumentFile(oldPath)
-            if (document == null || (File(oldPath).isDirectory != document.isDirectory)) {
-                runOnUiThread {
-                    callback?.invoke(false)
-                }
-                return@handleSAFDialog
-            }
-
-            try {
-                val uri = DocumentsContract.renameDocument(applicationContext.contentResolver, document.uri, newPath.getFilenameFromPath())
-                if (document.uri != uri) {
-                    updateInMediaStore(oldPath, newPath)
-                    scanPaths(arrayListOf(oldPath, newPath)) {
-                        if (!baseConfig.keepLastModified) {
-                            updateLastModified(newPath, System.currentTimeMillis())
-                        }
-                        runOnUiThread {
-                            callback?.invoke(true)
-                        }
-                    }
-                } else {
-                    runOnUiThread {
-                        callback?.invoke(false)
-                    }
-                }
-            } catch (e: SecurityException) {
-                showErrorToast(e)
-                runOnUiThread {
-                    callback?.invoke(false)
-                }
-            }
-        }
-    } else if (File(oldPath).renameTo(File(newPath))) {
-        if (File(newPath).isDirectory) {
-            deleteFromMediaStore(oldPath)
-            scanPath(newPath) {
-                runOnUiThread {
-                    callback?.invoke(true)
-                }
-            }
-        } else {
-            if (!baseConfig.keepLastModified) {
-                File(newPath).setLastModified(System.currentTimeMillis())
-            }
-            updateInMediaStore(oldPath, newPath)
-            scanPaths(arrayListOf(oldPath, newPath)) {
-                runOnUiThread {
-                    callback?.invoke(true)
-                }
-            }
-        }
-    } else {
-        runOnUiThread {
-            callback?.invoke(false)
-        }
-    }
 }
 
 fun Activity.hideKeyboard() {
@@ -561,115 +138,6 @@ fun Activity.showKeyboard(et: EditText) {
 fun Activity.hideKeyboard(view: View) {
     val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-}
-
-fun BaseSimpleActivity.getFileOutputStream(fileDirItem: FileDirItem, allowCreatingNewFile: Boolean = false, callback: (outputStream: OutputStream?) -> Unit) {
-    if (needsStupidWritePermissions(fileDirItem.path)) {
-        handleSAFDialog(fileDirItem.path) {
-            var document = getDocumentFile(fileDirItem.path)
-            if (document == null && allowCreatingNewFile) {
-                document = getDocumentFile(fileDirItem.getParentPath())
-            }
-
-            if (document == null) {
-                val error = String.format(getString(R.string.could_not_create_file), fileDirItem.path)
-                showErrorToast(error)
-                callback(null)
-                return@handleSAFDialog
-            }
-
-            if (!File(fileDirItem.path).exists()) {
-                document = document.createFile("", fileDirItem.name)
-            }
-
-            if (document?.exists() == true) {
-                try {
-                    callback(applicationContext.contentResolver.openOutputStream(document.uri))
-                } catch (e: FileNotFoundException) {
-                    showErrorToast(e)
-                    callback(null)
-                }
-            } else {
-                val error = String.format(getString(R.string.could_not_create_file), fileDirItem.path)
-                showErrorToast(error)
-                callback(null)
-            }
-        }
-    } else {
-        val file = File(fileDirItem.path)
-        if (!file.parentFile.exists()) {
-            file.parentFile.mkdirs()
-        }
-
-        try {
-            callback(FileOutputStream(file))
-        } catch (e: Exception) {
-            callback(null)
-        }
-    }
-}
-
-fun BaseSimpleActivity.getFileOutputStreamSync(path: String, mimeType: String, parentDocumentFile: DocumentFile? = null): OutputStream? {
-    val targetFile = File(path)
-
-    return if (needsStupidWritePermissions(path)) {
-        val documentFile = parentDocumentFile ?: getDocumentFile(path.getParentPath())
-        if (documentFile == null) {
-            val error = String.format(getString(R.string.could_not_create_file), targetFile.parent)
-            showErrorToast(error)
-            return null
-        }
-
-        val newDocument = documentFile.createFile(mimeType, path.getFilenameFromPath())
-        applicationContext.contentResolver.openOutputStream(newDocument!!.uri)
-    } else {
-        FileOutputStream(targetFile)
-    }
-}
-
-fun BaseSimpleActivity.getFileInputStreamSync(path: String): InputStream? {
-    return if (path.startsWith(OTG_PATH)) {
-        val fileDocument = getSomeDocumentFile(path)
-        applicationContext.contentResolver.openInputStream(fileDocument?.uri)
-    } else {
-        FileInputStream(File(path))
-    }
-}
-
-fun Activity.handleHiddenFolderPasswordProtection(callback: () -> Unit) {
-    if (baseConfig.isPasswordProtectionOn) {
-        SecurityDialog(this, baseConfig.passwordHash, baseConfig.protectionType) { hash, type, success ->
-            if (success) {
-                callback()
-            }
-        }
-    } else {
-        callback()
-    }
-}
-
-fun Activity.handleAppPasswordProtection(callback: (success: Boolean) -> Unit) {
-    if (baseConfig.appPasswordProtectionOn) {
-        SecurityDialog(this, baseConfig.appPasswordHash, baseConfig.appProtectionType) { hash, type, success ->
-            callback(success)
-        }
-    } else {
-        callback(true)
-    }
-}
-
-fun BaseSimpleActivity.createDirectorySync(directory: String): Boolean {
-    if (getDoesFilePathExist(directory)) {
-        return true
-    }
-
-    if (needsStupidWritePermissions(directory)) {
-        val documentFile = getDocumentFile(directory.getParentPath()) ?: return false
-        val newDir = documentFile.createDirectory(directory.getFilenameFromPath())
-        return newDir != null
-    }
-
-    return File(directory).mkdirs()
 }
 
 fun BaseSimpleActivity.useEnglishToggled() {

@@ -5,8 +5,8 @@ import android.content.res.ColorStateList
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.widget.SwitchCompat
 import android.util.AttributeSet
-import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.extensions.adjustAlpha
+import io.github.aafactory.commons.R
 
 class MySwitchCompat : SwitchCompat {
     constructor(context: Context) : super(context)

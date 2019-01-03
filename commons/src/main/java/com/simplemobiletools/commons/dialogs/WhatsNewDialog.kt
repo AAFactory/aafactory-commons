@@ -3,9 +3,9 @@ package com.simplemobiletools.commons.dialogs
 import android.app.Activity
 import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
-import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 import com.simplemobiletools.commons.models.Release
+import io.github.aafactory.commons.R
 import kotlinx.android.synthetic.main.dialog_whats_new.view.*
 
 class WhatsNewDialog(val activity: Activity, val releases: List<Release>) {

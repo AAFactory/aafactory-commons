@@ -16,12 +16,12 @@ import android.text.Html
 import android.view.MenuItem
 import android.view.WindowManager
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.*
+import com.simplemobiletools.commons.helpers.OPEN_DOCUMENT_TREE
+import com.simplemobiletools.commons.helpers.OPEN_DOCUMENT_TREE_OTG
+import com.simplemobiletools.commons.helpers.isKitkatPlus
+import com.simplemobiletools.commons.helpers.isLollipopPlus
 import com.simplemobiletools.commons.interfaces.CopyMoveListener
-import com.simplemobiletools.commons.models.FileDirItem
 import io.github.aafactory.commons.R
-import java.io.File
-import java.util.*
 
 open class BaseSimpleActivity : AppCompatActivity() {
     var copyMoveCallback: ((destinationPath: String) -> Unit)? = null
@@ -40,16 +40,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
         if (useDynamicTheme) {
             setTheme(getThemeId())
         }
-
         super.onCreate(savedInstanceState)
-        if (!packageName.startsWith("com.simplemobiletools.", true)) {
-            if ((0..50).random() == 10 || baseConfig.appRunCount % 100 == 0) {
-                val label = "You are using a fake version of the app. For your own safety download the original one from www.simplemobiletools.com. Thanks"
-                ConfirmationDialog(this, label, positive = R.string.ok, negative = 0) {
-                    launchViewIntent("https://play.google.com/store/apps/dev?id=9070296388022589266")
-                }
-            }
-        }
     }
 
     override fun onResume() {
@@ -161,113 +152,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
 
     private fun isExternalStorageDocument(uri: Uri) = "com.android.externalstorage.documents" == uri.authority
 
-//    fun startAboutActivity(appNameId: Int, licenseMask: Int, versionName: String, faqItems: ArrayList<FAQItem> = arrayListOf()) {
-//        Intent(applicationContext, AboutActivity::class.java).apply {
-//            putExtra(APP_NAME, getString(appNameId))
-//            putExtra(APP_LICENSES, licenseMask)
-//            putExtra(APP_VERSION_NAME, versionName)
-//            putExtra(APP_FAQ, faqItems)
-//            startActivity(this)
-//        }
-//    }
-
-    fun startCustomizationActivity() = startActivity(Intent(this, CustomizationActivity::class.java))
-
-    fun handleSAFDialog(path: String, callback: () -> Unit): Boolean {
-        return if (!path.startsWith(OTG_PATH) && isShowingSAFDialog(path, baseConfig.treeUri, OPEN_DOCUMENT_TREE)) {
-            funAfterSAFPermission = callback
-            true
-        } else {
-            callback()
-            false
-        }
-    }
-
-    fun copyMoveFilesTo(fileDirItems: ArrayList<FileDirItem>, source: String, destination: String, isCopyOperation: Boolean, copyPhotoVideoOnly: Boolean,
-                        copyHidden: Boolean, callback: (destinationPath: String) -> Unit) {
-        if (source == destination) {
-            toast(R.string.source_and_destination_same)
-            return
-        }
-
-        if (!getDoesFilePathExist(destination)) {
-            toast(R.string.invalid_destination)
-            return
-        }
-
-        handleSAFDialog(destination) {
-            copyMoveCallback = callback
-            if (isCopyOperation) {
-                startCopyMove(fileDirItems, destination, isCopyOperation, copyPhotoVideoOnly, copyHidden)
-            } else {
-                if (source.startsWith(OTG_PATH) || destination.startsWith(OTG_PATH) || isPathOnSD(source) || isPathOnSD(destination) || fileDirItems.first().isDirectory || isNougatPlus()) {
-                    handleSAFDialog(source) {
-                        startCopyMove(fileDirItems, destination, isCopyOperation, copyPhotoVideoOnly, copyHidden)
-                    }
-                } else {
-                    toast(R.string.moving)
-                    val updatedFiles = ArrayList<FileDirItem>(fileDirItems.size * 2)
-                    updatedFiles.addAll(fileDirItems)
-                    try {
-                        val destinationFolder = File(destination)
-                        for (oldFileDirItem in fileDirItems) {
-                            val newFile = File(destinationFolder, oldFileDirItem.name)
-                            if (!newFile.exists() && File(oldFileDirItem.path).renameTo(newFile)) {
-                                if (!baseConfig.keepLastModified) {
-                                    newFile.setLastModified(System.currentTimeMillis())
-                                }
-                                updateInMediaStore(oldFileDirItem.path, newFile.absolutePath)
-                                updatedFiles.add(newFile.toFileDirItem(applicationContext))
-                            }
-                        }
-
-                        val updatedPaths = updatedFiles.map { it.path } as ArrayList<String>
-                        scanPaths(updatedPaths) {
-                            runOnUiThread {
-                                copyMoveListener.copySucceeded(false, fileDirItems.size * 2 == updatedFiles.size, destination)
-                            }
-                        }
-                    } catch (e: Exception) {
-                        showErrorToast(e)
-                    }
-                }
-            }
-        }
-    }
-
-//    private fun startCopyMove(files: ArrayList<FileDirItem>, destinationPath: String, isCopyOperation: Boolean, copyPhotoVideoOnly: Boolean, copyHidden: Boolean) {
-//        checkConflicts(files, destinationPath, 0, LinkedHashMap()) {
-//            toast(if (isCopyOperation) R.string.copying else R.string.moving)
-//            val pair = Pair(files, destinationPath)
-//            CopyMoveTask(this, isCopyOperation, copyPhotoVideoOnly, it, copyMoveListener, copyHidden).execute(pair)
-//        }
-//    }
-
-    fun checkConflicts(files: ArrayList<FileDirItem>, destinationPath: String, index: Int, conflictResolutions: LinkedHashMap<String, Int>,
-                       callback: (resolutions: LinkedHashMap<String, Int>) -> Unit) {
-        if (index == files.size) {
-            callback(conflictResolutions)
-            return
-        }
-
-        val file = files[index]
-        val newFileDirItem = FileDirItem("$destinationPath/${file.name}", file.name, file.isDirectory)
-        if (getDoesFilePathExist(newFileDirItem.path)) {
-            FileConflictDialog(this, newFileDirItem) { resolution, applyForAll ->
-                if (applyForAll) {
-                    conflictResolutions.clear()
-                    conflictResolutions[""] = resolution
-                    checkConflicts(files, destinationPath, files.size, conflictResolutions, callback)
-                } else {
-                    conflictResolutions[newFileDirItem.path] = resolution
-                    checkConflicts(files, destinationPath, index + 1, conflictResolutions, callback)
-                }
-            }
-        } else {
-            checkConflicts(files, destinationPath, index + 1, conflictResolutions, callback)
-        }
-    }
-
     fun handlePermission(permissionId: Int, callback: (granted: Boolean) -> Unit) {
         actionOnPermission = null
         if (hasPermission(permissionId)) {
@@ -301,28 +185,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
         override fun copyFailed() {
             toast(R.string.copy_move_failed)
             copyMoveCallback = null
-        }
-    }
-
-    fun handleOTGPermission(callback: (success: Boolean) -> Unit) {
-        if (baseConfig.OTGTreeUri.isNotEmpty()) {
-            callback(true)
-            return
-        }
-
-        funAfterOTGPermission = callback
-        WritePermissionDialog(this, true) {
-            Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).apply {
-                if (resolveActivity(packageManager) == null) {
-                    type = "*/*"
-                }
-
-                if (resolveActivity(packageManager) != null) {
-                    startActivityForResult(this, OPEN_DOCUMENT_TREE_OTG)
-                } else {
-                    toast(R.string.unknown_error_occurred)
-                }
-            }
         }
     }
 }

@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
-import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.interfaces.RecyclerScrollCallback
+import io.github.aafactory.commons.R
 
 // drag selection is based on https://github.com/afollestad/drag-select-recyclerview
 open class MyRecyclerView : RecyclerView {
