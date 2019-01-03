@@ -1,4 +1,4 @@
-apply from: '../dependencies.gradle'
+//apply from: '../dependencies.gradle'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -52,7 +52,6 @@ dependencies {
     implementation "commons-io:commons-io:2.6"
     implementation "org.apache.commons:commons-lang3:3.7"
     
-    implementation 'com.simplemobiletools:commons:3.7.8'
     implementation 'id.zelory:compressor:2.1.0'
 
     // test
@@ -63,4 +62,4 @@ dependencies {
 
     // Resolve conflicts between main and test APK:
 }
-apply from: '../bintray-upload.gradle'
+//apply from: '../bintray-upload.gradle'
