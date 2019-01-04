@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--SimpleMobileTools Simple-Commons v3.16.14-->
-    <!--https://github.com/SimpleMobileTools/Simple-Commons-->
+    <!--/////////////////////////////////////////////////////////////////////////////////-->
+    <!--/// SimpleMobileTools Simple-Commons v3.16.14          //////////////////////////-->
+    <!--/// https://github.com/SimpleMobileTools/Simple-Commos //////////////////////////-->
+    <!--/////////////////////////////////////////////////////////////////////////////////-->
     <array name="md_primary_colors">
         <item>@color/md_red</item>
         <item>@color/md_pink</item>

@@ -11,8 +11,10 @@
     <dimen name="spacing_double">16dp</dimen>
     <dimen name="spacing_treble">24dp</dimen>
 
-    <!--SimpleMobileTools Simple-Commons v3.16.14-->
-    <!--https://github.com/SimpleMobileTools/Simple-Commons-->
+    <!--/////////////////////////////////////////////////////////////////////////////////-->
+    <!--/// SimpleMobileTools Simple-Commons v3.16.14          //////////////////////////-->
+    <!--/// https://github.com/SimpleMobileTools/Simple-Commos //////////////////////////-->
+    <!--/////////////////////////////////////////////////////////////////////////////////-->
     <dimen name="tiny_margin">2dp</dimen>
     <dimen name="small_margin">4dp</dimen>
     <dimen name="medium_margin">8dp</dimen>

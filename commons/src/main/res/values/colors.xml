@@ -6,8 +6,10 @@
     <color name="colorAccent">@color/colorPrimary</color>
     <color name="white">#FFFFFF</color>
 
-    <!--SimpleMobileTools Simple-Commons v3.16.14-->
-    <!--https://github.com/SimpleMobileTools/Simple-Commons-->
+    <!--/////////////////////////////////////////////////////////////////////////////////-->
+    <!--/// SimpleMobileTools Simple-Commons v3.16.14          //////////////////////////-->
+    <!--/// https://github.com/SimpleMobileTools/Simple-Commos //////////////////////////-->
+    <!--/////////////////////////////////////////////////////////////////////////////////-->
     <color name="color_primary_dark">@color/colorPrimaryDark</color>
     <color name="color_primary">@color/colorPrimary</color>
     <color name="color_accent">@color/colorAccent</color>

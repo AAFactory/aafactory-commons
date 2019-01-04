@@ -1,6 +1,8 @@
 <resources>
-    <!--SimpleMobileTools Simple-Commons v3.16.14-->
-    <!--https://github.com/SimpleMobileTools/Simple-Commons-->
+    <!--/////////////////////////////////////////////////////////////////////////////////-->
+    <!--/// SimpleMobileTools Simple-Commons v3.16.14          //////////////////////////-->
+    <!--/// https://github.com/SimpleMobileTools/Simple-Commos //////////////////////////-->
+    <!--/////////////////////////////////////////////////////////////////////////////////-->
     <string name="simple_commons">Simple Commons</string>
     <string name="progress">%1$s / %2$s</string>
     <string name="donate_url">https://simplemobiletools.com/donate</string>
