@@ -1,2 +1,1 @@
-include ':app', ':commons', ':PhotoPicker', ':pickphotoview'
-project(':PhotoPicker').projectDir = new File(settingsDir, "../PhotoPicker/PhotoPicker")
+include ':commons-foss'
