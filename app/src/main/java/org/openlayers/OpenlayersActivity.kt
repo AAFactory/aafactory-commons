@@ -36,10 +36,6 @@ class OpenlayersActivity : BaseSimpleActivity() {
         }
         
         finish.setOnClickListener { finish() }
-        btn1.setOnClickListener {
-            webView.loadUrl("javascript:toggleRoadLabel();")
-        }
-
         accessFineLocationWithPermissionCheck()
     }
 
@@ -51,6 +47,7 @@ class OpenlayersActivity : BaseSimpleActivity() {
 
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
     fun accessFineLocation() {
+//        webView.loadUrl("http://172.30.1.24:9000/examples/main.html")
         webView.loadUrl("file:///android_asset/examples/main.html")
         webView.showSnackBar("accessFineLocation", Snackbar.LENGTH_SHORT)
     }
