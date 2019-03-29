@@ -28,14 +28,17 @@ class OpenlayersActivity : BaseSimpleActivity() {
         webSettings.allowFileAccess = true
         webSettings.allowFileAccessFromFileURLs = true
         webSettings.allowUniversalAccessFromFileURLs = true
-        
+
         webView.webChromeClient = object: WebChromeClient() {
             override fun onGeolocationPermissionsShowPrompt(origin: String, callback: GeolocationPermissions.Callback) {
                 callback.invoke(origin, true, false)
             }
         }
-        
+
         finish.setOnClickListener { finish() }
+        btn1.setOnClickListener {
+            webView.loadUrl("javascript:toggleRoadLabel();")
+        }
         accessFineLocationWithPermissionCheck()
     }
 
