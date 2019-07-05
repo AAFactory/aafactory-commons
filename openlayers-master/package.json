@@ -58,7 +58,7 @@
     "fs-extra": "^6.0.0",
     "glob": "^7.1.2",
     "google-closure-compiler": "20180610.0.2",
-    "handlebars": "4.0.14",
+    "handlebars": ">=4.1.0",
     "istanbul": "0.4.5",
     "jquery": ">=3.4.0",
     "jsdoc": "3.5.5",
