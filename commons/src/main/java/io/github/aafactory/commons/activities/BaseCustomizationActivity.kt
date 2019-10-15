@@ -281,6 +281,7 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
         customization_text_color.setBackgroundWithStroke(curTextColor, curBackgroundColor)
         customization_primary_color.setBackgroundWithStroke(curPrimaryColor, curBackgroundColor)
         customization_background_color.setBackgroundWithStroke(curBackgroundColor, curBackgroundColor)
+        customization_background_color2.setBackgroundWithStroke(curBackgroundColor, curBackgroundColor)
     }
 
     private fun hasColorChanged(old: Int, new: Int) = Math.abs(old - new) > 1

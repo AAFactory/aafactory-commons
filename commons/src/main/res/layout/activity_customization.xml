@@ -22,7 +22,7 @@
         android:padding="@dimen/card_layout_padding"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             xmlns:android="http://schemas.android.com/apk/res/android"
             style="@style/AppCard.Customization">
             <ScrollView
@@ -114,8 +114,36 @@
                             android:layout_marginRight="@dimen/medium_margin"
                             android:clickable="false"/>
                     </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/customization_background_color_holder2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/customization_primary_color_holder"
+                        android:layout_marginTop="@dimen/medium_margin"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="@dimen/activity_margin">
+                        <com.simplemobiletools.commons.views.MyTextView
+                            android:id="@+id/customization_background_color_label2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="@dimen/medium_margin"
+                            android:paddingRight="@dimen/medium_margin"
+                            android:text="Background Color"/>
+
+                        <ImageView
+                            android:id="@+id/customization_background_color2"
+                            android:layout_width="@dimen/color_sample_size"
+                            android:layout_height="@dimen/color_sample_size"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginEnd="@dimen/medium_margin"
+                            android:layout_marginRight="@dimen/medium_margin"
+                            android:clickable="false"/>
+                    </RelativeLayout>
                 </RelativeLayout>
             </ScrollView>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 </LinearLayout>
