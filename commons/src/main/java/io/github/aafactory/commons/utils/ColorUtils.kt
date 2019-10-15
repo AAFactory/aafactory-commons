@@ -1,7 +1,7 @@
 package io.github.aafactory.commons.utils
 
 import android.graphics.Color
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 
 /**
  * Created by CHO HANJOONG on 2018-05-20.

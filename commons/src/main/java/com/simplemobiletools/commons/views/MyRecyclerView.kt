@@ -2,10 +2,10 @@ package com.simplemobiletools.commons.views
 
 import android.content.Context
 import android.os.Handler
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
+import androidx.recyclerview.widget.RecyclerView
 import com.simplemobiletools.commons.interfaces.RecyclerScrollCallback
 import io.github.aafactory.commons.R
 

@@ -13,12 +13,12 @@ import android.provider.BaseColumns
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.OpenableColumns
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.CursorLoader
-import android.support.v4.content.FileProvider
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
+import androidx.loader.content.CursorLoader
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.helpers.MyContentProvider.Companion.COL_BACKGROUND_COLOR
 import com.simplemobiletools.commons.helpers.MyContentProvider.Companion.COL_LAST_UPDATED_TS

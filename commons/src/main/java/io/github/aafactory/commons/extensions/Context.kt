@@ -7,10 +7,10 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Build
 import android.os.Looper
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.CardView
 import android.util.TypedValue
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import io.github.aafactory.commons.views.ModalView
 import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_COARSE_LOCATION
 import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_FINE_LOCATION

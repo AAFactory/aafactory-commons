@@ -2,9 +2,9 @@ package com.simplemobiletools.commons.views
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v7.widget.SwitchCompat
 import android.util.AttributeSet
+import androidx.appcompat.widget.SwitchCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.simplemobiletools.commons.extensions.adjustAlpha
 import io.github.aafactory.commons.R
 

@@ -8,8 +8,8 @@ import android.graphics.Canvas
 import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
-import android.support.v4.content.ContextCompat
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import io.github.aafactory.commons.extensions.dpToPixel
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.IOUtils

@@ -4,11 +4,11 @@ import android.app.ActivityManager
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.graphics.ColorUtils
-import android.support.v7.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.ViewGroup
+import androidx.core.graphics.ColorUtils
 import io.github.aafactory.commons.extensions.*
 
 /**

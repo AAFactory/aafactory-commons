@@ -1,6 +1,6 @@
 package io.github.aafactory.commons.dialogs
 
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.view.View
 import android.view.WindowManager
 import io.github.aafactory.commons.activities.BaseSimpleActivity

@@ -3,10 +3,10 @@ package io.github.aafactory.commons.utils
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.location.Location
-import android.support.design.widget.Snackbar
 import android.view.View
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
 import io.github.aafactory.commons.extensions.showSnackBar
 
 /**
