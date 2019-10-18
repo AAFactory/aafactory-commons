@@ -1,4 +1,4 @@
-//apply from: '../dependencies.gradle'
+apply from: '../dependencies.gradle'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -63,4 +63,4 @@ dependencies {
 
     // Resolve conflicts between main and test APK:
 }
-//apply from: '../bintray-upload.gradle'
+apply from: '../bintray-upload.gradle'

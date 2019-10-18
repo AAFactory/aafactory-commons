@@ -2,8 +2,8 @@ ext.versions = [
 //    minSdk            : 16,
     compileSdk        : 28,
     buildTools        : '28.0.2',
-    publishVersion    : '0.9.7',
-    publishVersionCode: 17,
+    publishVersion    : '0.9.8',
+    publishVersionCode: 18,
 
     gradlePlugin      : '3.3.2',
 //    spotlessPlugin    : '3.14.0',
@@ -11,7 +11,7 @@ ext.versions = [
 //    bintrayPlugin     : '0.8.1',
 
 // App dependencies
-    kotlin: '1.3.0',
+    kotlin: '1.3.41',
     supportLib: '28.0.0',
     roomVersion: '1.1.1',
     junitVersion: '4.12',
