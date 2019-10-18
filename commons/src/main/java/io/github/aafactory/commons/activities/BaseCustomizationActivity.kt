@@ -178,7 +178,7 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
         customization_text_color.setBackgroundWithStroke(curTextColor, curBackgroundColor)
         customization_primary_color.setBackgroundWithStroke(curPrimaryColor, curBackgroundColor)
         customization_background_color.setBackgroundWithStroke(curBackgroundColor, curBackgroundColor)
-        if (baseConfig.screenBackgroundColor == -1) {
+        if (curScreenBackgroundColor == -1) {
             customization_screen_background_color.setBackgroundWithStroke(ColorUtils.setAlphaComponent(baseConfig.primaryColor, getBackgroundAlpha()), curBackgroundColor)
         } else {
             customization_screen_background_color.setBackgroundWithStroke(curScreenBackgroundColor, curBackgroundColor)
