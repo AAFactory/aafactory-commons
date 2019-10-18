@@ -197,4 +197,8 @@ open class BaseConfig(val context: Context) {
     var vibrateOnButtonPress: Boolean
         get() = prefs.getBoolean(VIBRATE_ON_BUTTON_PRESS, false)
         set(vibrateOnButton) = prefs.edit().putBoolean(VIBRATE_ON_BUTTON_PRESS, vibrateOnButton).apply()
+
+    var screenBackgroundColor: Int
+        get() = prefs.getInt(SETTING_CARD_VIEW_BACKGROUND_COLOR, -1)
+        set(screenBackgroundColor) = prefs.edit().putInt(SETTING_CARD_VIEW_BACKGROUND_COLOR, screenBackgroundColor).apply()
 }

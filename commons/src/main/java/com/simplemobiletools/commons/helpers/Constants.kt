@@ -73,6 +73,7 @@ const val WAS_REMINDER_WARNING_SHOWN = "was_reminder_warning_shown"
 const val USE_SAME_SNOOZE = "use_same_snooze"
 const val SNOOZE_TIME = "snooze_delay"
 const val VIBRATE_ON_BUTTON_PRESS = "vibrate_on_button_press"
+const val SETTING_CARD_VIEW_BACKGROUND_COLOR = "setting_card_view_background_color"
 
 // licenses
 internal const val LICENSE_KOTLIN = 1

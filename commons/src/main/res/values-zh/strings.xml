@@ -4,6 +4,7 @@
     <string name="invite_friends">分享给好友</string>
     <string name="invite_friends_summary">与朋友分享%s应用程序。</string>
     <string name="background_color">背景色(Card View)</string>
+    <string name="screen_background_color">화면 배경 색상</string>
     
     <!--AboutActivity-->
     <string name="aaf_my_website">\nhttps://hanjoongcho.github.io/aaf/</string>

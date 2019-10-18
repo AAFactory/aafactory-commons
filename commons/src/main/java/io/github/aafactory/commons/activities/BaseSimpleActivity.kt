@@ -22,7 +22,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
     var actionOnPermission: ((granted: Boolean) -> Unit)? = null
     var isAskingPermissions = false
     var useDynamicTheme = true
-    var isBackgroundColorFromPrimaryColor: Boolean = false
     private val GENERIC_PERM_HANDLER = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,11 +37,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
         super.onResume()
         if (useDynamicTheme) {
             setTheme(getThemeId())
-            if (isBackgroundColorFromPrimaryColor) {
-                updateBackgroundColor(baseConfig.primaryColor)
-            } else {
-                updateBackgroundColor()    
-            }
+            updateBackgroundColor()
         }
         updateActionbarColor()
     }
@@ -82,10 +77,14 @@ open class BaseSimpleActivity : AppCompatActivity() {
         }
     }
 
-    open fun updateBackgroundColor(color: Int = baseConfig.backgroundColor) {
+    open fun updateBackgroundColor(color: Int = baseConfig.screenBackgroundColor) {
         val mainView: ViewGroup? = getMainViewGroup()
         mainView?.run {
-            setBackgroundColor(ColorUtils.setAlphaComponent(color, getBackgroundAlpha()))
+            if (color == -1) {
+                setBackgroundColor(ColorUtils.setAlphaComponent(baseConfig.primaryColor, getBackgroundAlpha()))
+            } else {
+                setBackgroundColor(ColorUtils.setAlphaComponent(color, 255))
+            }
         }
     }
     
