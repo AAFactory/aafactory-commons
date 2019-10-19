@@ -3,8 +3,8 @@
     <string name="customize_colors_summary">设置应用程序的主要颜色。</string>
     <string name="invite_friends">分享给好友</string>
     <string name="invite_friends_summary">与朋友分享%s应用程序。</string>
-    <string name="background_color">背景色(Card View)</string>
-    <string name="screen_background_color">화면 배경 색상</string>
+    <string name="background_color">卡片视图背景色</string>
+    <string name="screen_background_color">屏幕背景色</string>
     
     <!--AboutActivity-->
     <string name="aaf_my_website">\nhttps://hanjoongcho.github.io/aaf/</string>

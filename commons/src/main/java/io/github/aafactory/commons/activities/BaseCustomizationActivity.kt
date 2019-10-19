@@ -7,14 +7,13 @@ import androidx.core.graphics.ColorUtils
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.getThemeId
 import com.simplemobiletools.commons.extensions.setBackgroundWithStroke
-import com.simplemobiletools.commons.models.MyTheme
 import io.github.aafactory.commons.R
-import io.github.aafactory.commons.extensions.baseConfig
-import io.github.aafactory.commons.extensions.updateTextColors
 import io.github.aafactory.commons.dialogs.LineColorPickerDialog
+import io.github.aafactory.commons.extensions.baseConfig
 import io.github.aafactory.commons.extensions.updateAppViews
+import io.github.aafactory.commons.extensions.updateTextColors
+import io.github.aafactory.commons.helpers.SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT
 import kotlinx.android.synthetic.main.activity_customization.*
-import java.util.*
 
 /**
  * Created by Hanjoong Cho on 2017-12-18.
@@ -25,30 +24,17 @@ import java.util.*
 
 
 open class BaseCustomizationActivity : BaseSimpleActivity() {
-    private val THEME_LIGHT = 0
-    private val THEME_DARK = 1
-    private val THEME_SOLARIZED = 2
-    private val THEME_DARK_RED = 3
-    private val THEME_CUSTOM = 4
-    private val THEME_SHARED = 5
-
     private var curTextColor = 0
     private var curBackgroundColor = 0
     private var curScreenBackgroundColor = 0
     private var curPrimaryColor = 0
-    private var curSelectedThemeId = 0
     private var hasUnsavedChanges = false
     private var isLineColorPickerVisible = false
-    private var predefinedThemes = LinkedHashMap<Int, MyTheme>()
     private var curPrimaryLineColorPicker: LineColorPickerDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customization)
-
-        predefinedThemes.apply {
-            put(THEME_CUSTOM, MyTheme(R.string.custom, 0, 0, 0))
-        }
 
         setSupportActionBar(toolbar)
         supportActionBar?.run {
@@ -63,9 +49,8 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
 
         customization_text_color_holder.setOnClickListener { pickTextColor() }
         customization_background_color_holder.setOnClickListener { pickBackgroundColor() }
-        customization_screen_background_color_holder.setOnClickListener { pickBackgroundColor2() }
+        customization_screen_background_color_holder.setOnClickListener { pickScreenBackgroundColor() }
         customization_primary_color_holder.setOnClickListener { pickPrimaryColor() }
-        setupThemePicker()
     }
 
     override fun onResume() {
@@ -96,57 +81,7 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
     }
 
     override fun onBackPressed() {
-        if (hasUnsavedChanges) {
-//            promptSaveDiscard()
-        } else {
-            super.onBackPressed()
-        }
-    }
-
-    private fun setupThemePicker() {
-        curSelectedThemeId = getCurrentThemeId()
-    }
-
-    private fun updateColorTheme(themeId: Int, useStored: Boolean = false) {
-        curSelectedThemeId = themeId
-
-        resources.apply {
-            if (curSelectedThemeId == THEME_CUSTOM) {
-                if (useStored) {
-                    curTextColor = baseConfig.customTextColor
-                    curBackgroundColor = baseConfig.customBackgroundColor
-                    curPrimaryColor = baseConfig.customPrimaryColor
-                    setTheme(getThemeId(curPrimaryColor))
-                    setupColorsPickers()
-                } else {
-                    baseConfig.customPrimaryColor = curPrimaryColor
-                    baseConfig.customBackgroundColor = curBackgroundColor
-                    baseConfig.customTextColor = curTextColor
-                }
-            }
-        }
-
-        hasUnsavedChanges = true
-        invalidateOptionsMenu()
-        updateTextColors(main_holder, curTextColor)
-
-        updateBackgroundColor()
-        updateActionbarColor(curPrimaryColor)
-    }
-
-    private fun getCurrentThemeId(): Int {
-        if (baseConfig.isUsingSharedTheme)
-            return THEME_SHARED
-
-        var themeId = THEME_CUSTOM
-        resources.apply {
-            for ((key, value) in predefinedThemes.filter { it.key != THEME_CUSTOM && it.key != THEME_SHARED }) {
-                if (curTextColor == getColor(value.textColorId) && curBackgroundColor == getColor(value.backgroundColorId) && curPrimaryColor == getColor(value.primaryColorId)) {
-                    themeId = key
-                }
-            }
-        }
-        return themeId
+        if (!hasUnsavedChanges) super.onBackPressed()
     }
 
     private fun saveChanges(finishAfterSave: Boolean) {
@@ -158,7 +93,6 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
             isThemeChanged = true
         }
 
-        baseConfig.isUsingSharedTheme = curSelectedThemeId == THEME_SHARED
         hasUnsavedChanges = false
         if (finishAfterSave) {
             finish()
@@ -201,7 +135,7 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
 //        updateBackgroundColor(color)
     }
 
-    private fun setCurrentBackgroundColor2(color: Int) {
+    private fun setCurrentScreenBackgroundColor(color: Int) {
         curScreenBackgroundColor = color
 //        updateAppViews(main_holder, curScreenBackgroundColor)
         updateBackgroundColor(color)
@@ -217,7 +151,6 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
             if (hasColorChanged(curTextColor, it)) {
                 setCurrentTextColor(it)
                 colorChanged()
-                updateColorTheme(getUpdatedTheme())
             }
         }
     }
@@ -227,17 +160,15 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
             if (hasColorChanged(curBackgroundColor, it)) {
                 setCurrentBackgroundColor(it)
                 colorChanged()
-                updateColorTheme(getUpdatedTheme())
             }
         }
     }
 
-    private fun pickBackgroundColor2() {
+    private fun pickScreenBackgroundColor() {
         ColorPickerDialog(this, getCurScreenBackgroundColor()) {
             if (hasColorChanged(getCurScreenBackgroundColor(), it)) {
-                setCurrentBackgroundColor2(it)
+                setCurrentScreenBackgroundColor(it)
                 colorChanged()
-//                updateColorTheme(getUpdatedTheme())
             }
         }
     }
@@ -251,7 +182,6 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
                 if (hasColorChanged(curPrimaryColor, color)) {
                     setCurrentPrimaryColor(color)
                     colorChanged()
-                    updateColorTheme(getUpdatedTheme())
                     setTheme(getThemeId(color))
                     updateBackgroundColor(color)
                 }
@@ -263,10 +193,8 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
         }
     }
 
-    private fun getCurScreenBackgroundColor(): Int = when (curScreenBackgroundColor == -1) {
+    private fun getCurScreenBackgroundColor(): Int = when (curScreenBackgroundColor == SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT) {
         true -> ColorUtils.setAlphaComponent(baseConfig.primaryColor, getBackgroundAlpha())
         false -> curScreenBackgroundColor
     }
-
-    private fun getUpdatedTheme() = if (curSelectedThemeId == THEME_SHARED) THEME_SHARED else THEME_CUSTOM
 }

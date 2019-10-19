@@ -4,6 +4,7 @@ import android.content.Context
 import android.text.format.DateFormat
 import com.simplemobiletools.commons.extensions.getSharedPrefs
 import io.github.aafactory.commons.R
+import io.github.aafactory.commons.helpers.SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT
 import java.util.*
 
 open class BaseConfig(val context: Context) {

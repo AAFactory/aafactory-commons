@@ -3,8 +3,8 @@
     <string name="customize_colors_summary">アプリケーションの主要な色を設定します。</string>
     <string name="invite_friends">友達を招待</string>
     <string name="invite_friends_summary">%sアプリケーションを友達に共有します。</string>
-    <string name="background_color">背景色(Card View)</string>
-    <string name="screen_background_color">화면 배경 색상</string>
+    <string name="background_color">カードビューの背景色</string>
+    <string name="screen_background_color">画面の背景色</string>
     
     <!--AboutActivity-->
     <string name="aaf_my_website">\nhttps://hanjoongcho.github.io/aaf/</string>
