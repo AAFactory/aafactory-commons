@@ -125,19 +125,16 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
 
     private fun setCurrentTextColor(color: Int) {
         curTextColor = color
-//        updateTextColors(customization_holder, color)
+        updateTextColors(main_holder, curTextColor)
     }
 
     private fun setCurrentBackgroundColor(color: Int) {
         curBackgroundColor = color
         updateAppViews(main_holder, curBackgroundColor)
-
-//        updateBackgroundColor(color)
     }
 
     private fun setCurrentScreenBackgroundColor(color: Int) {
         curScreenBackgroundColor = color
-//        updateAppViews(main_holder, curScreenBackgroundColor)
         updateBackgroundColor(color)
     }
 

@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.ViewGroup
 import androidx.core.graphics.ColorUtils
-import com.simplemobiletools.commons.helpers.SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT
 import io.github.aafactory.commons.extensions.*
+import io.github.aafactory.commons.helpers.SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT
 
 /**
  * Created by CHO HANJOONG on 2017-11-25.
