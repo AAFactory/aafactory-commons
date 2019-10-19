@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.ViewGroup
 import androidx.core.graphics.ColorUtils
+import com.simplemobiletools.commons.helpers.SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT
 import io.github.aafactory.commons.extensions.*
 
 /**
@@ -80,7 +81,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
     open fun updateBackgroundColor(color: Int = baseConfig.screenBackgroundColor) {
         val mainView: ViewGroup? = getMainViewGroup()
         mainView?.run {
-            if (color == -1) {
+            if (color == SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT) {
                 setBackgroundColor(ColorUtils.setAlphaComponent(baseConfig.primaryColor, getBackgroundAlpha()))
             } else {
                 setBackgroundColor(ColorUtils.setAlphaComponent(color, 255))

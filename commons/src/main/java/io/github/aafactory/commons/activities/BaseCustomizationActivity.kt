@@ -70,7 +70,7 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        updateBackgroundColor(curScreenBackgroundColor)
+        updateBackgroundColor(getCurScreenBackgroundColor())
         updateActionbarColor(curPrimaryColor)
         setTheme(getThemeId(curPrimaryColor))
 
@@ -178,11 +178,7 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
         customization_text_color.setBackgroundWithStroke(curTextColor, curBackgroundColor)
         customization_primary_color.setBackgroundWithStroke(curPrimaryColor, curBackgroundColor)
         customization_background_color.setBackgroundWithStroke(curBackgroundColor, curBackgroundColor)
-        if (curScreenBackgroundColor == -1) {
-            customization_screen_background_color.setBackgroundWithStroke(ColorUtils.setAlphaComponent(baseConfig.primaryColor, getBackgroundAlpha()), curBackgroundColor)
-        } else {
-            customization_screen_background_color.setBackgroundWithStroke(curScreenBackgroundColor, curBackgroundColor)
-        }
+        customization_screen_background_color.setBackgroundWithStroke(getCurScreenBackgroundColor(), curBackgroundColor)
     }
 
     private fun hasColorChanged(old: Int, new: Int) = Math.abs(old - new) > 1
@@ -237,8 +233,8 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
     }
 
     private fun pickBackgroundColor2() {
-        ColorPickerDialog(this, curScreenBackgroundColor) {
-            if (hasColorChanged(curScreenBackgroundColor, it)) {
+        ColorPickerDialog(this, getCurScreenBackgroundColor()) {
+            if (hasColorChanged(getCurScreenBackgroundColor(), it)) {
                 setCurrentBackgroundColor2(it)
                 colorChanged()
 //                updateColorTheme(getUpdatedTheme())
@@ -265,6 +261,11 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
                 updateBackgroundColor(curPrimaryColor)
             }
         }
+    }
+
+    private fun getCurScreenBackgroundColor(): Int = when (curScreenBackgroundColor == -1) {
+        true -> ColorUtils.setAlphaComponent(baseConfig.primaryColor, getBackgroundAlpha())
+        false -> curScreenBackgroundColor
     }
 
     private fun getUpdatedTheme() = if (curSelectedThemeId == THEME_SHARED) THEME_SHARED else THEME_CUSTOM

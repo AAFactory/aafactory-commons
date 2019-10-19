@@ -74,6 +74,7 @@ const val USE_SAME_SNOOZE = "use_same_snooze"
 const val SNOOZE_TIME = "snooze_delay"
 const val VIBRATE_ON_BUTTON_PRESS = "vibrate_on_button_press"
 const val SETTING_CARD_VIEW_BACKGROUND_COLOR = "setting_card_view_background_color"
+const val SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT = -1
 
 // licenses
 internal const val LICENSE_KOTLIN = 1
