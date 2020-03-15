@@ -137,12 +137,12 @@ dependencies {
     implementation 'com.zoonref:simple-view-behavior:1.0'
     implementation 'com.luffykou:android-common-utils:1.1.3'
     implementation "org.jsoup:jsoup:1.10.3"
-//    implementation 'me.iwf.photopicker:PhotoPicker:0.9.12@aar'
-    implementation project(':PhotoPicker')   // Glide sub version(glide:4.1.1) is declared, therefore must be imported directly
+    implementation 'me.iwf.photopicker:PhotoPicker:0.9.12@aar'
+//    implementation project(':PhotoPicker')   // Glide sub version(glide:4.1.1) is declared, therefore must be imported directly
     implementation 'gun0912.ted:tedpermission:2.2.0'
     implementation 'gun0912.ted:tedbottompicker:1.2.6'
-//    implementation 'com.werb.pickphotoview:pickphotoview:0.4.4'
-    implementation project(':pickphotoview') // Glide sub version(glide:4.1.1) is declared, therefore must be imported directly
+    implementation 'com.werb.pickphotoview:pickphotoview:0.4.4'
+//    implementation project(':pickphotoview') // Glide sub version(glide:4.1.1) is declared, therefore must be imported directly
     implementation ('com.werb.permissionschecker:permissionschecker:0.0.1-beta2', {
         exclude group: 'com.android.support'
     })

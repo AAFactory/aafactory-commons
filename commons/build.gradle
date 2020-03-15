@@ -1,11 +1,8 @@
+apply from: '../dependencies.gradle'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-
-ext.versions = [
-        compileSdk : 29
-]
 
 android {
     compileSdkVersion versions.compileSdk
@@ -13,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion versions.compileSdk
-        versionCode 22
-        versionName '1.0.0'
+        versionCode versions.publishVersionCode
+        versionName versions.publishVersion
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -62,4 +59,4 @@ dependencies {
 
     // Resolve conflicts between main and test APK:
 }
-//apply from: '../bintray-upload.gradle'
+apply from: '../bintray-upload.gradle'

@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../PhotoPicker/PhotoPicker/PhotoPicker.iml" filepath="$PROJECT_DIR$/../PhotoPicker/PhotoPicker/PhotoPicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/aafactory-commons.iml" filepath="$PROJECT_DIR$/aafactory-commons.iml" />
-      <module fileurl="file://$PROJECT_DIR$/commons/aafactory-commons-commons.iml" filepath="$PROJECT_DIR$/commons/aafactory-commons-commons.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/commons/commons.iml" filepath="$PROJECT_DIR$/commons/commons.iml" />
-      <module fileurl="file://$PROJECT_DIR$/git_github-aafactory-commons.iml" filepath="$PROJECT_DIR$/git_github-aafactory-commons.iml" />
-      <module fileurl="file://$PROJECT_DIR$/commons/git_github-aafactory-commons-commons.iml" filepath="$PROJECT_DIR$/commons/git_github-aafactory-commons-commons.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pickphotoview/pickphotoview.iml" filepath="$PROJECT_DIR$/pickphotoview/pickphotoview.iml" />
     </modules>
   </component>
 </project>

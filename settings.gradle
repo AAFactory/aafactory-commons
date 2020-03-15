@@ -1,2 +1,3 @@
-include ':app', ':commons', ':PhotoPicker', ':pickphotoview'
-project(':PhotoPicker').projectDir = new File(settingsDir, "../PhotoPicker/PhotoPicker")
+include ':app', ':commons'
+//include ':app', ':commons', ':PhotoPicker', ':pickphotoview'
+//project(':PhotoPicker').projectDir = new File(settingsDir, "../PhotoPicker/PhotoPicker")
