@@ -23,15 +23,15 @@ open class BaseConfig(val context: Context) {
         set(lastVersion) = prefs.edit().putInt(LAST_VERSION, lastVersion).apply()
 
     var treeUri: String
-        get() = prefs.getString(TREE_URI, "")
+        get() = prefs.getString(TREE_URI, "")!!
         set(uri) = prefs.edit().putString(TREE_URI, uri).apply()
 
     var OTGTreeUri: String
-        get() = prefs.getString(OTG_TREE_URI, "")
+        get() = prefs.getString(OTG_TREE_URI, "")!!
         set(OTGTreeUri) = prefs.edit().putString(OTG_TREE_URI, OTGTreeUri).apply()
 
     var OTGBasePath: String
-        get() = prefs.getString(OTG_BASE_PATH, "")
+        get() = prefs.getString(OTG_BASE_PATH, "")!!
         set(OTGBasePath) = prefs.edit().putString(OTG_BASE_PATH, OTGBasePath).apply()
 
     var textColor: Int
@@ -72,7 +72,7 @@ open class BaseConfig(val context: Context) {
         set(isPasswordProtectionOn) = prefs.edit().putBoolean(PASSWORD_PROTECTION, isPasswordProtectionOn).apply()
 
     var passwordHash: String
-        get() = prefs.getString(PASSWORD_HASH, "")
+        get() = prefs.getString(PASSWORD_HASH, "")!!
         set(passwordHash) = prefs.edit().putString(PASSWORD_HASH, passwordHash).apply()
 
     var protectionType: Int
@@ -85,7 +85,7 @@ open class BaseConfig(val context: Context) {
         set(appPasswordProtectionOn) = prefs.edit().putBoolean(APP_PASSWORD_PROTECTION, appPasswordProtectionOn).apply()
 
     var appPasswordHash: String
-        get() = prefs.getString(APP_PASSWORD_HASH, "")
+        get() = prefs.getString(APP_PASSWORD_HASH, "")!!
         set(appPasswordHash) = prefs.edit().putString(APP_PASSWORD_HASH, appPasswordHash).apply()
 
     var appProtectionType: Int

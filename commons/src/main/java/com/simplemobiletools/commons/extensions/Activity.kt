@@ -166,7 +166,7 @@ fun Activity.updateSharedTheme(sharedTheme: SharedTheme): Int {
 
 fun Activity.copyToClipboard(text: String) {
     val clip = ClipData.newPlainText(getString(R.string.simple_commons), text)
-    (getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).primaryClip = clip
+    (getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(clip)
     toast(R.string.value_copied_to_clipboard)
 }
 
@@ -199,7 +199,7 @@ fun Activity.setupDialogStuff(view: View, dialog: AlertDialog, titleId: Int = 0,
         getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(baseConfig.textColor)
         getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(baseConfig.textColor)
         getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(baseConfig.textColor)
-        window.setBackgroundDrawable(ColorDrawable(baseConfig.backgroundColor))
+        window!!.setBackgroundDrawable(ColorDrawable(baseConfig.backgroundColor))
     }
     callback?.invoke()
 }

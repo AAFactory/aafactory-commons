@@ -10,7 +10,7 @@ import android.widget.TextView
 class MyArrayAdapter<T>(context: Context, res: Int, items: Array<T>, val textColor: Int, val backgroundColor: Int, val padding: Int) :
         ArrayAdapter<T>(context, res, items) {
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view = super.getView(position, convertView, parent)
+        val view = super.getView(position, convertView, parent!!)
 
         view.findViewById<TextView>(android.R.id.text1).apply {
             setTextColor(textColor)

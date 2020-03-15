@@ -92,11 +92,11 @@ object BitmapUtils {
         options.inJustDecodeBounds = false
         options.inSampleSize = inSampleSize
         val tempBitmap = BitmapFactory.decodeStream(inputStream, null, options)
-        return Bitmap.createScaledBitmap(tempBitmap, fixedWidth, fixedHeight, false)
+        return Bitmap.createScaledBitmap(tempBitmap!!, fixedWidth, fixedHeight, false)
     }
     
     fun decodeFile(context: Context, uri: Uri, fixedWidth: Int, fixedHeight: Int): Bitmap {
-        var inputStream: InputStream = context.contentResolver.openInputStream(uri)
+        var inputStream: InputStream = context.contentResolver.openInputStream(uri)!!
         val options = BitmapFactory.Options().apply {
             inJustDecodeBounds = true
         }
@@ -105,11 +105,11 @@ object BitmapUtils {
         IOUtils.closeQuietly(inputStream)
         val inSampleSize = calculateInSampleSize(options, fixedWidth, fixedHeight)
 
-        inputStream = context.contentResolver.openInputStream(uri)
+        inputStream = context.contentResolver.openInputStream(uri)!!
         options.inJustDecodeBounds = false
         options.inSampleSize = inSampleSize
         val tempBitmap = BitmapFactory.decodeStream(inputStream, null, options)
-        return Bitmap.createScaledBitmap(tempBitmap, fixedWidth, fixedHeight, false)
+        return Bitmap.createScaledBitmap(tempBitmap!!, fixedWidth, fixedHeight, false)
     }
     
     fun decodeFile(activity: Activity, imagePath: String?, options: BitmapFactory.Options? = null): Bitmap = when (imagePath != null && File(imagePath).exists()) {
@@ -134,7 +134,7 @@ object BitmapUtils {
         options.inJustDecodeBounds = false
         options.inSampleSize = inSampleSize
         val tempBitmap = BitmapFactory.decodeStream(inputStream, null, options)
-        val sampling = when (tempBitmap.width > tempBitmap.height) {
+        val sampling = when (tempBitmap!!.width > tempBitmap.height) {
             true -> {
                 val ratio: Float = fixedWidthHeight * 1.0F / tempBitmap.height
                 Bitmap.createScaledBitmap(tempBitmap, (tempBitmap.width * ratio).toInt(), (tempBitmap.height * ratio).toInt(), false)
@@ -202,14 +202,14 @@ object BitmapUtils {
         options.inJustDecodeBounds = false
         options.inSampleSize = inSampleSize
         val tempBitmap = BitmapFactory.decodeStream(inputStream, null, options)
-        val sampling = when (tempBitmap.width < tempBitmap.height) {
+        val sampling = when (tempBitmap!!.width < tempBitmap!!.height) {
             true -> {
-                val ratio: Float = maxWidthHeight * 1.0F / tempBitmap.height
-                Bitmap.createScaledBitmap(tempBitmap, (tempBitmap.width * ratio).toInt(), (tempBitmap.height * ratio).toInt(), false)
+                val ratio: Float = maxWidthHeight * 1.0F / tempBitmap!!.height
+                Bitmap.createScaledBitmap(tempBitmap!!, (tempBitmap.width * ratio).toInt(), (tempBitmap.height * ratio).toInt(), false)
             }
             false -> {
                 val ratio: Float = maxWidthHeight * 1.0F / tempBitmap.width
-                Bitmap.createScaledBitmap(tempBitmap, (tempBitmap.width * ratio).toInt(), (tempBitmap.height * ratio).toInt(), false)
+                Bitmap.createScaledBitmap(tempBitmap!!, (tempBitmap.width * ratio).toInt(), (tempBitmap.height * ratio).toInt(), false)
             }
         }
         return sampling

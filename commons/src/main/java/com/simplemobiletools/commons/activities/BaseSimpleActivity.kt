@@ -100,7 +100,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
         super.onActivityResult(requestCode, resultCode, resultData)
         if (requestCode == OPEN_DOCUMENT_TREE && resultCode == Activity.RESULT_OK && resultData != null) {
-            if (isProperSDFolder(resultData.data)) {
+            if (isProperSDFolder(resultData.data!!)) {
                 if (resultData.dataString == baseConfig.OTGTreeUri) {
                     toast(R.string.sd_card_otg_same)
                     return
@@ -114,13 +114,13 @@ open class BaseSimpleActivity : AppCompatActivity() {
                 startActivityForResult(intent, requestCode)
             }
         } else if (requestCode == OPEN_DOCUMENT_TREE_OTG && resultCode == Activity.RESULT_OK && resultData != null) {
-            if (isProperOTGFolder(resultData.data)) {
+            if (isProperOTGFolder(resultData.data!!)) {
                 if (resultData.dataString == baseConfig.treeUri) {
                     funAfterOTGPermission?.invoke(false)
                     toast(R.string.sd_card_otg_same)
                     return
                 }
-                baseConfig.OTGTreeUri = resultData.dataString
+                baseConfig.OTGTreeUri = resultData.dataString!!
                 funAfterOTGPermission?.invoke(true)
                 funAfterOTGPermission = null
             } else {
@@ -137,7 +137,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
         baseConfig.treeUri = treeUri.toString()
 
         val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-        applicationContext.contentResolver.takePersistableUriPermission(treeUri, takeFlags)
+        applicationContext.contentResolver.takePersistableUriPermission(treeUri!!, takeFlags)
     }
 
     private fun isProperSDFolder(uri: Uri) = isExternalStorageDocument(uri) && isRootUri(uri) && !isInternalStorage(uri)
