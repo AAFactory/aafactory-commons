@@ -3,16 +3,15 @@ package io.github.aafactory.commons.activities
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.core.graphics.ColorUtils
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.getThemeId
 import com.simplemobiletools.commons.extensions.setBackgroundWithStroke
 import io.github.aafactory.commons.R
 import io.github.aafactory.commons.dialogs.LineColorPickerDialog
 import io.github.aafactory.commons.extensions.baseConfig
+import io.github.aafactory.commons.extensions.darkenColor
 import io.github.aafactory.commons.extensions.updateAppViews
 import io.github.aafactory.commons.extensions.updateTextColors
-import io.github.aafactory.commons.helpers.SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT
 import kotlinx.android.synthetic.main.activity_customization.*
 
 /**
@@ -55,7 +54,7 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        updateBackgroundColor(getCurScreenBackgroundColor())
+        updateBackgroundColor(curScreenBackgroundColor)
         updateActionbarColor(curPrimaryColor)
         setTheme(getThemeId(curPrimaryColor))
 
@@ -112,7 +111,7 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
         customization_text_color.setBackgroundWithStroke(curTextColor, curBackgroundColor)
         customization_primary_color.setBackgroundWithStroke(curPrimaryColor, curBackgroundColor)
         customization_background_color.setBackgroundWithStroke(curBackgroundColor, curBackgroundColor)
-        customization_screen_background_color.setBackgroundWithStroke(getCurScreenBackgroundColor(), curBackgroundColor)
+        customization_screen_background_color.setBackgroundWithStroke(curScreenBackgroundColor, curBackgroundColor)
     }
 
     private fun hasColorChanged(old: Int, new: Int) = Math.abs(old - new) > 1
@@ -140,6 +139,7 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
 
     private fun setCurrentPrimaryColor(color: Int) {
         curPrimaryColor = color
+        setCurrentScreenBackgroundColor(color.darkenColor())
         updateActionbarColor(color)
     }
 
@@ -162,8 +162,8 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
     }
 
     private fun pickScreenBackgroundColor() {
-        ColorPickerDialog(this, getCurScreenBackgroundColor()) {
-            if (hasColorChanged(getCurScreenBackgroundColor(), it)) {
+        ColorPickerDialog(this, curScreenBackgroundColor) {
+            if (hasColorChanged(curScreenBackgroundColor, it)) {
                 setCurrentScreenBackgroundColor(it)
                 colorChanged()
             }
@@ -180,7 +180,6 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
                     setCurrentPrimaryColor(color)
                     colorChanged()
                     setTheme(getThemeId(color))
-                    updateBackgroundColor(color)
                 }
             } else {
                 updateActionbarColor(curPrimaryColor)
@@ -188,10 +187,5 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
                 updateBackgroundColor(curPrimaryColor)
             }
         }
-    }
-
-    private fun getCurScreenBackgroundColor(): Int = when (curScreenBackgroundColor == SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT) {
-        true -> ColorUtils.setAlphaComponent(baseConfig.primaryColor, getBackgroundAlpha())
-        false -> curScreenBackgroundColor
     }
 }

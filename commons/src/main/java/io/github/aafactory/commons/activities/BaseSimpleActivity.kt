@@ -38,7 +38,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
         super.onResume()
         if (useDynamicTheme) {
             setTheme(getThemeId())
-            updateBackgroundColor()
+            updateBackgroundColor(baseConfig.screenBackgroundColor)
         }
         updateActionbarColor()
     }
@@ -81,17 +81,14 @@ open class BaseSimpleActivity : AppCompatActivity() {
     open fun updateBackgroundColor(color: Int = baseConfig.screenBackgroundColor) {
         val mainView: ViewGroup? = getMainViewGroup()
         mainView?.run {
-            if (color == SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT) {
-                setBackgroundColor(ColorUtils.setAlphaComponent(baseConfig.primaryColor, getBackgroundAlpha()))
-            } else {
-                setBackgroundColor(ColorUtils.setAlphaComponent(color, 255))
-            }
+//            setBackgroundColor(ColorUtils.setAlphaComponent(color, 255))
+            setBackgroundColor(color)
         }
     }
     
     open fun getMainViewGroup(): ViewGroup? = null
     
-    open fun getBackgroundAlpha(): Int = 255
+//    open fun getBackgroundAlpha(): Int = 255
     
     fun handlePermission(permissionId: Int, callback: (granted: Boolean) -> Unit) {
         actionOnPermission = null

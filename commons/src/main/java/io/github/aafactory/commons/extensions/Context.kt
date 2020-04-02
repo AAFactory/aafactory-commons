@@ -11,6 +11,7 @@ import android.util.TypedValue
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import io.github.aafactory.commons.views.ModalView
 import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_COARSE_LOCATION
 import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_FINE_LOCATION
@@ -20,6 +21,7 @@ import com.simplemobiletools.commons.extensions.isBlackAndWhiteTheme
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.views.*
 import io.github.aafactory.commons.helpers.BaseConfig
+import io.github.aafactory.commons.helpers.SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT
 
 /**
  * Created by CHO HANJOONG on 2017-12-30.
@@ -120,4 +122,9 @@ fun Context.getPermissionString(id: Int) = when (id) {
     PERMISSION_ACCESS_FINE_LOCATION ->  Manifest.permission.ACCESS_FINE_LOCATION
     PERMISSION_ACCESS_COARSE_LOCATION -> Manifest.permission.ACCESS_COARSE_LOCATION
     else -> ""
+}
+
+fun Context.getCurScreenBackgroundColor(backgroundAlpha: Int): Int = when (baseConfig.screenBackgroundColor == SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT) {
+    true -> ColorUtils.setAlphaComponent(baseConfig.primaryColor, backgroundAlpha)
+    false -> baseConfig.screenBackgroundColor
 }

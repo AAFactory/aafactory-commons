@@ -2,6 +2,9 @@ package com.simplemobiletools.commons.helpers
 
 import android.content.Context
 import android.text.format.DateFormat
+import androidx.core.graphics.ColorUtils
+import com.simplemobiletools.commons.extensions.baseConfig
+import com.simplemobiletools.commons.extensions.darkenColor
 import com.simplemobiletools.commons.extensions.getSharedPrefs
 import io.github.aafactory.commons.R
 import io.github.aafactory.commons.helpers.SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT
@@ -200,6 +203,6 @@ open class BaseConfig(val context: Context) {
         set(vibrateOnButton) = prefs.edit().putBoolean(VIBRATE_ON_BUTTON_PRESS, vibrateOnButton).apply()
 
     var screenBackgroundColor: Int
-        get() = prefs.getInt(SETTING_CARD_VIEW_BACKGROUND_COLOR, SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT)
+        get() = prefs.getInt(SETTING_CARD_VIEW_BACKGROUND_COLOR, primaryColor.darkenColor())
         set(screenBackgroundColor) = prefs.edit().putInt(SETTING_CARD_VIEW_BACKGROUND_COLOR, screenBackgroundColor).apply()
 }
