@@ -1,2 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.aafactory.commons" />
+    package="io.github.aafactory.commons">
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true">
+
+        <activity android:name="com.werb.pickphotoview.PickPhotoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PickBaseTheme"/>
+
+        <activity android:name="com.werb.pickphotoview.PickPhotoPreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Full.Theme"/>
+
+    </application>
+</manifest>

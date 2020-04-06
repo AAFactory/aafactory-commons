@@ -496,4 +496,14 @@
     <string name="gson_title">Gson (JSON parser)</string>
     <string name="leak_canary_title">Leak Canary (memory leak detector)</string>
     <string name="number_picker_title">Number Picker (customizable number picker)</string>
+
+    <!--com.werb.pickphotoview:pickphotoview:0.4.8-->
+    <!--https://github.com/werbhelius/PickPhotoSample-->
+    <string name="pick_all_photo">All Photos</string>
+    <string name="pick_photos">Photo</string>
+    <string name="pick_pick">Select</string>
+    <string name="pick_photo_size">(%1$s)</string>
+    <string name="pick_photo_size_limit">Max size %1$s </string>
+    <string name="pick_photo_cancel">cancel</string>
+    <string name="pick_photo_sure">add(%1$d)</string>
 </resources>
