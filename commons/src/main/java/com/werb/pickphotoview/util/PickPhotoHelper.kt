@@ -9,6 +9,7 @@ import com.werb.eventbus.EventBus
 import com.werb.pickphotoview.event.PickFinishEvent
 import com.werb.pickphotoview.model.DirImage
 import com.werb.pickphotoview.model.GroupImage
+import com.werb.pickphotoview.util.PickConfig.URI_STRING_SUFFIX
 import java.io.File
 import java.util.*
 
@@ -72,8 +73,7 @@ object PickPhotoHelper {
             }
             while (mCursor.moveToNext()) {
                 // get image path
-                val path = mCursor.getString(mCursor
-                        .getColumnIndex(MediaStore.Images.Media.DATA))
+                val path = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.DATA))
                 val uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, mCursor.getLong(mCursor.getColumnIndex(MediaStore.Images.Media._ID)).toString())
                 val file = File(path)
                 if (!file.exists()) {
@@ -86,26 +86,20 @@ object PickPhotoHelper {
                 // save all Photo
                 if (!mGroupMap.containsKey(PickConfig.ALL_PHOTOS)) {
                     dirNames.add(PickConfig.ALL_PHOTOS)
-
-                    val chileList = ArrayList<String>()
-                    chileList.add(path)
-                    mGroupMap.put(PickConfig.ALL_PHOTOS, chileList)
-
-                    val chileListURI = ArrayList<String>()
-                    chileListURI.add(uri.toString())
-                    mGroupMap.put(PickConfig.ALL_PHOTOS_URI, chileListURI)
+                    mGroupMap[PickConfig.ALL_PHOTOS] = arrayListOf(path)
+                    mGroupMap[PickConfig.ALL_PHOTOS + URI_STRING_SUFFIX] = arrayListOf(uri.toString())
                 } else {
                     mGroupMap[PickConfig.ALL_PHOTOS]?.add(path)
-                    mGroupMap[PickConfig.ALL_PHOTOS_URI]?.add(uri.toString())
+                    mGroupMap[PickConfig.ALL_PHOTOS + URI_STRING_SUFFIX]?.add(uri.toString())
                 }
                 // save by parent name
                 if (!mGroupMap.containsKey(parentName)) {
                     dirNames.add(parentName)
-                    val chileList = ArrayList<String>()
-                    chileList.add(path)
-                    mGroupMap.put(parentName, chileList)
+                    mGroupMap[parentName] = arrayListOf(path)
+                    mGroupMap[parentName + URI_STRING_SUFFIX] = arrayListOf(uri.toString())
                 } else {
                     mGroupMap[parentName]?.add(path)
+                    mGroupMap[parentName + URI_STRING_SUFFIX]?.add(uri.toString())
                 }
             }
             mCursor.close()

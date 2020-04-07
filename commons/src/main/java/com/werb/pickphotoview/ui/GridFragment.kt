@@ -29,6 +29,7 @@ import com.werb.pickphotoview.event.PickPreviewEvent
 import com.werb.pickphotoview.extensions.string
 import com.werb.pickphotoview.model.GridImage
 import com.werb.pickphotoview.util.PickConfig
+import com.werb.pickphotoview.util.PickConfig.URI_STRING_SUFFIX
 import com.werb.pickphotoview.util.PickPhotoHelper
 import com.werb.pickphotoview.util.PickUtils
 import io.github.aafactory.commons.R
@@ -153,7 +154,7 @@ class GridFragment : Fragment() {
 
         val groupImage = PickPhotoHelper.groupImage
         val allPhotos = groupImage?.mGroupMap?.get(event.dirName)
-        val allPhotosUri = groupImage?.mGroupMap?.get("All Photos URI")
+        val allPhotosUri = groupImage?.mGroupMap?.get(event.dirName + URI_STRING_SUFFIX)
         if (allPhotos == null) {
             Log.d("PickPhotoView", "Image is Empty")
         } else {

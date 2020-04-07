@@ -26,7 +26,8 @@ object PickConfig {
     val INTENT_IMG_LIST_SELECT = "intent_img_list_select"
     // all photos
     val ALL_PHOTOS = "All Photos"
-    val ALL_PHOTOS_URI = "All Photos URI"
+    val URI_STRING_SUFFIX = "_URI"
+
     // Camera type
     val CAMERA_TYPE = -1
     // space

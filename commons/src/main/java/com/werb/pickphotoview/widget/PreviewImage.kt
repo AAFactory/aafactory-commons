@@ -65,7 +65,7 @@ class PreviewImage : FrameLayout {
             }
         }
         Glide.with(context)
-                .load(Uri.parse("file://" + path))
+                .load(Uri.parse(path))
                 .thumbnail(.1f)
                 .into(image)
     }

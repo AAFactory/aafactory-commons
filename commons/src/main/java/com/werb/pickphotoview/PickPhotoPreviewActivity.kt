@@ -17,6 +17,7 @@ import com.werb.pickphotoview.extensions.alphaColor
 import com.werb.pickphotoview.extensions.color
 import com.werb.pickphotoview.extensions.string
 import com.werb.pickphotoview.util.PickConfig
+import com.werb.pickphotoview.util.PickConfig.URI_STRING_SUFFIX
 import com.werb.pickphotoview.util.PickPhotoHelper
 import com.werb.pickphotoview.widget.PreviewImage
 import io.github.aafactory.commons.R
@@ -107,7 +108,7 @@ class PickPhotoPreviewActivity : BasePickActivity() {
 
     private fun allImage(): List<String> {
         val groupImage = PickPhotoHelper.groupImage
-        return groupImage?.mGroupMap?.get(dir) ?: emptyList()
+        return groupImage?.mGroupMap?.get(dir + URI_STRING_SUFFIX) ?: emptyList()
     }
 
     private fun full() {
