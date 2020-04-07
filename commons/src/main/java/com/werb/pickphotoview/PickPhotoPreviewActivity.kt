@@ -42,7 +42,7 @@ class PickPhotoPreviewActivity : BasePickActivity() {
         super.onCreate(savedInstanceState)
         EventBus.register(this)
         setContentView(R.layout.pick_activty_preview_photo)
-        path = intent.getStringExtra("path")
+        path = intent.getStringExtra("uriString")
         dir = intent.getStringExtra("dir")
 
         initToolbar()
@@ -180,7 +180,7 @@ class PickPhotoPreviewActivity : BasePickActivity() {
     companion object {
         fun startActivity(activity: Activity, requestCode: Int, currentPath: String, dirName: String) {
             val intent = Intent(activity, PickPhotoPreviewActivity::class.java)
-            intent.putExtra("path", currentPath)
+            intent.putExtra("uriString", currentPath)
             intent.putExtra("dir", dirName)
             activity.startActivityForResult(intent, requestCode)
             activity.overridePendingTransition(R.anim.activity_anim_right_to_current, R.anim.activity_anim_not_change)
