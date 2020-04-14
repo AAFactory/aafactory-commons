@@ -388,6 +388,12 @@
         <item name="colorAccent">@color/md_indigo_800</item>
     </style>
 
+    <style name="AppTheme.Indigo_850" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/md_indigo_850</item>
+        <item name="colorPrimaryDark">@color/md_indigo_800_dark</item>
+        <item name="colorAccent">@color/md_indigo_850</item>
+    </style>
+
     <style name="AppTheme.Indigo_900" parent="AppTheme.NoActionBar">
         <item name="colorPrimary">@color/md_indigo_900</item>
         <item name="colorPrimaryDark">@color/md_indigo_900_dark</item>
@@ -440,6 +446,12 @@
         <item name="colorPrimary">@color/md_blue_800</item>
         <item name="colorPrimaryDark">@color/md_blue_800_dark</item>
         <item name="colorAccent">@color/md_blue_800</item>
+    </style>
+
+    <style name="AppTheme.Blue_850" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/md_blue_850</item>
+        <item name="colorPrimaryDark">@color/md_blue_800_dark</item>
+        <item name="colorAccent">@color/md_blue_850</item>
     </style>
 
     <style name="AppTheme.Blue_900" parent="AppTheme.NoActionBar">
@@ -496,6 +508,12 @@
         <item name="colorAccent">@color/md_light_blue_800</item>
     </style>
 
+    <style name="AppTheme.Light_Blue_850" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/md_light_blue_850</item>
+        <item name="colorPrimaryDark">@color/md_light_blue_800_dark</item>
+        <item name="colorAccent">@color/md_light_blue_850</item>
+    </style>
+
     <style name="AppTheme.Light_Blue_900" parent="AppTheme.NoActionBar">
         <item name="colorPrimary">@color/md_light_blue_900</item>
         <item name="colorPrimaryDark">@color/md_light_blue_900_dark</item>
@@ -548,6 +566,12 @@
         <item name="colorPrimary">@color/md_cyan_800</item>
         <item name="colorPrimaryDark">@color/md_cyan_800_dark</item>
         <item name="colorAccent">@color/md_cyan_800</item>
+    </style>
+
+    <style name="AppTheme.Cyan_850" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/md_cyan_850</item>
+        <item name="colorPrimaryDark">@color/md_cyan_800_dark</item>
+        <item name="colorAccent">@color/md_cyan_850</item>
     </style>
 
     <style name="AppTheme.Cyan_900" parent="AppTheme.NoActionBar">

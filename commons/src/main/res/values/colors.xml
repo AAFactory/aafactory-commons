@@ -88,7 +88,7 @@
     <color name="md_blue_600">#1E88E5</color>
     <color name="md_blue_700">#1976D2</color>
     <color name="md_blue_800">#1565C0</color>
-    <color name="md_blue_850">#1565C0</color>
+    <color name="md_blue_850">#1156B1</color>
     <color name="md_blue_900">#0D47A1</color>
 
     <color name="md_blue_100_dark">#94CCF9</color>
@@ -154,7 +154,7 @@
     <color name="md_cyan_600">#00ACC1</color>
     <color name="md_cyan_700">#0097A7</color>
     <color name="md_cyan_800">#00838F</color>
-    <color name="md_cyan_850">#00838F</color>
+    <color name="md_cyan_850">#00727A</color>
     <color name="md_cyan_900">#006064</color>
 
     <color name="md_cyan_100_dark">#90E3ED</color>
@@ -264,7 +264,7 @@
     <color name="md_indigo_600">#3949AB</color>
     <color name="md_indigo_700">#303F9F</color>
     <color name="md_indigo_800">#283593</color>
-    <color name="md_indigo_850">#283593</color>
+    <color name="md_indigo_850">#212C89</color>
     <color name="md_indigo_900">#1A237E</color>
 
     <color name="md_indigo_100_dark">#A8AFDE</color>
@@ -286,7 +286,7 @@
     <color name="md_light_blue_600">#039BE5</color>
     <color name="md_light_blue_700">#0288D1</color>
     <color name="md_light_blue_800">#0277BD</color>
-    <color name="md_light_blue_850">#0277BD</color>
+    <color name="md_light_blue_850">#0267AC</color>
     <color name="md_light_blue_900">#01579B</color>
 
     <color name="md_light_blue_100_dark">#8BD8FB</color>
@@ -440,7 +440,7 @@
     <color name="md_teal_600">#00897B</color>
     <color name="md_teal_700">#00796B</color>
     <color name="md_teal_800">#00695C</color>
-    <color name="md_teal_850">#00695C</color>
+    <color name="md_teal_850">#005B4E</color>
     <color name="md_teal_900">#004D40</color>
 
     <color name="md_teal_100_dark">#95D3CE</color>
