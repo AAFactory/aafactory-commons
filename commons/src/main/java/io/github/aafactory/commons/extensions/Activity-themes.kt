@@ -190,7 +190,7 @@ fun Activity.getThemeId(color: Int = baseConfig.primaryColor) = when (color) {
     -9079435 -> R.style.AppTheme_Grey_600
     -10395295 -> R.style.AppTheme_Grey_700
     -12434878 -> R.style.AppTheme_Grey_800
-    -15527149 -> R.style.AppTheme_Grey_850
+    -14606047 -> R.style.AppTheme_Grey_850
     -16777216 -> R.style.AppTheme_Grey_900
 
     -3155748 -> R.style.AppTheme_Blue_Grey_100
