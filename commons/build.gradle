@@ -72,4 +72,4 @@ dependencies {
 
     // Resolve conflicts between main and test APK:
 }
-apply from: '../bintray-upload.gradle'
+//apply from: '../bintray-upload.gradle'

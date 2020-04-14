@@ -22,6 +22,7 @@ import com.simplemobiletools.commons.helpers.isKitkatPlus
 import com.simplemobiletools.commons.helpers.isLollipopPlus
 import com.simplemobiletools.commons.interfaces.CopyMoveListener
 import io.github.aafactory.commons.R
+import io.github.aafactory.commons.extensions.getThemeId
 
 open class BaseSimpleActivity : AppCompatActivity() {
     var copyMoveCallback: ((destinationPath: String) -> Unit)? = null

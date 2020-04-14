@@ -8,6 +8,7 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.interfaces.LineColorPickerListener
 import kotlinx.android.synthetic.main.dialog_line_color_picker.view.*
 import io.github.aafactory.commons.R
+import io.github.aafactory.commons.extensions.getThemeId
 import java.util.ArrayList
 
 /**

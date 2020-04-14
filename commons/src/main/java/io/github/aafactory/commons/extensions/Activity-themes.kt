@@ -12,6 +12,7 @@ import io.github.aafactory.commons.R
 
 fun Activity.getThemeId(color: Int = baseConfig.primaryColor) = when (color) {
     -12846 -> R.style.AppTheme_Red_100
+    -543562 -> R.style.AppTheme_Red_150
     -1074534 -> R.style.AppTheme_Red_200
     -1739917 -> R.style.AppTheme_Red_300
     -1092784 -> R.style.AppTheme_Red_400
@@ -189,6 +190,7 @@ fun Activity.getThemeId(color: Int = baseConfig.primaryColor) = when (color) {
     -9079435 -> R.style.AppTheme_Grey_600
     -10395295 -> R.style.AppTheme_Grey_700
     -12434878 -> R.style.AppTheme_Grey_800
+    -15527149 -> R.style.AppTheme_Grey_850
     -16777216 -> R.style.AppTheme_Grey_900
 
     -3155748 -> R.style.AppTheme_Blue_Grey_100

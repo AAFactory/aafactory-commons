@@ -106,6 +106,12 @@
         <item name="colorAccent">@color/md_red_100</item>
     </style>
 
+    <style name="AppTheme.Red_150" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/md_red_150</item>
+        <item name="colorPrimaryDark">@color/md_red_800_dark</item>
+        <item name="colorAccent">@color/md_red_150</item>
+    </style>
+
     <style name="AppTheme.Red_200" parent="AppTheme.NoActionBar">
         <item name="colorPrimary">@color/md_red_200</item>
         <item name="colorPrimaryDark">@color/md_red_200_dark</item>
@@ -1064,6 +1070,12 @@
         <item name="colorPrimary">@color/md_grey_800</item>
         <item name="colorPrimaryDark">@color/md_grey_800_dark</item>
         <item name="colorAccent">@color/md_grey_800</item>
+    </style>
+
+    <style name="AppTheme.Grey_850" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/md_grey_850</item>
+        <item name="colorPrimaryDark">@color/md_grey_black_dark</item>
+        <item name="colorAccent">@color/md_grey_850</item>
     </style>
 
     <style name="AppTheme.Grey_900" parent="AppTheme.NoActionBar">
