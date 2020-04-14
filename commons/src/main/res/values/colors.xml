@@ -110,7 +110,7 @@
     <color name="md_blue_grey_600">#546E7A</color>
     <color name="md_blue_grey_700">#455A64</color>
     <color name="md_blue_grey_800">#37474F</color>
-    <color name="md_blue_grey_850">#37474F</color>
+    <color name="md_blue_grey_850">#2F3D44</color>
     <color name="md_blue_grey_900">#263238</color>
 
     <color name="md_blue_grey_100_dark">#B8C5CB</color>
@@ -125,6 +125,7 @@
     <color name="md_blue_grey_900_dark">#151C1F</color>
 
     <color name="md_brown_100">#D7CCC8</color>
+    <color name="md_brown_150">#CABBB6</color>
     <color name="md_brown_200">#BCAAA4</color>
     <color name="md_brown_300">#A1887F</color>
     <color name="md_brown_400">#8D6E63</color>
@@ -132,7 +133,6 @@
     <color name="md_brown_600">#6D4C41</color>
     <color name="md_brown_700">#5D4037</color>
     <color name="md_brown_800">#4E342E</color>
-    <color name="md_brown_850">#4E342E</color>
     <color name="md_brown_900">#3E2723</color>
 
     <color name="md_brown_100_dark">#C6B7B1</color>
@@ -191,6 +191,7 @@
     <color name="md_deep_orange_900_dark">#992B09</color>
 
     <color name="md_deep_purple_100">#D1C4E9</color>
+    <color name="md_deep_purple_150">#C2B1E2</color>
     <color name="md_deep_purple_200">#B39DDB</color>
     <color name="md_deep_purple_300">#9575CD</color>
     <color name="md_deep_purple_400">#7E57C2</color>
@@ -198,7 +199,6 @@
     <color name="md_deep_purple_600">#5E35B1</color>
     <color name="md_deep_purple_700">#512DA8</color>
     <color name="md_deep_purple_800">#4527A0</color>
-    <color name="md_deep_purple_850">#4527A0</color>
     <color name="md_deep_purple_900">#311B92</color>
 
     <color name="md_deep_purple_100_dark">#BAA6DE</color>
@@ -367,6 +367,7 @@
     <color name="md_orange_900_dark">#BD4200</color>
 
     <color name="md_pink_100">#F8BBD0</color>
+    <color name="md_pink_150">#F6A5C1</color>
     <color name="md_pink_200">#F48FB1</color>
     <color name="md_pink_300">#F06292</color>
     <color name="md_pink_400">#EC407A</color>
@@ -374,7 +375,6 @@
     <color name="md_pink_600">#D81B60</color>
     <color name="md_pink_700">#C2185B</color>
     <color name="md_pink_800">#AD1457</color>
-    <color name="md_pink_850">#AD1457</color>
     <color name="md_pink_900">#880E4F</color>
 
     <color name="md_pink_100_dark">#F596B7</color>
@@ -389,6 +389,7 @@
     <color name="md_pink_900_dark">#630A3A</color>
 
     <color name="md_purple_100">#E1BEE7</color>
+    <color name="md_purple_150">#D8A9E0</color>
     <color name="md_purple_200">#CE93D8</color>
     <color name="md_purple_300">#BA68C8</color>
     <color name="md_purple_400">#AB47BC</color>
@@ -396,7 +397,6 @@
     <color name="md_purple_600">#8E24AA</color>
     <color name="md_purple_700">#7B1FA2</color>
     <color name="md_purple_800">#6A1B9A</color>
-    <color name="md_purple_850">#6A1B9A</color>
     <color name="md_purple_900">#4A148C</color>
 
     <color name="md_purple_100_dark">#D3A0DC</color>

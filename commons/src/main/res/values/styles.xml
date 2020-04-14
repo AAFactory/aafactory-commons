@@ -166,6 +166,12 @@
         <item name="colorAccent">@color/md_pink_100</item>
     </style>
 
+    <style name="AppTheme.Pink_150" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/md_pink_150</item>
+        <item name="colorPrimaryDark">@color/md_pink_100_dark</item>
+        <item name="colorAccent">@color/md_pink_150</item>
+    </style>
+
     <style name="AppTheme.Pink_200" parent="AppTheme.NoActionBar">
         <item name="colorPrimary">@color/md_pink_200</item>
         <item name="colorPrimaryDark">@color/md_pink_200_dark</item>
@@ -220,6 +226,12 @@
         <item name="colorAccent">@color/md_purple_100</item>
     </style>
 
+    <style name="AppTheme.Purple_150" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/md_purple_150</item>
+        <item name="colorPrimaryDark">@color/md_purple_100_dark</item>
+        <item name="colorAccent">@color/md_purple_150</item>
+    </style>
+
     <style name="AppTheme.Purple_200" parent="AppTheme.NoActionBar">
         <item name="colorPrimary">@color/md_purple_200</item>
         <item name="colorPrimaryDark">@color/md_purple_200_dark</item>
@@ -272,6 +284,12 @@
         <item name="colorPrimary">@color/md_deep_purple_100</item>
         <item name="colorPrimaryDark">@color/md_deep_purple_100_dark</item>
         <item name="colorAccent">@color/md_deep_purple_100</item>
+    </style>
+
+    <style name="AppTheme.Deep_Purple_150" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/md_deep_purple_150</item>
+        <item name="colorPrimaryDark">@color/md_deep_purple_100_dark</item>
+        <item name="colorAccent">@color/md_deep_purple_150</item>
     </style>
 
     <style name="AppTheme.Deep_Purple_200" parent="AppTheme.NoActionBar">
@@ -976,6 +994,12 @@
         <item name="colorAccent">@color/md_brown_100</item>
     </style>
 
+    <style name="AppTheme.Brown_150" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/md_brown_150</item>
+        <item name="colorPrimaryDark">@color/md_brown_100_dark</item>
+        <item name="colorAccent">@color/md_brown_150</item>
+    </style>
+
     <style name="AppTheme.Brown_200" parent="AppTheme.NoActionBar">
         <item name="colorPrimary">@color/md_brown_200</item>
         <item name="colorPrimaryDark">@color/md_brown_200_dark</item>
@@ -1130,6 +1154,12 @@
         <item name="colorPrimary">@color/md_blue_grey_800</item>
         <item name="colorPrimaryDark">@color/md_blue_grey_800_dark</item>
         <item name="colorAccent">@color/md_blue_grey_800</item>
+    </style>
+
+    <style name="AppTheme.Blue_Grey_850" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/md_blue_grey_850</item>
+        <item name="colorPrimaryDark">@color/md_blue_grey_800_dark</item>
+        <item name="colorAccent">@color/md_blue_grey_850</item>
     </style>
 
     <style name="AppTheme.Blue_Grey_900" parent="AppTheme.NoActionBar">
