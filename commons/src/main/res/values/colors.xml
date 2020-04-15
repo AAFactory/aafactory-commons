@@ -176,7 +176,7 @@
     <color name="md_deep_orange_600">#F4511E</color>
     <color name="md_deep_orange_700">#E64A19</color>
     <color name="md_deep_orange_800">#D84315</color>
-    <color name="md_deep_orange_850">#D84315</color>
+    <color name="md_deep_orange_850">#CC3D11</color>
     <color name="md_deep_orange_900">#BF360C</color>
 
     <color name="md_deep_orange_100_dark">#FFAD93</color>
@@ -220,7 +220,7 @@
     <color name="md_green_600">#43A047</color>
     <color name="md_green_700">#388E3C</color>
     <color name="md_green_800">#2E7D32</color>
-    <color name="md_green_850">#2E7D32</color>
+    <color name="md_green_850">#256E29</color>
     <color name="md_green_900">#1B5E20</color>
 
     <color name="md_green_100_dark">#ACDAAE</color>
@@ -308,7 +308,7 @@
     <color name="md_light_green_600">#7CB342</color>
     <color name="md_light_green_700">#689F38</color>
     <color name="md_light_green_800">#558B2F</color>
-    <color name="md_light_green_850">#558B2F</color>
+    <color name="md_light_green_850">#447A27</color>
     <color name="md_light_green_900">#33691E</color>
 
     <color name="md_light_green_100_dark">#C9E3A9</color>
@@ -330,7 +330,7 @@
     <color name="md_lime_600">#C0CA33</color>
     <color name="md_lime_700">#A4B42B</color>
     <color name="md_lime_800">#9E9D24</color>
-    <color name="md_lime_850">#9E9D24</color>
+    <color name="md_lime_850">#908A1E</color>
     <color name="md_lime_900">#827717</color>
 
     <color name="md_lime_100_dark">#E8EEA0</color>
@@ -352,7 +352,7 @@
     <color name="md_orange_600">#FB8C00</color>
     <color name="md_orange_700">#F57C00</color>
     <color name="md_orange_800">#EF6C00</color>
-    <color name="md_orange_850">#EF6C00</color>
+    <color name="md_orange_850">#EB5F00</color>
     <color name="md_orange_900">#E65100</color>
 
     <color name="md_orange_100_dark">#FFD089</color>
@@ -462,7 +462,7 @@
     <color name="md_yellow_600">#FDD835</color>
     <color name="md_yellow_700">#FBC02D</color>
     <color name="md_yellow_800">#F9A825</color>
-    <color name="md_yellow_850">#F9A825</color>
+    <color name="md_yellow_850">#F7941E</color>
     <color name="md_yellow_900">#F57F17</color>
 
     <color name="md_yellow_100_dark">#FFF59B</color>

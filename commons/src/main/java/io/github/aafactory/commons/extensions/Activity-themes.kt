@@ -107,6 +107,7 @@ fun Activity.getThemeId(color: Int = baseConfig.primaryColor) = when (color) {
     -16742021 -> R.style.AppTheme_Teal_600
     -16746133 -> R.style.AppTheme_Teal_700
     -16750244 -> R.style.AppTheme_Teal_800
+    -16753842 -> R.style.AppTheme_Teal_850
     -16757440 -> R.style.AppTheme_Teal_900
 
     -3610935 -> R.style.AppTheme_Green_100
@@ -117,6 +118,7 @@ fun Activity.getThemeId(color: Int = baseConfig.primaryColor) = when (color) {
     -12345273 -> R.style.AppTheme_Green_600
     -13070788 -> R.style.AppTheme_Green_700
     -13730510 -> R.style.AppTheme_Green_800
+    -14324183 -> R.style.AppTheme_Green_850
     -14983648 -> R.style.AppTheme_Green_900
 
     -2298424 -> R.style.AppTheme_Light_Green_100
@@ -127,6 +129,7 @@ fun Activity.getThemeId(color: Int = baseConfig.primaryColor) = when (color) {
     -8604862 -> R.style.AppTheme_Light_Green_600
     -9920712 -> R.style.AppTheme_Light_Green_700
     -11171025 -> R.style.AppTheme_Light_Green_800
+    -12289497 -> R.style.AppTheme_Light_Green_850
     -13407970 -> R.style.AppTheme_Light_Green_900
 
     -985917 -> R.style.AppTheme_Lime_100
@@ -137,6 +140,7 @@ fun Activity.getThemeId(color: Int = baseConfig.primaryColor) = when (color) {
     -4142541 -> R.style.AppTheme_Lime_600
     -5983189 -> R.style.AppTheme_Lime_700
     -6382300 -> R.style.AppTheme_Lime_800
+    -7304674 -> R.style.AppTheme_Lime_850
     -8227049 -> R.style.AppTheme_Lime_900
 
     -1596 -> R.style.AppTheme_Yellow_100
@@ -147,6 +151,7 @@ fun Activity.getThemeId(color: Int = baseConfig.primaryColor) = when (color) {
     -141259 -> R.style.AppTheme_Yellow_600
     -278483 -> R.style.AppTheme_Yellow_700
     -415707 -> R.style.AppTheme_Yellow_800
+    -551906 -> R.style.AppTheme_Yellow_850
     -688361 -> R.style.AppTheme_Yellow_900
 
     -4941 -> R.style.AppTheme_Amber_100
@@ -157,6 +162,7 @@ fun Activity.getThemeId(color: Int = baseConfig.primaryColor) = when (color) {
     -19712 -> R.style.AppTheme_Amber_600
     -24576 -> R.style.AppTheme_Amber_700
     -28928 -> R.style.AppTheme_Amber_800
+    -33536 -> R.style.AppTheme_Amber_850
     -37120 -> R.style.AppTheme_Amber_900
 
     -8014 -> R.style.AppTheme_Orange_100
@@ -167,6 +173,7 @@ fun Activity.getThemeId(color: Int = baseConfig.primaryColor) = when (color) {
     -291840 -> R.style.AppTheme_Orange_600
     -689152 -> R.style.AppTheme_Orange_700
     -1086464 -> R.style.AppTheme_Orange_800
+    -1351936 -> R.style.AppTheme_Orange_850
     -1683200 -> R.style.AppTheme_Orange_900
 
     -13124 -> R.style.AppTheme_Deep_Orange_100
@@ -177,6 +184,7 @@ fun Activity.getThemeId(color: Int = baseConfig.primaryColor) = when (color) {
     -765666 -> R.style.AppTheme_Deep_Orange_600
     -1684967 -> R.style.AppTheme_Deep_Orange_700
     -2604267 -> R.style.AppTheme_Deep_Orange_800
+    -3392239 -> R.style.AppTheme_Deep_Orange_850
     -4246004 -> R.style.AppTheme_Deep_Orange_900
 
     -2634552 -> R.style.AppTheme_Brown_100
