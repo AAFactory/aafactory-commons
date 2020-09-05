@@ -22,8 +22,6 @@
 
     <!--SimpleMobileTools Simple-Commons v3.16.14-->
     <!--https://github.com/SimpleMobileTools/Simple-Commons-->
-    <string name="ok">确认</string>
-    <string name="cancel">取消</string>
     <string name="save_as">保存</string>
     <string name="file_saved">文件保存成功</string>
     <string name="invalid_file_format">无效文件格式</string>
@@ -335,7 +333,6 @@
     <string name="at_start">开始时</string>
 
     <!-- Settings -->
-    <string name="settings">设置</string>
     <string name="customize_colors">自定义颜色</string>
     <string name="use_english_language">强制使用英语语言</string>
     <string name="avoid_whats_new">启动时不再显示更新内容</string>

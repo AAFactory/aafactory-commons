@@ -22,8 +22,6 @@
 
     <!--SimpleMobileTools Simple-Commons v3.16.14-->
     <!--https://github.com/SimpleMobileTools/Simple-Commons-->
-    <string name="ok">OK</string>
-    <string name="cancel">キャンセル</string>
     <string name="save_as">名前を付けて保存</string>
     <string name="file_saved">ファイルを正常に保存しました</string>
     <string name="invalid_file_format">使用できないファイル形式</string>
@@ -335,7 +333,6 @@
     <string name="at_start">開始時</string>
 
     <!-- Settings -->
-    <string name="settings">設定</string>
     <string name="customize_colors">表示色のカスタマイズ</string>
     <string name="use_english_language">Use English language</string>
     <string name="avoid_whats_new">Avoid showing What\'s New on startup</string>
