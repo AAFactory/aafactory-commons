@@ -22,6 +22,8 @@
 
     <!--SimpleMobileTools Simple-Commons v3.16.14-->
     <!--https://github.com/SimpleMobileTools/Simple-Commons-->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
     <string name="save_as">Save as</string>
     <string name="file_saved">File saved successfully</string>
     <string name="invalid_file_format">Invalid file format</string>
