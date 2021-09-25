@@ -82,18 +82,6 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <!--https://github.com/Tapadoo/Alerter-->
-    <style name="ExampleButton" parent="Base.Widget.AppCompat.Button">
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:layout_margin">@dimen/alerter_padding_small</item>
-    </style>
-
-    <!--https://github.com/saulmm/CoordinatorExamples-->
-    <style name="AppTheme.SimpleCoordinatorTheme">
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
-
     <style name="ToolBarWithNavigationBack">
         <item name="navigationIcon">@drawable/abc_ic_ab_back_material</item>
     </style>

@@ -1,7 +1,7 @@
 package io.github.aafactory.sample.helpers
 
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * Created by CHO HANJOONG on 2018-05-13.
