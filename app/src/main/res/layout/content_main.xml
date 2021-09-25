@@ -9,12 +9,12 @@
     tools:context="io.github.aafactory.sample.MainActivity"
     tools:showIn="@layout/activity_main"
     android:padding="@dimen/card_layout_padding">
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </FrameLayout>

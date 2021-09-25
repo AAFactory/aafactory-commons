@@ -1,7 +1,7 @@
 package io.github.aafactory.sample.adapters
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
 
 /**
