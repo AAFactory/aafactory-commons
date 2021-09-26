@@ -13,7 +13,7 @@ open class BaseWebViewActivity : BaseSimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
 //        webView.getSettings().setJavaScriptEnabled(true)
-        webView.loadUrl(intent.getStringExtra(OPEN_URL_INFO))
+        webView.loadUrl(intent.getStringExtra(OPEN_URL_INFO)!!)
         finish.setOnClickListener {
             this.onBackPressed()
         }
