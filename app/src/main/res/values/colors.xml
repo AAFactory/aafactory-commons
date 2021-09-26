@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!--https://github.com/Werb/G-Trending-->
     <color name="colorLight">#979797</color>
     <color name="colorLine">#E5E0E0</color>
@@ -12,54 +11,4 @@
     <color name="colorGrayDark">#696969</color>
     <color name="colorBlack">#333333</color>
     <color name="colorBlackLight">#586069</color>
-
-    <!--https://github.com/woxingxiao/BubbleSeekBar-->
-    <color name="color_gray">#B4B4B4</color>
-    <color name="color_green">#00b4aa</color>
-    <color name="color_red">#FF6A6E</color>
-    <color name="color_red_light">#FFB4B6</color>
-    <color name="color_blue">#03A9F4</color>
-    <color name="color_gray_light">#F5F5F5</color>
-
-    <!--https://github.com/navermaps/maps.android-->
-    <drawable name="black_color">#ff000000</drawable>
-    <drawable name="selected_list_color">#ff32A800</drawable>
-    <drawable name="default_list_color">#ffffffff</drawable>
-
-    <!--https://github.com/bumptech/glide-->
-    <color name="translucent_black">#B0000000</color>
-
-    <!--https://github.com/googlesamples/android-FingerprintDialog-->
-    <color name="warning_color">#f4511e</color>
-    <color name="hint_color">#42000000</color>
-    <color name="success_color">#009688</color>
-
-    <!--https://github.com/googlesamples/android-architecture/tree/todo-mvp-kotlin/-->
-    <drawable name="completedTaskBackground">#CCCCCC</drawable>
-    <drawable name="touchFeedback">#CFD8DC</drawable>
-
-    <!--https://github.com/kioko/motion-layout-playground-->
-    <color name="white">#fff</color>
-    <color name="gray">#263238</color>
-    <color name="yellow">#eeff41</color>
-    <color name="semiTransparent">#46263238</color>
-    <color name="semiTransparentBlack">#6e232323</color>
-    <color name="semiTransparentLight">#505b5b5b</color>
-    <color name="semiTransparentLighter">#145b5b5b</color>white
-    <color name="transparent">#00ffffff</color>
-    <color name="secondary_text">#8899A6</color>
-    <color name="green">#17BF63</color>
-    <color name="red">#E0245D</color>
-    <color name="link_text">#1EA1F2</color>
-
-    <!--https://github.com/Werb/PickPhotoSample/-->
-    <color name="black">#191919</color>
-    <color name="pink">#FF0458</color>
-    <color name="white_pressed">#c8ffffff</color>
-    <color name="green_primary">#0f9f58</color>
-    <color name="green_primary_dark">#0c7e46</color>
-    <color name="green_accent">#0f9f58</color>
-    <color name="blue_primary">#4184f3</color>
-    <color name="blue_primary_dark">#346ac2</color>
-    <color name="blue_accent">#4184f3</color>
 </resources>
