@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.extensions.dpToPixel
+import io.github.aafactory.commons.utils.DateUtils
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
 import io.github.aafactory.sample.models.Repository
 import io.github.aafactory.sample.models.Showcase
@@ -115,7 +116,7 @@ class MainActivity : BaseSimpleActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         supportActionBar?.run { 
-            title = getString(R.string.app_name)
+            title = getString(R.string.app_name, DateUtils.getCurrentDateTime(DateUtils.DATE_PATTERN_DASH))
         }
 
         recyclerView.addItemDecoration(ItemDecoration(this))
