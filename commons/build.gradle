@@ -3,6 +3,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.vanniktech.maven.publish'
+// gradlew uploadArchives --stacktrace --no-daemon --no-parallel
 
 android {
     compileSdkVersion versions.compileSdk
@@ -68,7 +70,4 @@ dependencies {
     testImplementation "org.assertj:assertj-core:3.13.2"
     testImplementation "org.mockito:mockito-core:3.4.6"
     testImplementation 'com.squareup.okhttp3:mockwebserver:3.11.0'
-
-    // Resolve conflicts between main and test APK:
 }
-apply from: '../bintray-upload.gradle'

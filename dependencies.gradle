@@ -1,9 +1,8 @@
 ext.versions = [
     compileSdk        : 30,
     buildTools        : '28.0.2',
-    publishVersion    : '1.0.8',
-    publishVersionCode: 31,
-
+    publishVersion    : '1.0.9',
+    publishVersionCode: 32,
     gradlePlugin      : '3.3.2',
 
 // App dependencies
