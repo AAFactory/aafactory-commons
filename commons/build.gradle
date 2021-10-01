@@ -1,19 +1,16 @@
-apply from: '../dependencies.gradle'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.vanniktech.maven.publish'
-// gradlew uploadArchives --stacktrace --no-daemon --no-parallel
 
 android {
-    compileSdkVersion versions.compileSdk
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion versions.compileSdk
-        versionCode versions.publishVersionCode
-        versionName versions.publishVersion
+        targetSdkVersion 30
+        versionCode 32
+        versionName '1.0.9'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
