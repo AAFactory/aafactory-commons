@@ -21,15 +21,15 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/colorType"
-            android:padding="5dp"
-            android:src="@drawable/recurring_appointment"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/languageType"/>
+                android:id="@+id/colorType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/languageType"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="5dp"
+                android:src="@drawable/recurring_appointment" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/languageType"

@@ -8,14 +8,13 @@ import android.view.View
 import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import io.github.aafactory.commons.activities.BaseSimpleActivity
+import io.github.aafactory.commons.activities.MarkDownViewActivity
 import io.github.aafactory.commons.extensions.dpToPixel
-import io.github.aafactory.commons.utils.DateUtils
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
 import io.github.aafactory.sample.models.Repository
 import io.github.aafactory.sample.models.Showcase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import java.util.*
 
 class MainActivity : BaseSimpleActivity() {
     val listItems = mutableListOf<Map<String, String>>(
@@ -101,14 +100,15 @@ class MainActivity : BaseSimpleActivity() {
     private val adapter: ShowcaseAdapter by lazy { 
         ShowcaseAdapter(
                 this,
-                mListItem,
-                AdapterView.OnItemClickListener { _, _, position, _ ->
-                    val showCase = adapter.getItem(position)
-                    when (showCase.repositoryName()) {
-                        "Fancybuttons" -> startActivity(Intent(this, MainActivity::class.java))
-                    }
-                }
-        ) 
+                mListItem
+        ) { _, _, position, _ ->
+            val showCase = adapter.getItem(position)
+            startActivity(Intent(this, MarkDownViewActivity::class.java).apply {
+            putExtra(MarkDownViewActivity.OPEN_URL_INFO, "https://raw.githubusercontent.com/${showCase.owner}/${showCase.repositoryName()}/master/README.md")
+            putExtra(MarkDownViewActivity.OPEN_URL_DESCRIPTION, showCase.repositoryName())
+            putExtra(MarkDownViewActivity.FORCE_APPEND_CODE_BLOCK, false)
+        })
+        }
     }
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,7 +116,7 @@ class MainActivity : BaseSimpleActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         supportActionBar?.run { 
-            title = getString(R.string.app_name, DateUtils.getCurrentDateTime(DateUtils.DATE_PATTERN_DASH))
+            title = getString(R.string.app_name)
         }
 
         recyclerView.addItemDecoration(ItemDecoration(this))

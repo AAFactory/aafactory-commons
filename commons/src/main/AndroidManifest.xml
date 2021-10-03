@@ -3,14 +3,12 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true">
-
         <activity android:name="com.werb.pickphotoview.PickPhotoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/PickBaseTheme"/>
-
         <activity android:name="com.werb.pickphotoview.PickPhotoPreviewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Full.Theme"/>
-
+        <activity android:name=".activities.MarkDownViewActivity" android:theme="@style/AppTheme.NoActionBar" />
     </application>
 </manifest>

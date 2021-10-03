@@ -53,6 +53,13 @@ dependencies {
     // implementation project(':simple-commons')
 //    implementation 'com.simplemobiletools:commons:3.7.8'
     implementation project(':commons')
+
+    // square
+    implementation "com.squareup.okhttp3:okhttp:3.9.1"
+    implementation "com.squareup.retrofit2:retrofit:2.4.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava:2.4.0"
+    implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.4.0"
 }
 
 repositories {

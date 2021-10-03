@@ -15,6 +15,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    viewBinding {
+        enabled = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -29,6 +33,10 @@ android {
     sourceSets {
 //        main.java.srcDirs += 'src/main/kotlin'
     }
+}
+
+configurations.all {
+    exclude group: 'org.jetbrains', module: 'annotations-java5'
 }
 
 dependencies {
@@ -62,6 +70,12 @@ dependencies {
 
     implementation 'id.zelory:compressor:2.1.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'io.noties.markwon:core:4.6.2'
+    implementation 'io.noties.markwon:syntax-highlight:4.6.2'
+    implementation 'io.noties.markwon:ext-tables:4.6.2'
+    implementation 'io.noties:prism4j:2.0.0'
+
+    kapt 'io.noties:prism4j-bundler:2.0.0'
 
     // test
     testImplementation 'junit:junit:4.12'

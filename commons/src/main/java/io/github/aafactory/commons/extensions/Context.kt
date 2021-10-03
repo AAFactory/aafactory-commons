@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Build
 import android.os.Looper
 import android.util.TypedValue
@@ -127,4 +129,10 @@ fun Context.getPermissionString(id: Int) = when (id) {
 fun Context.getCurScreenBackgroundColor(backgroundAlpha: Int): Int = when (baseConfig.screenBackgroundColor == SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT) {
     true -> ColorUtils.setAlphaComponent(baseConfig.primaryColor, backgroundAlpha)
     false -> baseConfig.screenBackgroundColor
+}
+
+fun Context.isConnectedOrConnecting(): Boolean {
+    val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+    return activeNetwork?.isConnectedOrConnecting == true
 }
