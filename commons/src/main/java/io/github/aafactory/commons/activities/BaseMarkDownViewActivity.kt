@@ -27,12 +27,12 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 @PrismBundle(include = ["java", "kotlin", "javascript"], grammarLocatorClassName = ".GrammarLocatorSourceCode")
-open class MarkDownViewActivity : BaseSimpleActivity() {
+open class BaseMarkDownViewActivity : BaseSimpleActivity() {
     private lateinit var mBinding: ActivityMarkdownViewBinding
     private lateinit var savedFilePath: String
     private lateinit var markdownUrl: String
-    private val mPrism4j = Prism4j(GrammarLocatorSourceCode())
     private var mForceAppendCodeBlock = false
+    protected lateinit var mPrism4j:Prism4j
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

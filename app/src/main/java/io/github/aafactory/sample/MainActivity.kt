@@ -6,9 +6,10 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import io.github.aafactory.commons.activities.BaseMarkDownViewActivity
 import io.github.aafactory.commons.activities.BaseSimpleActivity
-import io.github.aafactory.commons.activities.MarkDownViewActivity
 import io.github.aafactory.commons.extensions.dpToPixel
+import io.github.aafactory.sample.activities.MarkDownViewActivity
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
 import io.github.aafactory.sample.models.Repository
 import io.github.aafactory.sample.models.Showcase
@@ -53,9 +54,9 @@ class MainActivity : BaseSimpleActivity() {
         ) { _, _, position, _ ->
             val showCase = adapter.getItem(position)
             startActivity(Intent(this, MarkDownViewActivity::class.java).apply {
-            putExtra(MarkDownViewActivity.OPEN_URL_INFO, "https://raw.githubusercontent.com/${showCase.owner}/${showCase.repositoryName()}/master/README.md")
-            putExtra(MarkDownViewActivity.OPEN_URL_DESCRIPTION, showCase.repositoryName())
-            putExtra(MarkDownViewActivity.FORCE_APPEND_CODE_BLOCK, false)
+            putExtra(BaseMarkDownViewActivity.OPEN_URL_INFO, "https://raw.githubusercontent.com/${showCase.owner}/${showCase.repositoryName()}/master/README.md")
+            putExtra(BaseMarkDownViewActivity.OPEN_URL_DESCRIPTION, showCase.repositoryName())
+            putExtra(BaseMarkDownViewActivity.FORCE_APPEND_CODE_BLOCK, false)
         })
         }
     }

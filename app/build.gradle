@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -40,6 +41,10 @@ android {
     }
 }
 
+configurations.all {
+    exclude group: 'org.jetbrains', module: 'annotations-java5'
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // android
@@ -54,12 +59,22 @@ dependencies {
 //    implementation 'com.simplemobiletools:commons:3.7.8'
     implementation project(':commons')
 
+    // apache commons
+    implementation "commons-io:commons-io:2.6"
+    implementation "org.apache.commons:commons-lang3:3.7"
+
     // square
     implementation "com.squareup.okhttp3:okhttp:3.9.1"
     implementation "com.squareup.retrofit2:retrofit:2.4.0"
     implementation "com.squareup.retrofit2:adapter-rxjava:2.4.0"
     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
     implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+    implementation 'io.noties.markwon:core:4.6.2'
+    implementation 'io.noties.markwon:syntax-highlight:4.6.2'
+    implementation 'io.noties.markwon:ext-tables:4.6.2'
+    implementation 'io.noties:prism4j:2.0.0'
+
+    kapt 'io.noties:prism4j-bundler:2.0.0'
 }
 
 repositories {
