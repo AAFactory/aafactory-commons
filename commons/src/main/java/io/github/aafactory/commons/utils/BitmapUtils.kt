@@ -161,34 +161,6 @@ object BitmapUtils {
         return bmpWithBorder
     }
 
-    fun addFilmFrame(activity: Activity, bmp: Bitmap, scaleFactor: Double, resourceId: Int): Bitmap {
-        val frameWidth = if (resourceId == R.drawable.frame_03) 137 else 140
-        val frameHeight = if (resourceId == R.drawable.frame_03) 117 else 99
-        val frameInnerWidth = if (resourceId == R.drawable.frame_03) 122F else 105F
-        val frameInnerHeight = if (resourceId == R.drawable.frame_03) 77F else 63F
-
-        // 01. calculate ratio
-        val ratioX: Float = frameInnerWidth / (bmp.width * scaleFactor).toInt()
-        val ratioY: Float = frameInnerHeight / (bmp.height * scaleFactor).toInt()
-
-        // 02. setting the target photo size 
-        val targetPhotoWidth: Int = (bmp.width * scaleFactor).toInt()
-        val targetPhotoHeight: Int = (bmp.height * scaleFactor).toInt()
-
-        // 03. calculate frame width and height
-        val targetFlameWidth: Int = (frameWidth / ratioX).toInt()
-        val targetFlameHeight: Int = (frameHeight / ratioY).toInt()
-
-        val temp = BitmapFactory.decodeResource(activity.resources, resourceId)
-        val bmpWithFrame = Bitmap.createBitmap(targetFlameWidth, targetFlameHeight, temp.config)
-        val canvas = Canvas(bmpWithFrame)
-        val frame = Bitmap.createScaledBitmap(temp, targetFlameWidth, targetFlameHeight, false)
-        val samplingPhoto = Bitmap.createScaledBitmap(bmp, targetPhotoWidth, targetPhotoHeight, false)
-        canvas.drawBitmap(frame, 0f, 0f, null)
-        canvas.drawBitmap(samplingPhoto, (targetFlameWidth - targetPhotoWidth) / 2F, (targetFlameHeight - targetPhotoHeight) / 2F, null)
-        return bmpWithFrame
-    }
-
     fun decodeFileMaxWidthHeight(path: String, maxWidthHeight: Int): Bitmap {
         var inputStream: InputStream? = FileUtils.openInputStream(File(path))
         val options = BitmapFactory.Options().apply {
