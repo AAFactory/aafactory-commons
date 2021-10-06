@@ -24,5 +24,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.MarkDownViewActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.DevActivity" android:theme="@style/AppTheme.NoActionBar" />
     </application>
 </manifest>

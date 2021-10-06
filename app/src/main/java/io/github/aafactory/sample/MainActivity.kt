@@ -4,11 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import io.github.aafactory.commons.activities.BaseMarkDownViewActivity
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.extensions.dpToPixel
+import io.github.aafactory.sample.activities.DevActivity
 import io.github.aafactory.sample.activities.MarkDownViewActivity
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
 import io.github.aafactory.sample.models.Repository
@@ -89,6 +92,20 @@ class MainActivity : BaseSimpleActivity() {
         runOnUiThread {
             progressBar.visibility = View.GONE
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.devConsole -> {
+                startActivity(Intent(this, DevActivity::class.java))
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private inner class ItemDecoration(private val context: Context) : RecyclerView.ItemDecoration() {
