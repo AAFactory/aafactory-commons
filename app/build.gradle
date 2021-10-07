@@ -36,7 +36,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    dataBinding {
+    viewBinding {
         enabled = true
     }
 }
@@ -58,6 +58,9 @@ dependencies {
     // implementation project(':simple-commons')
 //    implementation 'com.simplemobiletools:commons:3.7.8'
     implementation project(':commons')
+
+    // google
+    implementation 'com.google.android:flexbox:1.0.0'
 
     // apache commons
     implementation "commons-io:commons-io:2.6"

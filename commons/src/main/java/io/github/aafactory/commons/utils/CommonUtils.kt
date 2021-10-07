@@ -1,11 +1,16 @@
 package io.github.aafactory.commons.utils
 
 import android.app.Activity
+import android.app.AlarmManager
 import android.content.ContentResolver
 import android.content.Context
 import android.graphics.Point
 import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 import android.util.TypedValue
+import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import id.zelory.compressor.Compressor
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.IOUtils

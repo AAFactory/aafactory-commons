@@ -1,6 +1,7 @@
 package io.github.aafactory.commons.extensions
 
 import android.Manifest
+import android.app.AlarmManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
@@ -9,8 +10,10 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Build
 import android.os.Looper
+import android.provider.Settings
 import android.util.TypedValue
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
@@ -24,6 +27,7 @@ import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.views.*
 import io.github.aafactory.commons.helpers.BaseConfig
 import io.github.aafactory.commons.helpers.SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT
+import io.github.aafactory.commons.utils.DateUtils
 
 /**
  * Created by CHO HANJOONG on 2017-12-30.
