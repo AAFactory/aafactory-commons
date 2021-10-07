@@ -20,12 +20,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : BaseSimpleActivity() {
-    val listItems = mutableListOf(
+    private val listItems = mutableListOf(
             mapOf("owner" to "AppIntro", "name" to "AppIntro")
             , mapOf("owner" to "Werb", "name" to "PickPhotoSample")
             , mapOf("owner" to "ParkSangGwon", "name" to "TedBottomPicker")
             , mapOf("owner" to "donglua", "name" to "PhotoPicker")
-            , mapOf("owner" to "gsuitedevs", "name" to "android-samples", "displayName" to "Google Drive Android API Demos")
+            , mapOf("owner" to "gsuitedevs", "name" to "android-samples")
             , mapOf("owner" to "kioko", "name" to "motion-layout-playground")
             , mapOf("owner" to "zoonooz", "name" to "simple-view-behavior")
             , mapOf("owner" to "googlesamples", "name" to "android-architecture", "displayName" to "todo-mvvm-live-kotlin")
