@@ -1,33 +1,36 @@
 package io.github.aafactory.commons.extensions
 
 import android.Manifest
-import android.app.AlarmManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Build
 import android.os.Looper
-import android.provider.Settings
 import android.util.TypedValue
+import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.view.Window
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
-import io.github.aafactory.commons.views.ModalView
-import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_COARSE_LOCATION
-import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_FINE_LOCATION
 import com.simplemobiletools.commons.extensions.adjustAlpha
 import com.simplemobiletools.commons.extensions.baseConfig
 import com.simplemobiletools.commons.extensions.isBlackAndWhiteTheme
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.views.*
+import io.github.aafactory.commons.databinding.DialogMessageBinding
 import io.github.aafactory.commons.helpers.BaseConfig
+import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_COARSE_LOCATION
+import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_FINE_LOCATION
 import io.github.aafactory.commons.helpers.SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT
-import io.github.aafactory.commons.utils.DateUtils
+import io.github.aafactory.commons.utils.CommonUtils
+import io.github.aafactory.commons.views.ModalView
 
 /**
  * Created by CHO HANJOONG on 2017-12-30.
@@ -46,6 +49,35 @@ fun Context.isLollipopPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLL
 fun Context.isMarshmallowPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 fun Context.isNougatPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
 fun Context.isOreoPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
+
+fun Context.updateAlertDialog(alertDialog: AlertDialog, message: String? = null, customView: View? = null, customTitle: String? = null) {
+    alertDialog.run {
+        when (customView == null) {
+            true -> {
+                DialogMessageBinding.inflate(layoutInflater).apply {
+                    root.apply {
+                        simpleMessage.text = message
+                    }
+                    setView(root)
+                }
+            }
+            false -> setView(customView)
+        }
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        customTitle?.let {
+            val titleView = TextView(this@updateAlertDialog).apply {
+                text = customTitle
+                val padding = CommonUtils.dpToPixel(this@updateAlertDialog, 15F)
+                setPadding(padding * 2, padding, padding * 2, padding)
+                setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18F)
+            }
+            setCustomTitle(titleView)
+        }
+        show()
+        getButton(AlertDialog.BUTTON_POSITIVE).run {}
+        getButton(AlertDialog.BUTTON_NEGATIVE).run {}
+    }
+}
 
 fun Context.updateTextColors(viewGroup: ViewGroup, tmpTextColor: Int = 0, tmpAccentColor: Int = 0) {
     val textColor = if (tmpTextColor == 0) baseConfig.textColor else tmpTextColor
@@ -139,4 +171,10 @@ fun Context.isConnectedOrConnecting(): Boolean {
     val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
     return activeNetwork?.isConnectedOrConnecting == true
+}
+
+fun Context.isNightMode() = when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+    Configuration.UI_MODE_NIGHT_YES -> false
+    Configuration.UI_MODE_NIGHT_NO -> false
+    else -> false
 }

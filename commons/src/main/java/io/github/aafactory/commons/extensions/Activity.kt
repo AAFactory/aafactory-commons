@@ -4,16 +4,46 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlarmManager
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Build
 import android.provider.Settings
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import io.github.aafactory.commons.R
 import io.github.aafactory.commons.utils.DateUtils
 
 fun Activity.makeToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+fun Activity.showAlertDialog(title: String?, message: String, positiveListener: DialogInterface.OnClickListener?, negativeListener: DialogInterface.OnClickListener?, cancelable: Boolean = true) {
+    val builder = AlertDialog.Builder(this)
+    builder.setCancelable(cancelable)
+    builder.setNegativeButton(getString(R.string.cancel), negativeListener)
+    builder.setPositiveButton(getString(R.string.ok), positiveListener)
+    builder.create().apply {
+        updateAlertDialog(this, message, null, title)
+    }
+}
+
+fun Activity.showAlertDialog(message: String, positiveListener: DialogInterface.OnClickListener, negativeListener: DialogInterface.OnClickListener?) {
+    showAlertDialog(null, message, positiveListener, negativeListener)
+}
+
+fun Activity.showAlertDialog(title: String?, message: String, positiveListener: DialogInterface.OnClickListener?, cancelable: Boolean = true) {
+    val builder = AlertDialog.Builder(this)
+    builder.setCancelable(cancelable)
+    builder.setPositiveButton(getString(R.string.ok), positiveListener)
+    builder.create().apply {
+        updateAlertDialog(this, message, null, title)
+    }
+}
+
+fun Activity.showAlertDialog(message: String, positiveListener: DialogInterface.OnClickListener?, cancelable: Boolean = true) {
+    showAlertDialog(null, message, positiveListener, cancelable)
 }
 
 fun Activity.determineNextAlarm() {
