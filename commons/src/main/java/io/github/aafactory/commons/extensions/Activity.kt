@@ -1,9 +1,12 @@
 package io.github.aafactory.commons.extensions
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlarmManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Build
 import android.provider.Settings
 import android.widget.Toast
@@ -12,7 +15,6 @@ import io.github.aafactory.commons.utils.DateUtils
 fun Activity.makeToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
-
 
 fun Activity.determineNextAlarm() {
     val nextAlarm = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -34,4 +36,23 @@ fun Activity.triggerRestart(cls: Class<*>) {
     this.startActivity(intent)
     finish()
     Runtime.getRuntime().exit(0)
+}
+
+fun Activity.setScreenOrientationSensor(enableSensor: Boolean) {
+    requestedOrientation = when (enableSensor) {
+        true -> ActivityInfo.SCREEN_ORIENTATION_SENSOR
+        false -> ActivityInfo.SCREEN_ORIENTATION_NOSENSOR
+    }
+}
+
+@SuppressLint("SourceLockedOrientationActivity")
+fun Activity.holdCurrentOrientation() {
+    when (resources.configuration.orientation) {
+        Configuration.ORIENTATION_PORTRAIT -> requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        Configuration.ORIENTATION_LANDSCAPE -> requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+    }
+}
+
+fun Activity.clearHoldOrientation() {
+    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 }

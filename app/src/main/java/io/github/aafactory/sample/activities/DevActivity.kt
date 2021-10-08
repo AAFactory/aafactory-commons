@@ -7,20 +7,13 @@ import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import io.github.aafactory.commons.activities.BaseSimpleActivity
-import io.github.aafactory.commons.extensions.determineNextAlarm
-import io.github.aafactory.commons.extensions.dpToPixel
-import io.github.aafactory.commons.extensions.triggerRestart
+import io.github.aafactory.commons.extensions.*
 import io.github.aafactory.sample.adapters.RecipeAdapter
 import io.github.aafactory.sample.databinding.ActivityDevBinding
 import io.github.aafactory.sample.models.Recipe
 import kotlinx.android.synthetic.main.content_main.*
 
 class DevActivity : BaseSimpleActivity() {
-    companion object {
-        const val NEXT_ALARM = "nextAlarm"
-        const val RESTART_APP = "restartApp"
-    }
-
     private lateinit var mActivityDevBinding: ActivityDevBinding
     private var mItems: ArrayList<Recipe> = arrayListOf()
     private val adapter: RecipeAdapter by lazy {
@@ -28,11 +21,7 @@ class DevActivity : BaseSimpleActivity() {
                 this,
                 mItems
         ) { _, _, position, _ ->
-            val recipe = adapter.getItem(position)
-            when (recipe.title) {
-                NEXT_ALARM -> determineNextAlarm()
-                RESTART_APP -> triggerRestart(DevActivity::class.java)
-            }
+            adapter.getItem(position).callback.invoke()
         }
     }
 
@@ -49,9 +38,13 @@ class DevActivity : BaseSimpleActivity() {
         recyclerView.addItemDecoration(ItemDecoration(this))
         adapter.attachTo(recyclerView)
 
-        mItems.add(Recipe(NEXT_ALARM, "시스템에 설정된 다음 알람 시간을 확인합니다."))
-        mItems.add(Recipe(RESTART_APP, "애플리케이션을 다시 시작합니다."))
-        adapter.notifyDataSetChanged()
+        mItems.add(Recipe("Next Alarm", "시스템에 설정된 다음 알람 시간을 확인합니다.") { determineNextAlarm() })
+        mItems.add(Recipe("Restart App", "애플리케이션을 다시 시작합니다.") { triggerRestart(DevActivity::class.java) })
+        mItems.add(Recipe("Orientation Sensor", "방향 센서를 비활성화 시킴니다.") { setScreenOrientationSensor(false) })
+        mItems.add(Recipe("Orientation Sensor", "방향 센서를 활성화 시킴니다.") { setScreenOrientationSensor(true) })
+        mItems.add(Recipe("Orientation Lock", "현재 화면방향 기준으로 화면을 고정합니다.") { holdCurrentOrientation() })
+        mItems.add(Recipe("Orientation Unlock", "고정된 화면을 해제합니다.") { clearHoldOrientation() })
+//        adapter.notifyDataSetChanged()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
