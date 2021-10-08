@@ -44,6 +44,7 @@ class DevActivity : BaseSimpleActivity() {
         mItems.add(Recipe("Orientation Sensor", "방향 센서를 활성화 시킴니다.") { setScreenOrientationSensor(true) })
         mItems.add(Recipe("Orientation Lock", "현재 화면방향 기준으로 화면을 고정합니다.") { holdCurrentOrientation() })
         mItems.add(Recipe("Orientation Unlock", "고정된 화면을 해제합니다.") { clearHoldOrientation() })
+        mItems.add(Recipe("AlertDialog", "OK AlertDialog") { showAlertDialog("Dialog Title", "OK AlertDialog", null) })
 //        adapter.notifyDataSetChanged()
     }
 

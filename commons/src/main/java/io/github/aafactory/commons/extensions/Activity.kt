@@ -29,7 +29,7 @@ fun Activity.showAlertDialog(title: String?, message: String, positiveListener: 
     }
 }
 
-fun Activity.showAlertDialog(message: String, positiveListener: DialogInterface.OnClickListener, negativeListener: DialogInterface.OnClickListener?) {
+fun Activity.showAlertDialog(message: String, positiveListener: DialogInterface.OnClickListener?, negativeListener: DialogInterface.OnClickListener?) {
     showAlertDialog(null, message, positiveListener, negativeListener)
 }
 
