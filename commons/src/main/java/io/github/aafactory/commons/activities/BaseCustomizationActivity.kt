@@ -37,8 +37,8 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
             setHomeAsUpIndicator(R.drawable.ic_cross)
         }
 
-        updateTextColors(main_holder)
-        updateAppViews(main_holder)
+//        updateTextColors(main_holder)
+//        updateAppViews(main_holder)
         initColorVariables()
         setupColorsPickers()
 
@@ -120,12 +120,12 @@ open class BaseCustomizationActivity : BaseSimpleActivity() {
 
     private fun setCurrentTextColor(color: Int) {
         curTextColor = color
-        updateTextColors(main_holder, curTextColor)
+//        updateTextColors(main_holder, curTextColor)
     }
 
     private fun setCurrentBackgroundColor(color: Int) {
         curBackgroundColor = color
-        updateAppViews(main_holder, curBackgroundColor)
+//        updateAppViews(main_holder, curBackgroundColor)
     }
 
     private fun setCurrentScreenBackgroundColor(color: Int) {

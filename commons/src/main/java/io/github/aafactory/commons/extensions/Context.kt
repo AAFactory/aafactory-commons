@@ -3,34 +3,26 @@ package io.github.aafactory.commons.extensions
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import android.content.res.ColorStateList
 import android.content.res.Configuration
-import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Build
 import android.os.Looper
 import android.util.TypedValue
 import android.view.View
-import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
-import com.simplemobiletools.commons.extensions.adjustAlpha
 import com.simplemobiletools.commons.extensions.baseConfig
-import com.simplemobiletools.commons.extensions.isBlackAndWhiteTheme
 import com.simplemobiletools.commons.helpers.*
-import com.simplemobiletools.commons.views.*
 import io.github.aafactory.commons.databinding.DialogMessageBinding
 import io.github.aafactory.commons.helpers.BaseConfig
 import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_COARSE_LOCATION
 import io.github.aafactory.commons.helpers.PERMISSION_ACCESS_FINE_LOCATION
 import io.github.aafactory.commons.helpers.SETTING_SCREEN_BACKGROUND_COLOR_DEFAULT
 import io.github.aafactory.commons.utils.CommonUtils
-import io.github.aafactory.commons.views.ModalView
 
 /**
  * Created by CHO HANJOONG on 2017-12-30.
@@ -77,59 +69,6 @@ fun Context.updateAlertDialog(alertDialog: AlertDialog, message: String? = null,
         getButton(AlertDialog.BUTTON_POSITIVE).run {}
         getButton(AlertDialog.BUTTON_NEGATIVE).run {}
     }
-}
-
-fun Context.updateTextColors(viewGroup: ViewGroup, tmpTextColor: Int = 0, tmpAccentColor: Int = 0) {
-    val textColor = if (tmpTextColor == 0) baseConfig.textColor else tmpTextColor
-    val backgroundColor = baseConfig.backgroundColor
-    val accentColor = if (tmpAccentColor == 0) {
-        if (isBlackAndWhiteTheme()) {
-            Color.WHITE
-        } else {
-            baseConfig.primaryColor
-        }
-    } else {
-        tmpAccentColor
-    }
-
-    val cnt = viewGroup.childCount
-    (0 until cnt)
-            .map { viewGroup.getChildAt(it) }
-            .forEach {
-                when (it) {
-                    is MyTextView -> it.setColors(textColor, accentColor, backgroundColor)
-                    is MyAppCompatSpinner -> it.setColors(textColor, accentColor, backgroundColor)
-                    is MySwitchCompat -> it.setColors(textColor, accentColor, backgroundColor)
-//                    is MyCompatRadioButton -> it.setColors(textColor, accentColor, backgroundColor)
-//                    is MyAppCompatCheckbox -> it.setColors(textColor, accentColor, backgroundColor)
-                    is MyEditText -> {
-                        it.setTextColor(textColor)
-                        it.setHintTextColor(textColor.adjustAlpha(0.5f))
-                        it.setLinkTextColor(accentColor)
-                    }
-                    is MyFloatingActionButton -> it.backgroundTintList = ColorStateList.valueOf(accentColor)
-                    is MySeekBar -> it.setColors(textColor, accentColor, backgroundColor)
-                    is MyButton -> it.setColors(textColor, accentColor, backgroundColor)
-                    is ModalView -> it.setBackgroundColor(accentColor)
-                    is ViewGroup -> updateTextColors(it, textColor, accentColor)
-                }
-            }
-}
-
-fun Context.updateAppViews(viewGroup: ViewGroup, tmpBackgroundColor: Int = 0) {
-    val backgroundColor = if (tmpBackgroundColor == 0) baseConfig.backgroundColor else tmpBackgroundColor
-    val cnt = viewGroup.childCount
-    (0 until cnt)
-            .map { viewGroup.getChildAt(it) }
-            .forEach {
-                when (it) {
-                    is CardView -> {
-                        it.setCardBackgroundColor(backgroundColor)
-                        updateAppViews(it)
-                    }
-                    is ViewGroup -> updateAppViews(it)
-                }
-            }
 }
 
 fun Context.dpToPixel(dp: Float, policy: Int = 0): Int {

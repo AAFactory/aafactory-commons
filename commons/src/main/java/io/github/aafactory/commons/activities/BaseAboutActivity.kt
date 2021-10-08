@@ -12,9 +12,7 @@ import com.simplemobiletools.commons.extensions.isBlackAndWhiteTheme
 import com.simplemobiletools.commons.extensions.launchViewIntent
 import com.simplemobiletools.commons.helpers.APP_NAME
 import com.simplemobiletools.commons.helpers.APP_VERSION_NAME
-import io.github.aafactory.commons.extensions.updateTextColors
 import io.github.aafactory.commons.R
-import io.github.aafactory.commons.extensions.updateAppViews
 import kotlinx.android.synthetic.main.activity_about.*
 
 /**
@@ -45,8 +43,8 @@ open class BaseAboutActivity : BaseSimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        updateTextColors(main_holder)
-        updateAppViews(main_holder)
+//        updateTextColors(main_holder)
+//        updateAppViews(main_holder)
     }
     
     fun setupWebsite() {
