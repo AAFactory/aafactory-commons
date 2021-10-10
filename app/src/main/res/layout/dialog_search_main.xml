@@ -7,8 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <androidx.appcompat.widget.AppCompatTextView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@+id/repository_name_query"
+        app:layout_constraintTop_toTopOf="@+id/repository_name_query"
+        app:layout_constraintBottom_toBottomOf="@+id/repository_name_query"
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/repository_name_label"
         android:text="Repository Name: "
@@ -24,4 +24,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
          />
+    <androidx.appcompat.widget.AppCompatTextView
+        app:layout_constraintTop_toTopOf="@+id/repository_description_query"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/repository_description_query"
+        android:id="@+id/repository_description_label"
+        android:text="Description: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <androidx.appcompat.widget.AppCompatEditText
+        tools:text="Easy Diary"
+        app:layout_constraintStart_toEndOf="@+id/repository_description_label"
+        app:layout_constraintTop_toBottomOf="@+id/repository_name_query"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/repository_description_query"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

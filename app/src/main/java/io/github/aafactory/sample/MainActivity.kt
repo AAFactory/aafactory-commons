@@ -1,5 +1,6 @@
 package io.github.aafactory.sample
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
@@ -53,12 +54,12 @@ class MainActivity : BaseSimpleActivity() {
             , mapOf("owner" to "googlesamples", "name" to "android-ConstraintLayoutExamples")
     )
     private var mListItem: ArrayList<Showcase> = arrayListOf<Showcase>()
-    private val adapter: ShowcaseAdapter by lazy { 
+    private val mAdapter: ShowcaseAdapter by lazy {
         ShowcaseAdapter(
                 this,
                 mListItem
         ) { _, _, position, _ ->
-            val showCase = adapter.getItem(position)
+            val showCase = mAdapter.getItem(position)
             startActivity(Intent(this, MarkDownViewActivity::class.java).apply {
             putExtra(BaseMarkDownViewActivity.OPEN_URL_INFO, "https://raw.githubusercontent.com/${showCase.owner}/${showCase.repositoryName()}/master/README.md")
             putExtra(BaseMarkDownViewActivity.OPEN_URL_DESCRIPTION, showCase.repositoryName())
@@ -76,10 +77,27 @@ class MainActivity : BaseSimpleActivity() {
         supportActionBar?.run { 
             title = getString(R.string.app_name)
         }
-
         recyclerView.addItemDecoration(ItemDecoration(this))
-        adapter.attachTo(recyclerView)
-        listItems.forEach {
+        mAdapter.attachTo(recyclerView)
+        refresh()
+        runOnUiThread {
+            progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun refresh(repoName: String = "", description: String = "") {
+        mListItem.clear()
+        listItems.filter { map ->
+            when (repoName.isEmpty()) {
+                true -> true
+                false -> { map["name"]?.contains(repoName, true) ?: false }
+            }
+        }.filter { map ->
+            when (description.isEmpty()) {
+                true -> true
+                false -> { map["description"]?.contains(description, true) ?: false }
+            }
+        }.forEach {
             val owner = it["owner"] ?: ""
             val name = it["name"] ?: ""
             val displayName = it["displayName"] ?: name
@@ -92,11 +110,8 @@ class MainActivity : BaseSimpleActivity() {
                     repository?.stargazers_count ?: 0,
                     repository?.forks_count ?: 0)
             )
-            adapter.notifyDataSetChanged()
         }
-        runOnUiThread {
-            progressBar.visibility = View.GONE
-        }
+        mAdapter.notifyDataSetChanged()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -104,18 +119,30 @@ class MainActivity : BaseSimpleActivity() {
         return true
     }
 
+    var mDialogSearchMain: Dialog? = null
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.devConsole -> {
                 startActivity(Intent(this, DevActivity::class.java))
             }
             R.id.search -> {
-                var alertDialog: AlertDialog? = null
-                val builder = AlertDialog.Builder(this)
-                builder.setNegativeButton(getString(android.R.string.cancel), null)
-                alertDialog = builder.create().apply {
-                    setView(mDialogSearchMainBinding.root)
-                    show()
+                mDialogSearchMain?.let {
+                    it.show()
+                } ?: run {
+                    val builder = AlertDialog.Builder(this).apply {
+                        setNegativeButton(getString(android.R.string.cancel), null)
+                        setPositiveButton(getString(android.R.string.ok)) { _, _ ->
+                            refresh(mDialogSearchMainBinding.repositoryNameQuery.text.toString())
+                            mDialogSearchMain?.dismiss()
+                        }
+                    }
+                    mDialogSearchMain = builder.create().apply {
+                        setTitle("Repository Filter")
+//                    val dialogSearchMain = layoutInflater.inflate(R.layout.dialog_search_main, null)
+//                    setView(dialogSearchMain)
+                        setView(mDialogSearchMainBinding.root)
+                        show()
+                    }
                 }
             }
         }
