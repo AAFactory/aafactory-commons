@@ -5,6 +5,12 @@
         android:icon="@drawable/ic_bug_2"
         android:id="@+id/devConsole"
         android:orderInCategory="100"
-        android:title="devConsole"
+        android:title="DevConsole"
+        app:showAsAction="always" />
+    <item
+        android:icon="@drawable/ic_aaf_search"
+        android:id="@+id/search"
+        android:orderInCategory="100"
+        android:title="Search"
         app:showAsAction="always" />
 </menu>

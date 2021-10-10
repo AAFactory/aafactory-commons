@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import io.github.aafactory.commons.activities.BaseMarkDownViewActivity
 import io.github.aafactory.commons.activities.BaseSimpleActivity
@@ -14,12 +15,16 @@ import io.github.aafactory.commons.extensions.dpToPixel
 import io.github.aafactory.sample.activities.DevActivity
 import io.github.aafactory.sample.activities.MarkDownViewActivity
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
+import io.github.aafactory.sample.databinding.ActivityMainBinding
+import io.github.aafactory.sample.databinding.DialogSearchMainBinding
 import io.github.aafactory.sample.models.Repository
 import io.github.aafactory.sample.models.Showcase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : BaseSimpleActivity() {
+    private lateinit var mActivityMainBinding: ActivityMainBinding
+    private lateinit var mDialogSearchMainBinding: DialogSearchMainBinding
     private val listItems = mutableListOf(
             mapOf("owner" to "AppIntro", "name" to "AppIntro")
             , mapOf("owner" to "Werb", "name" to "PickPhotoSample")
@@ -64,7 +69,9 @@ class MainActivity : BaseSimpleActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        mDialogSearchMainBinding = DialogSearchMainBinding.inflate(layoutInflater)
+        setContentView(mActivityMainBinding.root)
         setSupportActionBar(toolbar)
         supportActionBar?.run { 
             title = getString(R.string.app_name)
@@ -101,6 +108,15 @@ class MainActivity : BaseSimpleActivity() {
         when (item.itemId) {
             R.id.devConsole -> {
                 startActivity(Intent(this, DevActivity::class.java))
+            }
+            R.id.search -> {
+                var alertDialog: AlertDialog? = null
+                val builder = AlertDialog.Builder(this)
+                builder.setNegativeButton(getString(android.R.string.cancel), null)
+                alertDialog = builder.create().apply {
+                    setView(mDialogSearchMainBinding.root)
+                    show()
+                }
             }
         }
         return super.onOptionsItemSelected(item)
