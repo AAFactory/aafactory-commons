@@ -58,11 +58,11 @@ class DevActivity : BaseSimpleActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 val client = OkHttpClient()
                 val request: Request = Request.Builder()
-                        .url("https://api.github.com/repos/square/okhttp/contributors")
+                        .url("https://raw.githubusercontent.com/hanjoongcho/CheatSheet/master/README.md")
                         .build()
                 val response = client.newCall(request).execute()
-                val responseBody = response.body()
-                withContext(Dispatchers.Main) { makeToast(responseBody.toString(), Toast.LENGTH_LONG) }
+                val body = response.body()?.string() ?: ""
+                withContext(Dispatchers.Main) { makeToast(body, Toast.LENGTH_LONG) }
             }
         })
 //        adapter.notifyDataSetChanged()
