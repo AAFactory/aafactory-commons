@@ -12,5 +12,5 @@
         android:id="@+id/devConsole"
         android:orderInCategory="100"
         android:title="DevConsole"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 </menu>

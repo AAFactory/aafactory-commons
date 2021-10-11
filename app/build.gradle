@@ -72,12 +72,13 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava:2.4.0"
     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
     implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+
     implementation 'io.noties.markwon:core:4.6.2'
     implementation 'io.noties.markwon:syntax-highlight:4.6.2'
     implementation 'io.noties.markwon:ext-tables:4.6.2'
     implementation 'io.noties:prism4j:2.0.0'
-
     kapt 'io.noties:prism4j-bundler:2.0.0'
+    implementation 'com.github.AppIntro:AppIntro:6.1.0'
 }
 
 repositories {

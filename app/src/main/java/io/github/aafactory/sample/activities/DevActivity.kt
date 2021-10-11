@@ -1,6 +1,7 @@
 package io.github.aafactory.sample.activities
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.MenuItem
@@ -12,7 +13,6 @@ import io.github.aafactory.sample.adapters.RecipeAdapter
 import io.github.aafactory.sample.databinding.ActivityDevBinding
 import io.github.aafactory.sample.models.Recipe
 import kotlinx.android.synthetic.main.content_main.*
-
 class DevActivity : BaseSimpleActivity() {
     private lateinit var mActivityDevBinding: ActivityDevBinding
     private var mItems: ArrayList<Recipe> = arrayListOf()
@@ -45,8 +45,10 @@ class DevActivity : BaseSimpleActivity() {
         mItems.add(Recipe("Orientation Lock", "현재 화면방향 기준으로 화면을 고정합니다.") { holdCurrentOrientation() })
         mItems.add(Recipe("Orientation Unlock", "고정된 화면을 해제합니다.") { clearHoldOrientation() })
         mItems.add(Recipe("AlertDialog", "OK AlertDialog") { showAlertDialog("Dialog Title", "OK AlertDialog", null) })
+        mItems.add(Recipe("AppIntro", "AppIntro library sample") { startActivity(Intent(this, AppIntroActivity::class.java)) })
 //        adapter.notifyDataSetChanged()
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -62,3 +64,4 @@ class DevActivity : BaseSimpleActivity() {
         }
     }
 }
+
