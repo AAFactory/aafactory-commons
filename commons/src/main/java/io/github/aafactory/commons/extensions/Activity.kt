@@ -15,8 +15,8 @@ import androidx.appcompat.app.AlertDialog
 import io.github.aafactory.commons.R
 import io.github.aafactory.commons.utils.DateUtils
 
-fun Activity.makeToast(message: String) {
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+fun Activity.makeToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, message, duration).show()
 }
 
 fun Activity.showAlertDialog(title: String?, message: String, positiveListener: DialogInterface.OnClickListener?, negativeListener: DialogInterface.OnClickListener?, cancelable: Boolean = true) {

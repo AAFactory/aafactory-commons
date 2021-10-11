@@ -6,6 +6,7 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.extensions.*
@@ -13,6 +14,13 @@ import io.github.aafactory.sample.adapters.RecipeAdapter
 import io.github.aafactory.sample.databinding.ActivityDevBinding
 import io.github.aafactory.sample.models.Recipe
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
+import okhttp3.Request
+
 class DevActivity : BaseSimpleActivity() {
     private lateinit var mActivityDevBinding: ActivityDevBinding
     private var mItems: ArrayList<Recipe> = arrayListOf()
@@ -46,6 +54,17 @@ class DevActivity : BaseSimpleActivity() {
         mItems.add(Recipe("Orientation Unlock", "고정된 화면을 해제합니다.") { clearHoldOrientation() })
         mItems.add(Recipe("AlertDialog", "OK AlertDialog") { showAlertDialog("Dialog Title", "OK AlertDialog", null) })
         mItems.add(Recipe("AppIntro", "AppIntro library sample") { startActivity(Intent(this, AppIntroActivity::class.java)) })
+        mItems.add(Recipe("okhttp", "Http Client Example") {
+            CoroutineScope(Dispatchers.IO).launch {
+                val client = OkHttpClient()
+                val request: Request = Request.Builder()
+                        .url("https://api.github.com/repos/square/okhttp/contributors")
+                        .build()
+                val response = client.newCall(request).execute()
+                val responseBody = response.body()
+                withContext(Dispatchers.Main) { makeToast(responseBody.toString(), Toast.LENGTH_LONG) }
+            }
+        })
 //        adapter.notifyDataSetChanged()
     }
 
