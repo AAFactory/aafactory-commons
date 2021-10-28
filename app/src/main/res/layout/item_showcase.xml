@@ -41,14 +41,14 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title"
                 style="@style/TextStyle.Black"
-                android:textStyle="bold"
-                android:textSize="16sp"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/paddingNormal"
                 android:layout_toLeftOf="@id/colorType"
-                android:layout_centerVertical="true"
                 android:ellipsize="end"
                 android:lines="1"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 tools:text="Ksndsdaa / Kotlin" />
         </RelativeLayout>
 

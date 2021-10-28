@@ -126,9 +126,7 @@ class MainActivity : BaseSimpleActivity() {
                 startActivity(Intent(this, DevActivity::class.java))
             }
             R.id.search -> {
-                mDialogSearchMain?.let {
-                    it.show()
-                } ?: run {
+                mDialogSearchMain?.show() ?: run {
                     val builder = AlertDialog.Builder(this).apply {
                         setNegativeButton(getString(android.R.string.cancel), null)
                         setPositiveButton(getString(android.R.string.ok)) { _, _ ->

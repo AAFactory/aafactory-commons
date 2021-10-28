@@ -9,6 +9,5 @@ import kotlinx.android.extensions.LayoutContainer
  */
 
 abstract class BaseViewHolder<T : Any>(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
-
     abstract fun bindData(data: T)
 }

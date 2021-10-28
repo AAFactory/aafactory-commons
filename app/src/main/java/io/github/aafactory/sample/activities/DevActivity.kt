@@ -18,8 +18,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import okhttp3.*
+import java.io.IOException
 
 class DevActivity : BaseSimpleActivity() {
     private lateinit var mActivityDevBinding: ActivityDevBinding
@@ -55,14 +55,27 @@ class DevActivity : BaseSimpleActivity() {
         mItems.add(Recipe("AlertDialog", "OK AlertDialog") { showAlertDialog("Dialog Title", "OK AlertDialog", null) })
         mItems.add(Recipe("AppIntro", "AppIntro library sample") { startActivity(Intent(this, AppIntroActivity::class.java)) })
         mItems.add(Recipe("okhttp", "Http Client Example") {
+            val client = OkHttpClient()
+            val request: Request = Request.Builder()
+                    .url("https://raw.githubusercontent.com/hanjoongcho/CheatSheet/master/README.md")
+                    .build()
+            // enqueue is async
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {}
+                override fun onResponse(call: Call, response: Response) {
+                    val body = response.body()?.string() ?: ""
+                    runOnUiThread { makeToast(body, Toast.LENGTH_LONG) }
+                    response.close()
+                }
+            })
+
+            // execute is sync
             CoroutineScope(Dispatchers.IO).launch {
-                val client = OkHttpClient()
-                val request: Request = Request.Builder()
-                        .url("https://raw.githubusercontent.com/hanjoongcho/CheatSheet/master/README.md")
-                        .build()
-                val response = client.newCall(request).execute()
-                val body = response.body()?.string() ?: ""
-                withContext(Dispatchers.Main) { makeToast(body, Toast.LENGTH_LONG) }
+                runCatching {
+                    val response = client.newCall(request).execute()
+                    val body = response.body()?.string() ?: ""
+                    withContext(Dispatchers.Main) { makeToast(body, Toast.LENGTH_LONG)}
+                }
             }
         })
 //        adapter.notifyDataSetChanged()
