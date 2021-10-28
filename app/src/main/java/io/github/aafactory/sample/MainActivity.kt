@@ -26,34 +26,37 @@ import kotlinx.android.synthetic.main.content_main.*
 class MainActivity : BaseSimpleActivity() {
     private lateinit var mActivityMainBinding: ActivityMainBinding
     private lateinit var mDialogSearchMainBinding: DialogSearchMainBinding
-    private val listItems = mutableListOf(
-            mapOf("owner" to "AppIntro", "name" to "AppIntro")
-            , mapOf("owner" to "Werb", "name" to "PickPhotoSample")
-            , mapOf("owner" to "ParkSangGwon", "name" to "TedBottomPicker")
-            , mapOf("owner" to "donglua", "name" to "PhotoPicker")
-            , mapOf("owner" to "gsuitedevs", "name" to "android-samples")
-            , mapOf("owner" to "kioko", "name" to "motion-layout-playground")
-            , mapOf("owner" to "zoonooz", "name" to "simple-view-behavior")
-            , mapOf("owner" to "googlesamples", "name" to "android-architecture")
-            , mapOf("owner" to "afollestad", "name" to "material-dialogs")
-            , mapOf("owner" to "googlesamples", "name" to "android-FingerprintDialog")
-            , mapOf("owner" to "rubensousa", "name" to "ViewPagerCards")
-            , mapOf("owner" to "AAFactory", "name" to "aafactory-commons")
-            , mapOf("owner" to "devunwired", "name" to "recyclerview-playground")
-            , mapOf("owner" to "openlayers", "name" to "openlayers")
-            , mapOf("owner" to "juanchosaravia", "name" to "KedditBySteps")
-            , mapOf("owner" to "Tapadoo", "name" to "Alerter")
-            , mapOf("owner" to "saulmm", "name" to "CoordinatorExamples")
-            , mapOf("owner" to "medyo", "name" to "Fancybuttons")
-            , mapOf("owner" to "pedant", "name" to "sweet-alert-dialog")
-            , mapOf("owner" to "timusus", "name" to "RecyclerView-FastScroll")
-            , mapOf("owner" to "woxingxiao", "name" to "BubbleSeekBar")
-            , mapOf("owner" to "PhilJay", "name" to "MPAndroidChart")
-            , mapOf("owner" to "navermaps", "name" to "maps.android")
-            , mapOf("owner" to "bumptech", "name" to "glide")
-            , mapOf("owner" to "googlesamples", "name" to "android-ConstraintLayoutExamples")
+
+    private val showcaseItems = mutableListOf(
+            Showcase("", "Regular Expression", "", true, "Basic Chapter-01", "https://raw.githubusercontent.com/hanjoongcho/CheatSheet/master/regular-expression/chapter01.md"),
+            Showcase("AppIntro", "AppIntro", "", false, ""),
+            Showcase("Werb", "PickPhotoSample", "", false, ""),
+            Showcase("ParkSangGwon", "TedBottomPicker", "", false, ""),
+            Showcase("donglua", "PhotoPicker", "", false, ""),
+            Showcase("gsuitedevs", "android-samples", "", false, ""),
+            Showcase("kioko", "motion-layout-playground", "", false, ""),
+            Showcase("zoonooz", "simple-view-behavior", "", false, ""),
+            Showcase("googlesamples", "android-architecture", "", false, ""),
+            Showcase("afollestad", "material-dialogs", "", false, ""),
+            Showcase("googlesamples", "android-FingerprintDialog", "", false, ""),
+            Showcase("rubensousa", "ViewPagerCards", "", false, ""),
+            Showcase("AAFactory", "aafactory-commons", "", false, ""),
+            Showcase("devunwired", "recyclerview-playground", "", false, ""),
+            Showcase("openlayers", "openlayers", "", false, ""),
+            Showcase("juanchosaravia", "KedditBySteps", "", false, ""),
+            Showcase("Tapadoo", "Alerter", "", false, ""),
+            Showcase("saulmm", "CoordinatorExamples", "", false, ""),
+            Showcase("medyo", "Fancybuttons", "", false, ""),
+            Showcase("pedant", "sweet-alert-dialog", "", false, ""),
+            Showcase("timusus", "RecyclerView-FastScroll", "", false, ""),
+            Showcase("woxingxiao", "BubbleSeekBar", "", false, ""),
+            Showcase("PhilJay", "MPAndroidChart", "", false, ""),
+            Showcase("navermaps", "maps.android", "", false, ""),
+            Showcase("bumptech", "glide", "", false, ""),
+            Showcase("googlesamples", "android-ConstraintLayoutExamples", "", false, ""),
     )
-    private var mListItem: ArrayList<Showcase> = arrayListOf<Showcase>()
+
+    private var mListItem: ArrayList<Showcase> = arrayListOf()
     private val mAdapter: ShowcaseAdapter by lazy {
         ShowcaseAdapter(
                 this,
@@ -61,10 +64,11 @@ class MainActivity : BaseSimpleActivity() {
         ) { _, _, position, _ ->
             val showCase = mAdapter.getItem(position)
             startActivity(Intent(this, MarkDownViewActivity::class.java).apply {
-            putExtra(BaseMarkDownViewActivity.OPEN_URL_INFO, "https://raw.githubusercontent.com/${showCase.owner}/${showCase.repositoryName()}/master/README.md")
-            putExtra(BaseMarkDownViewActivity.OPEN_URL_DESCRIPTION, showCase.repositoryName())
-            putExtra(BaseMarkDownViewActivity.FORCE_APPEND_CODE_BLOCK, false)
-        })
+                val openUrlInfo = if (showCase.isCheatSheet) showCase.cheatSheetUrl else "https://raw.githubusercontent.com/${showCase.owner}/${showCase.repositoryName()}/master/README.md"
+                putExtra(BaseMarkDownViewActivity.OPEN_URL_INFO, openUrlInfo)
+                putExtra(BaseMarkDownViewActivity.OPEN_URL_DESCRIPTION, showCase.repositoryName())
+                putExtra(BaseMarkDownViewActivity.FORCE_APPEND_CODE_BLOCK, showCase.forceAppendCodeBlock)
+            })
         }
     }
     
@@ -87,30 +91,17 @@ class MainActivity : BaseSimpleActivity() {
 
     private fun refresh(repoName: String = "", description: String = "") {
         mListItem.clear()
-        listItems.filter { map ->
+        showcaseItems.filter { item ->
             when (repoName.isEmpty()) {
                 true -> true
-                false -> { map["name"]?.contains(repoName, true) ?: false }
+                false -> { item.repositoryName().contains(repoName, true) }
             }
-        }.filter { map ->
+        }.filter { item ->
             when (description.isEmpty()) {
                 true -> true
-                false -> { map["description"]?.contains(description, true) ?: false }
+                false -> { item.description.contains(description, true) }
             }
-        }.forEach {
-            val owner = it["owner"] ?: ""
-            val name = it["name"] ?: ""
-            val displayName = it["displayName"] ?: name
-            val repository: Repository? = Repository("", "", 0, 0)
-            mListItem.add(Showcase(
-                    owner,
-                    name,
-                    displayName,
-                    repository?.description ?: "",
-                    repository?.stargazers_count ?: 0,
-                    repository?.forks_count ?: 0)
-            )
-        }
+        }.run { mListItem.addAll(this) }
         mAdapter.notifyDataSetChanged()
     }
 

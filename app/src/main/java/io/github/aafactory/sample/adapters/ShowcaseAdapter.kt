@@ -29,12 +29,12 @@ class ShowcaseAdapter(
         private val onItemClickListener: AdapterView.OnItemClickListener
 ) : RecyclerView.Adapter<ShowcaseAdapter.ShowcaseViewHolder>(){
 
-    private fun createViewHolder(layoutType: Int, parent: ViewGroup?): ShowcaseViewHolder {
-        val view = activity.layoutInflater.inflate(layoutType, parent, false)
-        return ShowcaseViewHolder(view as ViewGroup)
-    }
+    override fun getItemViewType(position: Int): Int = if (listItem[position].isCheatSheet) 1 else 0
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowcaseViewHolder = createViewHolder(R.layout.item_showcase, parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowcaseViewHolder {
+        val layoutType = if (viewType == 0) R.layout.item_showcase else R.layout.item_cheatsheet
+        return createViewHolder(layoutType, parent)
+    }
 
     override fun getItemCount(): Int = listItem.size
 
@@ -43,7 +43,7 @@ class ShowcaseAdapter(
         holder.itemView.setOnClickListener { item ->
             onItemClickListener.onItemClick(null, item, holder.adapterPosition, holder.itemId)
         }
-        holder.colorType.setOnClickListener { _ ->
+        holder.colorType?.setOnClickListener { _ ->
             val item = listItem[position]
             CoroutineScope(Dispatchers.IO).launch {
                 val retrofit = Retrofit.Builder()
@@ -69,6 +69,11 @@ class ShowcaseAdapter(
         }
     }
 
+    private fun createViewHolder(layoutType: Int, parent: ViewGroup?): ShowcaseViewHolder {
+        val view = activity.layoutInflater.inflate(layoutType, parent, false)
+        return ShowcaseViewHolder(view as ViewGroup)
+    }
+
     fun getItem(position: Int): Showcase = listItem[position]
 
     fun attachTo(view: RecyclerView) {
@@ -77,11 +82,11 @@ class ShowcaseAdapter(
 
     class ShowcaseViewHolder(containerView: View) : BaseViewHolder<Showcase>(containerView) {
         override fun bindData(data: Showcase) {
-            title.text = data.displayName
+            title.text = data.repositoryName()
             description.text = data.description
-            starsAll.text = "${data.stargazersCount}"
-            forks.text = "${data.forksCount}"
-            owner.text = "Built by ${data.owner}"
+            starsAll?.text = "${data.stargazersCount}"
+            forks?.text = "${data.forksCount}"
+            owner?.text = "Built by ${data.owner}"
         }
     }
 }
