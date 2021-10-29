@@ -82,7 +82,7 @@ class ShowcaseAdapter(
 
     class ShowcaseViewHolder(containerView: View) : BaseViewHolder<Showcase>(containerView) {
         override fun bindData(data: Showcase) {
-            title.text = data.repositoryName()
+            title.text = data.name
             description.text = data.description
             starsAll?.text = "${data.stargazersCount}"
             forks?.text = "${data.forksCount}"

@@ -18,7 +18,6 @@ import io.github.aafactory.sample.activities.MarkDownViewActivity
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
 import io.github.aafactory.sample.databinding.ActivityMainBinding
 import io.github.aafactory.sample.databinding.DialogSearchMainBinding
-import io.github.aafactory.sample.models.Repository
 import io.github.aafactory.sample.models.Showcase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -28,32 +27,32 @@ class MainActivity : BaseSimpleActivity() {
     private lateinit var mDialogSearchMainBinding: DialogSearchMainBinding
 
     private val showcaseItems = mutableListOf(
-            Showcase("", "Regular Expression", "", true, "Basic Chapter-01", "https://raw.githubusercontent.com/hanjoongcho/CheatSheet/master/regular-expression/chapter01.md"),
-            Showcase("AppIntro", "AppIntro", "", false, ""),
-            Showcase("Werb", "PickPhotoSample", "", false, ""),
-            Showcase("ParkSangGwon", "TedBottomPicker", "", false, ""),
-            Showcase("donglua", "PhotoPicker", "", false, ""),
-            Showcase("gsuitedevs", "android-samples", "", false, ""),
-            Showcase("kioko", "motion-layout-playground", "", false, ""),
-            Showcase("zoonooz", "simple-view-behavior", "", false, ""),
-            Showcase("googlesamples", "android-architecture", "", false, ""),
-            Showcase("afollestad", "material-dialogs", "", false, ""),
-            Showcase("googlesamples", "android-FingerprintDialog", "", false, ""),
-            Showcase("rubensousa", "ViewPagerCards", "", false, ""),
-            Showcase("AAFactory", "aafactory-commons", "", false, ""),
-            Showcase("devunwired", "recyclerview-playground", "", false, ""),
-            Showcase("openlayers", "openlayers", "", false, ""),
-            Showcase("juanchosaravia", "KedditBySteps", "", false, ""),
-            Showcase("Tapadoo", "Alerter", "", false, ""),
-            Showcase("saulmm", "CoordinatorExamples", "", false, ""),
-            Showcase("medyo", "Fancybuttons", "", false, ""),
-            Showcase("pedant", "sweet-alert-dialog", "", false, ""),
-            Showcase("timusus", "RecyclerView-FastScroll", "", false, ""),
-            Showcase("woxingxiao", "BubbleSeekBar", "", false, ""),
-            Showcase("PhilJay", "MPAndroidChart", "", false, ""),
-            Showcase("navermaps", "maps.android", "", false, ""),
-            Showcase("bumptech", "glide", "", false, ""),
-            Showcase("googlesamples", "android-ConstraintLayoutExamples", "", false, ""),
+            Showcase("", "Regular Expression", true, "Basic Chapter-01", "https://raw.githubusercontent.com/hanjoongcho/CheatSheet/master/regular-expression/chapter01.md"),
+            Showcase("AppIntro", "AppIntro", false, ""),
+            Showcase("Werb", "PickPhotoSample", false, ""),
+            Showcase("ParkSangGwon", "TedBottomPicker", false, ""),
+            Showcase("donglua", "PhotoPicker", false, ""),
+            Showcase("gsuitedevs", "android-samples", false, ""),
+            Showcase("kioko", "motion-layout-playground", false, ""),
+            Showcase("zoonooz", "simple-view-behavior", false, ""),
+            Showcase("googlesamples", "android-architecture", false, ""),
+            Showcase("afollestad", "material-dialogs", false, ""),
+            Showcase("googlesamples", "android-FingerprintDialog", false, ""),
+            Showcase("rubensousa", "ViewPagerCards", false, ""),
+            Showcase("AAFactory", "aafactory-commons", false, ""),
+            Showcase("devunwired", "recyclerview-playground", false, ""),
+            Showcase("openlayers", "openlayers", false, ""),
+            Showcase("juanchosaravia", "KedditBySteps", false, ""),
+            Showcase("Tapadoo", "Alerter", false, ""),
+            Showcase("saulmm", "CoordinatorExamples", false, ""),
+            Showcase("medyo", "Fancybuttons", false, ""),
+            Showcase("pedant", "sweet-alert-dialog", false, ""),
+            Showcase("timusus", "RecyclerView-FastScroll", false, ""),
+            Showcase("woxingxiao", "BubbleSeekBar", false, ""),
+            Showcase("PhilJay", "MPAndroidChart", false, ""),
+            Showcase("navermaps", "maps.android", false, ""),
+            Showcase("bumptech", "glide", false, ""),
+            Showcase("googlesamples", "android-ConstraintLayoutExamples", false, ""),
     )
 
     private var mListItem: ArrayList<Showcase> = arrayListOf()
@@ -64,9 +63,9 @@ class MainActivity : BaseSimpleActivity() {
         ) { _, _, position, _ ->
             val showCase = mAdapter.getItem(position)
             startActivity(Intent(this, MarkDownViewActivity::class.java).apply {
-                val openUrlInfo = if (showCase.isCheatSheet) showCase.cheatSheetUrl else "https://raw.githubusercontent.com/${showCase.owner}/${showCase.repositoryName()}/master/README.md"
+                val openUrlInfo = if (showCase.isCheatSheet) showCase.cheatSheetUrl else "https://raw.githubusercontent.com/${showCase.owner}/${showCase.name}/master/README.md"
                 putExtra(BaseMarkDownViewActivity.OPEN_URL_INFO, openUrlInfo)
-                putExtra(BaseMarkDownViewActivity.OPEN_URL_DESCRIPTION, showCase.repositoryName())
+                putExtra(BaseMarkDownViewActivity.OPEN_URL_DESCRIPTION, showCase.name)
                 putExtra(BaseMarkDownViewActivity.FORCE_APPEND_CODE_BLOCK, showCase.forceAppendCodeBlock)
             })
         }
@@ -94,7 +93,7 @@ class MainActivity : BaseSimpleActivity() {
         showcaseItems.filter { item ->
             when (repoName.isEmpty()) {
                 true -> true
-                false -> { item.repositoryName().contains(repoName, true) }
+                false -> { item.name.contains(repoName, true) }
             }
         }.filter { item ->
             when (description.isEmpty()) {
@@ -121,7 +120,7 @@ class MainActivity : BaseSimpleActivity() {
                     val builder = AlertDialog.Builder(this).apply {
                         setNegativeButton(getString(android.R.string.cancel), null)
                         setPositiveButton(getString(android.R.string.ok)) { _, _ ->
-                            refresh(mDialogSearchMainBinding.repositoryNameQuery.text.toString())
+                            refresh(mDialogSearchMainBinding.repositoryNameQuery.text.toString(), mDialogSearchMainBinding.repositoryDescriptionQuery.text.toString())
                             mDialogSearchMain?.dismiss()
                         }
                     }
