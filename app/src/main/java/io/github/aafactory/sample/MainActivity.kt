@@ -133,18 +133,22 @@ class MainActivity : BaseSimpleActivity() {
 //                    val dialogSearchMain = layoutInflater.inflate(R.layout.dialog_search_main, null)
 //                    setView(dialogSearchMain)
                         setView(mDialogSearchMainBinding.root)
+                        mDialogSearchMainBinding.repositoryNameQuery.run {
+                            requestFocus()
+                            showKeyboard(this)
+                        }
                         show()
                     }
                 }
 
-                Handler(Looper.getMainLooper()).postDelayed({
-                    mDialogSearchMainBinding.repositoryNameQuery.run {
-                        runOnUiThread {
-                            requestFocus()
-                            showKeyboard(this)
-                        }
-                    }
-                }, 1000)
+//                Handler(Looper.getMainLooper()).postDelayed({
+//                    mDialogSearchMainBinding.repositoryNameQuery.run {
+//                        runOnUiThread {
+//                            requestFocus()
+//                            showKeyboard(this)
+//                        }
+//                    }
+//                }, 1000)
             }
         }
         return super.onOptionsItemSelected(item)
