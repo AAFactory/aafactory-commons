@@ -5,11 +5,15 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.simplemobiletools.commons.extensions.showKeyboard
 import io.github.aafactory.commons.activities.BaseMarkDownViewActivity
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.extensions.dpToPixel
@@ -109,7 +113,7 @@ class MainActivity : BaseSimpleActivity() {
         return true
     }
 
-    var mDialogSearchMain: Dialog? = null
+    private var mDialogSearchMain: Dialog? = null
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.devConsole -> {
@@ -132,6 +136,15 @@ class MainActivity : BaseSimpleActivity() {
                         show()
                     }
                 }
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    mDialogSearchMainBinding.repositoryNameQuery.run {
+                        runOnUiThread {
+                            requestFocus()
+                            showKeyboard(this)
+                        }
+                    }
+                }, 1000)
             }
         }
         return super.onOptionsItemSelected(item)
