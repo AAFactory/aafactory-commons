@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
+import io.github.aafactory.commons.extensions.makeToast
 import io.github.aafactory.sample.R
 import io.github.aafactory.sample.api.GitHubService
+import io.github.aafactory.sample.helpers.AAFactoryDbHelper
 import io.github.aafactory.sample.helpers.GIT_HUB_API_BASE_URL
 import io.github.aafactory.sample.models.Repository
 import io.github.aafactory.sample.models.Showcase
@@ -63,6 +65,11 @@ class ShowcaseAdapter(
                             holder.description.text = it.description
                             holder.forks.text = "${it.forks_count}"
                         }
+                        withContext(Dispatchers.Main) {
+                            val showcase = Showcase(item.owner, item.name, false, item.description, "", false, item.stargazersCount, item.forksCount)
+                            AAFactoryDbHelper.upsertShowcase(showcase)
+                            activity.makeToast(AAFactoryDbHelper.countShowcase().toString())
+                        }
                     }
                 }
             }
@@ -82,10 +89,16 @@ class ShowcaseAdapter(
 
     class ShowcaseViewHolder(containerView: View) : BaseViewHolder<Showcase>(containerView) {
         override fun bindData(data: Showcase) {
+            val showcase = AAFactoryDbHelper.findShowcase(data.owner, data.name)
+            showcase?.let {
+                description.text = it.description
+                starsAll?.text = it.stargazersCount.toString()
+                forks?.text = it.forksCount.toString()
+            } ?: run {
+                starsAll?.text = "N/A"
+                forks?.text = "N/A"
+            }
             title.text = data.name
-            description.text = data.description
-            starsAll?.text = "${data.stargazersCount}"
-            forks?.text = "${data.forksCount}"
             owner?.text = "Built by ${data.owner}"
         }
     }
