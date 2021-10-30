@@ -51,7 +51,9 @@ object AAFactoryDbHelper {
             true -> insertShowcase(showcase)
             false -> {
                 showcase.sequence = storedShowcase.sequence
-                getInstance().insertOrUpdate(showcase)
+                getInstance().executeTransaction {
+                    it.insertOrUpdate(showcase)
+                }
             }
         }
     }

@@ -90,16 +90,17 @@ class ShowcaseAdapter(
     class ShowcaseViewHolder(containerView: View) : BaseViewHolder<Showcase>(containerView) {
         override fun bindData(data: Showcase) {
             val showcase = AAFactoryDbHelper.findShowcase(data.owner, data.name)
+            starsAll?.text = "N/A"
+            forks?.text = "N/A"
+            title.text = data.name
+            description.text = data.description
+            owner?.text = "Built by ${data.owner}"
+
             showcase?.let {
                 description.text = it.description
                 starsAll?.text = it.stargazersCount.toString()
                 forks?.text = it.forksCount.toString()
-            } ?: run {
-                starsAll?.text = "N/A"
-                forks?.text = "N/A"
             }
-            title.text = data.name
-            owner?.text = "Built by ${data.owner}"
         }
     }
 }
