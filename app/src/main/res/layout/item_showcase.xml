@@ -8,6 +8,7 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardPreventCornerOverlap="true"
+    app:cardBackgroundColor="#FFFFFF"
     app:cardUseCompatPadding="true"
     app:contentPadding="@dimen/paddingLarge"
     app:cardElevation="2dp">
