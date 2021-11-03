@@ -54,6 +54,8 @@ class MainActivity : BaseSimpleActivity() {
             Showcase("navermaps", "maps.android", false, ""),
             Showcase("bumptech", "glide", false, ""),
             Showcase("googlesamples", "android-ConstraintLayoutExamples", false, ""),
+            Showcase("", "Investment Techniques", true, "주식기초", "https://raw.githubusercontent.com/hanjoongcho/CheatSheet/master/Investment-techniques/stock.md"),
+            Showcase("", "MotionLayout / Constraint Layout Samples", true, "This repository contains a list of layouts that showcases the various features and usage of ConstraintLayout and MotionLayout", "https://raw.githubusercontent.com/android/views-widgets-samples/main/ConstraintLayoutExamples/README.md"),
             Showcase("", "Regular Expression", true, "Basic Chapter-01", "https://raw.githubusercontent.com/hanjoongcho/CheatSheet/master/regular-expression/chapter01.md"),
             Showcase("", "Git-01", true, "Git and Git Flow Cheat Sheet", "https://raw.githubusercontent.com/arslanbilal/git-cheat-sheet/master/other-sheets/git-cheat-sheet-ko.md"),
             Showcase("", "Android-01", true, "Project guidelines", "https://raw.githubusercontent.com/hanjoongcho/android-guidelines/master/project_and_code_guidelines.md"),
