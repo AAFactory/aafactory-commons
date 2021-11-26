@@ -19,7 +19,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Path
 import java.io.IOException
+import java.lang.StringBuilder
+
 
 class DevActivity : BaseSimpleActivity() {
     private lateinit var mActivityDevBinding: ActivityDevBinding
@@ -78,9 +84,35 @@ class DevActivity : BaseSimpleActivity() {
                 }
             }
         })
+        mItems.add(Recipe("Retrofit + Glide", "Retrofit, Glide를 이용한 이미지 로딩") {
+            CoroutineScope(Dispatchers.IO).launch {
+                kotlin.runCatching {
+                    val baseUrl = "https://api.github.com"
+                    val retrofit: Retrofit = Retrofit.Builder()
+                            .baseUrl(baseUrl)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build()
+
+                    val github = retrofit.create(GitHub::class.java)
+                    val call = github.contributors("hanjoongcho", "aaf-easydiary")
+                    val contributors: List<Contributor>? = call.execute().body()
+                    contributors?.let {
+                        val sb = StringBuilder()
+                        for (contributor in it) {
+                            sb.append(java.lang.String.format("%s %d %s\n", contributor.login, contributor.contributions, contributor.avatar_url))
+                        }
+                        withContext(Dispatchers.Main) { makeToast(sb.toString(), Toast.LENGTH_LONG) }
+                    }
+                }
+            }
+        })
 //        adapter.notifyDataSetChanged()
     }
-
+    data class Contributor(val login: String, val contributions: Int, val avatar_url: String)
+    interface GitHub {
+        @GET("/repos/{owner}/{repo}/contributors")
+        fun contributors(@Path("owner") owner: String?, @Path("repo") repo: String?): retrofit2.Call<List<Contributor>>
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
