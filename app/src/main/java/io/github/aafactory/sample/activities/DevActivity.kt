@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.aafactory.commons.activities.BaseSimpleActivity
@@ -30,7 +29,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import java.io.IOException
-import java.lang.StringBuilder
 
 
 class DevActivity : BaseSimpleActivity() {
@@ -96,10 +94,8 @@ class DevActivity : BaseSimpleActivity() {
             val rootView = findViewById<ViewGroup>(android.R.id.content).rootView
             var popupWindow: PopupWindow? = null
             popupWindow = PopupWindow(layoutInflater.inflate(R.layout.partial_contributor_info, null).apply {
-                findViewById<ImageView>(R.id.image_close).setOnClickListener { popupWindow?.dismiss() }
-                val infoText = findViewById<TextView>(R.id.text_info)
+                findViewById<ImageView>(R.id.image_close).setOnClickListener { view -> view.postDelayed({ popupWindow?.dismiss() }, 100) }
                 val avatarContainer = findViewById<LinearLayoutCompat>(R.id.layout_info)
-                val sb = StringBuilder()
                 CoroutineScope(Dispatchers.IO).launch {
                     kotlin.runCatching {
                         val baseUrl = "https://api.github.com"
@@ -117,13 +113,12 @@ class DevActivity : BaseSimpleActivity() {
                                     val avatarImageView = ImageView(this@DevActivity).apply {
                                         layoutParams = ViewGroup.LayoutParams(100, 100)
                                     }
+                                    val infoTextView = TextView(this@DevActivity).apply { layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT) }
+                                    infoTextView.text = "${contributor.login} [${contributor.contributions}]"
                                     Glide.with(this@DevActivity).load(contributor.avatar_url).into(avatarImageView)
-                                    avatarContainer.addView(avatarImageView, 0)
+                                    avatarContainer.addView(infoTextView)
+                                    avatarContainer.addView(avatarImageView)
                                 }
-                                sb.append(java.lang.String.format("%s %d %s\n", contributor.login, contributor.contributions, contributor.avatar_url))
-                            }
-                            withContext(Dispatchers.Main) {
-                                infoText.text = sb.toString()
                             }
                         }
                     }
