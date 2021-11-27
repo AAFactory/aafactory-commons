@@ -4,12 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
+import android.view.ViewGroup
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.extensions.*
+import io.github.aafactory.sample.R
 import io.github.aafactory.sample.adapters.RecipeAdapter
 import io.github.aafactory.sample.databinding.ActivityDevBinding
 import io.github.aafactory.sample.models.Recipe
@@ -85,25 +88,37 @@ class DevActivity : BaseSimpleActivity() {
             }
         })
         mItems.add(Recipe("Retrofit + Glide", "Retrofit, Glide를 이용한 이미지 로딩") {
-            CoroutineScope(Dispatchers.IO).launch {
-                kotlin.runCatching {
-                    val baseUrl = "https://api.github.com"
-                    val retrofit: Retrofit = Retrofit.Builder()
-                            .baseUrl(baseUrl)
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build()
+            val width = LinearLayout.LayoutParams.MATCH_PARENT
+            val height = LinearLayout.LayoutParams.MATCH_PARENT
+            val rootView = findViewById<ViewGroup>(android.R.id.content).rootView
+            var popupWindow: PopupWindow? = null
+            popupWindow = PopupWindow(layoutInflater.inflate(R.layout.partial_contributor_info, null).apply {
+                findViewById<ImageView>(R.id.image_close).setOnClickListener { popupWindow?.dismiss() }
+                val sb = StringBuilder()
+                CoroutineScope(Dispatchers.IO).launch {
+                    kotlin.runCatching {
+                        val baseUrl = "https://api.github.com"
+                        val retrofit: Retrofit = Retrofit.Builder()
+                                .baseUrl(baseUrl)
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build()
 
-                    val github = retrofit.create(GitHub::class.java)
-                    val call = github.contributors("hanjoongcho", "aaf-easydiary")
-                    val contributors: List<Contributor>? = call.execute().body()
-                    contributors?.let {
-                        val sb = StringBuilder()
-                        for (contributor in it) {
-                            sb.append(java.lang.String.format("%s %d %s\n", contributor.login, contributor.contributions, contributor.avatar_url))
+                        val github = retrofit.create(GitHub::class.java)
+                        val call = github.contributors("hanjoongcho", "aaf-easydiary")
+                        val contributors: List<Contributor>? = call.execute().body()
+                        contributors?.let {
+                            for (contributor in it) {
+                                sb.append(java.lang.String.format("%s %d %s\n", contributor.login, contributor.contributions, contributor.avatar_url))
+                            }
+                            withContext(Dispatchers.Main) {
+                                findViewById<TextView>(R.id.text_info).text = sb.toString()
+                            }
                         }
-                        withContext(Dispatchers.Main) { makeToast(sb.toString(), Toast.LENGTH_LONG) }
                     }
                 }
+
+            }, width, height, true).apply {
+                showAtLocation(rootView, Gravity.CENTER, 0, 0)
             }
         })
 //        adapter.notifyDataSetChanged()
