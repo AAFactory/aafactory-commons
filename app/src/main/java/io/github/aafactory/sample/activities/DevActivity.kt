@@ -9,7 +9,10 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.extensions.*
 import io.github.aafactory.sample.R
@@ -94,6 +97,8 @@ class DevActivity : BaseSimpleActivity() {
             var popupWindow: PopupWindow? = null
             popupWindow = PopupWindow(layoutInflater.inflate(R.layout.partial_contributor_info, null).apply {
                 findViewById<ImageView>(R.id.image_close).setOnClickListener { popupWindow?.dismiss() }
+                val infoText = findViewById<TextView>(R.id.text_info)
+                val avatarContainer = findViewById<LinearLayoutCompat>(R.id.layout_info)
                 val sb = StringBuilder()
                 CoroutineScope(Dispatchers.IO).launch {
                     kotlin.runCatching {
@@ -108,10 +113,17 @@ class DevActivity : BaseSimpleActivity() {
                         val contributors: List<Contributor>? = call.execute().body()
                         contributors?.let {
                             for (contributor in it) {
+                                withContext(Dispatchers.Main) {
+                                    val avatarImageView = ImageView(this@DevActivity).apply {
+                                        layoutParams = ViewGroup.LayoutParams(100, 100)
+                                    }
+                                    Glide.with(this@DevActivity).load(contributor.avatar_url).into(avatarImageView)
+                                    avatarContainer.addView(avatarImageView, 0)
+                                }
                                 sb.append(java.lang.String.format("%s %d %s\n", contributor.login, contributor.contributions, contributor.avatar_url))
                             }
                             withContext(Dispatchers.Main) {
-                                findViewById<TextView>(R.id.text_info).text = sb.toString()
+                                infoText.text = sb.toString()
                             }
                         }
                     }
