@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.widget.ContentLoadingProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.aafactory.commons.activities.BaseSimpleActivity
@@ -94,8 +95,13 @@ class DevActivity : BaseSimpleActivity() {
             val rootView = findViewById<ViewGroup>(android.R.id.content).rootView
             var popupWindow: PopupWindow? = null
             popupWindow = PopupWindow(layoutInflater.inflate(R.layout.popup_contributor_info, null).apply {
-                findViewById<ImageView>(R.id.image_close).setOnClickListener { view -> view.postDelayed({ popupWindow?.dismiss() }, 100) }
+                val progressbar = findViewById<ContentLoadingProgressBar>(R.id.progressbar_loading).apply { visibility = View.VISIBLE }
                 val avatarContainer = findViewById<LinearLayoutCompat>(R.id.layout_info)
+                findViewById<ImageView>(R.id.image_close).run {
+                    updateDrawableColorInnerCardView(this)
+                    setOnClickListener { view -> view.postDelayed({ popupWindow?.dismiss() }, 100) }
+                }
+
                 CoroutineScope(Dispatchers.IO).launch {
                     kotlin.runCatching {
                         val baseUrl = "https://api.github.com"
@@ -110,6 +116,7 @@ class DevActivity : BaseSimpleActivity() {
                         contributors?.let {
                             for (contributor in it) {
                                 withContext(Dispatchers.Main) {
+                                    progressbar.visibility = View.GONE
                                     val contributorItemView = layoutInflater.inflate(R.layout.item_contributor, null)
                                     val avatarImage = contributorItemView.findViewById<ImageView>(R.id.image_avatar)
                                     val loginIdText = contributorItemView.findViewById<TextView>(R.id.text_login_id)

@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.graphics.PorterDuff
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Build
@@ -11,6 +12,7 @@ import android.os.Looper
 import android.util.TypedValue
 import android.view.View
 import android.view.Window
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -30,6 +32,7 @@ import io.github.aafactory.commons.utils.CommonUtils
  * You can see original 'Simple-Commons' from below link.
  * https://github.com/SimpleMobileTools/Simple-Commons
  */
+val Context.config: BaseConfig get() = BaseConfig.newInstance(this)
 
 fun Context.isOnMainThread() = Looper.myLooper() == Looper.getMainLooper()
 fun Context.getSharedPrefs() = getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE)
@@ -116,4 +119,13 @@ fun Context.isNightMode() = when (resources.configuration.uiMode and Configurati
     Configuration.UI_MODE_NIGHT_YES -> false
     Configuration.UI_MODE_NIGHT_NO -> false
     else -> false
+}
+
+fun Context.updateDrawableColorInnerCardView(imageView: ImageView, color: Int = config.textColor) {
+    if (isNightMode()) return
+    changeDrawableIconColor(color, imageView)
+}
+
+fun Context.changeDrawableIconColor(color: Int, imageView: ImageView) {
+    imageView.setColorFilter(color, PorterDuff.Mode.SRC_IN)
 }
