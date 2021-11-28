@@ -93,7 +93,7 @@ class DevActivity : BaseSimpleActivity() {
             val height = LinearLayout.LayoutParams.MATCH_PARENT
             val rootView = findViewById<ViewGroup>(android.R.id.content).rootView
             var popupWindow: PopupWindow? = null
-            popupWindow = PopupWindow(layoutInflater.inflate(R.layout.partial_contributor_info, null).apply {
+            popupWindow = PopupWindow(layoutInflater.inflate(R.layout.popup_contributor_info, null).apply {
                 findViewById<ImageView>(R.id.image_close).setOnClickListener { view -> view.postDelayed({ popupWindow?.dismiss() }, 100) }
                 val avatarContainer = findViewById<LinearLayoutCompat>(R.id.layout_info)
                 CoroutineScope(Dispatchers.IO).launch {
@@ -110,14 +110,12 @@ class DevActivity : BaseSimpleActivity() {
                         contributors?.let {
                             for (contributor in it) {
                                 withContext(Dispatchers.Main) {
-                                    val avatarImageView = ImageView(this@DevActivity).apply {
-                                        layoutParams = ViewGroup.LayoutParams(100, 100)
-                                    }
-                                    val infoTextView = TextView(this@DevActivity).apply { layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT) }
-                                    infoTextView.text = "${contributor.login} [${contributor.contributions}]"
-                                    Glide.with(this@DevActivity).load(contributor.avatar_url).into(avatarImageView)
-                                    avatarContainer.addView(infoTextView)
-                                    avatarContainer.addView(avatarImageView)
+                                    val contributorItemView = layoutInflater.inflate(R.layout.item_contributor, null)
+                                    val avatarImage = contributorItemView.findViewById<ImageView>(R.id.image_avatar)
+                                    val loginIdText = contributorItemView.findViewById<TextView>(R.id.text_login_id)
+                                    loginIdText.text = contributor.login
+                                    Glide.with(this@DevActivity).load(contributor.avatar_url).circleCrop().into(avatarImage)
+                                    avatarContainer.addView(contributorItemView)
                                 }
                             }
                         }
