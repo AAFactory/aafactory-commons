@@ -8,7 +8,7 @@ import io.github.aafactory.sample.databinding.ItemContributorBinding
 
 class ContributorAdapter(private val activity: Activity, private val contributors: List<Contributor>) : RecyclerView.Adapter<ContributorAdapter.ContributorViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContributorViewHolder {
-        return ContributorViewHolder(ItemContributorBinding.inflate(activity.layoutInflater))
+        return ContributorViewHolder(ItemContributorBinding.inflate(activity.layoutInflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: ContributorViewHolder, position: Int) {

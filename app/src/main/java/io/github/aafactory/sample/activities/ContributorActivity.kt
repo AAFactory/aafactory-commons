@@ -2,6 +2,8 @@ package io.github.aafactory.sample.activities
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.aafactory.commons.R
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.extensions.makeToast
@@ -46,8 +48,9 @@ class ContributorActivity : BaseSimpleActivity() {
                         makeToast("size: ${contributors!!.size}")
                         recyclerContributors.run {
                             adapter = ContributorAdapter(this@ContributorActivity, contributors!!)
-                            layoutManager = androidx.recyclerview.widget.GridLayoutManager(this@ContributorActivity, 1)
-                            addItemDecoration(ItemDecoration(this@ContributorActivity))
+                            layoutManager = LinearLayoutManager(this@ContributorActivity, LinearLayoutManager.VERTICAL, false)
+//                            layoutManager = GridLayoutManager(this@ContributorActivity, 1)
+//                            addItemDecoration(ItemDecoration(this@ContributorActivity))
                         }
                     }
                 }
