@@ -1,23 +1,14 @@
 package io.github.aafactory.sample.activities
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Rect
 import android.os.Bundle
-import android.view.Gravity
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.widget.*
-import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.core.widget.ContentLoadingProgressBar
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import android.widget.Toast
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.commons.extensions.*
-import io.github.aafactory.sample.R
 import io.github.aafactory.sample.adapters.RecipeAdapter
 import io.github.aafactory.sample.databinding.ActivityDevBinding
+import io.github.aafactory.sample.helpers.ItemDecoration
 import io.github.aafactory.sample.models.Recipe
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.coroutines.CoroutineScope
@@ -25,9 +16,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
 import java.io.IOException
 
 
@@ -49,7 +37,7 @@ class DevActivity : BaseSimpleActivity() {
         setContentView(mActivityDevBinding.root)
         setSupportActionBar(mActivityDevBinding.toolbar)
         supportActionBar?.run {
-            title = ""
+            title = "Dev Console"
             setDisplayHomeAsUpEnabled(true)
         }
 
@@ -89,48 +77,7 @@ class DevActivity : BaseSimpleActivity() {
             }
         })
         mItems.add(Recipe("Retrofit + Glide", "Retrofit, Glide를 이용한 이미지 로딩") {
-            val width = LinearLayout.LayoutParams.MATCH_PARENT
-            val height = LinearLayout.LayoutParams.MATCH_PARENT
-            val rootView = findViewById<ViewGroup>(android.R.id.content).rootView
-            var popupWindow: PopupWindow? = null
-            popupWindow = PopupWindow(layoutInflater.inflate(R.layout.popup_contributor_info, null).apply {
-                val progressbar = findViewById<ContentLoadingProgressBar>(R.id.progressbar_loading).apply { visibility = View.VISIBLE }
-                val avatarContainer = findViewById<LinearLayoutCompat>(R.id.layout_info)
-                findViewById<ImageView>(R.id.image_close).run {
-                    updateDrawableColorInnerCardView(this)
-                    setOnClickListener { view -> view.postDelayed({ popupWindow?.dismiss() }, 100) }
-                }
-
-                CoroutineScope(Dispatchers.IO).launch {
-                    kotlin.runCatching {
-                        val retrofit: Retrofit = Retrofit.Builder()
-                                .baseUrl(API_URL_CUSTOM)
-                                .addConverterFactory(GsonConverterFactory.create())
-                                .build()
-
-                        val github = retrofit.create(CustomData::class.java)
-                        val call = github.findContributors()
-                        val contributors: List<Contributor>? = call.execute().body()
-                        contributors?.let {
-                            for (contributor in it) {
-                                withContext(Dispatchers.Main) {
-                                    progressbar.visibility = View.GONE
-                                    layoutInflater.inflate(R.layout.item_contributor, null).run {
-                                        findViewById<TextView>(R.id.text_name).text = contributor.user.name
-                                        findViewById<TextView>(R.id.text_login_id).text = contributor.login
-                                        findViewById<TextView>(R.id.text_contributions).text = contributor.contributions.toString()
-                                        Glide.with(this@DevActivity).load(contributor.user.avatar_url).circleCrop().into(findViewById<ImageView>(R.id.image_avatar))
-                                        avatarContainer.addView(this)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-            }, width, height, true).apply {
-                showAtLocation(rootView, Gravity.CENTER, 0, 0)
-            }
+            startActivity(Intent(this, ContributorActivity::class.java))
         })
 //        adapter.notifyDataSetChanged()
     }
@@ -140,23 +87,6 @@ class DevActivity : BaseSimpleActivity() {
             android.R.id.home -> finish()
         }
         return true
-    }
-
-    companion object {
-        const val API_URL_CUSTOM = "https://raw.githubusercontent.com"
-    }
-
-    data class Contributor(val user: User, val login: String, val contributions: Int)
-    data class User(val name: String, val location: String, val blog: String, val avatar_url: String)
-    interface CustomData {
-        @GET("/hanjoongcho/aaf-easydiary/master/data/contributors.json")
-        fun findContributors(): retrofit2.Call<List<Contributor>>
-    }
-    private inner class ItemDecoration(private val context: Context) : RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-            super.getItemOffsets(outRect, view, parent, state)
-            outRect.bottom = context.dpToPixel(3F)
-        }
     }
 }
 

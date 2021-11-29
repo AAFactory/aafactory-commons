@@ -18,7 +18,7 @@ class RecipeAdapter(
         private val activity: Activity,
         private val listItem: ArrayList<Recipe>,
         private val onItemClickListener: AdapterView.OnItemClickListener
-) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>(){
+) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
 
     private fun createViewHolder(layoutType: Int, parent: ViewGroup?): RecipeViewHolder {
         val view = activity.layoutInflater.inflate(layoutType, parent, false)
