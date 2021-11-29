@@ -28,7 +28,6 @@ import okhttp3.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 import java.io.IOException
 
 
@@ -104,25 +103,25 @@ class DevActivity : BaseSimpleActivity() {
 
                 CoroutineScope(Dispatchers.IO).launch {
                     kotlin.runCatching {
-                        val baseUrl = "https://api.github.com"
                         val retrofit: Retrofit = Retrofit.Builder()
-                                .baseUrl(baseUrl)
+                                .baseUrl(API_URL_CUSTOM)
                                 .addConverterFactory(GsonConverterFactory.create())
                                 .build()
 
-                        val github = retrofit.create(GitHub::class.java)
-                        val call = github.contributors("hanjoongcho", "aaf-easydiary")
+                        val github = retrofit.create(CustomData::class.java)
+                        val call = github.findContributors()
                         val contributors: List<Contributor>? = call.execute().body()
                         contributors?.let {
                             for (contributor in it) {
                                 withContext(Dispatchers.Main) {
                                     progressbar.visibility = View.GONE
-                                    val contributorItemView = layoutInflater.inflate(R.layout.item_contributor, null)
-                                    val avatarImage = contributorItemView.findViewById<ImageView>(R.id.image_avatar)
-                                    val loginIdText = contributorItemView.findViewById<TextView>(R.id.text_login_id)
-                                    loginIdText.text = contributor.login
-                                    Glide.with(this@DevActivity).load(contributor.avatar_url).circleCrop().into(avatarImage)
-                                    avatarContainer.addView(contributorItemView)
+                                    layoutInflater.inflate(R.layout.item_contributor, null).run {
+                                        findViewById<TextView>(R.id.text_name).text = contributor.user.name
+                                        findViewById<TextView>(R.id.text_login_id).text = contributor.login
+                                        findViewById<TextView>(R.id.text_contributions).text = contributor.contributions.toString()
+                                        Glide.with(this@DevActivity).load(contributor.user.avatar_url).circleCrop().into(findViewById<ImageView>(R.id.image_avatar))
+                                        avatarContainer.addView(this)
+                                    }
                                 }
                             }
                         }
@@ -135,11 +134,6 @@ class DevActivity : BaseSimpleActivity() {
         })
 //        adapter.notifyDataSetChanged()
     }
-    data class Contributor(val login: String, val contributions: Int, val avatar_url: String)
-    interface GitHub {
-        @GET("/repos/{owner}/{repo}/contributors")
-        fun contributors(@Path("owner") owner: String?, @Path("repo") repo: String?): retrofit2.Call<List<Contributor>>
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -148,6 +142,16 @@ class DevActivity : BaseSimpleActivity() {
         return true
     }
 
+    companion object {
+        const val API_URL_CUSTOM = "https://raw.githubusercontent.com"
+    }
+
+    data class Contributor(val user: User, val login: String, val contributions: Int)
+    data class User(val name: String, val location: String, val blog: String, val avatar_url: String)
+    interface CustomData {
+        @GET("/hanjoongcho/aaf-easydiary/master/data/contributors.json")
+        fun findContributors(): retrofit2.Call<List<Contributor>>
+    }
     private inner class ItemDecoration(private val context: Context) : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
             super.getItemOffsets(outRect, view, parent, state)

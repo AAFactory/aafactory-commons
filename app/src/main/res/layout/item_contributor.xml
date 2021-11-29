@@ -23,9 +23,39 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
+            android:id="@+id/text_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold|italic"
+            android:textSize="18sp"
+            tools:text="Bulbasaur" />
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/text_name"
+            app:layout_constraintStart_toEndOf="@id/image_avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:id="@+id/text_login_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             tools:text="Hanjoong Cho" />
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/text_login_id"
+            app:layout_constraintStart_toEndOf="@id/image_avatar"
+            android:layout_marginStart="15dp"
+            android:id="@+id/text_contributions_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contributions:" />
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/text_login_id"
+            app:layout_constraintStart_toEndOf="@id/text_contributions_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="15dp"
+            android:id="@+id/text_contributions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="2756" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
