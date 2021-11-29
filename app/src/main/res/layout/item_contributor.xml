@@ -14,8 +14,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/image_avatar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             tools:srcCompat="@tools:sample/avatars" />
         <TextView
             app:layout_constraintTop_toTopOf="@id/image_avatar"
@@ -31,6 +31,26 @@
             tools:text="Bulbasaur" />
         <TextView
             app:layout_constraintTop_toBottomOf="@id/text_name"
+            app:layout_constraintStart_toEndOf="@id/image_avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:id="@+id/text_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Korea" />
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/text_location"
+            app:layout_constraintStart_toEndOf="@id/image_avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:id="@+id/text_blog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="https://aafactory.github.io/" />
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/text_blog"
             app:layout_constraintStart_toEndOf="@id/image_avatar"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="15dp"

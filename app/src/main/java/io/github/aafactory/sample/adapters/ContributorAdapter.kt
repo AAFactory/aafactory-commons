@@ -20,13 +20,16 @@ class ContributorAdapter(private val activity: Activity, private val contributor
     inner class ContributorViewHolder(private val itemContributorBinding: ItemContributorBinding) : RecyclerView.ViewHolder(itemContributorBinding.root) {
         fun bindTo(contributor: Contributor) {
             itemContributorBinding.run {
-                textName.text = contributor.user.name
+                textName.text = contributor.user.name ?: "N/A"
+                textLocation.text = contributor.user.location ?: "N/A"
                 textLoginId.text = contributor.login
+                textBlog.text = contributor.user.blog ?: "N/A"
+                textContributions.text = contributor.contributions.toString()
                 Glide.with(activity).load(contributor.user.avatar_url).circleCrop().into(imageAvatar)
             }
         }
     }
 
     data class Contributor(val user: User, val login: String, val contributions: Int)
-    data class User(val name: String, val location: String, val blog: String, val avatar_url: String)
+    data class User(val name: String?, val location: String?, val blog: String?, val avatar_url: String)
 }
