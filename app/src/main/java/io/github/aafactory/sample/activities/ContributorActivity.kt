@@ -13,6 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -41,18 +42,21 @@ class ContributorActivity : BaseSimpleActivity() {
                 val github = retrofit.create(CustomData::class.java)
                 val call = github.findContributors()
                 val contributors: List<ContributorAdapter.Contributor>? = call.execute().body()
-                withContext(Dispatchers.Main) {
-                    mBinding.run {
-                        progressbarLoading.visibility = View.GONE
-                        makeToast("size: ${contributors!!.size}")
-                        recyclerContributors.run {
-                            adapter = ContributorAdapter(this@ContributorActivity, contributors!!)
-                            layoutManager = LinearLayoutManager(this@ContributorActivity, LinearLayoutManager.VERTICAL, false)
+                contributors?.let {
+                    withContext(Dispatchers.Main) {
+                        mBinding.run {
+                            progressbarLoading.visibility = View.GONE
+                            makeToast("size: ${it.size}")
+                            recyclerContributors.run {
+                                adapter = ContributorAdapter(this@ContributorActivity, it)
+                                layoutManager = LinearLayoutManager(this@ContributorActivity, LinearLayoutManager.VERTICAL, false)
 //                            layoutManager = GridLayoutManager(this@ContributorActivity, 1)
-                            addItemDecoration(ItemDecoration(this@ContributorActivity))
+                                addItemDecoration(ItemDecoration(this@ContributorActivity))
+                            }
                         }
                     }
                 }
+
             }
         }
     }
@@ -63,6 +67,6 @@ class ContributorActivity : BaseSimpleActivity() {
 
     interface CustomData {
         @GET("/hanjoongcho/aaf-easydiary/master/data/contributors.json")
-        fun findContributors(): retrofit2.Call<List<ContributorAdapter.Contributor>>
+        fun findContributors(): Call<List<ContributorAdapter.Contributor>>
     }
 }

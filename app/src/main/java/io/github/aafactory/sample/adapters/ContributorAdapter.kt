@@ -23,7 +23,7 @@ class ContributorAdapter(private val activity: Activity, private val contributor
                 textName.text = contributor.user.name ?: "N/A"
                 textLocation.text = contributor.user.location ?: "N/A"
                 textLoginId.text = contributor.login
-                textBlog.text = contributor.user.blog ?: "N/A"
+                textBlog.text = if (contributor.user.blog?.isNotEmpty() == true) contributor.user.blog else "N/A"
                 textContributions.text = contributor.contributions.toString()
                 Glide.with(activity).load(contributor.user.avatar_url).circleCrop().into(imageAvatar)
             }
