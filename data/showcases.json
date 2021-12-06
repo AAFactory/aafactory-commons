@@ -5,6 +5,28 @@
         "forceAppendCodeBlock": false,
         "forksCount": 0,
         "isCheatSheet": false,
+        "name": "Android-CleanArchitecture-Kotlin",
+        "owner": "android10",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+    {
+        "cheatSheetUrl": "",
+        "description": "",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": false,
+        "name": "markor",
+        "owner": "gsantner",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+    {
+        "cheatSheetUrl": "",
+        "description": "",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": false,
         "name": "Alerter",
         "owner": "Tapadoo",
         "sequence": 0,
