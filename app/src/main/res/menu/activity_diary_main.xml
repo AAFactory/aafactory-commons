@@ -8,9 +8,13 @@
         android:title="Search"
         app:showAsAction="always" />
     <item
-        android:icon="@drawable/ic_bug_2"
         android:id="@+id/devConsole"
         android:orderInCategory="100"
-        android:title="DevConsole"
+        android:title="Dev Console"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/deleteShowcaseFile"
+        android:orderInCategory="100"
+        android:title="Delete Showcase"
         app:showAsAction="never" />
 </menu>

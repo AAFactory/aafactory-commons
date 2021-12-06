@@ -95,11 +95,9 @@ class ShowcaseAdapter(
                 data.forksCount = it.forksCount
             }
 
-
             title.text = data.name
             description.text = data.description
             owner?.text = "Built by ${data.owner}"
-
             starsAll?.text = if (data.stargazersCount > 0) data.stargazersCount.toString() else "N/A"
             forks?.text = if (data.forksCount > 0) data.forksCount.toString() else "N/A"
         }

@@ -63,6 +63,7 @@ dependencies {
 
     // google
     implementation 'com.google.android:flexbox:1.0.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     // apache commons
     implementation "commons-io:commons-io:2.6"

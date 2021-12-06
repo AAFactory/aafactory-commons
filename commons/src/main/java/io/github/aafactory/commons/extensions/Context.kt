@@ -129,3 +129,10 @@ fun Context.updateDrawableColorInnerCardView(imageView: ImageView, color: Int = 
 fun Context.changeDrawableIconColor(color: Int, imageView: ImageView) {
     imageView.setColorFilter(color, PorterDuff.Mode.SRC_IN)
 }
+
+fun Context.getApplicationDataDirectory(): String {
+//        return Environment.getExternalStorageDirectory().absolutePath
+    return applicationInfo.dataDir
+}
+
+

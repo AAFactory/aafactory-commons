@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context="io.github.aafactory.sample.MainActivity">
     <com.google.android.material.appbar.AppBarLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -18,15 +16,12 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:theme="@style/AppTheme.WhiteAccent"
-                android:layout_gravity="right"
-                android:layout_marginRight="10dp"
-                android:layout_width="20dp"
-                android:layout_height="20dp" />
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
-
     <include layout="@layout/content_main" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_gravity="center"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
