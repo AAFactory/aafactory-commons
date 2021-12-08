@@ -1,19 +1,21 @@
 package io.github.aafactory.commons.activities
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.annotation.RequiresApi
 import io.github.aafactory.commons.R
 import io.github.aafactory.commons.databinding.ActivityMarkdownViewBinding
 import io.github.aafactory.commons.extensions.isConnectedOrConnecting
-import io.noties.markwon.Markwon
+import io.noties.markwon.*
 import io.noties.markwon.ext.tables.TablePlugin
 import io.noties.markwon.ext.tables.TableTheme
 import io.noties.markwon.html.HtmlPlugin
-import io.noties.markwon.image.ImagesPlugin
+import io.noties.markwon.image.*
 import io.noties.markwon.syntax.Prism4jThemeDefault
 import io.noties.markwon.syntax.SyntaxHighlightPlugin
 import io.noties.markwon.utils.ColorUtils
@@ -22,6 +24,7 @@ import io.noties.prism4j.Prism4j
 import io.noties.prism4j.annotations.PrismBundle
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.IOUtils
+import org.commonmark.node.Image
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
@@ -72,9 +75,22 @@ open class BaseMarkDownViewActivity : BaseSimpleActivity() {
     }
 
     private fun initMarkdown() {
+        fun imageSize(props: RenderProps): ImageSize {
+            return ImageProps.IMAGE_SIZE.get(props) ?: ImageSize(ImageSize.Dimension(100F, "%"), null)
+        }
         Markwon.builder(this)
                 .usePlugin(ImagesPlugin.create())
                 .usePlugin(HtmlPlugin.create())
+//                .usePlugin(object : AbstractMarkwonPlugin() {
+//                    @RequiresApi(Build.VERSION_CODES.KITKAT)
+//                    override fun configureSpansFactory(builder: MarkwonSpansFactory.Builder) {
+//                        super.configureSpansFactory(builder)
+//                        builder.setFactory(Image::class.java) { configuration, props ->
+//                            val asyncDrawable = AsyncDrawable(ImageProps.DESTINATION.require(props), configuration.asyncDrawableLoader(), configuration.imageSizeResolver(), imageSize(props))
+//                            AsyncDrawableSpan(configuration.theme(), asyncDrawable, AsyncDrawableSpan.ALIGN_BOTTOM, ImageProps.REPLACEMENT_TEXT_IS_LINK.get(props, false))
+//                        }
+//                    }
+//                })
                 .usePlugin(TablePlugin.create { builder: TableTheme.Builder ->
                     val dip: Dip = Dip.create(this)
                     builder
