@@ -137,7 +137,7 @@ class MainActivity : BaseSimpleActivity() {
             R.id.search -> {
                 mDialogSearchMain?.show() ?: run {
                     val builder = AlertDialog.Builder(this).apply {
-                        setNegativeButton(getString(android.R.string.cancel), null)
+                        setNegativeButton(getString(android.R.string.ok), null)
 //                        setPositiveButton(getString(android.R.string.ok)) { _, _ ->
 //                            refresh(mDialogSearchMainBinding.repositoryNameQuery.text.toString(), mDialogSearchMainBinding.repositoryDescriptionQuery.text.toString())
 //                            mDialogSearchMain?.dismiss()
