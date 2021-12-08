@@ -16,6 +16,7 @@ import io.noties.markwon.ext.tables.TablePlugin
 import io.noties.markwon.ext.tables.TableTheme
 import io.noties.markwon.html.HtmlPlugin
 import io.noties.markwon.image.*
+import io.noties.markwon.image.destination.ImageDestinationProcessorRelativeToAbsolute
 import io.noties.markwon.syntax.Prism4jThemeDefault
 import io.noties.markwon.syntax.SyntaxHighlightPlugin
 import io.noties.markwon.utils.ColorUtils
@@ -29,6 +30,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.net.HttpURLConnection
+import java.net.MalformedURLException
 import java.net.URL
 
 @PrismBundle(include = ["java", "kotlin", "javascript"], grammarLocatorClassName = ".GrammarLocatorSourceCode")
@@ -75,22 +77,31 @@ open class BaseMarkDownViewActivity : BaseSimpleActivity() {
     }
 
     private fun initMarkdown() {
+        fun truncateMarkdownBaseUrl(markdownUrl: String): String {
+            val url = URL(markdownUrl)
+            val path = url.file.substring(0, url.file.lastIndexOf('/'))
+            return url.protocol + "://" + url.host + path + "/"
+        }
         fun imageSize(props: RenderProps): ImageSize {
             return ImageProps.IMAGE_SIZE.get(props) ?: ImageSize(ImageSize.Dimension(100F, "%"), null)
         }
         Markwon.builder(this)
                 .usePlugin(ImagesPlugin.create())
                 .usePlugin(HtmlPlugin.create())
-//                .usePlugin(object : AbstractMarkwonPlugin() {
-//                    @RequiresApi(Build.VERSION_CODES.KITKAT)
-//                    override fun configureSpansFactory(builder: MarkwonSpansFactory.Builder) {
-//                        super.configureSpansFactory(builder)
-//                        builder.setFactory(Image::class.java) { configuration, props ->
-//                            val asyncDrawable = AsyncDrawable(ImageProps.DESTINATION.require(props), configuration.asyncDrawableLoader(), configuration.imageSizeResolver(), imageSize(props))
-//                            AsyncDrawableSpan(configuration.theme(), asyncDrawable, AsyncDrawableSpan.ALIGN_BOTTOM, ImageProps.REPLACEMENT_TEXT_IS_LINK.get(props, false))
-//                        }
-//                    }
-//                })
+                .usePlugin(object : AbstractMarkwonPlugin() {
+                    @RequiresApi(Build.VERSION_CODES.KITKAT)
+                    override fun configureSpansFactory(builder: MarkwonSpansFactory.Builder) {
+                        super.configureSpansFactory(builder)
+                        builder.setFactory(Image::class.java) { configuration, props ->
+                            val asyncDrawable = AsyncDrawable(ImageProps.DESTINATION.require(props), configuration.asyncDrawableLoader(), configuration.imageSizeResolver(), imageSize(props))
+                            AsyncDrawableSpan(configuration.theme(), asyncDrawable, AsyncDrawableSpan.ALIGN_BOTTOM, ImageProps.REPLACEMENT_TEXT_IS_LINK.get(props, false))
+                        }
+                    }
+                    override fun configureConfiguration(builder: MarkwonConfiguration.Builder) {
+                        super.configureConfiguration(builder)
+                        builder.imageDestinationProcessor(ImageDestinationProcessorRelativeToAbsolute(truncateMarkdownBaseUrl(markdownUrl)))
+                    }
+                })
                 .usePlugin(TablePlugin.create { builder: TableTheme.Builder ->
                     val dip: Dip = Dip.create(this)
                     builder
