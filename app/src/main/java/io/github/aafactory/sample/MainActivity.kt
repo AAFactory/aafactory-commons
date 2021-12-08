@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -136,19 +138,30 @@ class MainActivity : BaseSimpleActivity() {
                 mDialogSearchMain?.show() ?: run {
                     val builder = AlertDialog.Builder(this).apply {
                         setNegativeButton(getString(android.R.string.cancel), null)
-                        setPositiveButton(getString(android.R.string.ok)) { _, _ ->
-                            refresh(mDialogSearchMainBinding.repositoryNameQuery.text.toString(), mDialogSearchMainBinding.repositoryDescriptionQuery.text.toString())
-                            mDialogSearchMain?.dismiss()
-                        }
+//                        setPositiveButton(getString(android.R.string.ok)) { _, _ ->
+//                            refresh(mDialogSearchMainBinding.repositoryNameQuery.text.toString(), mDialogSearchMainBinding.repositoryDescriptionQuery.text.toString())
+//                            mDialogSearchMain?.dismiss()
+//                        }
                     }
                     mDialogSearchMain = builder.create().apply {
                         setTitle("Repository Filter")
 //                    val dialogSearchMain = layoutInflater.inflate(R.layout.dialog_search_main, null)
 //                    setView(dialogSearchMain)
-                        setView(mDialogSearchMainBinding.root)
-                        mDialogSearchMainBinding.repositoryNameQuery.run {
-                            requestFocus()
-                            showKeyboard(this)
+                        mDialogSearchMainBinding.run {
+                            setView(root)
+                            repositoryNameQuery.run {
+                                requestFocus()
+                                showKeyboard(this)
+                            }
+                            val textWatcher = object : TextWatcher {
+                                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+                                override fun afterTextChanged(p0: Editable?) {}
+                                override fun onTextChanged(charSequence: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                                    refresh(repositoryNameQuery.text.toString(), repositoryDescriptionQuery.text.toString())
+                                }
+                            }
+                            repositoryNameQuery.addTextChangedListener(textWatcher)
+                            repositoryDescriptionQuery.addTextChangedListener(textWatcher)
                         }
                         show()
                     }
