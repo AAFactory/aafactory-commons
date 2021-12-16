@@ -96,10 +96,10 @@ open class BaseMarkDownViewActivity : BaseSimpleActivity() {
                     @RequiresApi(Build.VERSION_CODES.KITKAT)
                     override fun configureSpansFactory(builder: MarkwonSpansFactory.Builder) {
                         super.configureSpansFactory(builder)
-                        builder.setFactory(Image::class.java) { configuration, props ->
-                            val asyncDrawable = AsyncDrawable(ImageProps.DESTINATION.require(props), configuration.asyncDrawableLoader(), configuration.imageSizeResolver(), imageSize(props))
-                            AsyncDrawableSpan(configuration.theme(), asyncDrawable, AsyncDrawableSpan.ALIGN_BOTTOM, ImageProps.REPLACEMENT_TEXT_IS_LINK.get(props, false))
-                        }
+//                        builder.setFactory(Image::class.java) { configuration, props ->
+//                            val asyncDrawable = AsyncDrawable(ImageProps.DESTINATION.require(props), configuration.asyncDrawableLoader(), configuration.imageSizeResolver(), imageSize(props))
+//                            AsyncDrawableSpan(configuration.theme(), asyncDrawable, AsyncDrawableSpan.ALIGN_BOTTOM, ImageProps.REPLACEMENT_TEXT_IS_LINK.get(props, false))
+//                        }
                     }
                     override fun configureConfiguration(builder: MarkwonConfiguration.Builder) {
                         super.configureConfiguration(builder)
