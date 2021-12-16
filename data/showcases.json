@@ -1,6 +1,6 @@
 [  
     {
-        "cheatSheetUrl": "https://github.com/WooVictory/Ready-For-Tech-Interview/blob/master/Android/Activity%20Lifecycle.md",
+        "cheatSheetUrl": "https://raw.githubusercontent.com/WooVictory/Ready-For-Tech-Interview/master/Android/Activity%20Lifecycle.md",
         "description": "Activity Lifecycle",
         "forceAppendCodeBlock": false,
         "forksCount": 0,
@@ -11,7 +11,7 @@
         "stargazersCount": 0
     },
         {
-        "cheatSheetUrl": "https://github.com/WooVictory/Ready-For-Tech-Interview/blob/master/Android/4%EB%8C%80%20%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8.md",
+        "cheatSheetUrl": "https://raw.githubusercontent.com/WooVictory/Ready-For-Tech-Interview/master/Android/4%EB%8C%80%20%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8.md",
         "description": "안드로이드 4대 컴포넌트",
         "forceAppendCodeBlock": false,
         "forksCount": 0,
