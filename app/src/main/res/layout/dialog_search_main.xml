@@ -7,39 +7,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <androidx.appcompat.widget.AppCompatTextView
-        app:layout_constraintTop_toTopOf="@+id/repository_name_query"
-        app:layout_constraintBottom_toBottomOf="@+id/repository_name_query"
+        app:layout_constraintTop_toTopOf="@+id/inquiry_keyword"
+        app:layout_constraintBottom_toBottomOf="@+id/inquiry_keyword"
         app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/repository_name_label"
+        android:id="@+id/inquiry_keyword_label"
         android:text="Repository or Title: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
     <androidx.appcompat.widget.AppCompatEditText
         tools:text="Easy Diary"
-        app:layout_constraintStart_toEndOf="@+id/repository_name_label"
+        app:layout_constraintStart_toEndOf="@+id/inquiry_keyword_label"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/repository_name_query"
+        app:layout_constraintEnd_toStartOf="@+id/clearKeyword"
+        android:id="@+id/inquiry_keyword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
          />
-    <androidx.appcompat.widget.AppCompatTextView
-        app:layout_constraintTop_toTopOf="@+id/repository_description_query"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/repository_description_query"
-        android:id="@+id/repository_description_label"
-        android:text="Description: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-    <androidx.appcompat.widget.AppCompatEditText
-        tools:text="Easy Diary"
-        app:layout_constraintStart_toEndOf="@+id/repository_description_label"
-        app:layout_constraintTop_toBottomOf="@+id/repository_name_query"
+    <ImageView
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/repository_description_query"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        />
+        app:layout_constraintTop_toTopOf="@+id/inquiry_keyword"
+        app:layout_constraintBottom_toBottomOf="@+id/inquiry_keyword"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_cross"
+        android:id="@+id/clearKeyword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

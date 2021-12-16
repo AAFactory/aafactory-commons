@@ -18,10 +18,7 @@ import com.google.gson.stream.JsonReader
 import com.simplemobiletools.commons.extensions.showKeyboard
 import io.github.aafactory.commons.activities.BaseMarkDownViewActivity
 import io.github.aafactory.commons.activities.BaseSimpleActivity
-import io.github.aafactory.commons.extensions.dpToPixel
-import io.github.aafactory.commons.extensions.getApplicationDataDirectory
-import io.github.aafactory.commons.extensions.makeToast
-import io.github.aafactory.commons.extensions.triggerRestart
+import io.github.aafactory.commons.extensions.*
 import io.github.aafactory.sample.activities.DevActivity
 import io.github.aafactory.sample.activities.MarkDownViewActivity
 import io.github.aafactory.sample.adapters.ShowcaseAdapter
@@ -100,19 +97,16 @@ class MainActivity : BaseSimpleActivity() {
                 }
             })
         }
+
+        updateDrawableColorInnerCardView(mDialogSearchMainBinding.clearKeyword)
     }
 
-    private fun refresh(repoName: String = "", description: String = "") {
+    private fun refresh(keyword: String = "") {
         mFilteredShowcaseItems.clear()
         mShowcaseItems.filter { item ->
-            when (repoName.isEmpty()) {
+            when (keyword.isEmpty()) {
                 true -> true
-                false -> { item.name.contains(repoName, true) }
-            }
-        }.filter { item ->
-            when (description.isEmpty()) {
-                true -> true
-                false -> { item.description.contains(description, true) }
+                false -> { item.name.contains(keyword, true) || item.description.contains(keyword, true) }
             }
         }.run { mFilteredShowcaseItems.addAll(this) }
         mAdapter.notifyDataSetChanged()
@@ -149,7 +143,7 @@ class MainActivity : BaseSimpleActivity() {
 //                    setView(dialogSearchMain)
                         mDialogSearchMainBinding.run {
                             setView(root)
-                            repositoryNameQuery.run {
+                            inquiryKeyword.run {
                                 requestFocus()
                                 showKeyboard(this)
                             }
@@ -157,11 +151,11 @@ class MainActivity : BaseSimpleActivity() {
                                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                                 override fun afterTextChanged(p0: Editable?) {}
                                 override fun onTextChanged(charSequence: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                                    refresh(repositoryNameQuery.text.toString(), repositoryDescriptionQuery.text.toString())
+                                    refresh(inquiryKeyword.text.toString())
                                 }
                             }
-                            repositoryNameQuery.addTextChangedListener(textWatcher)
-                            repositoryDescriptionQuery.addTextChangedListener(textWatcher)
+                            inquiryKeyword.addTextChangedListener(textWatcher)
+                            clearKeyword.setOnClickListener { inquiryKeyword.text = null }
                         }
                         show()
                     }
