@@ -7,7 +7,9 @@ import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.setBackgroundWithStroke
 import io.github.aafactory.commons.R
 import io.github.aafactory.commons.dialogs.LineColorPickerDialog
-import io.github.aafactory.commons.extensions.*
+import io.github.aafactory.commons.extensions.baseConfig
+import io.github.aafactory.commons.extensions.darkenColor
+import io.github.aafactory.commons.extensions.getThemeId
 import kotlinx.android.synthetic.main.activity_customization.*
 
 /**
