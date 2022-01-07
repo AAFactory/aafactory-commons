@@ -19,6 +19,7 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
     <WebView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/web_signature_pad"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
