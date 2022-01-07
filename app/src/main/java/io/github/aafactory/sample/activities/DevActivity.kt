@@ -79,8 +79,11 @@ class DevActivity : BaseSimpleActivity() {
         mItems.add(Recipe("Retrofit + Glide", "Retrofit, Glide를 이용한 이미지 로딩") {
             startActivity(Intent(this, ContributorActivity::class.java))
         })
-        mItems.add(Recipe("Signature Pad", "JS Signature Pad") {
-            startActivity(Intent(this, WebViewSignaturePadActivity::class.java))
+        mItems.add(Recipe("Signature Pad", "JS Signature Pad - Local") {
+            startActivity(Intent(this, WebViewSignaturePadActivity::class.java).apply { putExtra(WebViewSignaturePadActivity.TARGET_URL, "file:///android_asset/signature-pad/signature-pad.html") })
+        })
+        mItems.add(Recipe("Signature Pad", "JS Signature Pad - Online") {
+            startActivity(Intent(this, WebViewSignaturePadActivity::class.java).apply { putExtra(WebViewSignaturePadActivity.TARGET_URL, "https://hanjoongcho.github.io/CheatSheet/signature-pad/signature-pad.html") })
         })
 //        adapter.notifyDataSetChanged()
     }

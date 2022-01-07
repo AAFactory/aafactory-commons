@@ -1,11 +1,8 @@
 package io.github.aafactory.sample.activities
 
 import android.os.Bundle
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
 import io.github.aafactory.commons.R
 import io.github.aafactory.commons.activities.BaseSimpleActivity
-import io.github.aafactory.sample.databinding.ActivityDevBinding
 import io.github.aafactory.sample.databinding.ActivityWebviewSignaturePadBinding
 
 class WebViewSignaturePadActivity : BaseSimpleActivity() {
@@ -28,6 +25,10 @@ class WebViewSignaturePadActivity : BaseSimpleActivity() {
         webSettings.allowFileAccessFromFileURLs = true
         webSettings.allowUniversalAccessFromFileURLs = true
 
-        mBinding.webSignaturePad.loadUrl("file:///android_asset/signature-pad/signature-pad.html")
+        intent.getStringExtra(TARGET_URL)?.let { mBinding.webSignaturePad.loadUrl(it) }
+    }
+
+    companion object {
+        const val TARGET_URL = "target_url"
     }
 }
