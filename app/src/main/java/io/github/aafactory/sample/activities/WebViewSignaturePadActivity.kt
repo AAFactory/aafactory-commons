@@ -2,6 +2,7 @@ package io.github.aafactory.sample.activities
 
 import android.os.Bundle
 import android.webkit.WebChromeClient
+import android.webkit.WebSettings
 import io.github.aafactory.commons.R
 import io.github.aafactory.commons.activities.BaseSimpleActivity
 import io.github.aafactory.sample.databinding.ActivityDevBinding
