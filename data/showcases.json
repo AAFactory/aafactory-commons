@@ -1,5 +1,16 @@
 [  
     {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/CheatSheet/master/annotations/spring.md",
+        "description": "Spring Framework 및 Java 주요 Library에서 사용하는 주요 Annotation",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "Java Annotation-01",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    }, 
+    {
         "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/CheatSheet/master/kotlin/coroutine.md",
         "description": "Kotlin Coroutin",
         "forceAppendCodeBlock": false,
