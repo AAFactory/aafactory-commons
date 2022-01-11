@@ -47,6 +47,7 @@ class BarcodeScannerActivity : BaseSimpleActivity() {
             mItems.add(Barcode(mLastText!!))
             mAdapter.notifyDataSetChanged()
             mBinding.recyclerView.smoothScrollToPosition(mItems.size)
+//             mBinding.recyclerView.scrollToPosition(mItems.size.minus(1))
         }
         override fun possibleResultPoints(resultPoints: List<ResultPoint>) {}
     }
