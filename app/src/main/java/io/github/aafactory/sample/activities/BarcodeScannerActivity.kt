@@ -3,6 +3,8 @@ package io.github.aafactory.sample.activities
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.ResultPoint
 import com.google.zxing.client.android.BeepManager
@@ -44,6 +46,7 @@ class BarcodeScannerActivity : BaseSimpleActivity() {
             toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
             mItems.add(Barcode(mLastText!!))
             mAdapter.notifyDataSetChanged()
+            mBinding.recyclerView.smoothScrollToPosition(mItems.size)
         }
         override fun possibleResultPoints(resultPoints: List<ResultPoint>) {}
     }
