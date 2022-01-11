@@ -85,6 +85,9 @@ class DevActivity : BaseSimpleActivity() {
         mItems.add(Recipe("Signature Pad", "JS Signature Pad - Online") {
             startActivity(Intent(this, WebViewSignaturePadActivity::class.java).apply { putExtra(WebViewSignaturePadActivity.TARGET_URL, "https://hanjoongcho.github.io/CheatSheet/signature-pad/signature-pad.html") })
         })
+        mItems.add(Recipe("Barcode Scanner", "QR Code, Data Matrix, Aztec, PDF 417등의 Barcode를 Scanning합니다.") {
+            startActivity(Intent(this, BarcodeScannerActivity::class.java))
+        })
 //        adapter.notifyDataSetChanged()
     }
 

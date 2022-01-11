@@ -29,5 +29,6 @@
         <activity android:name=".activities.ContributorActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.AppIntroActivity" android:theme="@style/AppIntroTheme" />
         <activity android:name=".activities.WebViewSignaturePadActivity" android:theme="@style/AppIntroTheme" />
+        <activity android:name=".activities.BarcodeScannerActivity" android:theme="@style/AppIntroTheme" />
     </application>
 </manifest>
