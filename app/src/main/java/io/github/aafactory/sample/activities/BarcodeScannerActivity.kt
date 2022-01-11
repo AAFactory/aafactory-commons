@@ -1,5 +1,7 @@
 package io.github.aafactory.sample.activities
 
+import android.media.AudioManager
+import android.media.ToneGenerator
 import android.os.Bundle
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.ResultPoint
@@ -14,6 +16,7 @@ import io.github.aafactory.sample.adapters.BarcodeAdapter
 import io.github.aafactory.sample.databinding.ActivityBarcodeScannerBinding
 import io.github.aafactory.sample.helpers.ItemDecoration
 import io.github.aafactory.sample.models.Barcode
+
 
 class BarcodeScannerActivity : BaseSimpleActivity() {
     private lateinit var mBinding: ActivityBarcodeScannerBinding
@@ -36,7 +39,9 @@ class BarcodeScannerActivity : BaseSimpleActivity() {
             }
             mLastText = result.text
             mBinding.barcodeScanner.setStatusText(result.text)
-            mBeepManager.playBeepSoundAndVibrate()
+//            mBeepManager.playBeepSoundAndVibrate()
+            val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
+            toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
             mItems.add(Barcode(mLastText!!))
             mAdapter.notifyDataSetChanged()
         }
