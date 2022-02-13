@@ -23,6 +23,8 @@ open class BaseSimpleActivity : AppCompatActivity() {
     var useDynamicTheme = true
     private val GENERIC_PERM_HANDLER = 100
 
+    open fun isEnableStatusBarDarkenColor(): Boolean = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         if (useDynamicTheme) {
             setTheme(getThemeId())
@@ -72,7 +74,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
 
     fun updateStatusbarColor(color: Int) {
         if (isLollipopPlus()) {
-            window.statusBarColor = color.darkenColor()
+            window.statusBarColor = if (isEnableStatusBarDarkenColor()) color.darkenColor() else color
         }
     }
 
