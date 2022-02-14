@@ -119,4 +119,15 @@ class LineColorPickerDialog(val activity: BaseSimpleActivity, val color: Int, va
     }
 
     private fun getColors(id: Int) = activity.resources.getIntArray(id).toCollection(ArrayList())
+
+    private var mDarkenColorOptionChangeCallback: ((enableStatusBarDarkenColor: Boolean) -> Unit)? = null
+    fun setDarkenColorOptionChangeListener(currentOption: Boolean, callback: (enableStatusBarDarkenColor: Boolean) -> Unit): Unit {
+        mDarkenColorOptionChangeCallback = callback
+        view.switch_status_bar_darken_color.run {
+            isChecked = currentOption
+            setOnCheckedChangeListener { _, isChecked ->
+                callback.invoke(isChecked)
+            }
+        }
+    }
 }
