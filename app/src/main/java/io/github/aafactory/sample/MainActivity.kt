@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -100,19 +102,15 @@ class MainActivity : BaseSimpleActivity() {
         }
     }
 
-    private fun refresh(repoName: String = "", description: String = "") {
+    private fun refresh(searchKeyword: String = "") {
         mFilteredShowcaseItems.clear()
-        mShowcaseItems.filter { item ->
-            when (repoName.isEmpty()) {
-                true -> true
-                false -> { item.name.contains(repoName, true) }
-            }
-        }.filter { item ->
-            when (description.isEmpty()) {
-                true -> true
-                false -> { item.description.contains(description, true) }
-            }
-        }.run { mFilteredShowcaseItems.addAll(this) }
+        mShowcaseItems
+            .filter { item ->
+                when (searchKeyword.isEmpty()) {
+                    true -> true
+                    false -> { item.name.contains(searchKeyword, true) || item.description.contains(searchKeyword, true) }
+                }
+            }.run { mFilteredShowcaseItems.addAll(this) }
         mAdapter.notifyDataSetChanged()
     }
 
@@ -135,9 +133,10 @@ class MainActivity : BaseSimpleActivity() {
             R.id.search -> {
                 mDialogSearchMain?.show() ?: run {
                     val builder = AlertDialog.Builder(this).apply {
-                        setNegativeButton(getString(android.R.string.cancel), null)
-                        setPositiveButton(getString(android.R.string.ok)) { _, _ ->
-                            refresh(mDialogSearchMainBinding.repositoryNameQuery.text.toString(), mDialogSearchMainBinding.repositoryDescriptionQuery.text.toString())
+                        setNegativeButton("Clear") { _, _ ->
+                            mDialogSearchMainBinding.editSearchKeyword.setText("")
+                        }
+                        setPositiveButton("Close") { _, _ ->
                             mDialogSearchMain?.dismiss()
                         }
                     }
@@ -146,9 +145,26 @@ class MainActivity : BaseSimpleActivity() {
 //                    val dialogSearchMain = layoutInflater.inflate(R.layout.dialog_search_main, null)
 //                    setView(dialogSearchMain)
                         setView(mDialogSearchMainBinding.root)
-                        mDialogSearchMainBinding.repositoryNameQuery.run {
+                        mDialogSearchMainBinding.editSearchKeyword.run {
                             requestFocus()
                             showKeyboard(this)
+                            addTextChangedListener(object : TextWatcher {
+                                override fun afterTextChanged(s: Editable?) {}
+                                override fun beforeTextChanged(
+                                    s: CharSequence?,
+                                    start: Int,
+                                    count: Int,
+                                    after: Int
+                                ) {}
+                                override fun onTextChanged(
+                                    s: CharSequence?,
+                                    start: Int,
+                                    before: Int,
+                                    count: Int
+                                ) {
+                                    refresh(mDialogSearchMainBinding.editSearchKeyword.text.toString())
+                                }
+                            })
                         }
                         show()
                     }
