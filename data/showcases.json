@@ -1,11 +1,66 @@
 [  
     {
-        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/CheatSheet/master/annotations/spring.md",
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/the-road-to-learn-react-korean/master/manuscript/chapter1.md",
         "description": "the-road-to-learn-react-korean",
         "forceAppendCodeBlock": false,
         "forksCount": 0,
         "isCheatSheet": true,
         "name": "chapter1",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    }, 
+    { 
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/the-road-to-learn-react-korean/master/manuscript/chapter2.md",
+        "description": "the-road-to-learn-react-korean",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "chapter2",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+    { 
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/the-road-to-learn-react-korean/master/manuscript/chapter3.md",
+        "description": "the-road-to-learn-react-korean",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "chapter3",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    }, 
+    { 
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/the-road-to-learn-react-korean/master/manuscript/chapter4.md",
+        "description": "the-road-to-learn-react-korean",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "chapter4",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    }, 
+    { 
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/the-road-to-learn-react-korean/master/manuscript/chapter5.md",
+        "description": "the-road-to-learn-react-korean",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "chapter5",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    }, 
+    { 
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/the-road-to-learn-react-korean/master/manuscript/chapter6.md",
+        "description": "the-road-to-learn-react-korean",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "chapter6",
         "owner": "",
         "sequence": 0,
         "stargazersCount": 0
