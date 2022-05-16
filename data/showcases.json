@@ -1,4 +1,92 @@
 [  
+     {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/basic/01-concept.md",
+        "description": "01. 리액트는 어쩌다 만들어졌을까?",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-basic",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+    {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/basic/02-prepare.md",
+        "description": "2. 작업환경 준비",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-basic",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+    {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/basic/03-first-component.md",
+        "description": "3. 나의 첫번째 리액트 컴포넌트",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-basic",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+    {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/basic/04-jsx.md",
+        "description": "4. JSX의 기본 규칙 알아보기",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-basic",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+    {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/basic/05-props.md",
+        "description": "5. props 를 통해 컴포넌트에게 값 전달하기",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-basic",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+    {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/basic/06-conditional-rendering.md",
+        "description": "6. 조건부 렌더링",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-basic",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+    {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/basic/07-useState.md",
+        "description": "7. useState 를 통해 컴포넌트에서 바뀌는 값 관리하기",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-basic",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+    {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/basic/08-manage-input.md",
+        "description": "8. input 상태 관리하기",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-basic",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
     {
         "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/the-road-to-learn-react-korean/master/manuscript/chapter1.md",
         "description": "리액트 입문 Introduction to React",
