@@ -1,5 +1,27 @@
 [  
      {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/learnjs/master/async/01-promise.md",
+        "description": "01. Promise",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "learnjs-async_01",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+     {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/learnjs/master/async/02-async-await.md",
+        "description": "02. async/await",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "learnjs-async_02",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },     
+     {
         "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/react-router/01-concepts.md",
         "description": "1. 프로젝트 준비 및 기본적인 사용법",
         "forceAppendCodeBlock": false,
