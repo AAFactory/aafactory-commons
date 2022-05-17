@@ -1,5 +1,60 @@
 [  
      {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/react-router/01-concepts.md",
+        "description": "1. 프로젝트 준비 및 기본적인 사용법",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-react-router_01",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+     {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/react-router/02-params-and-query.md",
+        "description": "2. 파라미터와 쿼리",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-react-router_02",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+     {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/react-router/03-subroutes.md",
+        "description": "3. 서브라우트",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-react-router_03",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+     {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/react-router/04-extra.md",
+        "description": "4. 리액트 라우터 부가기능",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-react-router_04",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+     {
+        "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/react-router/05-use-router-hook.md",
+        "description": "5. useReactRouter Hook 사용하기",
+        "forceAppendCodeBlock": false,
+        "forksCount": 0,
+        "isCheatSheet": true,
+        "name": "react-tutorial-react-router_05",
+        "owner": "",
+        "sequence": 0,
+        "stargazersCount": 0
+    },
+     {
         "cheatSheetUrl": "https://raw.githubusercontent.com/hanjoongcho/react-tutorial/master/basic/01-concept.md",
         "description": "1. 리액트는 어쩌다 만들어졌을까?",
         "forceAppendCodeBlock": false,
