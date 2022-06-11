@@ -135,6 +135,7 @@ class MainActivity : BaseSimpleActivity() {
                     val builder = AlertDialog.Builder(this).apply {
                         setNegativeButton("Clear") { _, _ ->
                             mDialogSearchMainBinding.editSearchKeyword.setText("")
+                            refresh()
                         }
                         setPositiveButton("Close") { _, _ ->
                             mDialogSearchMain?.dismiss()
